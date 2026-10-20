@@ -1,0 +1,30 @@
+{
+  "animeTitle": "Teen Titans - Watch Now in Hindi, Tamil, Telugu, Malayalam, Kannada &amp; English",
+  "animeSlug": "teen-titans-watch-now-in-hindi-tamil-telugu-malayalam-kannada-amp-english",
+  "seasonSlug": "season-1",
+  "seasonTitle": "Season 1",
+  "firstScraped": "2026-09-13T07:58:38.745Z",
+  "lastUpdated": "2026-09-13T07:58:41.681Z",
+  "episodes": {
+    "teen-titans-1x1": {
+      "slug": "teen-titans-1x1",
+      "title": "Teen Titans - Watch Now in Hindi, Tamil, Telugu, Malayalam, Kannada &amp; English - Episode 1",
+      "episodeNumber": 1,
+      "url": "https://animesalt.cx/episode/teen-titans-1x1/",
+      "videoId": "226d1f15ecd35f784d2a20c3ecf56d7f",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/c1539feb5c2b9c64deb9e1d0a89a6933/master.m3u8?md5=OKyvwSAhhe_BIubtBCjItg&expires=1789293589",
+      "poster": "https://as-cdn30.top/p/k_b-UkPSQ60jfE_OdH1gl9NUDlo_4CKmAagoe2rJsmajjhIgbqZO8fYkuQzn23c1XV4T6MDO7dW0b_iGrSp3vw.jpg",
+      "resolvedAt": "2026-09-13T07:58:39.835Z"
+    },
+    "teen-titans-1x2": {
+      "slug": "teen-titans-1x2",
+      "title": "Teen Titans - Watch Now in Hindi, Tamil, Telugu, Malayalam, Kannada &amp; English - Episode 2",
+      "episodeNumber": 2,
+      "url": "https://animesalt.cx/episode/teen-titans-1x2/",
+      "videoId": "e655c7716a4b3ea67f48c6322fc42ed6",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/928d577eae3f048aa272c87b06f55553/master.m3u8?md5=hSufkBvSRnZQXjitA5pNvA&expires=1789293590",
+      "poster": "https://as-cdn26.top/p/UH3vOWtAGW2HxrGL4xPft1d_vzcbXtxHiyTGG3hets1Z-RpukhA7QBOrvcQfb4fVTlvVySQ1VF5Jdzg3YL_lnQ.jpg",
+      "resolvedAt": "2026-09-13T07:58:41.680Z"
+    }
+  }
+}

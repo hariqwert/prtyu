@@ -1,0 +1,144 @@
+<style>
+* { -webkit-tap-highlight-color: transparent !important; }
+* { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+:root { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Plus Jakarta Sans", sans-serif; }
+body { background-color: #000000; color: #f3f4f6; overflow-x: hidden; }
+.glass { background: rgba(255, 255, 255, 0.08); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.12); }
+.glass-card { background: rgba(255, 255, 255, 0.05); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.glow-red { box-shadow: 0 0 30px rgba(255, 255, 255, 0.2); }
+.transition-card { transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.35s ease, box-shadow 0.35s ease; }
+.transition-card:hover { transform: scale(1.05) translateY(-4px); border-color: rgba(255, 255, 255, 0.35); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8), 0 0 25px rgba(255,255,255,0.12); z-index: 20; }
+.line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+/* Apple TV Smooth Scroller Buttons */
+.scroller-container { position: relative; contain: layout; }
+.scroller-container > div[id$="Shelf"] {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    will-change: scroll-position;
+}
+.channel-card {
+    content-visibility: auto;
+    contain-intrinsic-size: 180px 220px;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+.scroller-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(0, 0, 0, 0.7); border: 1px solid rgba(255, 255, 255, 0.2); color: white; display: flex; align-items: center; justify-content: center; z-index: 30; opacity: 0; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); cursor: pointer; backdrop-filter: blur(12px); box-shadow: 0 8px 24px rgba(0,0,0,0.6); }
+.scroller-container:hover .scroller-btn { opacity: 0.85; }
+.scroller-btn:hover { opacity: 1 !important; background: #ffffff; color: #000000; border-color: #ffffff; transform: translateY(-50%) scale(1.1); box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
+.scroller-left { left: 4px; }
+.scroller-right { right: 4px; }
+/* Mobile Touch Scrolling Cleanup & Layout Polish */
+@media (max-width: 768px) {
+    .scroller-btn {
+        display: none !important;
+    }
+    main {
+        padding-bottom: calc(5.5rem + env(safe-area-inset-bottom)) !important;
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+    .scroller-container > div[id$="Shelf"] {
+        scroll-snap-type: x mandatory;
+        scroll-padding: 12px;
+        gap: 0.75rem !important;
+        padding-left: 4px;
+        padding-right: 12px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .scroller-container > div[id$="Shelf"] > div {
+        scroll-snap-align: start;
+    }
+    #heroSliderContainer {
+        height: 380px !important;
+        border-radius: 1.5rem !important;
+    }
+    .channel-card {
+        min-width: 140px;
+    }
+}
+/* Ultra Mobile Responsive Cinema Mode (Landscape Optimization) */
+@media (max-height: 520px) and (orientation: landscape) {
+#view-player {
+overflow: hidden !important;
+background-color: #000000 !important;
+}
+#view-player > div:first-child {
+display: none !important;
+}
+#view-player > .flex-grow {
+padding: 0 !important;
+margin: 0 !important;
+max-width: 100% !important;
+width: 100% !important;
+height: 100vh !important;
+gap: 0 !important;
+}
+#cinemaPlayerWrapper {
+border-radius: 0 !important;
+border: none !important;
+height: 100vh !important;
+width: 100vw !important;
+max-width: 100% !important;
+aspect-ratio: auto !important;
+}
+#playerUpNextContainer,
+#view-player .flex-grow > div:not(#cinemaPlayerWrapper) {
+display: none !important;
+}
+}
+/* Disable TV spatial navigation borders */
+*:focus, *:focus-visible, *:-webkit-direct-focus, *:focus-within {
+outline: none !important;
+outline-width: 0 !important;
+box-shadow: none !important;
+-webkit-tap-highlight-color: transparent !important;
+}
+::-moz-focus-inner {
+border: 0;
+}
+.tv-focus-disabled {
+outline: none !important;
+}
+/* Pure Black Live Now Containers */
+.netflix-card {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    border: 1px solid #27272a;
+    border-radius: 6px;
+    content-visibility: auto;
+    contain-intrinsic-size: 200px 240px;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s ease, border-color 0.2s ease;
+}
+.netflix-card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 1);
+    border-color: #52525b;
+    z-index: 20;
+}
+.netflix-hero-card {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    border: 1px solid #27272a;
+    border-radius: 8px;
+}
+#view-livenow,
+#view-livenow > div,
+#liveNowHeroSpotlight,
+#liveNowEventsContainer,
+#sportsStreamicLiveShelfContainer {
+    background-color: #000000 !important;
+}
+#view-livenow .netflix-card,
+#sportsStreamicLiveShelf .netflix-card,
+#liveNowHeroSpotlight .group,
+#liveNowEventsContainer .netflix-card {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    border-color: #27272a !important;
+}
+</style>

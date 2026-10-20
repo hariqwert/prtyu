@@ -1,0 +1,1135 @@
+[
+  {
+    "channel_id": "mdtv-204",
+    "name": "DD Sports [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/imagespublic/17/8/DDSports_1579505057008_tv.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-204&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "00f634f3ef7a5a8282b41a8dbe11a802",
+      "key": "4f45c1e279595e264f1cb1578641cb7f",
+      "license_key": "00f634f3ef7a5a8282b41a8dbe11a802:4f45c1e279595e264f1cb1578641cb7f,ef21e692f3af590b8d31064eb07f7e6c:e5a15827a8f8e47135de54f4b224ff47,1bbe2053d860562ca6926fa6d3d9c4fd:5013ffb04450eb66bd33ded2fa893e8b,dab8eeac092656bf829ba309c002c9d1:e9ac75dffbaf27a1d31d19d9878feed4,477d3698ac4555f7a3c30b3840547660:78c2ebd34df8ffdf45c30f0a684ac776"
+    },
+    "key_id": "e6bd071206ea552ba32a22496af8f2a5",
+    "key": "962e83890c212fb4fe0fdab30bc2ba0d",
+    "clearkey": "00f634f3ef7a5a8282b41a8dbe11a802:4f45c1e279595e264f1cb1578641cb7f,ef21e692f3af590b8d31064eb07f7e6c:e5a15827a8f8e47135de54f4b224ff47,1bbe2053d860562ca6926fa6d3d9c4fd:5013ffb04450eb66bd33ded2fa893e8b,dab8eeac092656bf829ba309c002c9d1:e9ac75dffbaf27a1d31d19d9878feed4,477d3698ac4555f7a3c30b3840547660:78c2ebd34df8ffdf45c30f0a684ac776"
+  },
+  {
+    "channel_id": "mdtv-162",
+    "name": "Sony Sports Ten 1 HD [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/5/8/300256_1753198281835_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-162&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "8ef8595765be890b424ee5d99ef6f953",
+      "key": "adcff05f3aa10995f1efd4b0bb394d49",
+      "license_key": "3cd96ce073bb51428a454251943143b8:9cf359bd8e323b05248caacc2b4da6c9,4ad1bbe0ba195aceb58a6e5f1ee3cc6f:4804a8a9a97bb14b0488e08942ab85e3,b5185c603f4c5cb794d9dae1b55bce38:c019b2cd8c7944cc90b66cfce3b7132c,36ce7134ee6753beb5c0126e5c8cce02:c28f9b7c3c5d8b8416820173637770a4,8307b4c86cbc54e3a4a635b662e5a44a:41a0b587ea7e3bff24156ef9b27c87dc,8ef8595765be890b424ee5d99ef6f953:adcff05f3aa10995f1efd4b0bb394d49,7a94b1419d77d2e184c7adcd10afc15a:1c4ce982d24be3d88dc0b1e2e4d74368,8779aa225d6050b3094944e00a2b0059:841054a0202ce08983f696e563d12941,3525c924e54154b39533d86b1c7a428a:8548b566fc6608a7d3bd601ee5f3d889,8619386d035251ad9340fc40879a52c6:9c5fb4a4f95089d9d1a3dc19b0d06e47,81ce3115633b29fe26c88d5ccec3cde2:84b9fb91c2bf59863d06fa5e0b757a4d"
+    },
+    "key_id": "3525c924e54154b39533d86b1c7a428a",
+    "key": "8548b566fc6608a7d3bd601ee5f3d889",
+    "clearkey": "3cd96ce073bb51428a454251943143b8:9cf359bd8e323b05248caacc2b4da6c9,4ad1bbe0ba195aceb58a6e5f1ee3cc6f:4804a8a9a97bb14b0488e08942ab85e3,b5185c603f4c5cb794d9dae1b55bce38:c019b2cd8c7944cc90b66cfce3b7132c,36ce7134ee6753beb5c0126e5c8cce02:c28f9b7c3c5d8b8416820173637770a4,8307b4c86cbc54e3a4a635b662e5a44a:41a0b587ea7e3bff24156ef9b27c87dc,8ef8595765be890b424ee5d99ef6f953:adcff05f3aa10995f1efd4b0bb394d49,7a94b1419d77d2e184c7adcd10afc15a:1c4ce982d24be3d88dc0b1e2e4d74368,8779aa225d6050b3094944e00a2b0059:841054a0202ce08983f696e563d12941,3525c924e54154b39533d86b1c7a428a:8548b566fc6608a7d3bd601ee5f3d889,8619386d035251ad9340fc40879a52c6:9c5fb4a4f95089d9d1a3dc19b0d06e47,81ce3115633b29fe26c88d5ccec3cde2:84b9fb91c2bf59863d06fa5e0b757a4d"
+  },
+  {
+    "channel_id": "mdtv-891",
+    "name": "Sony Sports Ten 2 HD [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/94/91/300273_1753198175927_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-891&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "91fce77f2f8056f084ed961c7ebe86ed",
+      "key": "8214bd5eb6c21444e8ea644824affd79",
+      "license_key": "84e65beaaafe5025bcfe200dd578b439:9de2b3c4fab329cc200f5e8fc141a78e,be1b0ec2fea6539695669550702a9326:f334264cf8662224630da702b4f682d1,48d25597832c5defb1c3c5df4ca1da5c:2d96c38c98d5f2c75d6c53b86d23c98b,0eca8159b4ed5cb9b205f3a4e7cbe8d2:38a7b3746ab6a687b34f5cc0dfb01ff3,bc3eb526f6125a33a8f44658daeb03f5:511554c790f7bd575bd0aa1e9c17f34c,91fce77f2f8056f084ed961c7ebe86ed:8214bd5eb6c21444e8ea644824affd79,7eb23fdb3765a427e5c0b0a1dcd7c7a6:fe44ecddba1ab9df11c5522d85c39127,060242b563d188a97ac529066c4dcdc3:d4a4920bb65a879b937a6cf9eb4c1592,aa0992cc96a0815c05619dd5ac448b15:24a1c23da2922264f06b2be0f24a3894,996b070e24d7d4670d4e39acdc426edd:429fd3f762e31db48cc8132ba0be525a,9eb13a589c9454e2be1f123b98ebbd09:dd503e53bc323a51d67c349f3be1993b"
+    },
+    "key_id": "91fce77f2f8056f084ed961c7ebe86ed",
+    "key": "8214bd5eb6c21444e8ea644824affd79",
+    "clearkey": "84e65beaaafe5025bcfe200dd578b439:9de2b3c4fab329cc200f5e8fc141a78e,be1b0ec2fea6539695669550702a9326:f334264cf8662224630da702b4f682d1,48d25597832c5defb1c3c5df4ca1da5c:2d96c38c98d5f2c75d6c53b86d23c98b,0eca8159b4ed5cb9b205f3a4e7cbe8d2:38a7b3746ab6a687b34f5cc0dfb01ff3,bc3eb526f6125a33a8f44658daeb03f5:511554c790f7bd575bd0aa1e9c17f34c,91fce77f2f8056f084ed961c7ebe86ed:8214bd5eb6c21444e8ea644824affd79,7eb23fdb3765a427e5c0b0a1dcd7c7a6:fe44ecddba1ab9df11c5522d85c39127,060242b563d188a97ac529066c4dcdc3:d4a4920bb65a879b937a6cf9eb4c1592,aa0992cc96a0815c05619dd5ac448b15:24a1c23da2922264f06b2be0f24a3894,996b070e24d7d4670d4e39acdc426edd:429fd3f762e31db48cc8132ba0be525a,9eb13a589c9454e2be1f123b98ebbd09:dd503e53bc323a51d67c349f3be1993b"
+  },
+  {
+    "channel_id": "mdtv-892",
+    "name": "Sony Sports Ten 3 Hindi HD [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/1/58/300255_1758886957880_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-892&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "9206064ad8c9576d290ff2a7aae70b92",
+      "key": "840e26bca9696f6afc2dd21b54072bb9",
+      "license_key": "c20ba4e9d0635bab9f17b177f0d91039:fcb4a266539ac7b03ef02c5600c5598d,c592c427c0d35e9a8ad88cdcb76a16c1:8ecb737e4015c22451d6c14fe37e9e15,10f4930166fa5b6ab5d71a4a978bdfac:9dfa22aa4d6a3d820101f59013de0236,140edf90fa0b5c99864f2442df4df535:991b51ed2e690c96163a31ae4a6f6452,e392571e46bd5461854986ae9e58083d:1167c024aa8bbad2c1beaf218cfeec11,9206064ad8c9576d290ff2a7aae70b92:840e26bca9696f6afc2dd21b54072bb9,b36a06969623c2079f1b2ab5a9d1c7c5:f2ac8463bf3ce3090632352c26a8057c,dc7a410ba231bb588bdc474288669d19:b1dd02e33b6b83e04df4b72eaabd16f6,08638117638b55649c6befa7f5cb34f6:58ddb6bbdf8d8b1e2aac2b5312e99086,111e6908b965566e97139efddf7ef459:c87903abbc052e1f21e51ebd928d9cb1,17c4a71ccf934a616c91dd002dce09f4:b6af28ce54a2a3e26856cf2b06cccdb1"
+    },
+    "key_id": "111e6908b965566e97139efddf7ef459",
+    "key": "c87903abbc052e1f21e51ebd928d9cb1",
+    "clearkey": "c20ba4e9d0635bab9f17b177f0d91039:fcb4a266539ac7b03ef02c5600c5598d,c592c427c0d35e9a8ad88cdcb76a16c1:8ecb737e4015c22451d6c14fe37e9e15,10f4930166fa5b6ab5d71a4a978bdfac:9dfa22aa4d6a3d820101f59013de0236,140edf90fa0b5c99864f2442df4df535:991b51ed2e690c96163a31ae4a6f6452,e392571e46bd5461854986ae9e58083d:1167c024aa8bbad2c1beaf218cfeec11,9206064ad8c9576d290ff2a7aae70b92:840e26bca9696f6afc2dd21b54072bb9,b36a06969623c2079f1b2ab5a9d1c7c5:f2ac8463bf3ce3090632352c26a8057c,dc7a410ba231bb588bdc474288669d19:b1dd02e33b6b83e04df4b72eaabd16f6,08638117638b55649c6befa7f5cb34f6:58ddb6bbdf8d8b1e2aac2b5312e99086,111e6908b965566e97139efddf7ef459:c87903abbc052e1f21e51ebd928d9cb1,17c4a71ccf934a616c91dd002dce09f4:b6af28ce54a2a3e26856cf2b06cccdb1"
+  },
+  {
+    "channel_id": "mdtv-1773",
+    "name": "Sony Sports Ten 4 Telugu [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/69/98/301739_1758886924465_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1773&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "b14cdf86a8e8561bb68f98bf608d14f1",
+      "key": "fe95ef259d5202e5471b8804c5323b8a",
+      "license_key": "1ad58b00412951e6a2e0498854ac71ef:311f42432c82b6f8a0a3fca8c5c6db7b,b874de344b6b596084dde9554cc863cf:e630107f55cf046dd13b6d3618253221,f3417cda6d2651bc9b0cbb47f4e9a39b:3444ac2415b9862c5a2dcdea8daf6803,9f4968b7111c582296ecf88c671019f7:cf581a247a800af4c6e75bf53bd82e11,5332469ebb4f533f926329e8ace88cb6:8982f5c47820ad584f05f53ee8955a97,b14cdf86a8e8561bb68f98bf608d14f1:fe95ef259d5202e5471b8804c5323b8a"
+    },
+    "clearkey": "1ad58b00412951e6a2e0498854ac71ef:311f42432c82b6f8a0a3fca8c5c6db7b,b874de344b6b596084dde9554cc863cf:e630107f55cf046dd13b6d3618253221,f3417cda6d2651bc9b0cbb47f4e9a39b:3444ac2415b9862c5a2dcdea8daf6803,9f4968b7111c582296ecf88c671019f7:cf581a247a800af4c6e75bf53bd82e11,5332469ebb4f533f926329e8ace88cb6:8982f5c47820ad584f05f53ee8955a97,b14cdf86a8e8561bb68f98bf608d14f1:fe95ef259d5202e5471b8804c5323b8a"
+  },
+  {
+    "channel_id": "mdtv-3514",
+    "name": "Sony Sports Ten 4 Tamil [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/21/10/304240_1787558465564_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-3514&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "fa9ae315a29652db96c335e993b8c4bf",
+      "key": "8ac0bc132a1c277052d8b023392e1685",
+      "license_key": "60f0e00fc1eb501d8f4e155572f5467f:5e7ff1b9064a1837363ec691e35443db,e4fa9a394a915031910e1bc4dfbf9964:b1a8b4d229408cbbd94631e203a1719f,339855badd315df0b8a89eea0757ee9f:957d74aa8c9801856f05515e3216a811,42356836f8245f92bcdd44cff7208b27:62b4e4f4ce5e4b6bc2ea1ffcc3949267,f117d12214e1579da8a90a3803958e12:cfdb48f1dde060361517f05dcfc87bfe,fa9ae315a29652db96c335e993b8c4bf:8ac0bc132a1c277052d8b023392e1685"
+    },
+    "clearkey": "60f0e00fc1eb501d8f4e155572f5467f:5e7ff1b9064a1837363ec691e35443db,e4fa9a394a915031910e1bc4dfbf9964:b1a8b4d229408cbbd94631e203a1719f,339855badd315df0b8a89eea0757ee9f:957d74aa8c9801856f05515e3216a811,42356836f8245f92bcdd44cff7208b27:62b4e4f4ce5e4b6bc2ea1ffcc3949267,f117d12214e1579da8a90a3803958e12:cfdb48f1dde060361517f05dcfc87bfe,fa9ae315a29652db96c335e993b8c4bf:8ac0bc132a1c277052d8b023392e1685"
+  },
+  {
+    "channel_id": "mdtv-3585",
+    "name": "Sony Sports Ten 4 Kannada [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/88/41/304241_1787558888185_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-3585&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "2a6f882e5a6950a290b3f4abecda9b99",
+      "key": "f611a2f1ab3b2f9ba20d5b28e2f307c7",
+      "license_key": "2a6f882e5a6950a290b3f4abecda9b99:f611a2f1ab3b2f9ba20d5b28e2f307c7,89f718cf6798592ba7959774a180083d:5a9df03a9d5d265bb84c5dbe209379de,dc27e6d7d5165fb09916a0abfc9f0fd5:eb615521eb94823b9660063e5d1a32a1,29fbce3c6dcb5b2abd0b4f08a73b30e4:aef80830a031da5a4b584663bb8d3b1a,5056e88c726656f6bab25d3a9d39fcc6:45450b6cda48888d195bbe82fdcdc3de"
+    },
+    "clearkey": "2a6f882e5a6950a290b3f4abecda9b99:f611a2f1ab3b2f9ba20d5b28e2f307c7,89f718cf6798592ba7959774a180083d:5a9df03a9d5d265bb84c5dbe209379de,dc27e6d7d5165fb09916a0abfc9f0fd5:eb615521eb94823b9660063e5d1a32a1,29fbce3c6dcb5b2abd0b4f08a73b30e4:aef80830a031da5a4b584663bb8d3b1a,5056e88c726656f6bab25d3a9d39fcc6:45450b6cda48888d195bbe82fdcdc3de"
+  },
+  {
+    "channel_id": "mdtv-155",
+    "name": "Sony Sports Ten 5 HD [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/31/97/300258_1753198241206_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-155&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "654c9e21b9dbe0ccfb6216779aadf143",
+      "key": "2b2a8f6726f6520a0291d4c1218df45a",
+      "license_key": "eda78fae44b85f68b6891aaf825c6a48:2952c06dc7605e93b17eb8c2d71e8268,95f5934dd0ab5a06b202cd40cbe7034c:12aacc102252fa4eb56a59a0f2c72594,eb1b258b8e7954cc98a78410e8a9c135:cdde3fed05dd407b652662aac19a4391,77e57a4b0c1458e994fe3b1cdfb128fe:e470f52bd71f8977dfe2f26ee5fea39d,1bc6044d7ac4543e9d21d9df2546b537:2bbca364245e8f87f5633692e33866fe,654c9e21b9dbe0ccfb6216779aadf143:2b2a8f6726f6520a0291d4c1218df45a,9691105db953d0bf43bd45a60daacdaa:fb21cfe47dff9693cc8b351f1aa6bbe1,42566c7287ce545d91234b03485cce8a:bd251578248e2f8df050eb81b04d056a,2b66229b90b9d2b66a0f91f62fc50bf4:dad09f9b5867be2a179d58db854f4910,8cb7b40cefe053ea91895e3194bb9912:467cf6d740b7212fcfc648644fb79943,5244667ee96e6039df792d7d7c598732:9be10de1281728dbada5b3ac36a610b8"
+    },
+    "clearkey": "eda78fae44b85f68b6891aaf825c6a48:2952c06dc7605e93b17eb8c2d71e8268,95f5934dd0ab5a06b202cd40cbe7034c:12aacc102252fa4eb56a59a0f2c72594,eb1b258b8e7954cc98a78410e8a9c135:cdde3fed05dd407b652662aac19a4391,77e57a4b0c1458e994fe3b1cdfb128fe:e470f52bd71f8977dfe2f26ee5fea39d,1bc6044d7ac4543e9d21d9df2546b537:2bbca364245e8f87f5633692e33866fe,654c9e21b9dbe0ccfb6216779aadf143:2b2a8f6726f6520a0291d4c1218df45a,9691105db953d0bf43bd45a60daacdaa:fb21cfe47dff9693cc8b351f1aa6bbe1,42566c7287ce545d91234b03485cce8a:bd251578248e2f8df050eb81b04d056a,2b66229b90b9d2b66a0f91f62fc50bf4:dad09f9b5867be2a179d58db854f4910,8cb7b40cefe053ea91895e3194bb9912:467cf6d740b7212fcfc648644fb79943,5244667ee96e6039df792d7d7c598732:9be10de1281728dbada5b3ac36a610b8"
+  },
+  {
+    "channel_id": "mdtv-1984",
+    "name": "Star Sports 2 Hindi HD [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/56/36/301229_1760688472627_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1984&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "5b50f11a09a15275b5742ef2d6e001e0",
+      "key": "9b9ce35c8d91340939031aba5e433991",
+      "license_key": "5b50f11a09a15275b5742ef2d6e001e0:9b9ce35c8d91340939031aba5e433991,0c1a4c4f4a60538a8841ad67b5df3488:939f425e0ef782f16cc9db4b84b47195,8e48435ba038548299ee73fef998535d:b89d18e54ad2b5576c27c3259db19a3e,17a32401741c5072bd2f550f72be7a42:0ddcf0f656f52008a2276a85adbcf42e,22e4de22a39b5ce78425c739c4941e7b:b4134f4a41cc0d214ba909cc4ebdb0ba"
+    },
+    "key_id": "8e48435ba038548299ee73fef998535d",
+    "key": "b89d18e54ad2b5576c27c3259db19a3e",
+    "clearkey": "5b50f11a09a15275b5742ef2d6e001e0:9b9ce35c8d91340939031aba5e433991,0c1a4c4f4a60538a8841ad67b5df3488:939f425e0ef782f16cc9db4b84b47195,8e48435ba038548299ee73fef998535d:b89d18e54ad2b5576c27c3259db19a3e,17a32401741c5072bd2f550f72be7a42:0ddcf0f656f52008a2276a85adbcf42e,22e4de22a39b5ce78425c739c4941e7b:b4134f4a41cc0d214ba909cc4ebdb0ba"
+  },
+  {
+    "channel_id": "mdtv-1998",
+    "name": "Star Sports Khel [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/88/40/301246_1760689454012_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1998&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "906cc35528ca58348e7fed58f8796687",
+      "key": "3a1eaff9da6a0083567fb1ea1eaa21f5",
+      "license_key": "942646c32cde5325a7c33b137cf7d46e:ebb1edf4d1ca69738d8cf378a00ad35d,2898824f2440509698d04f0109f1d285:58e2fbc4e5ae22f973c21c402340debc,1eb81f72a86d56c3bdfe905c2e987d1d:4720e2ac970828d2befb2cf838d486fb,906cc35528ca58348e7fed58f8796687:3a1eaff9da6a0083567fb1ea1eaa21f5,1dfe1c29b8f15ab3a158bb27eb5b8d3f:432ff00824d61ff1da1348cc53e0968c"
+    },
+    "clearkey": "942646c32cde5325a7c33b137cf7d46e:ebb1edf4d1ca69738d8cf378a00ad35d,2898824f2440509698d04f0109f1d285:58e2fbc4e5ae22f973c21c402340debc,1eb81f72a86d56c3bdfe905c2e987d1d:4720e2ac970828d2befb2cf838d486fb,906cc35528ca58348e7fed58f8796687:3a1eaff9da6a0083567fb1ea1eaa21f5,1dfe1c29b8f15ab3a158bb27eb5b8d3f:432ff00824d61ff1da1348cc53e0968c"
+  },
+  {
+    "channel_id": "mdtv-1106",
+    "name": "Star Sports 1 HD [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/76/32/301981_1749665662917_p.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1106&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "45825561f4ef516691a9e16d1d35dd1d",
+      "key": "3951fe7fbf4b0b33e6246fc401f76797",
+      "license_key": "f217e9fe133e5b948c323abef1e39b47:63640dc4430d14003def0c97a2dbab4d,06dd6287c4b956419d15d6c8e513aeed:a82d6b850b5c281c0054fc6d55e1c6ba,45825561f4ef516691a9e16d1d35dd1d:3951fe7fbf4b0b33e6246fc401f76797,bf95222d9be85d85a91281e796e99481:bc932276031b3e63758cf67b147c3557,eda3132244745c10920b01536bc8a75b:2b5f8bdba279032943a040078bb22b35"
+    },
+    "key_id": "06dd6287c4b956419d15d6c8e513aeed",
+    "key": "a82d6b850b5c281c0054fc6d55e1c6ba",
+    "clearkey": "f217e9fe133e5b948c323abef1e39b47:63640dc4430d14003def0c97a2dbab4d,06dd6287c4b956419d15d6c8e513aeed:a82d6b850b5c281c0054fc6d55e1c6ba,45825561f4ef516691a9e16d1d35dd1d:3951fe7fbf4b0b33e6246fc401f76797,bf95222d9be85d85a91281e796e99481:bc932276031b3e63758cf67b147c3557,eda3132244745c10920b01536bc8a75b:2b5f8bdba279032943a040078bb22b35"
+  },
+  {
+    "channel_id": "mdtv-1109",
+    "name": "Star Sports 2 HD [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/41/51/301983_1753189521352_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1109&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "b99144f27b865d6ba1007fead82b2783",
+      "key": "b2f10f09a771327b9bc69484d78e4595",
+      "license_key": "04204c98718a52bf9e88d5e676fd7a63:7eebb539b03f674a26e84ae096320c70,c1ea31b9099b5030b14b67b41dc547d2:db74fb55442bc9cf7e8e9f364b3fe37f,33fab6f82a59590eb875f949389e03a9:26eff9e972154e624faf259ae0ee78ec,a5ad7dec861451a49029044a3b9d30bb:eff028a1ed3253b6a68b6a9cb4f1a0e4,b99144f27b865d6ba1007fead82b2783:b2f10f09a771327b9bc69484d78e4595"
+    },
+    "key_id": "b99144f27b865d6ba1007fead82b2783",
+    "key": "b2f10f09a771327b9bc69484d78e4595",
+    "clearkey": "04204c98718a52bf9e88d5e676fd7a63:7eebb539b03f674a26e84ae096320c70,c1ea31b9099b5030b14b67b41dc547d2:db74fb55442bc9cf7e8e9f364b3fe37f,33fab6f82a59590eb875f949389e03a9:26eff9e972154e624faf259ae0ee78ec,a5ad7dec861451a49029044a3b9d30bb:eff028a1ed3253b6a68b6a9cb4f1a0e4,b99144f27b865d6ba1007fead82b2783:b2f10f09a771327b9bc69484d78e4595"
+  },
+  {
+    "channel_id": "mdtv-1108",
+    "name": "Star Sports 1 Hindi HD [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/5/6/301982_1760005838319_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1108&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "a1ce6b9514f35174bda80ddd425bfd88",
+      "key": "5c5e158724eced92f92ca8286fb28fd9",
+      "license_key": "209975f6753d5de1ac26d604dace5313:1c54093eff75aeeccd30ebbc53c0e5a3,a1ce6b9514f35174bda80ddd425bfd88:5c5e158724eced92f92ca8286fb28fd9,dd2fa604afc45e528f8a2283bf3cb628:bf01e6e8ff74797fb5215fead779e8b9,11073b8f426e5092a2effada3bfaf721:5d1c59a8052956bd056810f260161e5f,7bdccdb3dd015c37a0c3bd70675c8e4c:6f1b59376090d1f7ce33cbd264e87c36"
+    },
+    "key_id": "11073b8f426e5092a2effada3bfaf721",
+    "key": "5d1c59a8052956bd056810f260161e5f",
+    "clearkey": "209975f6753d5de1ac26d604dace5313:1c54093eff75aeeccd30ebbc53c0e5a3,a1ce6b9514f35174bda80ddd425bfd88:5c5e158724eced92f92ca8286fb28fd9,dd2fa604afc45e528f8a2283bf3cb628:bf01e6e8ff74797fb5215fead779e8b9,11073b8f426e5092a2effada3bfaf721:5d1c59a8052956bd056810f260161e5f,7bdccdb3dd015c37a0c3bd70675c8e4c:6f1b59376090d1f7ce33cbd264e87c36"
+  },
+  {
+    "channel_id": "mdtv-1114",
+    "name": "Star Sports Select 2 [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/98/48/301989_1749664474734_p.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1114&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "2b307daa57a75698acfac3e85d4ff8c5",
+      "key": "d3c17909d061caa2e0a9c75e195ae3d4",
+      "license_key": "2af0f67137b15f5aabcaa3f2661ba59d:f3a33dbc38942246a89ff471d0062c66,0fde10db386c58aaa92f5932092f0039:db555aaa769ad60c24dc1ef9005a056b,c18272dca01056fb83d6ef0cfd0a93ad:52b8bf00ebe06d6e7cdcd221faed846a,2b307daa57a75698acfac3e85d4ff8c5:d3c17909d061caa2e0a9c75e195ae3d4,22531ef1b5805a5cb5afc03f33468fac:3dfc474db4086f173d342f20cdc8e04c"
+    },
+    "key_id": "2b307daa57a75698acfac3e85d4ff8c5",
+    "key": "d3c17909d061caa2e0a9c75e195ae3d4",
+    "clearkey": "2af0f67137b15f5aabcaa3f2661ba59d:f3a33dbc38942246a89ff471d0062c66,0fde10db386c58aaa92f5932092f0039:db555aaa769ad60c24dc1ef9005a056b,c18272dca01056fb83d6ef0cfd0a93ad:52b8bf00ebe06d6e7cdcd221faed846a,2b307daa57a75698acfac3e85d4ff8c5:d3c17909d061caa2e0a9c75e195ae3d4,22531ef1b5805a5cb5afc03f33468fac:3dfc474db4086f173d342f20cdc8e04c"
+  },
+  {
+    "channel_id": "mdtv-1123",
+    "name": "Star Sports Select 1 [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/13/82/301994_1753199405995_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1123&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "df07fac4675a597f92cbe2edbffb7c23",
+      "key": "0d6b8e6559306e043bf26c7c8ffce7ae",
+      "license_key": "215579a9533d5eb1974eff2778f34853:7ea41017954ec6a5317e8b7ba94bcab5,00ff99896b8255da8e2aa9c5f34ab032:a23957bf29cd2e732c74bb97854a3df4,2fc7c3483e9c55649ef931c45f07c23a:fe4b825679c963bd512fdc915ca1285c,df07fac4675a597f92cbe2edbffb7c23:0d6b8e6559306e043bf26c7c8ffce7ae,e59df2d0e3545c9aae4889fb2aa2a3c4:e1e9fac754f6c9c772f7a05536aff920"
+    },
+    "key_id": "ea7985dacbb95f1c9d62e5a1675142e5",
+    "key": "39d5910ca04841b5f32bf24623cdae58",
+    "clearkey": "215579a9533d5eb1974eff2778f34853:7ea41017954ec6a5317e8b7ba94bcab5,00ff99896b8255da8e2aa9c5f34ab032:a23957bf29cd2e732c74bb97854a3df4,2fc7c3483e9c55649ef931c45f07c23a:fe4b825679c963bd512fdc915ca1285c,df07fac4675a597f92cbe2edbffb7c23:0d6b8e6559306e043bf26c7c8ffce7ae,e59df2d0e3545c9aae4889fb2aa2a3c4:e1e9fac754f6c9c772f7a05536aff920"
+  },
+  {
+    "channel_id": "mdtv-1122",
+    "name": "Star Sports 2 Kannada [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/11/37/301993_1753188279062_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1122&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "7af2add2968a56309519ac2680c18f25",
+      "key": "f992a14e0def17ccdfe16f58c4ce56c5",
+      "license_key": "3d52a45ec0f45503a376421d69fba185:1db0ffdc619c49dc048ceb4fffb190c2,176a62f9913a554b98a15979c28e2cb7:d482f78bfc4cbfee74b80f0ffdf66d4c,03962c6586ce5c0db61cd22ea796bb85:06bbcc9cddd4148a754320d5bc8378b8,30759c7ff28f563d94370739cdd1f31d:a4ea0cf50335265759e68660b2b2e61c,c1ef762b00a35caea7dcafe355b09610:16538c004d246559a88cba2b57b55857,7af2add2968a56309519ac2680c18f25:f992a14e0def17ccdfe16f58c4ce56c5,c1912ef5d59d6294c3fb320a3055a4af:955c74eb562982ceeffc783b596b53a1,3e21bd6fbe7df4ca1c424268070ab851:6d8b3b875f13799209d7654a86782313,e538f2cc72114d7785b4b5303441a31d:87bee8c558864951f82e5c6caa0282fa,bf4131c5bb8701ebb100635aaaa7bb80:451169b3ed1b9e0adeba5ecd487682fe"
+    },
+    "key_id": "7af2add2968a56309519ac2680c18f25",
+    "key": "f992a14e0def17ccdfe16f58c4ce56c5",
+    "clearkey": "3d52a45ec0f45503a376421d69fba185:1db0ffdc619c49dc048ceb4fffb190c2,176a62f9913a554b98a15979c28e2cb7:d482f78bfc4cbfee74b80f0ffdf66d4c,03962c6586ce5c0db61cd22ea796bb85:06bbcc9cddd4148a754320d5bc8378b8,30759c7ff28f563d94370739cdd1f31d:a4ea0cf50335265759e68660b2b2e61c,c1ef762b00a35caea7dcafe355b09610:16538c004d246559a88cba2b57b55857,7af2add2968a56309519ac2680c18f25:f992a14e0def17ccdfe16f58c4ce56c5,c1912ef5d59d6294c3fb320a3055a4af:955c74eb562982ceeffc783b596b53a1,3e21bd6fbe7df4ca1c424268070ab851:6d8b3b875f13799209d7654a86782313,e538f2cc72114d7785b4b5303441a31d:87bee8c558864951f82e5c6caa0282fa,bf4131c5bb8701ebb100635aaaa7bb80:451169b3ed1b9e0adeba5ecd487682fe"
+  },
+  {
+    "channel_id": "mdtv-1124",
+    "name": "Star Sports 1 Tamil [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/69/73/301995_1753199516930_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1124&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "a05f788e6082561fad5565ab7457c995",
+      "key": "5756af02f8923b1e8767ff375bafb4aa",
+      "license_key": "79ab966495a759bd88fce5cf42fdb1e3:77c116373217d070073ae128bc43aea3,98d64cf45a5c573bb2748de1b5705d82:77f9ddfe39ed4b3a2c553522b969ec70,d17006fd6b205e7b8847df113bb213ae:0e20bb3c253b5659a0faae19b102555f,c18ddd5e92535dbe966277225da678db:e726b549ff5b0a3de8d462f383cd3380,a05f788e6082561fad5565ab7457c995:5756af02f8923b1e8767ff375bafb4aa"
+    },
+    "key_id": "d0d750ebd52b5756aa7fb833f61ceece",
+    "key": "4ae62a20c030c918aad24193c1dda229",
+    "clearkey": "79ab966495a759bd88fce5cf42fdb1e3:77c116373217d070073ae128bc43aea3,98d64cf45a5c573bb2748de1b5705d82:77f9ddfe39ed4b3a2c553522b969ec70,d17006fd6b205e7b8847df113bb213ae:0e20bb3c253b5659a0faae19b102555f,c18ddd5e92535dbe966277225da678db:e726b549ff5b0a3de8d462f383cd3380,a05f788e6082561fad5565ab7457c995:5756af02f8923b1e8767ff375bafb4aa"
+  },
+  {
+    "channel_id": "mdtv-1651",
+    "name": "Star Sports 1 Telugu [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/26/67/302119_1753202587563_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1651&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "8aa7da0842d65285b23e55619ab0f1c6",
+      "key": "fe01e21ac81a19049d3ba82b5bd33dfa",
+      "license_key": "50eaa3fe2ce95eb4908495ea19e3b6d5:a4a789b10f04c39070d64ef131b59911,c60582b4c0b95e80ae34b1a462f07990:9967dfba4b60a86a9c7a4c861d26337c,e3321b5b1af253f39010ce4bf6085da6:8eb2ab45a84ca9eef4630d6a2ce9f786,8aa7da0842d65285b23e55619ab0f1c6:fe01e21ac81a19049d3ba82b5bd33dfa,4705b7d90af65fa28d3e6b7c9e6b7fc2:bfdbe4ecb7f1496978eb9d022a6640b5"
+    },
+    "key_id": "50eaa3fe2ce95eb4908495ea19e3b6d5",
+    "key": "a4a789b10f04c39070d64ef131b59911",
+    "clearkey": "50eaa3fe2ce95eb4908495ea19e3b6d5:a4a789b10f04c39070d64ef131b59911,c60582b4c0b95e80ae34b1a462f07990:9967dfba4b60a86a9c7a4c861d26337c,e3321b5b1af253f39010ce4bf6085da6:8eb2ab45a84ca9eef4630d6a2ce9f786,8aa7da0842d65285b23e55619ab0f1c6:fe01e21ac81a19049d3ba82b5bd33dfa,4705b7d90af65fa28d3e6b7c9e6b7fc2:bfdbe4ecb7f1496978eb9d022a6640b5"
+  },
+  {
+    "channel_id": "mdtv-1650",
+    "name": "Star Sports 1 Kannada [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/13/91/302118_1753188135280_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1650&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "bab01ce8ab695712a5fe390f1b4ffca2",
+      "key": "5685130a845e217080b84fc170b67f00",
+      "license_key": "fb2bb07aecbf5bc2b807b2dced129cda:80d4747512a52bb7c64c8f60813a0f8f,ae3f86f454395a8ab0793c8a619aa1f6:6034309b589445745ec1c00fd6161a4a,5934f65f151c581d9dc75e181c7a406e:ffd92e68261477c61df082b64e648cbf,ec959436fe455d3a8af330c4c93e86cc:56f3b61ef52fb050671036bf50a109dd,bab01ce8ab695712a5fe390f1b4ffca2:5685130a845e217080b84fc170b67f00"
+    },
+    "key_id": "bab01ce8ab695712a5fe390f1b4ffca2",
+    "key": "5685130a845e217080b84fc170b67f00",
+    "clearkey": "fb2bb07aecbf5bc2b807b2dced129cda:80d4747512a52bb7c64c8f60813a0f8f,ae3f86f454395a8ab0793c8a619aa1f6:6034309b589445745ec1c00fd6161a4a,5934f65f151c581d9dc75e181c7a406e:ffd92e68261477c61df082b64e648cbf,ec959436fe455d3a8af330c4c93e86cc:56f3b61ef52fb050671036bf50a109dd,bab01ce8ab695712a5fe390f1b4ffca2:5685130a845e217080b84fc170b67f00"
+  },
+  {
+    "channel_id": "mdtv-3273",
+    "name": "Star Sports 2 Tamil HD [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/50/43/302120_1753202206969_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-3273&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "bd9dfd385dbc56a99a048f88d3828571",
+      "key": "eecf613dad0b8250ffaddc7ba86be68b",
+      "license_key": "bd9dfd385dbc56a99a048f88d3828571:eecf613dad0b8250ffaddc7ba86be68b,a2e868d50d315372a0e7375ee90375d1:0d885213a727867407ca23037e6ffe53,92cfd893ab8551d59a773afce91fc790:906e0d6c4accf6bdaad9a6167f8ae53a,6c41267ed8725915bee0695dd5e76d40:4e2ba836b17c916e7368b30453987f2f,75ed4a2f9c96531fbdc16458ec75e24d:d61e00cf48a772526e85dccbdfc166ae"
+    },
+    "key_id": "92cfd893ab8551d59a773afce91fc790",
+    "key": "906e0d6c4accf6bdaad9a6167f8ae53a",
+    "clearkey": "bd9dfd385dbc56a99a048f88d3828571:eecf613dad0b8250ffaddc7ba86be68b,a2e868d50d315372a0e7375ee90375d1:0d885213a727867407ca23037e6ffe53,92cfd893ab8551d59a773afce91fc790:906e0d6c4accf6bdaad9a6167f8ae53a,6c41267ed8725915bee0695dd5e76d40:4e2ba836b17c916e7368b30453987f2f,75ed4a2f9c96531fbdc16458ec75e24d:d61e00cf48a772526e85dccbdfc166ae"
+  },
+  {
+    "channel_id": "mdtv-3274",
+    "name": "Star Sports 2 Telugu HD [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/84/67/302121_1753185947631_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-3274&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "5515e7889d225404939f53765feba2ea",
+      "key": "56fa91e2ee09e5a989c630cb3b2df13d",
+      "license_key": "22da87a3906750e78c0e770cc4b88c7e:d25db631bbcdb027d9a3fdddf5ddeba8,7635f19465ac599197cdf889d9ad9739:068980c25dd4fe33631fe07a35c1289f,86180ee8e6b05175adddc5eb66b01faf:eaaf6aec5ea8cedeb6d248f2e96d6b93,5515e7889d225404939f53765feba2ea:56fa91e2ee09e5a989c630cb3b2df13d,01fc3874f21058dcbf8204f07616ce81:8ba560fb1fcdfeaddfc254965e3a42f6"
+    },
+    "key_id": "01fc3874f21058dcbf8204f07616ce81",
+    "key": "8ba560fb1fcdfeaddfc254965e3a42f6",
+    "clearkey": "22da87a3906750e78c0e770cc4b88c7e:d25db631bbcdb027d9a3fdddf5ddeba8,7635f19465ac599197cdf889d9ad9739:068980c25dd4fe33631fe07a35c1289f,86180ee8e6b05175adddc5eb66b01faf:eaaf6aec5ea8cedeb6d248f2e96d6b93,5515e7889d225404939f53765feba2ea:56fa91e2ee09e5a989c630cb3b2df13d,01fc3874f21058dcbf8204f07616ce81:8ba560fb1fcdfeaddfc254965e3a42f6"
+  },
+  {
+    "channel_id": "mdtv-3277",
+    "name": "Star Sports 1 Tamil HD [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/19/19/302122_1753202506698_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-3277&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "1e9099af7f025ad6b3fd363bb2db8faf",
+      "key": "c45a762695c40f6675b8b56ac50e97a5",
+      "license_key": "2487a38f900d5fe1ba98eed635d96c6e:58e2099b555b7ea59dee0b957b694cea,439d31fa05525a99b856e852d035023b:83728b98188b1fa8bf69509e1796fb27,1e6246cad111577f90bd2082378b7ed2:976e4e4f92d10b8d1702559a9babb5e0,8d89858c927e55a2b03faaa98fca9eb2:f74858f329157adebdbc5556d0417f47,1e9099af7f025ad6b3fd363bb2db8faf:c45a762695c40f6675b8b56ac50e97a5"
+    },
+    "key_id": "2272c0bc6b2e5cb090b1f55996e0026c",
+    "key": "943923934de1d5536ab01c67fca8b337",
+    "clearkey": "2487a38f900d5fe1ba98eed635d96c6e:58e2099b555b7ea59dee0b957b694cea,439d31fa05525a99b856e852d035023b:83728b98188b1fa8bf69509e1796fb27,1e6246cad111577f90bd2082378b7ed2:976e4e4f92d10b8d1702559a9babb5e0,8d89858c927e55a2b03faaa98fca9eb2:f74858f329157adebdbc5556d0417f47,1e9099af7f025ad6b3fd363bb2db8faf:c45a762695c40f6675b8b56ac50e97a5"
+  },
+  {
+    "channel_id": "mdtv-3278",
+    "name": "Star Sports 1 Telugu HD [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/19/57/302123_1753189675445_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-3278&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "a56a509011675303900ead16165ba38f",
+      "key": "c4c4c7aec0ff4a3fa0c6d8cb1ae56c30",
+      "license_key": "45bfaa5f2e8c5723a8da41a5c9cd38c1:672fa31cd32888671db2daf259479d49,2130ba84a11d58cb8cf1fae897c241cf:f812838e18377db5fe72277934548d83,a56a509011675303900ead16165ba38f:c4c4c7aec0ff4a3fa0c6d8cb1ae56c30,c7ecbd81d476502b9f25e08bfa07b842:52e369879fd23e08a6158c8c1224c4dd,a2bcadea362c563d9a9f68dfb2557087:5f4370e02e5eea8c9771d36a27a14afb"
+    },
+    "key_id": "a56a509011675303900ead16165ba38f",
+    "key": "c4c4c7aec0ff4a3fa0c6d8cb1ae56c30",
+    "clearkey": "45bfaa5f2e8c5723a8da41a5c9cd38c1:672fa31cd32888671db2daf259479d49,2130ba84a11d58cb8cf1fae897c241cf:f812838e18377db5fe72277934548d83,a56a509011675303900ead16165ba38f:c4c4c7aec0ff4a3fa0c6d8cb1ae56c30,c7ecbd81d476502b9f25e08bfa07b842:52e369879fd23e08a6158c8c1224c4dd,a2bcadea362c563d9a9f68dfb2557087:5f4370e02e5eea8c9771d36a27a14afb"
+  },
+  {
+    "channel_id": "mdtv-1985",
+    "name": "Star Sports 2 Hindi [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/57/17/302124_1760690003311_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1985&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "f9af22f6d76f5f5d98a35eed7fc35292",
+      "key": "b979fbf840b5c984733d28aaf683762e",
+      "license_key": "b4ae2599a33f5cbc8eff216f82284cef:98cc66f56da9a4e8163f5f831f03cd43,f52d8e6b43c95ee7b5d1092c127049bc:8b6f00199715e5e736fc970e2e887709,602ce22ddc995d4495d10c1adeeb8e8c:be784f89f9513333c7621900c7a1d89b,d20fa4f491ff5e74a4b5b149caed397b:913de95cba91eadbeee9784882185f70,f9af22f6d76f5f5d98a35eed7fc35292:b979fbf840b5c984733d28aaf683762e"
+    },
+    "key_id": "f9af22f6d76f5f5d98a35eed7fc35292",
+    "key": "b979fbf840b5c984733d28aaf683762e",
+    "clearkey": "b4ae2599a33f5cbc8eff216f82284cef:98cc66f56da9a4e8163f5f831f03cd43,f52d8e6b43c95ee7b5d1092c127049bc:8b6f00199715e5e736fc970e2e887709,602ce22ddc995d4495d10c1adeeb8e8c:be784f89f9513333c7621900c7a1d89b,d20fa4f491ff5e74a4b5b149caed397b:913de95cba91eadbeee9784882185f70,f9af22f6d76f5f5d98a35eed7fc35292:b979fbf840b5c984733d28aaf683762e"
+  },
+  {
+    "channel_id": "mdtv-1389",
+    "name": "Star Sports 3 [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/78/2/302117_1753186009563_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1389&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "e4e8647eaf0659ac85f61765a5abcdc1",
+      "key": "d749c9b27505beb0e1a8b6c30ca65de6",
+      "license_key": "2904732c8fb55ebeaa0f59316916997e:f69101b71872dcfb2cd1987d3773c0f4,82dc7db814ef5165a3d93102f40a5142:f767c4c59fbfeaf84754994a0ed5dc8b,6fbf6696ff3051768337a34da0e66eb8:cae19d171fb1015a89342e5185f8cc7b,2f040ce640ee57978b0bcbb975af00a4:88c56371262c1bbe843c174720bbdeb0,c19b6cfea03150bea01a255345e5d706:8ed757eda2b740285bcf9a8fd9263422,e4e8647eaf0659ac85f61765a5abcdc1:d749c9b27505beb0e1a8b6c30ca65de6,c1f2dcd67cf78cbb23f5db87dae7ff8e:6d93d8d36ec5dba433f2ac9f4ad84f73,b4eef24e5fafdca6a76b1c2a086689e3:9ebaf5fb8f5ebd1bf096c99c2c9a43ce,e7e5e06197b95dafc19068a8a5b70049:512aed219e9bc8431b7cb2afd7550c4d,4b15b7607d7179b8d0d9f2fa4460857b:eca33d9cc5a32fd438bde8d3ba064caf"
+    },
+    "key_id": "2904732c8fb55ebeaa0f59316916997e",
+    "key": "f69101b71872dcfb2cd1987d3773c0f4",
+    "clearkey": "2904732c8fb55ebeaa0f59316916997e:f69101b71872dcfb2cd1987d3773c0f4,82dc7db814ef5165a3d93102f40a5142:f767c4c59fbfeaf84754994a0ed5dc8b,6fbf6696ff3051768337a34da0e66eb8:cae19d171fb1015a89342e5185f8cc7b,2f040ce640ee57978b0bcbb975af00a4:88c56371262c1bbe843c174720bbdeb0,c19b6cfea03150bea01a255345e5d706:8ed757eda2b740285bcf9a8fd9263422,e4e8647eaf0659ac85f61765a5abcdc1:d749c9b27505beb0e1a8b6c30ca65de6,c1f2dcd67cf78cbb23f5db87dae7ff8e:6d93d8d36ec5dba433f2ac9f4ad84f73,b4eef24e5fafdca6a76b1c2a086689e3:9ebaf5fb8f5ebd1bf096c99c2c9a43ce,e7e5e06197b95dafc19068a8a5b70049:512aed219e9bc8431b7cb2afd7550c4d,4b15b7607d7179b8d0d9f2fa4460857b:eca33d9cc5a32fd438bde8d3ba064caf"
+  },
+  {
+    "channel_id": "mdtv-2853",
+    "name": "Star Sports 2 Tamil [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/28/30/304030_1759239180896_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-2853&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "0a0ad7fdf02955d483496e5d5ad41b64",
+      "key": "cc1d01a4ccfd47da4f5ff62e20686505",
+      "license_key": "bfb4dda563535486a380c44fecc92015:27bbe04fb5447de6f3286e1030c7b179,0a0ad7fdf02955d483496e5d5ad41b64:cc1d01a4ccfd47da4f5ff62e20686505,dc4c605a752d535e8c0e31b9a5deae16:21cb8bd7a0606e2dd9fb190ff719f126,a9f12248bf2a5da99366dd6ce07ff0e5:e87623a2552185d5fbe2f227354c2b15,b9fae8a03b2750a4b0db12f0f6b65f15:3b1ab225fb8e08c9b59cfd6ededaddc8"
+    },
+    "key_id": "b9fae8a03b2750a4b0db12f0f6b65f15",
+    "key": "3b1ab225fb8e08c9b59cfd6ededaddc8",
+    "clearkey": "bfb4dda563535486a380c44fecc92015:27bbe04fb5447de6f3286e1030c7b179,0a0ad7fdf02955d483496e5d5ad41b64:cc1d01a4ccfd47da4f5ff62e20686505,dc4c605a752d535e8c0e31b9a5deae16:21cb8bd7a0606e2dd9fb190ff719f126,a9f12248bf2a5da99366dd6ce07ff0e5:e87623a2552185d5fbe2f227354c2b15,b9fae8a03b2750a4b0db12f0f6b65f15:3b1ab225fb8e08c9b59cfd6ededaddc8"
+  },
+  {
+    "channel_id": "mdtv-2852",
+    "name": "Star Sports 2 Telugu [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/63/39/304029_1759237887443_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-2852&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "e85ffc940cfc5c5790a24b714acef1cd",
+      "key": "fda416daac7608bfd608ab4c5b724a84",
+      "license_key": "a83960ba4fc854e88c3bcd7f16f08f27:56218453c4619b01c1a0913779234faf,e85ffc940cfc5c5790a24b714acef1cd:fda416daac7608bfd608ab4c5b724a84,a64b68eea65c5881a0fc5742bd389806:9b446fde7106eb1b7821c5cf251df932,4d3a6feedae059fb8f92f5bcba25128d:46c14f188789753b7befc2707829cb6a,5387c6a9f68a5cecbe1238194db9a82a:14345a3dab1d1bf5e64570b5aa377883"
+    },
+    "key_id": "e85ffc940cfc5c5790a24b714acef1cd",
+    "key": "fda416daac7608bfd608ab4c5b724a84",
+    "clearkey": "a83960ba4fc854e88c3bcd7f16f08f27:56218453c4619b01c1a0913779234faf,e85ffc940cfc5c5790a24b714acef1cd:fda416daac7608bfd608ab4c5b724a84,a64b68eea65c5881a0fc5742bd389806:9b446fde7106eb1b7821c5cf251df932,4d3a6feedae059fb8f92f5bcba25128d:46c14f188789753b7befc2707829cb6a,5387c6a9f68a5cecbe1238194db9a82a:14345a3dab1d1bf5e64570b5aa377883"
+  },
+  {
+    "channel_id": "mdtv-362",
+    "name": "Star Sports 1 Hindi [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/13/81/302112_1753186300125_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-362&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "30039b6e2c545c01aa84e649875c4977",
+      "key": "7aa610c68000fe9ed97851d40a52abff",
+      "license_key": "6a28a05d0f9a5e09987e4267eab5a947:38d9de645400fe2df985177aafb6a248,187e53dccc7c50f5b43306635bc93adb:72f9a4a4ff898de730991ae465d06388,30039b6e2c545c01aa84e649875c4977:7aa610c68000fe9ed97851d40a52abff,c2f0a204c6c353428954740d05d73c3d:6543b1984330109886d2864d06096590,a9cb8b39035a5393a4450f56c35b15a2:96f3585aab24109d64b74e9f0c6a5ed3"
+    },
+    "key_id": "30039b6e2c545c01aa84e649875c4977",
+    "key": "7aa610c68000fe9ed97851d40a52abff",
+    "clearkey": "6a28a05d0f9a5e09987e4267eab5a947:38d9de645400fe2df985177aafb6a248,187e53dccc7c50f5b43306635bc93adb:72f9a4a4ff898de730991ae465d06388,30039b6e2c545c01aa84e649875c4977:7aa610c68000fe9ed97851d40a52abff,c2f0a204c6c353428954740d05d73c3d:6543b1984330109886d2864d06096590,a9cb8b39035a5393a4450f56c35b15a2:96f3585aab24109d64b74e9f0c6a5ed3"
+  },
+  {
+    "channel_id": "mdtv-461",
+    "name": "Star Sports Select 2 HD [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/98/79/302114_1763719749756_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-461&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "6017d0514d425fa38f6e80ba6dcc852f",
+      "key": "0018944b00adf2078f62386f30c68b74",
+      "license_key": "e5c47cf992a75f98b4e1a4d262de61e8:441f225881f816c6bedece0e86ef80e7,cb4b21e0cad15e00ba3819fb91660fec:fe6480d2894746ba5799a3c2847e5589,928d9058c0a8550fb6ba315124a76cd5:46811be73195049a23b731bd9344cad4,25fbb2a932b25e9aacae947b2f873d3c:ac6a6a416b9d26be6819e80c2fe5d39f,2c443dffefb256a5b7a1364cc4af3529:1d78f35200eb5977a95de669788cf128,6017d0514d425fa38f6e80ba6dcc852f:0018944b00adf2078f62386f30c68b74,635c740da1cc6d220e356a9b32388a34:0a6c7162aa9174ca4f48914924313465,26a953325a18595be75d2a9655a12afa:44d33860be354f77554aa422fd6d44dd,3db73fcd1d50da37cf7519f663d6bc07:80ba58c928ced9f69d0546529a9a1672,573b359b03bcbde109a9b239cd4297cf:6491a65fe527e0919553e1d1abd75e7a"
+    },
+    "key_id": "2c443dffefb256a5b7a1364cc4af3529",
+    "key": "1d78f35200eb5977a95de669788cf128",
+    "clearkey": "e5c47cf992a75f98b4e1a4d262de61e8:441f225881f816c6bedece0e86ef80e7,cb4b21e0cad15e00ba3819fb91660fec:fe6480d2894746ba5799a3c2847e5589,928d9058c0a8550fb6ba315124a76cd5:46811be73195049a23b731bd9344cad4,25fbb2a932b25e9aacae947b2f873d3c:ac6a6a416b9d26be6819e80c2fe5d39f,2c443dffefb256a5b7a1364cc4af3529:1d78f35200eb5977a95de669788cf128,6017d0514d425fa38f6e80ba6dcc852f:0018944b00adf2078f62386f30c68b74,635c740da1cc6d220e356a9b32388a34:0a6c7162aa9174ca4f48914924313465,26a953325a18595be75d2a9655a12afa:44d33860be354f77554aa422fd6d44dd,3db73fcd1d50da37cf7519f663d6bc07:80ba58c928ced9f69d0546529a9a1672,573b359b03bcbde109a9b239cd4297cf:6491a65fe527e0919553e1d1abd75e7a"
+  },
+  {
+    "channel_id": "mdtv-1142",
+    "name": "Star Sports 1 [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/56/92/302115_1753188404703_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1142&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "a415207154a154e59d6259f6c436937c",
+      "key": "56c3bac0e95368220dd75b6312a4458c",
+      "license_key": "dbd441bf8f33570f8b99188e6f0dace5:4b7bfd46ffe9c4787baf7693c4802fb7,741063a722dc579bbc83cf968442f0e7:be83cc5e2f9cd5b58620e8ffb1ad00ce,a415207154a154e59d6259f6c436937c:56c3bac0e95368220dd75b6312a4458c,252c89dc4b3956a0bb92063740fdbf0a:7f78443c0d44e2ee4e1113bba3a32e25,66b9f83c28505d10b0b7154624b91258:eef259ed3a060abbf9dd0bffcd917f35"
+    },
+    "key_id": "df20894ec30954d3b28097c138f4cfda",
+    "key": "ff9b6292b1cddbd11a046029cb314634",
+    "clearkey": "dbd441bf8f33570f8b99188e6f0dace5:4b7bfd46ffe9c4787baf7693c4802fb7,741063a722dc579bbc83cf968442f0e7:be83cc5e2f9cd5b58620e8ffb1ad00ce,a415207154a154e59d6259f6c436937c:56c3bac0e95368220dd75b6312a4458c,252c89dc4b3956a0bb92063740fdbf0a:7f78443c0d44e2ee4e1113bba3a32e25,66b9f83c28505d10b0b7154624b91258:eef259ed3a060abbf9dd0bffcd917f35"
+  },
+  {
+    "channel_id": "mdtv-460",
+    "name": "Star Sports Select 1 HD [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/96/65/302113_1753203780129_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-460&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "8fc8499852ea5182b2a9307bd921cea1",
+      "key": "c0ff2fbd59e26d6633f98af470c4d7b6",
+      "license_key": "cc04426ac28359a7b620934ddbbecb7c:0074c460557b1f21a60fa0aada550e3a,337fe34bbf2152c1bfe5ea8787072cd4:4efacd3a5af887dea393f0b957d266b6,8fc8499852ea5182b2a9307bd921cea1:c0ff2fbd59e26d6633f98af470c4d7b6,272c9b98274250f1b0bae9e19612275a:0fbbb12efcf16e2817b3c881847b2abf,fe38155e1cee53778db627b35bd2d20b:13d7c44c0e3fee8d9186a0491207629c"
+    },
+    "key_id": "cc04426ac28359a7b620934ddbbecb7c",
+    "key": "0074c460557b1f21a60fa0aada550e3a",
+    "clearkey": "cc04426ac28359a7b620934ddbbecb7c:0074c460557b1f21a60fa0aada550e3a,337fe34bbf2152c1bfe5ea8787072cd4:4efacd3a5af887dea393f0b957d266b6,8fc8499852ea5182b2a9307bd921cea1:c0ff2fbd59e26d6633f98af470c4d7b6,272c9b98274250f1b0bae9e19612275a:0fbbb12efcf16e2817b3c881847b2abf,fe38155e1cee53778db627b35bd2d20b:13d7c44c0e3fee8d9186a0491207629c"
+  },
+  {
+    "channel_id": "mdtv-1141",
+    "name": "Star Sports 2 [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/11/30/302116_1753202248468_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1141&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "d49703e538a2545fa2d8d57f34a4d0ba",
+      "key": "9ef07c1b359ee137db0493cebd6acdf0",
+      "license_key": "2b81174684c8579fac72c577e1143224:976fcc489b4cb178a6fc103577c4aabc,5c18774a8dd85b8c82d42294f16b21b7:9bf764fb4a6e8b557b7829689ee06391,d49703e538a2545fa2d8d57f34a4d0ba:9ef07c1b359ee137db0493cebd6acdf0,5600b8266e5e570ca150a725cf746992:804fcc4a1693490d546bcfeddb1438f5,988ab009ff1853bf9c1aec3f8fa24cf0:168f946b9af57ac8965755958f2337cd"
+    },
+    "key_id": "fc3aafe80845584199a637249fad2ffa",
+    "key": "ca4474972fdb4bf8ecb164482853c692",
+    "clearkey": "2b81174684c8579fac72c577e1143224:976fcc489b4cb178a6fc103577c4aabc,5c18774a8dd85b8c82d42294f16b21b7:9bf764fb4a6e8b557b7829689ee06391,d49703e538a2545fa2d8d57f34a4d0ba:9ef07c1b359ee137db0493cebd6acdf0,5600b8266e5e570ca150a725cf746992:804fcc4a1693490d546bcfeddb1438f5,988ab009ff1853bf9c1aec3f8fa24cf0:168f946b9af57ac8965755958f2337cd"
+  },
+  {
+    "channel_id": "mdtv-1294",
+    "name": "Eurosport [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/31/7/301589_1764577915153_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1294&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "389e35e8b5db5726bc56f83a9365c6ab",
+      "key": "0a6f766f37e7c3622a4860b3c15bbc9b",
+      "license_key": "389e35e8b5db5726bc56f83a9365c6ab:0a6f766f37e7c3622a4860b3c15bbc9b,7f52f53d78805b2bb75b0f860095eb55:52f2472cff2a62100bda7d59b9db736a,7a610c65ec395eb5bd5014e6425575a9:8baa043ee2857121deff3f82874e5209,6823d5fbee1857b9b5dac4e935efb6c3:72e801119a9684d336727fd4d6c1ba22,ea93cd3229e5595e9e115fce0dc576b7:cb7d0cd8b134c1b15ad9eb4a6261d9c0"
+    },
+    "key_id": "4197a27f1c445f06a04a3616aa95b575",
+    "key": "0345ef0f4815e7a99418c94c4adfcb52",
+    "clearkey": "389e35e8b5db5726bc56f83a9365c6ab:0a6f766f37e7c3622a4860b3c15bbc9b,7f52f53d78805b2bb75b0f860095eb55:52f2472cff2a62100bda7d59b9db736a,7a610c65ec395eb5bd5014e6425575a9:8baa043ee2857121deff3f82874e5209,6823d5fbee1857b9b5dac4e935efb6c3:72e801119a9684d336727fd4d6c1ba22,ea93cd3229e5595e9e115fce0dc576b7:cb7d0cd8b134c1b15ad9eb4a6261d9c0"
+  },
+  {
+    "channel_id": "mdtv-875",
+    "name": "Eurosport HD [DASH | ClearKey]",
+    "genre": "Sports",
+    "logo": "https://img.media.jio.com/tvpimages/16/0/301591_1764577876137_l_medium.jpg",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-875&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "546fc0ccb5f55930a4841bc103973655",
+      "key": "8e42b4746f4faecad90cb4575d838480",
+      "license_key": "c6210817c30950769549bdb49bf6cd6e:effc83e62efc81dd4408f4d5f771fd9d,cca1f4e1f2b35baf9c0c4ee0458bd528:de6ca32d38cf5f214c416b7dbb0bdd06,7fb2893008d556e2be9f8895051f426d:9196d9ed0c4b6106407b23ad798cc6f6,546fc0ccb5f55930a4841bc103973655:8e42b4746f4faecad90cb4575d838480,4512a52315f9581990d74250b3c997d9:95bcacafeb40ec0eb5a93097e9052483"
+    },
+    "key_id": "b3bcfaeae129566f80a3afb2b533f917",
+    "key": "6843545622aa27cab11368ffb3cae72a",
+    "clearkey": "c6210817c30950769549bdb49bf6cd6e:effc83e62efc81dd4408f4d5f771fd9d,cca1f4e1f2b35baf9c0c4ee0458bd528:de6ca32d38cf5f214c416b7dbb0bdd06,7fb2893008d556e2be9f8895051f426d:9196d9ed0c4b6106407b23ad798cc6f6,546fc0ccb5f55930a4841bc103973655:8e42b4746f4faecad90cb4575d838480,4512a52315f9581990d74250b3c997d9:95bcacafeb40ec0eb5a93097e9052483"
+  },
+  {
+    "channel_id": "zee-zee-tv",
+    "name": "ZEE TV [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/yHNSuG1V.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeetv/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "ed068cf84f0640ccbc7c0e395c0a272e",
+      "key": "bb722190f2bb446391020411a7d0828b"
+    }
+  },
+  {
+    "channel_id": "zee-and-tv",
+    "name": "AND TV [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/T1CCvaAQ.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Andtv/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "26df86eeebb04d7fbc45c948f76e81fd",
+      "key": "5f3a23f1a73c4c96ababce5fffe7b06b"
+    }
+  },
+  {
+    "channel_id": "zee-and-pictured-hd",
+    "name": "AND PICTURED HD [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5e3IPwc6CuzACqksy-u5T0ITukPQl3_RHQPHaIjuYV00ka2PZ3BrniTng&s=10",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Andpictureshd/default/index.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "de8045e9f0fb4d03845dcc4a8bd7712a",
+      "key": "6807bd09bda34ada83152908192af6d6"
+    }
+  },
+  {
+    "channel_id": "zee-zee-anmol",
+    "name": "ZEE ANMOL [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/QjKdER9Z.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeeanmol/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "4023613457774cbeb71a62c339970e63",
+      "key": "1c3e9fce5f014542be9cd1f749181204"
+    }
+  },
+  {
+    "channel_id": "zee-zee-anmol-cinema",
+    "name": "ZEE ANMOL CINEMA [Cloudfront | ClearKey]",
+    "genre": "Movies",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/diYkUOnX.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeeanmolcinema/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "812411cba8bc42c79eb2b19cd78ad3f3",
+      "key": "468a0b8d3d5d42d8a5c41bb875390a74"
+    }
+  },
+  {
+    "channel_id": "zee-zee-cinema",
+    "name": "ZEE CINEMA [Cloudfront | ClearKey]",
+    "genre": "Movies",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/qss9gFuH.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeecinema/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "43513b13f4b542e39c9265921dfc1726",
+      "key": "b0b2678bcd274c37b888a6c987d502ed"
+    }
+  },
+  {
+    "channel_id": "zee-and-pictures",
+    "name": "AND PICTURES [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/HivVrdof.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Andpictures/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "8dea532cabfe4f71ba20f62310e7949f",
+      "key": "7a214a974e4f4d1d9bb66364d5f0cb92"
+    }
+  },
+  {
+    "channel_id": "zee-zee-bollywood",
+    "name": "ZEE BOLLYWOOD [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/EqDlflgi.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebollywood/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "e61523260c614746b25b9a5523fe9a39",
+      "key": "72ddbf37f76f49acbb8e140e7279e7a1"
+    }
+  },
+  {
+    "channel_id": "zee-zee-bangla-cinema",
+    "name": "Zee Bangla Cinema [Cloudfront | ClearKey]",
+    "genre": "Movies",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/gLSSl4nG.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebanglacinema/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "fbbfd9ce4bbe4d818b16df7dfe89f05b",
+      "key": "1e96d0f88ef740e982d6f6105721c8bc"
+    }
+  },
+  {
+    "channel_id": "zee-zee-bangla",
+    "name": "Zee Bangla [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/9XHWylqs.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebangla/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "1df83e058b864da896c9288eef63b113",
+      "key": "fc32f26239054b56aab48225305598fe"
+    }
+  },
+  {
+    "channel_id": "zee-zoom",
+    "name": "ZOOM [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/jLvKrs62.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zoom2/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "86edec9e3b7d4042a4d4a1ca14f847ee",
+      "key": "9def4315f0004019a3705bcb3cf30ca3"
+    }
+  },
+  {
+    "channel_id": "zee-zing",
+    "name": "ZING [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/Nyi83z1G.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zing/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "f0fb14eebe474a6ab74c8301d55a7224",
+      "key": "f9f8b2e30704458b8db844a285ce32be"
+    }
+  },
+  {
+    "channel_id": "zee-zee-cinema-hd",
+    "name": "Zee Cinema HD [Cloudfront | ClearKey]",
+    "genre": "Movies",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLCn2KAuMTDKTbK2uQI-jj48q4X9FlRG_OKg&s",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeecinemahd/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "f56beaac9f124616872c741c9ce4fa4e",
+      "key": "5d40a903238f4ad98abbed1877d4e3d1"
+    }
+  },
+  {
+    "channel_id": "zee-discovery-turbo",
+    "name": "DISCOVERY TURBO [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/6eCv1iuk.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Discoveryturbo2/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "c011525969e44b99a86059dbb3cdf4e8",
+      "key": "6700a5d93203417b8585f7de7dd1a09b"
+    }
+  },
+  {
+    "channel_id": "zee-discovery-science",
+    "name": "DISCOVERY SCIENCE [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/vIA7TExn.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Discoveryscience2/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "5458f45efedb4d6f8aa6ac76c85b621b",
+      "key": "dbf8a0a306a64525ba3012fd225370c0"
+    }
+  },
+  {
+    "channel_id": "zee-investigation-discovery",
+    "name": "INVESTIGATION DISCOVERY [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/mHhlDCiL.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Investigationdiscovery2/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "2828ea6f6a984505b0454da0c03f68b9",
+      "key": "5d3b7195086544c2807aa8c1544e7379"
+    }
+  },
+  {
+    "channel_id": "zee-tlc",
+    "name": "TLC [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/FOvFsIgt.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Tlc2/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "e48e7373d6be47ecab83a20849f6823e",
+      "key": "513ce07a2ee24ffdbe667eff5a9d46a8"
+    }
+  },
+  {
+    "channel_id": "zee-discovery-channel",
+    "name": "DISCOVERY CHANNEL [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/UyI5ljKM.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Discoverychannel2/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "b70a8cf9450c4d6484b4ac4d3c6761c0",
+      "key": "0908be844260409cbac180bf0181da40"
+    }
+  },
+  {
+    "channel_id": "zee-discovery-kids",
+    "name": "DISCOVERY KIDS [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/RzedYhFG.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Discoverykids2/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "601f58d4b7094d2baf78c85d1d9cb6c9",
+      "key": "609e0cc03198455fa36fd2cc3e7f940d"
+    }
+  },
+  {
+    "channel_id": "zee-zee-news",
+    "name": "Zee News [Cloudfront | ClearKey]",
+    "genre": "News",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuqgsvfVCC5WZxPxIp7vXTQ11WpCqTd8BZeg&s",
+    "source": "zee_cloudfront",
+    "stream_url": "https://dknttpxmr0dwf.cloudfront.net/index_2.m3u8",
+    "drm": null
+  },
+  {
+    "channel_id": "zee-ndtvindia",
+    "name": "NDTVINDIA [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://d388d59m61mm0v.cloudfront.net/optimized/content/common/logos/channel/logos/iqfloc.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Ndtvindia2/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "d78c01625c3f4ed98912609799298544",
+      "key": "b91bb882f9624872ada6125006fe5c73"
+    }
+  },
+  {
+    "channel_id": "zee-zee-hindustan",
+    "name": "ZEE HINDUSTAN [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/TknReKLD.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeehindustan/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "10616d7c4bee41f1825bd805c6295172",
+      "key": "dc85f2112f63477fb39fc149493c49be"
+    }
+  },
+  {
+    "channel_id": "zee-zee-business",
+    "name": "ZEE BUSINESS [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/vExrDK9r.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebusiness/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "bef87892e58c446d893b16a848703b70",
+      "key": "51959fcbc8fe4091b570ba254bf749ae"
+    }
+  },
+  {
+    "channel_id": "zee-zee-bih-jh",
+    "name": "ZEE BIH/JH [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/5zkMvEbF.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebiharjharkhand/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "e1ec6098b5014ac7aae0b37f72d5e85e",
+      "key": "c04950f25d8e4107a96e828e7911e53b"
+    }
+  },
+  {
+    "channel_id": "zee-zee-talkies",
+    "name": "Zee Talkies [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/VGfIqjrc.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeetalkies/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "f081f32756374c3d8265e1a1e029614e",
+      "key": "356a3a6d8ce34d49a84ad464b20b1a3e"
+    }
+  },
+  {
+    "channel_id": "zee-zee-sarthak",
+    "name": "Zee Sarthak [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://d388d59m61mm0v.cloudfront.net/optimized/content/common/logos/channel/logos/zee-sarthak.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeesarthak/default/devil.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "ecad0b097b574078a4a1bde24bfdb2e5",
+      "key": "568bb13d04db4b738864f6c849474cd5"
+    }
+  },
+  {
+    "channel_id": "zee-zee-kannada-hd",
+    "name": "Zee Kannada HD [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/1PrOGXAh.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeekannada/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "50e714b65ead453cbfab9b20bed5c79d",
+      "key": "bc08e108b9ee4f65b99cb9dad9532f3f"
+    }
+  },
+  {
+    "channel_id": "zee-zee-telugu-hd",
+    "name": "Zee Telugu HD [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/6vNzRaRK.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeetelgu/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "1ce5cd75a6ad44a38a7d1b8dbaf9c330",
+      "key": "657fc8e7d533456cb0644fe03458a4b2"
+    }
+  },
+  {
+    "channel_id": "zee-zee-tamil",
+    "name": "Zee Tamil [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/Zee_Tamil.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://linearjitp-playback.astro.com.my/dash-wv/linear/2311/default_ott.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "0d4e3e7dac2d58b93bf819a72fe8d510",
+      "key": "667a33f4d5bb3587f2d5209886839eac"
+    }
+  },
+  {
+    "channel_id": "zee-zee-marathi-hd",
+    "name": "Zee Marathi HD [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/4bimlHJj.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeemarathi/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "2a8d6c938ea647248f7a10eedc39f097",
+      "key": "7d81feb84ed84bd88fdc5ca9de3c16da"
+    }
+  },
+  {
+    "channel_id": "zee-shortstv",
+    "name": "SHORTSTV [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/lcMc75Xr.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Shortstv2/default/manifest.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "b994480f788d41ddbc805862ac469416",
+      "key": "78a6a0fc1758483595da7113e58e4467"
+    }
+  },
+  {
+    "channel_id": "zee-korean-dramas",
+    "name": "KOREAN DRAMAS [Cloudfront | ClearKey]",
+    "genre": "Entertainment",
+    "logo": "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/BNu8WvFw.png",
+    "source": "zee_cloudfront",
+    "stream_url": "https://a201aivottlinear-a.akamaihd.net/OTTB/lhr-nitro/clients/dash/enc/f60kqesunw/out/v1/a435ed7a00f947deb4369b46d8f2fb70/cenc.mpd",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "1779c27b9d077a3ba0c9cc1bb9a94b9f",
+      "key": "cc5cf3b7928fb9e0a1ee6a8b566f0a8e"
+    }
+  },
+  {
+    "channel_id": "asianet-news",
+    "name": "Asianet News [Native HLS | Amagi CDN]",
+    "genre": "Malayalam News",
+    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_ASIANET_NEWS/images/LOGO_HD/image.png",
+    "stream_url": "https://amg13737-amg13737c1-amgplt0016.playout.now3.amagi.tv/playlist/amg13737-amg13737c1-amgplt0016/playlist.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "asianet-hd",
+    "name": "Asianet HD [Native HLS | CloudFront]",
+    "genre": "Malayalam Entertainment",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/7/77/Asianet_logo.png",
+    "stream_url": "https://da86m1sqpm3o0.cloudfront.net/28072023/smil:starasianet.smil/chunklist_b1928000.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "asianet-movies-hd",
+    "name": "Asianet Movies HD [Native HLS | CloudFront]",
+    "genre": "Malayalam Movies",
+    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_ASIANET_MOVIES/images/LOGO_HD/image.png",
+    "stream_url": "https://da86m1sqpm3o0.cloudfront.net/28072023/smil:asianetmovies1.smil/playlist.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "asianet-me",
+    "name": "Asianet Middle East [Direct HTTP MPEG-TS | TangoTV]",
+    "genre": "Malayalam Entertainment",
+    "logo": "https://i.imgur.com/du9iZ0s.png",
+    "stream_url": "https://mumt03.tangotv.in/Dsly5z3HASIANETMIDDLEEAST/index.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "24-news",
+    "name": "24 News [Native HLS | TangoTV]",
+    "genre": "Malayalam News",
+    "logo": "https://sund-images.sunnxt.com/202222/300x300_24News_202222_d63feca0-79ae-47ea-b75a-66c17d456f4c.png",
+    "stream_url": "https://mumt07.tangotv.in/zHjX9OFlTWENTYFOURNEWS/index.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "manorama-news",
+    "name": "Manorama News [Native HLS | Akamai CDN]",
+    "genre": "Malayalam News",
+    "logo": "https://i.imgur.com/adjRrVx.png",
+    "stream_url": "https://mmtvnews1.akamaized.net/v1/master/673630b269b766886555eebfddd4f27f3de3ab50/mmtvNewsCampaign1/index.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "mathrubhumi-news",
+    "name": "Mathrubhumi News [Native HLS | Akamai / YuppTV]",
+    "genre": "Malayalam News",
+    "logo": "https://i.imgur.com/diQftzP.png",
+    "stream_url": "https://yuppmedtaorire.akamaized.net/v1/master/a0d007312bfd99c47f76b77ae26b1ccdaae76cb1/mathrubhuminews_nim_https/110322/mathrubhuminews/playlist.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "janam-tv",
+    "name": "Janam TV [Native HLS | Akamai / YuppTV]",
+    "genre": "Malayalam News",
+    "logo": "https://dtil.tmsimg.com/assets/s143221_ld_h15_aa.png?lock=720x540",
+    "stream_url": "https://yuppmedtaorire.akamaized.net/v1/master/a0d007312bfd99c47f76b77ae26b1ccdaae76cb1/janamtv_nim_https/140622/janamtv/playlist.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "news18-kerala",
+    "name": "News18 Kerala [Native HLS | Network18 Akamai]",
+    "genre": "Malayalam News",
+    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_NEWS18_KERALA/images/LOGO_HD/image.png",
+    "stream_url": "https://n18syndication.akamaized.net/bpk-tv/News18_Kerala_NW18_MOB/output01/master.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "reporter-tv",
+    "name": "Reporter TV [Native HLS | YuppCDN]",
+    "genre": "Malayalam News",
+    "logo": "https://dtil.tmsimg.com/assets/s85096_ld_h15_aa.png?lock=720x540",
+    "stream_url": "https://segment.yuppcdn.net/050522/reporter/playlist.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "real-news-kerala",
+    "name": "Real News Kerala [Native HLS | 5centsCDN]",
+    "genre": "Malayalam News",
+    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/Real_News_Kerala.png",
+    "stream_url": "https://bk7l298nyx53-hls-live.5centscdn.com/realnews/e7dee419f91aa9e65939d3677fb9c4f5.sdp/playlist.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "amrita-tv",
+    "name": "Amrita TV [Native HLS | CloudFront CDN]",
+    "genre": "Malayalam Entertainment",
+    "logo": "https://i.imgur.com/WdSjlPl.png",
+    "stream_url": "https://ddash74r36xqp.cloudfront.net/master.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "dd-malayalam",
+    "name": "DD Malayalam [Native HLS | CloudFront CDN]",
+    "genre": "Malayalam Entertainment",
+    "logo": "https://i.postimg.cc/BZjmjJJs/DD-Malayalam.png",
+    "stream_url": "https://d2lk5u59tns74c.cloudfront.net/out/v1/c313674ffced4c9a90f1bba436df2b9b/index.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "mazhavil-manorama",
+    "name": "Mazhavil Manorama [Native HLS | Akamai / YuppTV]",
+    "genre": "Malayalam Entertainment",
+    "logo": "https://i.imgur.com/fjgzW20.png",
+    "stream_url": "https://yuppmedtaorire.akamaized.net/v1/master/a0d007312bfd99c47f76b77ae26b1ccdaae76cb1/mazhavilmanorama_nim_https/050522/mazhavilmanorama/playlist.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "flowers-tv",
+    "name": "Flowers TV USA [Native HLS | Akamai / YuppTV]",
+    "genre": "Malayalam Entertainment",
+    "logo": "https://upload.wikimedia.org/wikipedia/ml/1/1c/Flowers-Onam.png",
+    "stream_url": "https://yuppmedtaorire.akamaized.net/v1/master/a0d007312bfd99c47f76b77ae26b1ccdaae76cb1/flowers_nim_https/050522/flowers/playlist.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "kairali-tv",
+    "name": "Kairali TV [Native HLS | TangoTV CDN]",
+    "genre": "Malayalam Entertainment",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/Kairali_TV.svg/500px-Kairali_TV.svg.png",
+    "stream_url": "https://mumt01.tangotv.in/O5aw8Zn3KAIRALI/index.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "kite-victers",
+    "name": "KITE Victers [Native HLS | 5centsCDN]",
+    "genre": "Malayalam Education",
+    "logo": "https://i.imgur.com/kj4OEsb.png",
+    "stream_url": "https://932y4x26ljv8-hls-live.5centscdn.com/victers/tv.stream/playlist.m3u8",
+    "source": "custom"
+  },
+  {
+    "channel_id": "mdtv-1641",
+    "name": "Zee Keralam HD [DASH | ClearKey]",
+    "genre": "Malayalam Entertainment",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Zee_Keralam_2018.svg/512px-Zee_Keralam_2018.svg.png",
+    "source": "mdtv",
+    "stream_url": "/live.php?token=STALKER_PRO&id=mdtv-1641&m3u=1",
+    "drm": {
+      "type": "clearkey",
+      "key_id": "d7ef4c20ac365150b4773544faa07587",
+      "key": "f8ff141b8e1cd71159b17f58487cf2e5",
+      "license_key": "843f85752e2954af864cde2858b94b07:5fb0421f5dd5b71a58fc2d98d2d4f8c0,a2c8b5715edd55bc8e36ab716d159140:0ea9f97a39ecdb94d701ddbf56cb6893,3e7dbec6224c5e1fba4ce631a91648c9:8c86df34c90c57c5400dfd161ca02a98,d7ef4c20ac365150b4773544faa07587:f8ff141b8e1cd71159b17f58487cf2e5,4f5964c9c3ce51f0a8571a1eb34a93d2:9a6b33496edfa58e9e27a95ebc0438e8"
+    },
+    "key_id": "ca03fd99cf33533caecf065085c4dd69",
+    "key": "2f6eeefb9d65dffabde6d7c1e15966a7",
+    "clearkey": "843f85752e2954af864cde2858b94b07:5fb0421f5dd5b71a58fc2d98d2d4f8c0,a2c8b5715edd55bc8e36ab716d159140:0ea9f97a39ecdb94d701ddbf56cb6893,3e7dbec6224c5e1fba4ce631a91648c9:8c86df34c90c57c5400dfd161ca02a98,d7ef4c20ac365150b4773544faa07587:f8ff141b8e1cd71159b17f58487cf2e5,4f5964c9c3ce51f0a8571a1eb34a93d2:9a6b33496edfa58e9e27a95ebc0438e8"
+  }
+]

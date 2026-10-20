@@ -1,0 +1,22 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow system config, analytics, and application documents
+    match /system_config/{document=**} {
+      allow read, write: if true;
+    }
+    match /analytics/{document=**} {
+      allow read, write: if true;
+    }
+    match /m3u_playlists/{document=**} {
+      allow read, write: if true;
+    }
+    match /security_logs/{document=**} {
+      allow read, write: if true;
+    }
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
+

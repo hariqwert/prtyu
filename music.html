@@ -1,0 +1,3671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Aetheris Acoustics | Hi-Res Lossless Audio Continuum</title>
+<!-- Tailwind CSS & Lucide Icons -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- JSZip and FileSaver for Playlist Download -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<style>
+:root {
+font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.font-display {
+font-family: 'Space Grotesk', sans-serif;
+}
+.font-mono {
+font-family: 'JetBrains Mono', sans-serif;
+}
+/* Ambient glowing scrollbar */
+::-webkit-scrollbar {
+width: 5px;
+height: 5px;
+}
+::-webkit-scrollbar-track {
+background: rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-thumb {
+background: rgba(99, 102, 241, 0.25);
+border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+background: rgba(236, 72, 153, 0.5);
+}
+/* Glassmorphism elements */
+.glass-panel {
+background: rgba(13, 15, 22, 0.75);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 0.08);
+box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+.glass-card {
+background: rgba(22, 24, 32, 0.6);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+border: 1px solid rgba(255, 255, 255, 0.07);
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-card:hover {
+background: rgba(255, 255, 255, 0.05);
+border-color: rgba(99, 102, 241, 0.3);
+transform: translateY(-2px);
+}
+.glass-card.active-play {
+background: rgba(99, 102, 241, 0.1);
+border-color: rgba(99, 102, 241, 0.4);
+box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+}
+/* Vinyl rotating animation */
+@keyframes spinSlow {
+from { transform: rotate(0deg); }
+to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+animation: spinSlow 4s linear infinite;
+}
+/* Zoom / Fullscreen Animation Mode */
+.zoom-mode {
+position: fixed !important;
+inset: 0 !important;
+width: 100vw !important;
+height: 100vh !important;
+height: 100dvh !important;
+z-index: 99999 !important;
+background: #050508 !important;
+border-radius: 0 !important;
+margin: 0 !important;
+padding: max(1.5rem, env(safe-area-inset-top)) 1.5rem max(1.5rem, env(safe-area-inset-bottom)) !important;
+display: flex !important;
+flex-direction: column !important;
+align-items: center !important;
+justify-content: center !important;
+}
+.zoom-mode canvas {
+border-radius: 0 !important;
+}
+/* Cyber deck glowing outline */
+@keyframes cyberGlow {
+0%, 100% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.15); border-color: rgba(99, 102, 241, 0.2); }
+50% { box-shadow: 0 0 30px rgba(236, 72, 153, 0.3); border-color: rgba(236, 72, 153, 0.3); }
+}
+.cyber-glow {
+animation: cyberGlow 5s infinite ease-in-out;
+}
+/* Speaker beat pulsation */
+@keyframes speakerBeat {
+0%, 100% { transform: scale(1); }
+50% { transform: scale(1.03); filter: brightness(1.1); }
+}
+.speaker-active {
+animation: speakerBeat 0.5s infinite ease-in-out;
+}
+/* Concentric waves expansion */
+@keyframes waveExpand {
+0% { transform: scale(0.85); opacity: 0.8; }
+100% { transform: scale(1.4); opacity: 0; }
+}
+.sound-wave-circle {
+animation: waveExpand 2s infinite cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+/* Infinite Marquee for Radio Stations */
+@keyframes marquee {
+0% { transform: translate3d(0%, 0, 0); }
+100% { transform: translate3d(-50%, 0, 0); }
+}
+.marquee-content {
+display: inline-block;
+white-space: nowrap;
+animation: marquee 15s linear infinite;
+will-change: transform;
+}
+/* Disable TV spatial navigation borders */
+*:focus, *:focus-visible, *:-webkit-direct-focus, *:focus-within {
+outline: none !important;
+outline-width: 0 !important;
+box-shadow: none !important;
+-webkit-tap-highlight-color: transparent !important;
+}
+::-moz-focus-inner {
+border: 0;
+}
+.tv-focus-disabled {
+outline: none !important;
+}
+/* Music Hub Mobile Optimizations */
+@media (max-width: 768px) {
+.glass-panel { backdrop-filter: blur(8px) !important; -webkit-backdrop-filter: blur(8px) !important; }
+.glass-card { backdrop-filter: blur(6px) !important; -webkit-backdrop-filter: blur(6px) !important; transition: none !important; }
+.glass-card:hover { transform: none !important; }
+button, [role="button"] { touch-action: manipulation; }
+}
+.tv-focusable:focus {
+outline: 3px solid rgba(255,255,255,0.85) !important;
+outline-offset: 2px !important;
+box-shadow: 0 0 0 4px rgba(255,255,255,0.2) !important;
+transform: scale(1.04) !important;
+}
+</style>
+<link rel="icon" type="image/png" href="stalker_pro_infinity.svg">
+<style id="tv-mobile-base">
+/* TV/Remote D-pad focus ring */
+.tv-focusable:focus, button:focus, a:focus { outline: 2px solid rgba(255,255,255,0.7) !important; outline-offset: 2px !important; }
+/* Mobile touch improvements */
+@media (max-width:768px) { button, a, [role=button] { min-height: 44px; touch-action: manipulation; } }
+</style>
+<script src="/bg-inject.js"></script><script src="/background_injector.js"></script></head>
+<body class="bg-black text-slate-100 min-h-screen overflow-x-hidden flex flex-col selection:bg-indigo-500 selection:text-white">
+<!-- Background Video Container -->
+<!-- Ambient background glowing grid and radial points -->
+<div class="fixed top-0 left-0 w-full h-full bg-[linear-gradient(rgba(255,255,255,0.02)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(255,255,255,0.02)_1px,_transparent_1px)] bg-[size:60px_60px] pointer-events-none z-0"></div>
+<div id="ambientGlow" class="fixed inset-0 pointer-events-none z-0 transition-opacity duration-1000" style="background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);"></div>
+<!-- MAIN APP WRAPPER -->
+<div class="flex-1 flex flex-col min-h-screen relative z-10">
+<!-- NAV HEADER -->
+<header id="mainHeader" class="bg-black border-b border-white/10 py-2.5 sm:py-3.5 px-3 sm:px-6 md:px-10 flex flex-nowrap items-center justify-between sticky top-0 z-50">
+<div class="flex items-center gap-2 sm:gap-3 min-w-0">
+<a href="/hero.html" class="p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 hover:border-indigo-500/50 transition-all flex items-center justify-center shrink-0 shadow-inner" title="Return to Dashboard">
+<i data-lucide="arrow-left" class="w-4 h-4"></i>
+</a>
+<div class="flex items-center gap-2 sm:gap-2.5 min-w-0">
+<div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-black/60 border border-white/15 flex items-center justify-center p-0.5 shadow-[0_0_15px_rgba(168,85,247,0.25)] backdrop-blur-md shrink-0">
+<img src="stalker_pro_infinity.svg" class="w-full h-full object-contain" alt="Aetheris">
+</div>
+<div class="min-w-0">
+<h1 class="text-xs sm:text-base md:text-lg font-black font-mono tracking-wider sm:tracking-widest leading-none bg-gradient-to-r from-white via-purple-200 to-fuchsia-400 bg-clip-text text-transparent uppercase truncate">AETHERIS ACOUSTICS</h1>
+<p class="text-[8px] sm:text-[9px] font-mono font-bold text-zinc-500 uppercase tracking-widest mt-0.5 sm:mt-1 truncate">HI-RES CONTINUUM</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 sm:gap-4 shrink-0">
+<!-- Premium stream state indicator card -->
+<div id="deckStatusCard" class="hidden sm:flex items-center gap-2.5 bg-black/40 border border-white/5 rounded-2xl px-4 py-2 text-xs font-semibold text-slate-400">
+<span class="flex h-2 w-2 relative">
+<span id="deckStatusPing" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+<span id="deckStatusIndicator" class="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+</span>
+<span id="deckStatusText" class="text-slate-200">Hi-Res Audio Deck</span>
+<span id="deckBitrateBadge" class="text-[9px] bg-indigo-500/10 border border-white/10 text-indigo-400 px-1.5 py-0.5 rounded-md font-mono">320kbps AAC</span>
+</div>
+<div class="flex items-center gap-1.5 sm:gap-2">
+<button onclick="openSongHistoryView()" class="p-2 sm:p-2.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer" title="Song History & Recently Played">
+<i data-lucide="history" class="w-4 h-4"></i>
+<span class="hidden lg:inline text-[10px] font-extrabold uppercase tracking-wider">History</span>
+<span id="headerHistoryCountBadge" class="text-[9px] font-mono font-bold bg-white/10 text-slate-300 px-1.5 py-0.5 rounded-full">0</span>
+</button>
+<button onclick="downloadQueueAsZip()" class="hidden xs:flex p-2 sm:p-2.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-all hover:border-white/10" title="Download Entire Queue as ZIP">
+<i data-lucide="archive" class="w-4 h-4"></i>
+</button>
+<button onclick="toggleEqualizerModal(true)" class="p-2 sm:p-2.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-all hover:border-white/10" title="Audio Equalizer Settings">
+<i data-lucide="sliders" class="w-4 h-4"></i>
+</button>
+<button onclick="toggleSettingsModal(true)" class="p-2 sm:p-2.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-all hover:border-white/10" title="Deck Settings">
+<i data-lucide="settings" class="w-4 h-4"></i>
+</button>
+<button onclick="toggleHelpModal(true)" class="p-2 sm:p-2.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-all hover:border-white/10" title="Control Shortcuts">
+<i data-lucide="help-circle" class="w-4 h-4"></i>
+</button>
+<button id="iframeCloseButton" onclick="window.parent.postMessage({ type: 'CLOSE_MUSIC_OVERLAY' }, '*');" class="hidden p-2 sm:p-2.5 rounded-2xl bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 hover:text-white transition-all ml-1 cursor-pointer" title="Close Overlay Deck">
+<i data-lucide="x" class="w-4 h-4"></i>
+</button>
+</div>
+</div>
+</header>
+<!-- Mobile Segmented View Controller (Visible on Mobile Screens < md) -->
+<div class="md:hidden sticky top-[53px] z-30 bg-[#090d16]/95 backdrop-blur-2xl border-b border-white/10 px-2.5 py-2 flex items-center justify-between">
+<div class="flex p-1 bg-black/70 rounded-2xl border border-white/10 w-full gap-1 shadow-inner">
+<button onclick="switchMobileMusicView('nowplaying')" id="mobViewBtn_nowplaying" class="flex-1 py-2 rounded-xl text-[11px] font-bold text-center text-white bg-indigo-600 transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer">
+<i data-lucide="disc" class="w-3.5 h-3.5"></i>
+<span>Player</span>
+</button>
+<button onclick="switchMobileMusicView('search')" id="mobViewBtn_search" class="flex-1 py-2 rounded-xl text-[11px] font-semibold text-center text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1 cursor-pointer">
+<i data-lucide="search" class="w-3.5 h-3.5"></i>
+<span>Search</span>
+</button>
+<button onclick="switchMobileMusicView('history')" id="mobViewBtn_history" class="flex-1 py-2 rounded-xl text-[11px] font-semibold text-center text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1 cursor-pointer">
+<i data-lucide="history" class="w-3.5 h-3.5"></i>
+<span>History</span>
+<span id="mobHistoryCountBadge" class="text-[9px] font-mono font-bold bg-white/10 text-slate-300 px-1.5 py-0.2 rounded-full">0</span>
+</button>
+<button onclick="switchMobileMusicView('library')" id="mobViewBtn_library" class="flex-1 py-2 rounded-xl text-[11px] font-semibold text-center text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1 cursor-pointer">
+<i data-lucide="folder" class="w-3.5 h-3.5"></i>
+<span>Library</span>
+</button>
+</div>
+</div>
+<!-- MAIN DECK CONTENT PANELS -->
+<main class="flex-1 grid grid-cols-1 xl:grid-cols-12 gap-6 p-4 md:p-6 lg:p-8 pb-32">
+<!-- LEFT COLUMN: IMPORT & UPLOAD -->
+<section id="musicLeftPanel" class="hidden xl:flex xl:col-span-3 flex-col gap-6">
+<div class="glass-panel rounded-[2rem] p-6 flex flex-col gap-5 flex-1 max-h-[480px] xl:max-h-none overflow-hidden shadow-2xl">
+<div class="flex items-center justify-between border-b border-white/5 pb-3">
+<div>
+<h2 class="text-xs font-black font-display uppercase tracking-wider text-teal-400">IMPORT & UPLOAD</h2>
+<p class="text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">Play Links & Local Files</p>
+</div>
+</div>
+<div class="space-y-6 flex-1 flex flex-col justify-center">
+<!-- Direct Link Input -->
+<div class="space-y-3">
+<label class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Direct Link (JioSaavn / YouTube)</label>
+<div class="flex gap-2">
+<input type="text" id="directLinkInput" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 transition-colors" placeholder="Paste music link here...">
+<button id="playDirectLinkBtn" onclick="playDirectLink()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] font-bold uppercase tracking-wider transition-all">Play</button>
+</div>
+</div>
+<div class="flex items-center gap-3 py-2">
+<div class="h-px bg-white/5 flex-1"></div>
+<span class="text-[8px] font-bold text-slate-500 uppercase tracking-widest">OR</span>
+<div class="h-px bg-white/5 flex-1"></div>
+</div>
+<!-- Local File Upload -->
+<div class="space-y-3 relative">
+<label class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Local Audio File</label>
+<label class="flex flex-col items-center justify-center w-full h-24 border-2 border-white/10 border-dashed rounded-xl cursor-pointer hover:border-indigo-500/50 hover:bg-white/5 transition-all">
+<div class="flex flex-col items-center justify-center pt-5 pb-6">
+<i data-lucide="upload-cloud" class="w-6 h-6 text-slate-500 mb-2"></i>
+<p class="text-[10px] text-slate-400 font-bold tracking-wide">Click to upload local audio</p>
+<p class="text-[8px] text-slate-500 font-medium tracking-widest mt-1">MP3, WAV, FLAC, OGG</p>
+</div>
+<input type="file" id="localAudioUpload" class="hidden" accept="audio/*" multiple onchange="handleLocalAudioUpload(event)">
+</label>
+</div>
+</div>
+</div>
+<!-- MY PLAYLISTS (STORED LOCALLY) -->
+<div class="glass-panel rounded-[2rem] p-5 sm:p-6 flex flex-col gap-3.5 h-[240px] overflow-hidden shadow-2xl">
+<div class="flex items-center justify-between border-b border-white/5 pb-2">
+<div>
+<h2 class="text-xs font-black font-display uppercase tracking-wider text-pink-400">STUDIO PLAYLISTS</h2>
+<p class="text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">Persistent Custom Mixes</p>
+</div>
+<button onclick="createNewPlaylistPrompt()" class="p-1.5 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-400 hover:bg-pink-500 hover:text-white transition-all" title="Create Playlist">
+<i data-lucide="plus" class="w-3.5 h-3.5"></i>
+</button>
+</div>
+<div id="playlistsContainer" class="space-y-2 overflow-y-auto pr-1 flex-1">
+<!-- Populated dynamically via JS -->
+</div>
+</div>
+<!-- SONG HISTORY SECTION (DESKTOP & MOBILE LIBRARY CARD) -->
+<div id="leftPanelHistorySection" class="glass-panel rounded-[2rem] p-5 sm:p-6 flex flex-col gap-3.5 h-[360px] overflow-hidden shadow-2xl border border-white/10">
+<div class="flex items-center justify-between border-b border-white/5 pb-2.5">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 shrink-0 shadow-inner">
+<i data-lucide="history" class="w-4 h-4"></i>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<h2 class="text-xs font-black font-display uppercase tracking-wider text-white truncate">SONG HISTORY</h2>
+<span id="leftHistoryCountBadge" class="text-[9px] font-mono font-bold bg-white/10 text-slate-300 px-1.5 py-0.5 rounded-full">0</span>
+</div>
+<p class="text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-0.5 truncate">Recently Played Tracks</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 shrink-0">
+<button onclick="playAllMusicHistory()" class="px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white text-[9px] font-bold uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer" title="Play All History">
+<i data-lucide="play" class="w-3 h-3 fill-current"></i>
+<span>Play All</span>
+</button>
+<button onclick="clearMusicHistory()" class="px-2 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white text-[9px] font-bold uppercase tracking-wider transition-all cursor-pointer" title="Clear Song History">
+Clear
+</button>
+</div>
+</div>
+<!-- Quick Filter inside Song History -->
+<div class="flex items-center bg-black/40 border border-white/8 rounded-xl px-3 py-1.5 focus-within:border-indigo-500/50 transition-colors">
+<i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 mr-2 shrink-0"></i>
+<input type="text" id="leftHistorySearchInput" oninput="renderMusicHistory()" placeholder="Filter song history..." class="bg-transparent text-[11px] w-full outline-none text-white placeholder-slate-600 font-medium">
+</div>
+<div id="leftMusicHistoryList" class="space-y-2 overflow-y-auto pr-1 flex-1 custom-scrollbar">
+<!-- Populated dynamically via JS -->
+</div>
+</div>
+</section>
+<!-- CENTER COLUMN: INTERACTIVE CYBER VINYL & DYNAMIC WAVE VISUALIZER -->
+<section id="musicCenterPanel" class="flex xl:col-span-5 glass-panel rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-8 flex-col gap-4 sm:gap-6 items-center justify-between relative overflow-hidden cyber-glow min-h-[440px] md:min-h-[550px] shadow-2xl">
+<div id="bgVideoContainer" class="absolute inset-0 pointer-events-none z-0 overflow-hidden hidden opacity-40 transition-opacity duration-1000 rounded-[2.5rem]">
+<div id="ytPlayer" class="w-full h-full scale-[1.3] origin-center pointer-events-none"></div>
+</div>
+<!-- Ambient Wave Canvas Background (Full Panel Canvas) -->
+<canvas id="visualizerCanvas" class="absolute inset-0 w-full h-full object-cover rounded-[2.5rem] pointer-events-none opacity-80 z-0 transition-opacity duration-500"></canvas>
+<!-- Ripple Rings (Pulsating waves triggered by beats) -->
+<div id="visualRipples" class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+<div class="absolute w-44 h-44 rounded-full border border-indigo-500/15 sound-wave-circle"></div>
+<div class="absolute w-60 h-60 rounded-full border border-pink-500/10 sound-wave-circle" style="animation-delay: 0.6s"></div>
+<div class="absolute w-80 h-80 rounded-full border border-teal-500/5 sound-wave-circle" style="animation-delay: 1.2s"></div>
+</div>
+<!-- 3D HIGH-FIDELITY CYBER DISK PLAYER -->
+<div class="absolute top-4 right-4 z-30 flex gap-2">
+<button id="btnToggleZoom" onclick="toggleZoom(event)" class="min-w-[44px] min-h-[44px] p-2.5 rounded-full bg-black/60 hover:bg-black/80 active:scale-90 transition-all text-slate-300 hover:text-white border border-white/20 flex items-center justify-center cursor-pointer touch-manipulation z-40 shadow-lg" title="Toggle Fullscreen Animation" aria-label="Toggle Fullscreen Animation">
+<i id="zoomIcon" data-lucide="maximize" class="w-4 h-4 pointer-events-none"></i>
+</button>
+<button onclick="toggleAppSleep(true)" class="p-2 rounded-full bg-gradient-to-r from-teal-500 to-indigo-500 hover:scale-110 transition-all text-white border border-white/20 shadow-lg shadow-indigo-500/50" title="System Sleep Mode">
+<i data-lucide="power" class="w-4 h-4"></i>
+</button>
+</div>
+<div id="deckVinylWrapper" class="relative transform-gpu will-change-transform group cursor-pointer active:scale-95 transition-all duration-300 my-2 md:my-4 z-20 mt-6 sm:mt-12 md:mt-20">
+<div id="vinylGlow" class="absolute inset-0 rounded-full bg-indigo-500 blur-[40px] opacity-0 transition-opacity duration-300 -z-10"></div>
+<!-- Rotating vinyl body -->
+<div id="vinylDeck" class="w-44 h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-full bg-gradient-to-tr from-[#050505] via-[#151515] to-[#252525] relative flex items-center justify-center shadow-[0_25px_60px_rgba(0,0,0,0.9)] border-4 border-slate-800/80 group">
+<!-- Stylized metallic vinyl grooves radial gradient overlay -->
+<div class="absolute inset-0 rounded-full" style="background: radial-gradient(circle, transparent 25%, rgba(255,255,255,0.015) 30%, transparent 35%, rgba(255,255,255,0.02) 40%, transparent 45%, rgba(0,0,0,0.8) 55%, rgba(255,255,255,0.01) 65%, rgba(0,0,0,0.9) 85%);"></div>
+<!-- Rotating spinner ring -->
+<div id="vinylSpinner" class="w-full h-full rounded-full flex items-center justify-center transition-all duration-1000 ease-in-out">
+<!-- Central album artwork sticker -->
+<div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full border-4 border-black bg-black overflow-hidden relative shadow-[0_0_15px_rgba(0,0,0,0.8)] z-10">
+<img id="vinylCover" src="https://images.unsplash.com/photo-1614149162883-504ce4d13909?auto=format&fit=crop&q=80&w=250&h=250" class="w-full h-full object-cover">
+<!-- Core spindle hole -->
+<div class="absolute inset-[36%] rounded-full bg-[#030712] border-2 border-slate-700 shadow-inner z-20 flex items-center justify-center">
+<div class="w-1.5 h-1.5 rounded-full bg-slate-400"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Cyber Vinyl Tone-Arm / Needle Stylus -->
+<div id="tonearm" class="absolute -top-3 -right-2 sm:-top-4 sm:-right-2 w-16 h-16 sm:w-20 sm:h-20 pointer-events-none origin-[15px_15px] transform rotate-[-30deg] transition-all duration-1000 ease-out z-30">
+<svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-[0_12px_12px_rgba(0,0,0,0.7)]">
+<!-- Pivot base -->
+<circle cx="15" cy="15" r="10" fill="#475569" stroke="#1e293b" stroke-width="3"/>
+<circle cx="15" cy="15" r="4" fill="#ef4444"/>
+<!-- Mechanical arm -->
+<path d="M 15 15 L 45 10 L 55 50 L 62 70" stroke="#94a3b8" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- Cartridge/Headshell -->
+<rect x="56" y="66" width="12" height="18" rx="2" fill="#ef4444" transform="rotate(12 62 75)"/>
+<path d="M 58 84 L 66 84" stroke="#ffffff" stroke-width="2"/>
+</svg>
+</div>
+</div>
+<!-- CENTER ACTIVE TRACK DETAILS -->
+<div class="text-center w-full max-w-sm relative z-20">
+<h3 id="centerTrackTitle" class="text-lg sm:text-xl md:text-2xl font-black font-display text-white tracking-tight leading-tight truncate px-2">No Music Playing</h3>
+<p id="centerTrackArtist" class="text-xs font-semibold text-indigo-400 uppercase tracking-widest mt-1 truncate">SELECT A LIVE STATION OR SEARCH A SONG</p>
+<p id="centerTrackAlbum" class="text-[9px] text-slate-500 font-extrabold uppercase tracking-widest mt-1.5 truncate">STALKER STUDIO DECKS</p>
+</div>
+<!-- MOBILE/INLINE FULL TRANSPORT CONTROLS -->
+<div id="inlineControlsWrapper" class="w-full max-w-sm px-3 pt-1 pb-1 space-y-2.5 relative z-20">
+<!-- Live Timeline Scrubber -->
+<div class="space-y-1">
+<div id="inlineScrubberTrack" onclick="seekMobileAudio(event)" class="w-full h-2 bg-white/10 hover:bg-white/20 rounded-full relative cursor-pointer overflow-hidden transition-all group py-0.5">
+<div id="inlineTimelineProgress" class="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full w-0 transition-all duration-100 group-hover:brightness-125"></div>
+</div>
+<div class="flex items-center justify-between text-[10px] font-mono font-bold text-slate-400">
+<span id="inlineCurrentTime">0:00</span>
+<span id="inlineTotalDuration">0:00</span>
+</div>
+</div>
+<!-- Transport Controls (Shuffle, Prev, Big Animated Play/Pause, Next, Repeat) -->
+<div class="flex items-center justify-between px-2">
+<button onclick="toggleShuffle()" id="inlineShuffleBtn" class="p-2.5 text-slate-400 hover:text-indigo-400 transition-all active:scale-90" title="Shuffle Mode">
+<i data-lucide="shuffle" class="w-4 h-4"></i>
+</button>
+<button onclick="playPrevTrack()" class="p-2.5 text-slate-200 hover:text-white transition-all active:scale-90" title="Previous Track">
+<i data-lucide="skip-back" class="w-5 h-5"></i>
+</button>
+<button onclick="toggleMasterPlay()" id="inlineMasterPlayBtn" class="w-14 h-14 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 text-white flex items-center justify-center transition-all shadow-[0_0_25px_rgba(99,102,241,0.5)] hover:scale-105 active:scale-95" title="Play / Pause">
+<i id="inlineMasterPlayIcon" data-lucide="play" class="w-6 h-6 ml-0.5 fill-current"></i>
+</button>
+<button onclick="playNextTrack()" class="p-2.5 text-slate-200 hover:text-white transition-all active:scale-90" title="Next Track">
+<i data-lucide="skip-forward" class="w-5 h-5"></i>
+</button>
+<button onclick="toggleRepeat()" id="inlineRepeatBtn" class="p-2.5 text-slate-400 hover:text-pink-400 transition-all active:scale-90" title="Repeat Track">
+<i data-lucide="repeat" class="w-4 h-4"></i>
+</button>
+</div>
+</div>
+<!-- AUDIO FORMAT & CHIP DETAILS -->
+<div class="flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap relative z-20">
+<span class="text-[8px] font-extrabold tracking-wider font-mono text-slate-400 bg-white/5 border border-white/5 py-0.5 sm:py-1 px-2.5 sm:px-3 rounded-full uppercase">Stereo</span>
+<span id="centerSampleRate" class="text-[8px] font-extrabold tracking-wider font-mono text-slate-400 bg-white/5 border border-white/5 py-0.5 sm:py-1 px-2.5 sm:px-3 rounded-full uppercase">48.0 kHz</span>
+<span id="centerCodec" class="text-[8px] font-extrabold tracking-wider font-mono text-slate-400 bg-white/5 border border-white/5 py-0.5 sm:py-1 px-2.5 sm:px-3 rounded-full uppercase">MP3 HD</span>
+<span id="centerVisualBadge" class="text-[8px] font-extrabold tracking-wider font-mono text-cyan-400 bg-cyan-400/10 border border-cyan-500/20 py-0.5 sm:py-1 px-2.5 sm:px-3 rounded-full uppercase">Dynamic Octave</span>
+<button id="inlineDownloadButton" onclick="downloadActiveTrack()" class="p-1 sm:p-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white transition-all cursor-pointer inline-flex items-center gap-1 text-[8px] font-mono uppercase" title="Download Master File">
+<i data-lucide="download" class="w-2.5 h-2.5"></i>
+</button>
+</div>
+</section>
+<!-- RIGHT COLUMN: CHILLOUT STUDIO MASTER MUSIC COLLECTION & SEARCH -->
+<section id="musicRightPanel" class="hidden xl:flex xl:col-span-4 glass-panel rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-6 flex-col gap-4 overflow-hidden h-auto min-h-[480px] xl:h-auto shadow-2xl">
+<div class="flex flex-col gap-3.5 border-b border-white/5 pb-4">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="text-xs font-black font-display uppercase tracking-wider text-indigo-400">STUDIO MASTER ARCHIVE</h2>
+<p class="text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">High-Fidelity Dynamic Search</p>
+</div>
+<span id="activeSourceBadge" class="text-[9px] font-mono font-black bg-indigo-500/10 border border-white/10 text-indigo-400 px-2 py-0.5 rounded-full uppercase">JioSaavn</span>
+</div>
+<!-- Search Source Segmented Tabs -->
+<div class="flex bg-black/40 p-1 rounded-2xl border border-white/5 gap-1 shadow-inner overflow-x-auto no-scrollbar">
+<button onclick="switchSearchSource('saavn')" id="tab_source_saavn" class="flex-1 py-2 px-2 rounded-xl text-[10px] font-extrabold uppercase tracking-wider text-center text-white bg-indigo-600 transition-all shadow-md shrink-0">JioSaavn</button>
+<button onclick="switchSearchSource('history')" id="tab_source_history" class="flex-1 py-2 px-2 rounded-xl text-[10px] font-extrabold uppercase tracking-wider text-center text-slate-400 hover:text-slate-200 transition-all flex items-center justify-center gap-1 shrink-0"><i data-lucide="history" class="w-3 h-3"></i><span>History</span></button>
+<button onclick="switchSearchSource('archive')" id="tab_source_archive" class="flex-1 py-2 px-2 rounded-xl text-[10px] font-extrabold uppercase tracking-wider text-center text-slate-400 hover:text-slate-200 transition-all shrink-0">Archive</button>
+<button onclick="switchSearchSource('curated')" id="tab_source_curated" class="flex-1 py-2 px-2 rounded-xl text-[10px] font-extrabold uppercase tracking-wider text-center text-slate-400 hover:text-slate-200 transition-all shrink-0">Curated</button>
+<button onclick="switchSearchSource('youtube')" id="tab_source_youtube" class="flex-1 py-2 px-2 rounded-xl text-[10px] font-extrabold uppercase tracking-wider text-center text-slate-400 hover:text-slate-200 transition-all shrink-0">YouTube</button>
+<button onclick="switchSearchSource('audius')" id="tab_source_audius" class="flex-1 py-2 px-2 rounded-xl text-[10px] font-extrabold uppercase tracking-wider text-center text-slate-400 hover:text-slate-200 transition-all shrink-0">Audius</button>
+<button onclick="switchSearchSource('jamendo')" id="tab_source_jamendo" class="flex-1 py-2 px-2 rounded-xl text-[10px] font-extrabold uppercase tracking-wider text-center text-slate-400 hover:text-slate-200 transition-all shrink-0">Jamendo</button>
+</div>
+<!-- Search Input with Interactive Button -->
+<div class="flex items-center bg-black/40 border border-white/5 rounded-2xl px-4 py-3 focus-within:border-indigo-500 transition-colors shadow-inner">
+<i data-lucide="search" class="w-4 h-4 text-slate-500 mr-2"></i>
+<input type="text" id="studioSearchInput" placeholder="Search millions of songs on JioSaavn..." class="bg-transparent text-xs w-full outline-none focus:ring-0 placeholder:text-slate-600 font-semibold text-white" onkeydown="if(event.key === 'Enter') handleSearch()">
+<button onclick="handleSearch()" class="p-1 text-slate-400 hover:text-white transition-all ml-1" title="Execute Query">
+<i data-lucide="arrow-right-circle" class="w-5 h-5 text-indigo-400 hover:text-indigo-300"></i>
+</button>
+</div>
+<!-- Category tag / quick suggestions filter buttons -->
+<div id="quickSuggestionTags" class="flex gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+<!-- Populated dynamically based on selected source tab -->
+</div>
+</div>
+<!-- LIBRARY RESULT CARDS LIST -->
+<div id="studioSongsContainer" class="flex-1 overflow-y-auto pr-1 space-y-2.5 custom-scrollbar">
+<!-- Populated dynamically via JS -->
+</div>
+</section>
+</main>
+<!-- FOOTER: HIGH-FIDELITY DECK CONTROL BAR (Stably docked & always accessible) -->
+<footer id="mobileFooterPlayer" class="glass-panel border-t border-white/10 fixed bottom-0 left-0 w-full z-50 shadow-[0_-10px_35px_rgba(0,0,0,0.7)] transition-all duration-300 transform translate-y-0 opacity-100 pointer-events-auto backdrop-blur-2xl bg-[#090d16]/95 pb-[max(8px,env(safe-area-inset-bottom))]">
+<!-- Mobile Adaptive Player Bar (Visible on mobile screens < md) -->
+<div class="block md:hidden w-full relative">
+<!-- Slim interactive gradient progress line along top edge -->
+<div id="mobileTimelineContainer" class="w-full h-1 bg-white/10 relative cursor-pointer overflow-hidden group" onclick="seekMobileAudio(event)">
+<div id="mobileTimelineProgress" class="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 w-0 transition-all duration-100 group-hover:brightness-125"></div>
+</div>
+<!-- Compact horizontal controls bar -->
+<div class="px-3 py-2 flex items-center justify-between gap-2">
+<!-- Left: Artwork & Now Playing Info -->
+<div onclick="switchMobileMusicView('nowplaying')" class="flex items-center gap-2.5 min-w-0 flex-1 cursor-pointer">
+<div class="relative flex-shrink-0">
+<img id="mobileFooterArtwork" src="https://images.unsplash.com/photo-1614149162883-504ce4d13909?auto=format&fit=crop&q=80&w=150&h=150" class="w-10 h-10 rounded-xl object-cover bg-black border border-white/10 shadow-md flex-shrink-0" alt="Cover Art">
+<div id="mobileMiniBars" class="absolute bottom-1 right-1 flex items-end gap-[1.5px] h-3 bg-black/60 backdrop-blur-sm px-1 py-0.5 rounded border border-white/10">
+<span class="mini-bar w-[2px] bg-cyan-400 rounded-full transition-all duration-150 h-1"></span>
+<span class="mini-bar w-[2px] bg-pink-400 rounded-full transition-all duration-150 h-2"></span>
+<span class="mini-bar w-[2px] bg-indigo-400 rounded-full transition-all duration-150 h-1.5"></span>
+</div>
+</div>
+<div class="min-w-0 flex-1">
+<div id="mobileFooterTitle" class="text-xs font-bold text-white truncate tracking-tight">Select a track</div>
+<div id="mobileFooterArtist" class="text-[9px] font-bold text-slate-400 truncate uppercase tracking-wider">Ready to Play</div>
+</div>
+</div>
+<!-- Right: Touch Controls -->
+<div class="flex items-center gap-1 flex-shrink-0">
+<button onclick="playPrevTrack()" class="p-2 text-slate-300 hover:text-white transition-all active:scale-90 cursor-pointer" title="Previous Track">
+<i data-lucide="skip-back" class="w-4 h-4"></i>
+</button>
+<button id="mobileMasterPlayButton" onclick="toggleMasterPlay()" class="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center transition-all active:scale-90 shadow-lg cursor-pointer" title="Play/Pause">
+<i id="mobileMasterPlayIcon" data-lucide="play" class="w-4 h-4 ml-0.5"></i>
+</button>
+<button onclick="playNextTrack()" class="p-2 text-slate-300 hover:text-white transition-all active:scale-90 cursor-pointer" title="Next Track">
+<i data-lucide="skip-forward" class="w-4 h-4"></i>
+</button>
+<!-- Mobile Small Download Button (Like Desktop) -->
+<button id="mobileDownloadButton" onclick="downloadActiveTrack()" class="p-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white transition-all active:scale-90 cursor-pointer" title="Download Master File">
+<i data-lucide="download" class="w-3.5 h-3.5"></i>
+</button>
+<button onclick="dismissMobilePlayer()" class="p-2 text-slate-400 hover:text-white transition-colors cursor-pointer" title="Close Player">
+<i data-lucide="x" class="w-4 h-4"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Desktop Deck Control Bar (Visible on screens >= md) -->
+<div class="hidden md:grid md:grid-cols-12 gap-3 items-center py-2 px-6">
+<!-- Left Side: Now Playing Track Info -->
+<div class="md:col-span-3 flex items-center gap-2.5 overflow-hidden text-left relative z-10">
+<div class="relative flex-shrink-0 group">
+<img id="footerArtwork" src="https://images.unsplash.com/photo-1614149162883-504ce4d13909?auto=format&fit=crop&q=80&w=150&h=150" class="w-9 h-9 rounded-xl object-cover bg-black border border-white/10 shadow-md" alt="Cover Art">
+<div id="desktopMiniBars" class="absolute bottom-1 right-1 flex items-end gap-[1.5px] h-2.5 bg-black/70 backdrop-blur-sm px-1 py-0.5 rounded border border-white/10">
+<span class="mini-bar w-[2px] bg-cyan-400 rounded-full transition-all duration-150 h-1"></span>
+<span class="mini-bar w-[2px] bg-purple-400 rounded-full transition-all duration-150 h-2"></span>
+<span class="mini-bar w-[2px] bg-pink-400 rounded-full transition-all duration-150 h-1.5"></span>
+</div>
+</div>
+<div class="overflow-hidden">
+<div id="footerTitle" class="text-xs font-bold text-white truncate tracking-tight">Studio Master Deck</div>
+<div id="footerArtist" class="text-[9px] font-bold text-slate-400 truncate uppercase mt-0.5 tracking-wider">CHOOSE A BROADCAST OR SONG</div>
+</div>
+</div>
+<!-- Central: Player Control Deck Buttons & Timeline Seeker -->
+<div class="md:col-span-6 flex flex-col gap-1 items-center justify-center">
+<div class="flex items-center justify-center gap-4">
+<!-- Shuffle Toggle -->
+<button id="shuffleButton" onclick="toggleShuffle()" class="p-1 text-slate-500 hover:text-indigo-400 transition-all" title="Shuffle Playback">
+<i data-lucide="shuffle" class="w-3.5 h-3.5"></i>
+</button>
+<!-- Skip Back -->
+<button onclick="playPrevTrack()" class="p-1 text-slate-300 hover:text-white transition-all transform active:scale-90" title="Previous Track">
+<i data-lucide="skip-back" class="w-4 h-4"></i>
+</button>
+<!-- Core Play/Pause Center button -->
+<button id="masterPlayButton" onclick="toggleMasterPlay()" class="w-9 h-9 rounded-full bg-white hover:bg-slate-200 text-black flex items-center justify-center transition-all transform hover:scale-105 active:scale-95 shadow-md shadow-white/5 relative group">
+<div class="absolute -inset-1 rounded-full bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity blur-sm"></div>
+<i id="masterPlayIcon" data-lucide="play" class="w-4 h-4 ml-0.5 relative z-10"></i>
+</button>
+<!-- Skip Forward -->
+<button onclick="playNextTrack()" class="p-1 text-slate-300 hover:text-white transition-all transform active:scale-90" title="Next Track">
+<i data-lucide="skip-forward" class="w-4 h-4"></i>
+</button>
+<!-- Repeat Toggle -->
+<button id="repeatButton" onclick="toggleRepeat()" class="p-1 text-slate-500 hover:text-pink-400 transition-all" title="Repeat Current">
+<i data-lucide="repeat" class="w-3.5 h-3.5"></i>
+</button>
+</div>
+<!-- Timeline / Infinite Stream Progress Seeker -->
+<div class="w-full flex items-center gap-2">
+<span id="seekerCurrentTime" class="text-[8px] font-black font-mono text-slate-500 w-7 text-left">0:00</span>
+<!-- Interactive Seeker Deck -->
+<div id="timelineContainer" class="flex-1 h-1 bg-white/10 rounded-full cursor-pointer relative overflow-hidden group shadow-inner">
+<!-- Linear Gradient filled bar -->
+<div id="timelineProgress" class="h-full bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full w-0 transition-all duration-100 group-hover:from-indigo-400 group-hover:to-pink-400"></div>
+<!-- Continuous marquee for Infinite broadcasts -->
+<div id="timelineLiveFeed" class="absolute inset-0 bg-[#0e1628]/95 hidden items-center justify-center overflow-hidden">
+<div class="marquee-content text-[8px] font-extrabold uppercase tracking-[0.25em] text-indigo-400">
+📡 LIVE BROADCAST FEED CONNECTED • Lossless Stream Bypassing CORS Blocks • 📡 LIVE BROADCAST FEED CONNECTED • Lossless Stream Bypassing CORS Blocks •
+</div>
+</div>
+</div>
+<span id="seekerTotalDuration" class="text-[8px] font-black font-mono text-slate-500 w-7 text-right">0:00</span>
+</div>
+</div>
+<!-- Right Side: Volume Hub & Secondary Actions -->
+<div class="md:col-span-3 flex items-center justify-end gap-2 relative z-10">
+<!-- Volume Slider Block -->
+<div class="flex items-center gap-1.5 bg-black/40 border border-white/5 py-1 px-2.5 rounded-xl w-full max-w-[150px] shadow-md">
+<!-- Music Toggle -->
+<a href="/music.html" class="p-1 text-slate-400 hover:text-indigo-400 transition-all" title="Open Music Hub">
+<i data-lucide="music" class="w-3.5 h-3.5"></i>
+</a>
+<!-- Sleep Toggle -->
+<button onclick="toggleAppSleep(true)" class="p-1 text-slate-400 hover:text-white transition-all" title="System Sleep Mode">
+<i data-lucide="power" class="w-3.5 h-3.5"></i>
+</button>
+<button onclick="toggleAudioMute()" class="p-1 text-slate-400 hover:text-white transition-all" title="Mute/Unmute">
+<i id="volumeIcon" data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+</button>
+<input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1" class="w-full accent-indigo-500 h-1 rounded-full cursor-pointer bg-white/15 outline-none" oninput="adjustVolume(this.value)">
+</div>
+<!-- Music Video Toggle -->
+<button id="videoToggleButton" onclick="toggleBackgroundVideo()" class="p-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white transition-all hover:border-red-500/40" title="Toggle Background Video">
+<i data-lucide="monitor-play" class="w-3.5 h-3.5"></i>
+</button>
+<!-- Download track offline / Proxy fallback toggle button -->
+<button id="downloadButton" onclick="downloadActiveTrack()" class="p-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white transition-all hover:border-white/10" title="Download Master File">
+<i data-lucide="download" class="w-3.5 h-3.5"></i>
+</button>
+</div>
+</div>
+</footer>
+</div>
+<!-- AUDIO ENGINE INTERNALS (HIDDEN) -->
+<audio id="audioEngine" class="hidden" preload="auto" crossorigin="anonymous"></audio>
+<!-- AUDIO EQUALIZER MODAL -->
+<div id="equalizerModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/95 backdrop-blur-3xl animate-in fade-in">
+<div class="w-full max-w-sm glass-panel rounded-[2.5rem] p-6 md:p-8 border border-white/10 shadow-2xl relative">
+<div class="flex items-center justify-between mb-6 border-b border-white/5 pb-3">
+<div>
+<h3 class="text-base font-black font-display text-white uppercase tracking-wider">Sound Profiler</h3>
+<p class="text-[9px] font-bold text-indigo-400 uppercase tracking-widest mt-0.5">Custom Studio Equalizer</p>
+</div>
+<button onclick="toggleEqualizerModal(false)" class="p-2 text-slate-500 hover:text-white transition-colors bg-white/5 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button>
+</div>
+<div class="space-y-5">
+<!-- Preset Buttons -->
+<div class="space-y-1.5">
+<label class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Acoustic Presets</label>
+<div class="grid grid-cols-3 gap-2">
+<button onclick="applyEQPreset('flat')" id="eqBtnFlat" class="eq-preset-btn py-2 rounded-xl bg-indigo-600 text-xs font-bold transition-all text-white border border-white/10 shadow-md">Flat</button>
+<button onclick="applyEQPreset('bass')" id="eqBtnBass" class="eq-preset-btn py-2 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold transition-all text-slate-400 hover:text-slate-200 border border-white/5">Bass Boost</button>
+<button onclick="applyEQPreset('vocal')" id="eqBtnVocal" class="eq-preset-btn py-2 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold transition-all text-slate-400 hover:text-slate-200 border border-white/5">Vocal Clear</button>
+</div>
+</div>
+<!-- Sliders -->
+<div class="space-y-4 pt-2">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-[10px] font-extrabold text-slate-400 uppercase">
+<span>BASS (60Hz)</span>
+<span id="sliderValBass" class="text-indigo-400 font-mono">0 dB</span>
+</div>
+<input type="range" id="eqSliderBass" min="-10" max="10" value="0" class="w-full accent-indigo-500 h-1 bg-white/10 rounded-full cursor-pointer" oninput="adjustEQSlider('Bass', this.value)">
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-[10px] font-extrabold text-slate-400 uppercase">
+<span>MIDRANGE (1kHz)</span>
+<span id="sliderValMid" class="text-pink-400 font-mono">0 dB</span>
+</div>
+<input type="range" id="eqSliderMid" min="-10" max="10" value="0" class="w-full accent-pink-500 h-1 bg-white/10 rounded-full cursor-pointer" oninput="adjustEQSlider('Mid', this.value)">
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-[10px] font-extrabold text-slate-400 uppercase">
+<span>TREBLE (10kHz)</span>
+<span id="sliderValTreble" class="text-teal-400 font-mono">0 dB</span>
+</div>
+<input type="range" id="eqSliderTreble" min="-10" max="10" value="0" class="w-full accent-teal-500 h-1 bg-white/10 rounded-full cursor-pointer" oninput="adjustEQSlider('Treble', this.value)">
+</div>
+</div>
+</div>
+<button onclick="toggleEqualizerModal(false)" class="w-full mt-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-indigo-500 text-white hover:from-indigo-500 hover:to-indigo-400 shadow-lg shadow-indigo-600/10 hover:shadow-indigo-600/20 transition-all font-bold text-xs uppercase tracking-wider">Lock Tuning Profile</button>
+</div>
+</div>
+<!-- CONTROL MAP HELP / SHORTCUTS MODAL -->
+<div id="helpModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/95 backdrop-blur-3xl animate-in fade-in">
+<div class="w-full max-w-sm glass-panel rounded-[2.5rem] p-6 md:p-8 border border-white/10 shadow-2xl relative">
+<div class="flex items-center justify-between mb-5 border-b border-white/5 pb-3">
+<div>
+<h3 class="text-base font-black font-display text-white uppercase tracking-wider">Keyboard Deck Map</h3>
+<p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest mt-0.5">Quick tactile shortcuts</p>
+</div>
+<button onclick="toggleHelpModal(false)" class="p-2 text-slate-500 hover:text-white transition-colors bg-white/5 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button>
+</div>
+<div class="space-y-3.5 text-xs text-slate-300 font-medium">
+<div class="flex justify-between items-center py-2 border-b border-white/5">
+<span class="font-bold text-slate-400">Play / Pause Stream</span>
+<kbd class="font-mono bg-white/10 border border-white/15 px-2.5 py-1 rounded text-[10px]">Space</kbd>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-white/5">
+<span class="font-bold text-slate-400">Advance Track</span>
+<kbd class="font-mono bg-white/10 border border-white/15 px-2.5 py-1 rounded text-[10px]">Right Arrow</kbd>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-white/5">
+<span class="font-bold text-slate-400">Previous Track</span>
+<kbd class="font-mono bg-white/10 border border-white/15 px-2.5 py-1 rounded text-[10px]">Left Arrow</kbd>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-white/5">
+<span class="font-bold text-slate-400">Volume Level Up / Down</span>
+<kbd class="font-mono bg-white/10 border border-white/15 px-2.5 py-1 rounded text-[10px]">Up / Down Arrow</kbd>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="font-bold text-slate-400">Quick Mute Toggle</span>
+<kbd class="font-mono bg-white/10 border border-white/15 px-2.5 py-1 rounded text-[10px]">M</kbd>
+</div>
+</div>
+<button onclick="toggleHelpModal(false)" class="w-full mt-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-slate-200 transition-all font-bold text-xs uppercase tracking-wider border border-white/5">Got It</button>
+</div>
+</div>
+<!-- SETTINGS MODAL -->
+<div id="settingsModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/95 backdrop-blur-3xl animate-in fade-in">
+<div class="w-full max-w-sm glass-panel rounded-[2.5rem] p-6 md:p-8 border border-white/10 shadow-2xl relative">
+<div class="flex items-center justify-between mb-5 border-b border-white/5 pb-3">
+<div>
+<h3 class="text-base font-black font-display text-white uppercase tracking-wider">Deck Settings</h3>
+<p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest mt-0.5">Visual Customization</p>
+</div>
+<button onclick="toggleSettingsModal(false)" class="p-2 text-slate-500 hover:text-white transition-colors bg-white/5 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button>
+</div>
+<div class="space-y-4 text-xs text-slate-300 font-medium">
+<!-- Visualizer Toggle & Opacity -->
+<div class="flex flex-col gap-2 py-2 border-b border-white/5">
+<div class="flex justify-between items-center">
+<span class="font-bold text-slate-400">Audio Visualizer</span>
+<button id="toggleBarBtn" onclick="toggleSetting('bar')" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-teal-500/20 text-teal-400 border border-teal-500/30">ON</button>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] text-slate-500 w-12">Opacity</span>
+<input type="range" id="opacityBar" min="0" max="1" step="0.1" value="0.3" class="w-full accent-teal-500 h-1 bg-white/10 rounded-full cursor-pointer" oninput="changeOpacity('bar', this.value)">
+</div>
+</div>
+<!-- Video Toggle & Opacity -->
+<div class="flex flex-col gap-2 py-2 border-b border-white/5">
+<div class="flex justify-between items-center">
+<span class="font-bold text-slate-400">Background Video</span>
+<button id="toggleVideoBtn" onclick="toggleSetting('video')" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-red-500/20 text-red-400 border border-red-500/30">OFF</button>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] text-slate-500 w-12">Opacity</span>
+<input type="range" id="opacityVideo" min="0" max="1" step="0.1" value="0.4" class="w-full accent-red-500 h-1 bg-white/10 rounded-full cursor-pointer" oninput="changeOpacity('video', this.value)">
+</div>
+</div>
+<!-- Track Text Toggle -->
+<div class="flex justify-between items-center py-2 border-b border-white/5">
+<span class="font-bold text-slate-400">Track Info Text</span>
+<button id="toggleTextBtn" onclick="toggleSetting('text')" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-indigo-500/20 text-indigo-400 border border-white/10">ON</button>
+</div>
+<!-- Vinyl Roller Toggle -->
+<div class="flex justify-between items-center py-2 border-b border-white/5">
+<span class="font-bold text-slate-400">Vinyl Deck</span>
+<button id="toggleVinylBtn" onclick="toggleSetting('vinyl')" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-pink-500/20 text-pink-400 border border-pink-500/30">ON</button>
+</div>
+<!-- Inline Transport Controls Toggle -->
+<div class="flex justify-between items-center py-2 border-b border-white/5">
+<span class="font-bold text-slate-400">Inline Transport Controls</span>
+<button id="toggleInlineControlsBtn" onclick="toggleSetting('inlineControls')" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">ON</button>
+</div>
+<!-- Player Controller Bar Toggle -->
+<div class="flex justify-between items-center py-2 border-b border-white/5">
+<span class="font-bold text-slate-400">Bottom Player Footer Bar</span>
+<button id="togglePlayerBarBtn" onclick="toggleSetting('playerBar')" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">ON</button>
+</div>
+<!-- Fullscreen Theater Mode Toggle -->
+<div class="flex justify-between items-center py-2 border-b border-white/5">
+<span class="font-bold text-slate-400">Fullscreen Theater Mode</span>
+<button id="toggleFullscreenModeBtn" onclick="toggleSetting('fullscreenMode')" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-purple-500/20 text-purple-400 border border-purple-500/30">OFF</button>
+</div>
+<!-- Pure Black Background Toggle -->
+<div class="flex justify-between items-center py-2 border-b border-white/5">
+<span class="font-bold text-slate-400">Pure Black Background</span>
+<button id="toggleBlackBgBtn" onclick="toggleSetting('blackBg')" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-amber-500/20 text-amber-400 border border-amber-500/30">ON</button>
+</div>
+</div>
+<button onclick="toggleSettingsModal(false)" class="w-full mt-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-slate-200 transition-all font-bold text-xs uppercase tracking-wider border border-white/5">Save Config</button>
+</div>
+</div>
+<!-- FLOATING INTERACTIVE NOTIFICATION TOAST -->
+<div id="deckNotificationToast" class="fixed bottom-24 left-1/2 transform -translate-x-1/2 z-[150] bg-black/95 backdrop-blur-md border border-white/10 py-3 px-5 rounded-2xl flex items-center gap-3 transition-all duration-500 ease-out translate-y-12 opacity-0 pointer-events-none shadow-2xl">
+<div id="toastIconContainer" class="w-7 h-7 rounded-lg bg-indigo-600/10 text-indigo-400 flex items-center justify-center flex-shrink-0">
+<i data-lucide="bell" id="toastIcon" class="w-4 h-4"></i>
+</div>
+<p id="toastMessage" class="text-xs font-semibold text-slate-200 whitespace-nowrap">Setting updated successfully.</p>
+</div>
+<!-- JAVASCRIPT BROADCAST & METADATA LOGIC -->
+<div id="sleepModeScreen" class="fixed inset-0 bg-black/60 z-[9999] hidden flex flex-col items-center justify-center transition-all duration-700 opacity-0 pointer-events-none">
+<div class="text-center space-y-8 p-8 max-w-md w-full scale-95 transition-all duration-700" id="sleepContainer">
+<div class="flex flex-col items-center gap-2">
+<h2 class="text-6xl font-black text-slate-100 tracking-tighter" id="sleepScreenTime">00:00:00</h2>
+<p class="text-xs text-slate-500 uppercase tracking-widest font-bold" id="sleepScreenDate">System Idle</p>
+<canvas id="sleepVisualizer" class="w-full h-32 mt-4"></canvas>
+</div>
+<div class="pt-6 flex flex-col items-center gap-4">
+<button onclick="toggleAppSleep(false)" class="px-8 py-3.5 bg-teal-600 hover:bg-teal-500 text-white text-xs font-black uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-lg shadow-teal-600/20 active:scale-95">
+Wake Up System
+</button>
+</div>
+</div>
+</div>
+<script>
+// Mobile Music View Controller
+window.switchMobileMusicView = function(view) {
+const leftP = document.getElementById('musicLeftPanel');
+const centerP = document.getElementById('musicCenterPanel');
+const rightP = document.getElementById('musicRightPanel');
+const btnNow = document.getElementById('mobViewBtn_nowplaying');
+const btnSearch = document.getElementById('mobViewBtn_search');
+const btnHist = document.getElementById('mobViewBtn_history');
+const btnLib = document.getElementById('mobViewBtn_library');
+if (!leftP || !centerP || !rightP) return;
+// Reset tab styles
+[btnNow, btnSearch, btnHist, btnLib].forEach(b => {
+if (b) b.className = "flex-1 py-2 rounded-xl text-[11px] font-semibold text-center text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1 cursor-pointer";
+});
+if (view === 'nowplaying') {
+if (btnNow) btnNow.className = "flex-1 py-2 rounded-xl text-[11px] font-bold text-center text-white bg-indigo-600 transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer";
+centerP.classList.remove('hidden');
+centerP.classList.add('flex');
+leftP.classList.add('hidden');
+leftP.classList.remove('flex');
+rightP.classList.add('hidden');
+rightP.classList.remove('flex');
+window.scrollTo({ top: 0, behavior: 'smooth' });
+} else if (view === 'search') {
+if (btnSearch) btnSearch.className = "flex-1 py-2 rounded-xl text-[11px] font-bold text-center text-white bg-indigo-600 transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer";
+rightP.classList.remove('hidden');
+rightP.classList.add('flex');
+centerP.classList.add('hidden');
+centerP.classList.remove('flex');
+leftP.classList.add('hidden');
+leftP.classList.remove('flex');
+if (currentSearchSource === 'history') {
+switchSearchSource('saavn');
+}
+setTimeout(() => {
+const inp = document.getElementById('studioSearchInput');
+if (inp) inp.focus();
+}, 100);
+} else if (view === 'history') {
+if (btnHist) btnHist.className = "flex-1 py-2 rounded-xl text-[11px] font-bold text-center text-white bg-indigo-600 transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer";
+rightP.classList.remove('hidden');
+rightP.classList.add('flex');
+centerP.classList.add('hidden');
+centerP.classList.remove('flex');
+leftP.classList.add('hidden');
+leftP.classList.remove('flex');
+switchSearchSource('history');
+window.scrollTo({ top: 0, behavior: 'smooth' });
+} else if (view === 'library') {
+if (btnLib) btnLib.className = "flex-1 py-2 rounded-xl text-[11px] font-bold text-center text-white bg-indigo-600 transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer";
+leftP.classList.remove('hidden');
+leftP.classList.add('flex');
+centerP.classList.add('hidden');
+centerP.classList.remove('flex');
+rightP.classList.add('hidden');
+rightP.classList.remove('flex');
+if (typeof renderMusicHistory === 'function') renderMusicHistory();
+}
+if (window.lucide) lucide.createIcons();
+};
+window.openSongHistoryView = function() {
+if (window.innerWidth < 768) {
+window.switchMobileMusicView('history');
+} else if (window.innerWidth < 1280) {
+const rightP = document.getElementById('musicRightPanel');
+if (rightP) {
+rightP.classList.remove('hidden');
+rightP.classList.add('flex');
+}
+switchSearchSource('history');
+rightP?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+} else {
+switchSearchSource('history');
+if (typeof toggleMusicHistory === 'function') toggleMusicHistory(true);
+}
+};
+// Curated Lossless High-Fidelity Studio Master Tracks (100% verified URLs)
+const studioMasterTracks = [
+{
+id: "master_1",
+title: "Cyber Horizon",
+artist: "Vektor Prime",
+album: "Neon Overdrive Vol. 1",
+genre: "Synthwave",
+url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+img: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=250&h=250",
+duration: "6:12"
+},
+{
+id: "master_2",
+title: "Nebula Glow",
+artist: "Cosmic Drift",
+album: "Stellar Journey",
+genre: "Ambient",
+url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+img: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=250&h=250",
+duration: "7:05"
+},
+{
+id: "master_3",
+title: "Dreamcatcher",
+artist: "Luna Sol",
+album: "Midnight Anthems",
+genre: "Lo-Fi Chill",
+url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+img: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&q=80&w=250&h=250",
+duration: "5:44"
+},
+{
+id: "master_4",
+title: "Solar Winds",
+artist: "Aero Project",
+album: "Atmospheric Layers",
+genre: "Ambient",
+url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+img: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&q=80&w=250&h=250",
+duration: "5:02"
+},
+{
+id: "master_5",
+title: "Neo-Tokyo Alley",
+artist: "Cyber Samurai",
+album: "Shibuya Grid",
+genre: "Synthwave",
+url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+img: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=250&h=250",
+duration: "6:03"
+},
+{
+id: "master_6",
+title: "Coffee & Vinyl",
+artist: "Retro Lounge",
+album: "Sunday Morning Grooves",
+genre: "Jazz Fusion",
+url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=250&h=250",
+duration: "5:38"
+}
+];
+// Curated Live Radio Stations (public, long-running streams)
+const liveRadioStations = [
+{
+id: "radio_1",
+title: "Groove Salad",
+artist: "SomaFM",
+album: "Ambient / Downtempo",
+genre: "Live Radio",
+url: "https://ice1.somafm.com/groovesalad-128-mp3",
+img: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&q=80&w=250&h=250",
+isLive: true
+},
+{
+id: "radio_2",
+title: "Drone Zone",
+artist: "SomaFM",
+album: "Deep Ambient",
+genre: "Live Radio",
+url: "https://ice1.somafm.com/dronezone-128-mp3",
+img: "https://images.unsplash.com/photo-1502136969935-8d8eef54d77b?auto=format&fit=crop&q=80&w=250&h=250",
+isLive: true
+},
+{
+id: "radio_3",
+title: "Space Station Soma",
+artist: "SomaFM",
+album: "Space Music",
+genre: "Live Radio",
+url: "https://ice1.somafm.com/spacestation-128-mp3",
+img: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=250&h=250",
+isLive: true
+},
+{
+id: "radio_4",
+title: "Lush",
+artist: "SomaFM",
+album: "Vocal Chillout",
+genre: "Live Radio",
+url: "https://ice1.somafm.com/lush-128-mp3",
+img: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80&w=250&h=250",
+isLive: true
+}
+];
+// State managers
+let activeTrack = null;
+let activePlaybackQueue = [...studioMasterTracks]; // default queue is the Master Archive
+let currentQueueIndex = 0;
+let isShuffleActive = false;
+let isRepeatActive = false;
+let customPlaylists = {};
+let currentSearchSource = 'saavn'; // saavn, archive, curated
+let activeLibraryResults = [...studioMasterTracks]; // dynamic cache of search results
+// Web Audio Analyzer Internals
+const audio = document.getElementById('audioEngine');
+if (audio) audio.crossOrigin = 'anonymous';
+let audioContext = null;
+let audioAnalyser = null;
+let isVisualizerSimulated = false;
+// On window load initialization
+window.addEventListener('DOMContentLoaded', () => {
+lucide.createIcons();
+loadCustomPlaylists();
+renderCustomPlaylists();
+renderLiveStations();
+switchSearchSource('saavn'); // initialize search views on saavn so it matches the default search source
+initVolumeSettings();
+setupAudioHandlers();
+});
+
+// Auto-Execute & Auto-Play URL Search Parameters (e.g. /music.html?q=Karupu)
+function initUrlQueryAutoPlay() {
+try {
+if (window !== window.top || new URLSearchParams(window.location.search).get('embed') === 'true') {
+const closeBtn = document.getElementById('iframeCloseButton');
+if (closeBtn) closeBtn.classList.remove('hidden');
+}
+const urlParams = new URLSearchParams(window.location.search);
+const q = urlParams.get('q') || urlParams.get('query') || urlParams.get('search');
+const isAutoplay = urlParams.get('autoplay') === 'true';
+if (q) {
+const cleanQ = decodeURIComponent(q).trim();
+console.log("[Music Continuum] Auto-searching URL query:", cleanQ);
+switchSearchSource('saavn');
+const input = document.getElementById('studioSearchInput');
+if (input) input.value = cleanQ;
+setTimeout(async () => {
+await handleSearch();
+if (activeLibraryResults && activeLibraryResults.length > 0) {
+const topTrack = activeLibraryResults[0];
+console.log("[Music Continuum] Auto-playing top result:", topTrack.title);
+playMasterTrackFromLibrary(topTrack.id);
+showStatusNotification(`Playing: ${topTrack.title}`);
+} else if (studioMasterTracks && studioMasterTracks.length > 0) {
+playMasterTrackFromLibrary(studioMasterTracks[0].id);
+}
+}, 350);
+} else if (isAutoplay) {
+showStatusNotification("Powering up audio deck...");
+setTimeout(() => {
+if (studioMasterTracks && studioMasterTracks.length > 0) {
+playMasterTrackFromLibrary(studioMasterTracks[0].id);
+}
+}, 350);
+}
+} catch (err) {
+console.warn("[Music Continuum] URL query auto-play notice:", err);
+}
+}
+window.toggleZoom = function(e) {
+if (e) {
+if (typeof e.preventDefault === 'function') e.preventDefault();
+if (typeof e.stopPropagation === 'function') e.stopPropagation();
+}
+const centerPanel = document.getElementById('musicCenterPanel');
+if (!centerPanel) return;
+const isZoomed = centerPanel.classList.toggle('zoom-mode');
+const icon = document.getElementById('zoomIcon');
+const btn = document.getElementById('btnToggleZoom');
+if (icon) {
+icon.setAttribute('data-lucide', isZoomed ? 'minimize' : 'maximize');
+}
+if (btn) {
+btn.title = isZoomed ? "Exit Fullscreen Animation" : "Toggle Fullscreen Animation";
+}
+// Defer visualizer canvas redraw until layout reflow completes
+resizeVisualizerCanvas();
+setTimeout(resizeVisualizerCanvas, 80);
+setTimeout(resizeVisualizerCanvas, 300);
+if (window.lucide && typeof lucide.createIcons === 'function') {
+lucide.createIcons();
+}
+};
+// Listen for hardware/browser fullscreen exits (e.g. Android back gesture or Esc key)
+['fullscreenchange', 'webkitfullscreenchange'].forEach(evtName => {
+document.addEventListener(evtName, () => {
+const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+const centerPanel = document.getElementById('musicCenterPanel');
+if (centerPanel && !isFs && centerPanel.classList.contains('zoom-mode')) {
+centerPanel.classList.remove('zoom-mode');
+const icon = document.getElementById('zoomIcon');
+if (icon) icon.setAttribute('data-lucide', 'maximize');
+if (window.lucide && typeof lucide.createIcons === 'function') lucide.createIcons();
+setTimeout(resizeVisualizerCanvas, 80);
+}
+});
+});
+// Setup Web Audio API on first touch/interaction
+document.body.addEventListener('click', () => {
+setupWebAudioAPI();
+}, { once: true });
+// Initialize on DOM ready
+const startDeckInit = () => {
+initVolumeSettings();
+loadCustomPlaylists();
+setupKeyboardDeckShortcuts();
+initUrlQueryAutoPlay();
+updateMobileFooterVisibility();
+if (window.parent && window.parent !== window) {
+try {
+window.parent.postMessage({ type: 'MUSIC_DECK_READY' }, '*');
+} catch(e) {}
+}
+};
+if (document.readyState === "loading") {
+document.addEventListener("DOMContentLoaded", startDeckInit);
+} else {
+startDeckInit();
+}
+// Web Audio API Setup
+function setupWebAudioAPI() {
+if (audioContext) {
+if (audioContext.state === 'suspended') {
+audioContext.resume();
+}
+return;
+}
+const canvas = document.getElementById('visualizerCanvas');
+resizeVisualizerCanvas();
+window.addEventListener('resize', resizeVisualizerCanvas);
+try {
+audioContext = new (window.AudioContext || window.webkitAudioContext)();
+audioAnalyser = audioContext.createAnalyser();
+audioAnalyser.fftSize = 256;
+const source = audioContext.createMediaElementSource(audio);
+source.connect(audioAnalyser);
+audioAnalyser.connect(audioContext.destination);
+isVisualizerSimulated = false;
+if (audioContext.state === 'suspended') {
+audioContext.resume();
+}
+} catch (err) {
+console.warn("Web Audio API CORS block encountered, engaging simulation module.", err);
+isVisualizerSimulated = true;
+}
+// Start rendering visual loops
+renderVisualizerLoop();
+}
+function resizeVisualizerCanvas() {
+const canvas = document.getElementById('visualizerCanvas');
+if (canvas) {
+canvas.width = canvas.parentElement.clientWidth;
+canvas.height = canvas.parentElement.clientHeight;
+}
+}
+// Double-Bezier Canvas Waveform Visualizer Drawing (Original Bars with Modernized Audio Backend)
+function renderVisualizerLoop() {
+const canvas = document.getElementById('visualizerCanvas');
+const canvasCtx = canvas ? canvas.getContext('2d') : null;
+if (!canvas || !canvasCtx) return;
+const bufferLength = audioAnalyser ? audioAnalyser.frequencyBinCount : 128;
+const dataArray = new Uint8Array(bufferLength);
+const vinylDeck = document.getElementById('vinylDeck');
+const ambientGlow = document.getElementById('ambientGlow');
+const vinylGlow = document.getElementById('vinylGlow');
+const sleepCanvas = document.getElementById('sleepVisualizer');
+let sleepCtx = null;
+if (sleepCanvas) sleepCtx = sleepCanvas.getContext('2d');
+let lastSleepWidth = 0;
+let lastSleepHeight = 0;
+function draw() {
+requestAnimationFrame(draw);
+const width = canvas.width;
+const height = canvas.height;
+if (width === 0 || height === 0) return;
+canvasCtx.clearRect(0, 0, width, height);
+const isYtPlaying = typeof activeTrack !== 'undefined' && activeTrack && activeTrack.source === 'youtube' && typeof ytPlayer !== 'undefined' && ytPlayer && typeof ytPlayer.getPlayerState === 'function' && typeof YT !== 'undefined' && ytPlayer.getPlayerState() === YT.PlayerState.PLAYING;
+const isPlaying = !audio.paused || isYtPlaying;
+if (isPlaying) {
+if (!isVisualizerSimulated && audioAnalyser && !isYtPlaying) {
+audioAnalyser.getByteFrequencyData(dataArray);
+} else {
+// Highly realistic FFT Equalizer Simulation when CORS or YouTube is active
+const t = Date.now() * 0.002;
+const beat = Math.pow(Math.sin(t * 2.5), 2);
+for (let i = 0; i < bufferLength; i++) {
+const progress = i / bufferLength;
+const dropoff = Math.max(0.01, 1 - Math.pow(progress, 0.6));
+// Base ambient energy + random transients
+let target = (Math.random() * 90 + 20) * dropoff;
+target += (Math.sin(i * 0.2 - t * 5) * 40 + 40) * dropoff;
+// Heavy bass on the left side
+if (progress < 0.15) {
+target += beat * 120 * (1 - progress / 0.15);
+}
+// Apply inertia (lerp) for realistic smooth bar movement
+const current = dataArray[i] || 0;
+dataArray[i] = current + (target - current) * 0.25;
+if (dataArray[i] > 255) dataArray[i] = 255;
+if (dataArray[i] < 5) dataArray[i] = 5;
+}
+}
+} else {
+// Idle breathing waves (flatline block prevention)
+const t = Date.now() * 0.0012;
+for (let i = 0; i < bufferLength; i++) {
+dataArray[i] = 8 + Math.sin(i * 0.06 + t) * 6;
+}
+}
+// Bass-driven vinyl animation & intensity calculation
+const bassIntensity = dataArray.slice(0, 10).reduce((a, b) => a + b, 0) / 10;
+if (vinylDeck) {
+const scale = 1 + (bassIntensity / 255) * 0.4;
+window.vinylRotation = window.vinylRotation || 0;
+window.vinylVelocity = window.vinylVelocity || 1;
+window.vinylDirection = window.vinylDirection || 1;
+window.lastDirectionChange = window.lastDirectionChange || 0;
+// Smoothly interpolate velocity based on bass
+const targetVelocity = 0.5 + (bassIntensity / 20);
+window.vinylVelocity += (targetVelocity - window.vinylVelocity) * 0.05;
+// Switch rotation direction (throttle: max once every 2 seconds)
+if (bassIntensity > 180 && Date.now() - window.lastDirectionChange > 2000) {
+window.vinylDirection *= -1;
+window.lastDirectionChange = Date.now();
+}
+// Update rotation smoothly
+window.vinylRotation += window.vinylVelocity * window.vinylDirection;
+vinylDeck.style.transform = `rotate(${window.vinylRotation}deg) scale(${scale})`;
+}
+canvasCtx.lineWidth = 6;
+const t = Date.now() * 0.001; // Slower base — reduces frantic hue cycling
+const avgIntensity = dataArray.reduce((a, b) => a + b, 0) / bufferLength;
+// Smooth hue: slow 8-deg/s rotation via lerp — no intensity-driven jitter
+window._smoothHue = window._smoothHue || 0;
+const targetHue = (t * 8) % 360;
+const hueDiff = ((targetHue - window._smoothHue + 540) % 360) - 180;
+window._smoothHue = (window._smoothHue + hueDiff * 0.03 + 360) % 360;
+const hue = window._smoothHue;
+// Throttle ambient DOM writes to every 4th frame (prevents style thrash = no glitter)
+window._vizFrame = (window._vizFrame || 0) + 1;
+if (window._vizFrame % 4 === 0) {
+if (ambientGlow) {
+ambientGlow.style.opacity = isPlaying ? String(0.6 + (avgIntensity / 255) * 0.4) : '0.2';
+ambientGlow.style.background = `radial-gradient(circle at 50% 50%, hsla(${hue | 0}, 75%, 38%, 0.5) 0%, transparent 70%)`;
+}
+if (vinylGlow) {
+vinylGlow.style.opacity = isPlaying ? String(0.5 + (avgIntensity / 255) * 0.5) : '0';
+vinylGlow.style.backgroundColor = `hsl(${((hue + 120) % 360) | 0}, 80%, 42%)`;
+}
+}
+const gradient = canvasCtx.createLinearGradient(0, height, 0, 0);
+gradient.addColorStop(0, `hsla(${hue | 0}, 90%, 52%, 0.85)`);
+gradient.addColorStop(0.5, `hsla(${((hue + 60) % 360) | 0}, 90%, 52%, 0.85)`);
+gradient.addColorStop(1, `hsla(${((hue + 120) % 360) | 0}, 90%, 52%, 0.85)`);
+canvasCtx.fillStyle = gradient;
+// No shadowBlur/shadowColor — GPU compositing artifacts cause visual glitter
+canvasCtx.shadowBlur = 0;
+canvasCtx.shadowColor = 'transparent';
+// Smooth per-bar lerp for silky movement (no jagged jumping)
+if (!window._smoothBars || window._smoothBars.length !== bufferLength) {
+window._smoothBars = new Float32Array(bufferLength);
+}
+const barWidth = width / bufferLength * 1.5;
+for (let i = 0; i < bufferLength; i++) {
+const target = (dataArray[i] / 255) * height * 0.9;
+window._smoothBars[i] += (target - window._smoothBars[i]) * 0.18;
+const barHeight = window._smoothBars[i];
+canvasCtx.fillRect(i * (barWidth + 1), height - barHeight, barWidth, barHeight);
+}
+// Render to sleep screen if visible
+if (sleepCanvas && sleepCanvas.offsetParent !== null) {
+const cw = sleepCanvas.clientWidth;
+const ch = sleepCanvas.clientHeight;
+if (lastSleepWidth !== cw || lastSleepHeight !== ch) {
+sleepCanvas.width = cw;
+sleepCanvas.height = ch;
+lastSleepWidth = cw;
+lastSleepHeight = ch;
+}
+const sleepWidth = cw;
+const sleepHeight = ch;
+sleepCtx.clearRect(0, 0, sleepWidth, sleepHeight);
+sleepCtx.fillStyle = gradient;
+const sleepBarWidth = sleepWidth / bufferLength * 1.5;
+for (let i = 0; i < bufferLength; i++) {
+const barHeight = (window._smoothBars ? window._smoothBars[i] : (dataArray[i] / 255) * sleepHeight * 0.9) * (sleepHeight / (height || sleepHeight));
+sleepCtx.fillRect(i * (sleepBarWidth + 1), sleepHeight - barHeight, sleepBarWidth, barHeight);
+}
+}
+}
+draw();
+}
+// Render Premium Studio Library / Search results
+function renderStudioLibrary(tracksToRender = studioMasterTracks) {
+activeLibraryResults = tracksToRender;
+const container = document.getElementById('studioSongsContainer');
+if (tracksToRender.length === 0) {
+container.innerHTML = `
+<div class="text-center py-16 text-slate-500 font-bold uppercase tracking-widest text-[10px] border border-white/5 border-dashed rounded-3xl p-6">
+<i data-lucide="search-x" class="w-6 h-6 text-slate-600 mx-auto mb-2.5"></i>
+No matching songs found
+</div>
+`;
+lucide.createIcons();
+return;
+}
+container.innerHTML = tracksToRender.map((tr) => `
+<div id="card_master_${tr.id}" class="glass-card rounded-2xl p-3 flex items-center justify-between group cursor-pointer" onclick="playMasterTrackFromLibrary('${tr.id}')">
+<div class="flex items-center gap-3 overflow-hidden text-left flex-1 min-w-0">
+<div class="w-10 h-10 rounded-xl overflow-hidden border border-white/5 flex-shrink-0 bg-black relative">
+<img src="${tr.img}" class="w-full h-full object-cover" alt="Art">
+</div>
+<div class="overflow-hidden min-w-0">
+<div class="text-xs font-bold text-white truncate group-hover:text-indigo-300 transition-colors">${tr.title}</div>
+<div class="text-[9px] text-slate-400 truncate uppercase tracking-wider mt-0.5 font-bold">${tr.artist}</div>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<button onclick="addTrackToPlaylistPrompt('${tr.id}', event)" class="p-2 text-slate-500 hover:text-pink-400 rounded-xl bg-white/5 hover:bg-white/10 opacity-0 group-hover:opacity-100 transition-all" title="Add to Custom Playlist">
+<i data-lucide="plus" class="w-3.5 h-3.5"></i>
+</button>
+<div class="w-[30px] h-[30px] rounded-full bg-indigo-600 text-white flex items-center justify-center transform group-hover:scale-105 active:scale-95 transition-all shadow-md shadow-indigo-600/10">
+<i data-lucide="play" class="w-3.5 h-3.5 ml-0.5"></i>
+</div>
+</div>
+</div>
+`).join('');
+lucide.createIcons();
+// Re-highlight if the active track matches any on this list
+if (activeTrack) {
+highlightActivePlayingCard(`card_master_${activeTrack.id}`);
+}
+}
+// Segment switch for Search sources
+function switchSearchSource(source) {
+currentSearchSource = source;
+const tabs = ['saavn', 'history', 'archive', 'curated', 'youtube', 'audius', 'jamendo'];
+tabs.forEach(t => {
+const btn = document.getElementById(`tab_source_${t}`);
+if (btn) {
+if (t === source) {
+btn.className = "flex-1 py-2 px-2 rounded-xl text-[10px] font-extrabold uppercase tracking-wider text-center text-white bg-indigo-600 shadow-md transition-all flex items-center justify-center gap-1 shrink-0";
+} else {
+btn.className = "flex-1 py-2 px-2 rounded-xl text-[10px] font-extrabold uppercase tracking-wider text-center text-slate-400 hover:text-slate-200 transition-all flex items-center justify-center gap-1 shrink-0";
+}
+}
+});
+// Update badge & input placeholder
+const badge = document.getElementById('activeSourceBadge');
+const input = document.getElementById('studioSearchInput');
+if (badge) badge.innerText = source === 'saavn' ? 'JioSaavn' : (source === 'history' ? 'Song History' : (source === 'archive' ? 'Archive.org' : (source === 'youtube' ? 'YouTube' : (source === 'audius' ? 'Audius' : (source === 'jamendo' ? 'Jamendo' : 'Curated')))));
+if (input) {
+if (source === 'saavn') {
+input.placeholder = "Search millions of songs on JioSaavn...";
+} else if (source === 'history') {
+input.placeholder = "Search your recently played songs, artists, or sources...";
+} else if (source === 'jamendo') {
+input.placeholder = "Search free music on Jamendo...";
+} else if (source === 'audius') {
+input.placeholder = "Search high-quality master tracks on Audius...";
+} else if (source === 'archive') {
+input.placeholder = "Search retro audio on Archive.org...";
+} else {
+input.placeholder = "Search curated offline tracks...";
+}
+input.value = ""; // clear
+}
+// Populate tags
+const tagsDiv = document.getElementById('quickSuggestionTags');
+let suggestions = [];
+if (source === 'saavn') {
+suggestions = ["Top Hits", "Arijit Singh", "A.R. Rahman", "Lofi Beats", "Alan Walker"];
+} else if (source === 'history') {
+suggestions = ["All History", "Play All", "JioSaavn", "YouTube", "Clear History"];
+} else if (source === 'jamendo') {
+suggestions = ["Indie Rock", "Electronic Pop", "Acoustic", "Cinematic", "Hip-Hop"];
+} else if (source === 'audius') {
+suggestions = ["Electronic", "Hip-Hop", "Chillout", "Ambient", "Trap"];
+} else if (source === 'archive') {
+suggestions = ["Retro Radio", "Jazz 78rpm", "Electronic", "Acoustic Indie", "Lofi Sunset"];
+} else if (source === 'youtube') {
+suggestions = ["NCS Release", "Lofi Girl", "Vevo Top", "Acoustic Covers", "Synthwave Music"];
+} else {
+suggestions = ["All", "Synthwave", "Ambient", "Lo-Fi Chill", "Jazz Fusion"];
+}
+tagsDiv.innerHTML = suggestions.map(tag => `
+<button onclick="handleTagClick('${tag}')" class="whitespace-nowrap bg-white/5 border border-white/5 hover:border-white/10 px-3.5 py-1.5 rounded-full text-[9px] font-extrabold uppercase tracking-widest text-slate-400 hover:text-slate-200 transition-all cursor-pointer">${tag}</button>
+`).join('');
+// Render default state
+if (source === 'curated') {
+renderStudioLibrary(studioMasterTracks);
+} else if (source === 'history') {
+if (typeof renderArchiveHistoryView === 'function') renderArchiveHistoryView('');
+} else {
+// Show empty search hint
+const container = document.getElementById('studioSongsContainer');
+container.innerHTML = `
+<div class="text-center py-16 text-slate-500 font-bold uppercase tracking-widest text-[10px] border border-white/5 border-dashed rounded-3xl p-6">
+<i data-lucide="music" class="w-6 h-6 text-slate-600 mx-auto mb-2.5"></i>
+Enter keywords or tap suggestions above
+</div>
+`;
+lucide.createIcons();
+}
+}
+// Suggestions tag click trigger
+function handleTagClick(tag) {
+if (currentSearchSource === 'history') {
+if (tag === 'Play All') {
+if (typeof playAllMusicHistory === 'function') playAllMusicHistory();
+} else if (tag === 'Clear History') {
+if (typeof clearMusicHistory === 'function') clearMusicHistory();
+} else if (tag === 'All History') {
+const input = document.getElementById('studioSearchInput');
+if (input) input.value = '';
+if (typeof renderArchiveHistoryView === 'function') renderArchiveHistoryView('');
+} else {
+const input = document.getElementById('studioSearchInput');
+if (input) input.value = tag;
+if (typeof renderArchiveHistoryView === 'function') renderArchiveHistoryView(tag);
+}
+return;
+}
+if (currentSearchSource === 'curated') {
+if (tag.toLowerCase() === 'all') {
+renderStudioLibrary(studioMasterTracks);
+} else {
+const filtered = studioMasterTracks.filter(t => t.genre.toLowerCase() === tag.toLowerCase());
+renderStudioLibrary(filtered);
+}
+} else {
+const input = document.getElementById('studioSearchInput');
+if (input) {
+input.value = tag;
+handleSearch();
+}
+}
+}
+// Unified search hub
+async function handleSearch() {
+const query = document.getElementById('studioSearchInput').value.trim();
+if (currentSearchSource === 'history') {
+if (typeof renderArchiveHistoryView === 'function') renderArchiveHistoryView(query);
+return;
+}
+if (query === "") {
+if (currentSearchSource === 'curated') {
+renderStudioLibrary(studioMasterTracks);
+}
+return;
+}
+// Set loading
+const container = document.getElementById('studioSongsContainer');
+container.innerHTML = `
+<div class="text-center py-16 text-slate-500 font-bold uppercase tracking-widest text-[10px]">
+<i data-lucide="loader-2" class="w-6 h-6 text-indigo-500 animate-spin mx-auto mb-2.5"></i>
+Searching ${currentSearchSource === 'saavn' ? 'JioSaavn' : (currentSearchSource === 'archive' ? 'Archive.org' : (currentSearchSource === 'youtube' ? 'YouTube' : (currentSearchSource === 'audius' ? 'Audius' : (currentSearchSource === 'jamendo' ? 'Jamendo' : 'Curated Library'))))}...
+</div>
+`;
+lucide.createIcons();
+try {
+let results = [];
+if (currentSearchSource === 'saavn') {
+results = await searchJioSaavn(query);
+} else if (currentSearchSource === 'audius') {
+results = await searchAudius(query);
+} else if (currentSearchSource === 'archive') {
+results = await searchArchiveOrg(query);
+} else if (currentSearchSource === 'youtube') {
+results = await searchYouTube(query);
+} else if (currentSearchSource === 'jamendo') {
+results = await searchJamendo(query);
+} else {
+results = studioMasterTracks.filter(t => t.title.toLowerCase().includes(query.toLowerCase()) || t.artist.toLowerCase().includes(query.toLowerCase()));
+}
+renderStudioLibrary(results);
+} catch (err) {
+console.error("Search failed:", err);
+showStatusNotification("Search failed. Try another keyword.");
+container.innerHTML = `
+<div class="text-center py-16 text-slate-500 font-bold uppercase tracking-widest text-[10px] border border-white/5 border-dashed rounded-3xl p-6">
+<i data-lucide="wifi-off" class="w-6 h-6 text-slate-600 mx-auto mb-2.5"></i>
+Search failed. Try again.
+</div>
+`;
+lucide.createIcons();
+}
+}
+// Fetch JioSaavn and Universal Music Search
+async function searchJioSaavn(query) {
+// 1. First try backend high-performance /api/music/search
+try {
+const searchRes = await fetch(`/api/music/search?q=${encodeURIComponent(query)}`);
+if (searchRes.ok) {
+const data = await searchRes.json();
+const list = Array.isArray(data) ? data : (data.tracks || data.results || []);
+if (Array.isArray(list) && list.length > 0) {
+return list.map(t => ({
+id: t.id || ('track_' + Math.random().toString(36).substr(2, 7)),
+title: t.title || t.name || 'Unknown Track',
+artist: t.artist || t.primaryArtists || 'Artist',
+album: t.album || 'Hi-Res Lossless Audio',
+genre: t.genre || 'Lossless FLAC/MP3',
+url: t.streamUrl || t.url,
+img: t.artwork || t.img || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=250',
+duration: typeof t.duration === 'number' ? `${Math.floor(t.duration / 60)}:${(t.duration % 60).toString().padStart(2, '0')}` : (t.duration || '3:30'),
+downloadUrl: t.downloadUrl || `/api/music/download?url=${encodeURIComponent(t.streamUrl || t.url)}&title=${encodeURIComponent(t.title || 'audio')}`,
+isSaavn: t.source === 'jiosaavn' || !t.source,
+isAudius: t.source === 'audius',
+source: t.source || 'jiosaavn'
+})).filter(t => t.url);
+}
+}
+} catch (e) {
+console.warn("Backend music search notice:", e);
+}
+let tracks = [];
+let fetchedSuccess = false;
+// 2. Try private JioSaavn search/songs API
+try {
+const searchRes = await fetch(`https://saavn.dev/api/search/songs?query=${encodeURIComponent(query)}&limit=20`);
+const searchData = await searchRes.json();
+const songList = searchData?.data?.results || searchData?.data || [];
+if (Array.isArray(songList) && songList.length > 0) {
+tracks = songList;
+fetchedSuccess = true;
+}
+} catch (e) {
+console.warn("JioSaavn search/songs failed, trying iTunes API...", e);
+}
+// 2. Fallback to iTunes API (Provides 100% working high-fidelity audio previews)
+if (!fetchedSuccess) {
+try {
+const searchRes = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(query)}&entity=song&limit=15`);
+const responseJson = await searchRes.json();
+if (responseJson && responseJson.results && responseJson.results.length > 0) {
+return responseJson.results.map(item => ({
+id: 'itunes_' + item.trackId,
+title: item.trackName,
+artist: item.artistName || 'iTunes Artist',
+album: item.collectionName || 'iTunes Release',
+genre: item.primaryGenreName || 'Pop',
+url: item.previewUrl,
+img: item.artworkUrl100 ? item.artworkUrl100.replace('100x100bb', '500x500bb') : 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=250&h=250',
+duration: item.trackTimeMillis ? `${Math.floor(item.trackTimeMillis / 60000)}:${Math.floor((item.trackTimeMillis % 60000) / 1000).toString().padStart(2, '0')}` : '3:30',
+isITunes: true
+})).filter(t => t.url);
+}
+} catch (e) {
+console.warn("iTunes API fallback failed...", e);
+}
+}
+// 3. Fallback to Internet Archive
+if (!fetchedSuccess) {
+try {
+const searchRes = await fetch(`https://archive.org/advancedsearch.php?q=(${encodeURIComponent(query)}) AND mediatype:(audio)&fl[]=identifier,title,creator,album,length&rows=15&output=json`);
+const json = await searchRes.json();
+if (json.response && json.response.docs) {
+return json.response.docs.map(doc => {
+const identifier = doc.identifier;
+const title = doc.title || identifier;
+const artist = doc.creator || 'Archive Creator';
+const album = doc.album || 'Archive.org Audio';
+return {
+id: 'arch_' + identifier,
+title: title,
+artist: artist,
+album: album,
+genre: 'Archive.org',
+url: `https://archive.org/download/${identifier}/${identifier}.mp3`,
+img: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=250&h=250',
+duration: '3:30',
+isArchive: true
+};
+});
+}
+} catch (e) {
+console.warn("Archive.org fallback failed...", e);
+}
+}
+if (!fetchedSuccess) {
+console.warn("All search APIs offline");
+return [];
+}
+// Map JioSaavn results
+return tracks.map(s => {
+const imgObj = s.image && Array.isArray(s.image) ? (s.image.find(img => img.quality === '500x500' || img.quality === '150x150') || s.image[s.image.length - 1]) : s.image;
+const imgUrl = imgObj ? (typeof imgObj === 'string' ? imgObj : imgObj.link) : 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=250&h=250';
+let streamUrl = '';
+if (Array.isArray(s.download_url) && s.download_url.length > 0) {
+const dlObj = s.download_url.find(dl => dl.quality === '320kbps' || dl.quality === '160kbps') || s.download_url[s.download_url.length - 1];
+streamUrl = dlObj ? (dlObj.link || dlObj.url || '') : '';
+} else if (Array.isArray(s.downloadUrl) && s.downloadUrl.length > 0) {
+const dlObj = s.downloadUrl.find(dl => dl.quality === '320kbps' || dl.quality === '160kbps') || s.downloadUrl[s.downloadUrl.length - 1];
+streamUrl = dlObj ? (dlObj.url || dlObj.link || '') : '';
+} else if (s.url && (s.url.endsWith('.mp3') || s.url.endsWith('.mp4') || s.url.includes('cdn'))) {
+streamUrl = s.url;
+}
+const durSec = parseInt(s.duration) || 0;
+const m = Math.floor(durSec / 60);
+const r = durSec % 60;
+const durationStr = `${m}:${r < 10 ? '0' : ''}${r}`;
+let artistName = s.subtitle
+|| s.primaryArtists
+|| (s.artist_map?.primary_artists ? s.artist_map.primary_artists.map(a => a.name).filter(Boolean).join(', ') : '')
+|| s.music
+|| 'JioSaavn Artist';
+const albumName = typeof s.album === 'string' ? s.album : (s.album?.name || 'JioSaavn Release');
+return {
+id: 'saavn_' + s.id,
+title: s.name || s.title || 'Unknown Track',
+artist: artistName,
+album: albumName,
+genre: 'JioSaavn',
+url: streamUrl,
+img: imgUrl,
+duration: durationStr,
+isSaavn: true
+};
+}).filter(s => s.url !== '');
+}
+// Fetch Archive.org
+async function searchYouTube(query) {
+try {
+const res = await fetch(`/api/music/yt-search-full?q=${encodeURIComponent(query)}`);
+const data = await res.json();
+if (data.results) {
+return data.results.map(item => ({
+id: 'yt_' + item.videoId,
+title: item.title,
+artist: item.author.name,
+album: 'YouTube',
+genre: 'YouTube',
+duration: item.timestamp,
+img: item.thumbnail,
+url: item.videoId,
+source: 'youtube'
+}));
+}
+return [];
+} catch(e) {
+console.error('yt search error', e);
+return [];
+}
+}
+async function searchJamendo(query) {
+try {
+const searchRes = await fetch(`https://api.jamendo.com/v3.0/tracks/?client_id=c9cb2a0a&format=json&limit=20&search=${encodeURIComponent(query)}`);
+const searchData = await searchRes.json();
+const list = searchData?.results || [];
+return list.map(t => {
+const streamUrl = t.audio || '';
+const durSec = t.duration || 210;
+const m = Math.floor(durSec / 60);
+const s = durSec % 60;
+return {
+id: `jamendo-${t.id}`,
+title: t.name || 'Unknown Track',
+artist: t.artist_name || 'Unknown Artist',
+album: t.album_name || 'Jamendo Indie',
+genre: 'CC Music',
+url: streamUrl,
+img: t.image || t.album_image || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=250',
+duration: `${m}:${s < 10 ? '0' : ''}${s}`,
+downloadUrl: `/api/music/proxy?url=${encodeURIComponent(streamUrl)}&download=1&title=${encodeURIComponent(t.name || 'audio')}&artist=${encodeURIComponent(t.artist_name || 'artist')}`,
+source: 'jamendo',
+isJamendo: true
+};
+}).filter(t => t.url);
+} catch (e) {
+console.error("Jamendo search failed:", e);
+return [];
+}
+}
+async function searchAudius(query) {
+try {
+const searchRes = await fetch(`/api/music/search-audius?q=${encodeURIComponent(query)}`);
+const searchData = await searchRes.json();
+const list = searchData?.data || [];
+return list.map(t => {
+const streamUrl = `https://discoveryprovider.audius.co/v1/tracks/${t.id}/stream?app_name=STALKER_PRO`;
+const durSec = t.duration || 210;
+const m = Math.floor(durSec / 60);
+const s = durSec % 60;
+return {
+id: `audius-${t.id}`,
+title: t.title,
+artist: t.user?.name || 'Artist',
+album: t.genre || 'Lossless Audio',
+genre: 'Lossless FLAC/MP3',
+url: streamUrl,
+img: t.artwork?.['480x480'] || t.artwork?.['150x150'] || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=250',
+duration: `${m}:${s < 10 ? '0' : ''}${s}`,
+downloadUrl: `/api/music/download?url=${encodeURIComponent(streamUrl)}&title=${encodeURIComponent(t.title)}&artist=${encodeURIComponent(t.user?.name || 'Artist')}`,
+source: 'audius',
+isAudius: true
+};
+});
+} catch (e) {
+console.error("Audius search failed:", e);
+return [];
+}
+}
+async function searchArchiveOrg(query) {
+try {
+const url = `https://archive.org/advancedsearch.php?q=(${encodeURIComponent(query)}) AND mediatype:(audio)&fl[]=identifier,title,creator,album,length&rows=20&output=json`;
+const res = await fetch(url);
+const json = await res.json();
+if (json.response && json.response.docs) {
+return json.response.docs.map(doc => {
+const identifier = doc.identifier;
+if (!identifier) return null;
+const title = doc.title || identifier;
+const artist = doc.creator || 'Archive Creator';
+const album = doc.album || 'Archive.org Audio';
+let durationStr = "3:30";
+if (doc.length) {
+if (typeof doc.length === 'string') {
+durationStr = doc.length.split('.')[0];
+} else if (typeof doc.length === 'number') {
+const m = Math.floor(doc.length / 60);
+const r = Math.floor(doc.length % 60);
+durationStr = `${m}:${r < 10 ? '0' : ''}${r}`;
+}
+}
+const imgUrl = `https://archive.org/services/img/${identifier}`;
+return {
+id: 'archive_' + identifier,
+title: title,
+artist: artist,
+album: album,
+genre: 'Archive.org',
+identifier: identifier,
+img: imgUrl,
+duration: durationStr,
+isArchive: true,
+url: '' // Lazy loaded on play
+};
+}).filter(Boolean);
+}
+} catch (e) {
+console.error("Archive.org search failed:", e);
+}
+return [];
+}
+// Render the Live Radio Channels panel
+function renderLiveStations() {
+const container = document.getElementById('liveStationsList');
+if (!container) return;
+container.innerHTML = liveRadioStations.map((st) => `
+<div id="card_live_${st.id}" class="glass-card rounded-2xl p-3 flex items-center justify-between group cursor-pointer" onclick="playLiveStation('${st.id}')">
+<div class="flex items-center gap-3 overflow-hidden text-left flex-1 min-w-0">
+<div class="w-10 h-10 rounded-xl overflow-hidden border border-white/5 flex-shrink-0 bg-black relative">
+<img src="${st.img}" class="w-full h-full object-cover" alt="Art">
+<span class="absolute bottom-0 right-0 text-[6px] bg-emerald-600/90 text-white px-1 py-0.5 rounded-tl font-mono font-bold tracking-tighter">LIVE</span>
+</div>
+<div class="overflow-hidden min-w-0">
+<div class="text-xs font-bold text-white truncate group-hover:text-indigo-300 transition-colors">${st.title}</div>
+<div class="text-[9px] text-slate-400 truncate uppercase tracking-wider mt-0.5 font-bold">${st.artist}</div>
+</div>
+</div>
+<div class="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center flex-shrink-0 transform group-hover:scale-105 active:scale-95 transition-all shadow-md shadow-emerald-600/10">
+<i data-lucide="play" class="w-3.5 h-3.5 ml-0.5"></i>
+</div>
+</div>
+`).join('');
+lucide.createIcons();
+if (activeTrack) {
+highlightActivePlayingCard(`card_live_${activeTrack.id}`);
+}
+}
+// Playback Core: Play Live Radio Channels
+function playLiveStation(id) {
+const station = liveRadioStations.find(s => s.id === id);
+if (!station) return;
+setupWebAudioAPI(); // Unlock Web Audio
+activeTrack = station;
+activePlaybackQueue = [...liveRadioStations];
+currentQueueIndex = activePlaybackQueue.findIndex(s => s.id === id);
+// Deck status indicator
+document.getElementById('deckStatusPing').classList.remove('hidden');
+document.getElementById('deckStatusIndicator').className = "relative inline-flex rounded-full h-2 w-2 bg-teal-500";
+document.getElementById('deckStatusText').textContent = "Live Radio Broadcast";
+document.getElementById('deckBitrateBadge').textContent = "128kbps MP3";
+// Central metadata
+document.getElementById('centerTrackTitle').textContent = station.title;
+document.getElementById('centerTrackArtist').textContent = station.artist;
+document.getElementById('centerTrackAlbum').textContent = station.album;
+// Vinyl sticker & tonearm
+document.getElementById('vinylCover').src = station.img;
+engageTonearm(true);
+// Footer player core
+document.getElementById('footerArtwork').src = station.img;
+document.getElementById('footerTitle').textContent = station.title;
+document.getElementById('footerArtist').textContent = station.artist.toUpperCase();
+if (document.getElementById('mobileFooterArtwork')) document.getElementById('mobileFooterArtwork').src = station.img;
+if (document.getElementById('mobileFooterTitle')) document.getElementById('mobileFooterTitle').textContent = station.title;
+if (document.getElementById('mobileFooterArtist')) document.getElementById('mobileFooterArtist').textContent = station.artist.toUpperCase();
+// Live streams have no fixed duration - show the live marquee, hide the seek progress bar
+document.getElementById('timelineLiveFeed').classList.remove('hidden');
+document.getElementById('timelineLiveFeed').classList.add('flex');
+document.getElementById('seekerCurrentTime').textContent = "LIVE";
+document.getElementById('seekerTotalDuration').textContent = "∞";
+document.getElementById('timelineProgress').style.width = `0%`;
+highlightActivePlayingCard(`card_live_${station.id}`);
+console.log("Playing live station:", station.url);
+if (audio) audio.crossOrigin = 'anonymous';
+audio.src = '/api/music/proxy?url=' + encodeURIComponent(station.url);
+audio.onerror = (e) => {
+console.warn("Audio element error:", audio.error);
+console.warn("Audio src was:", audio.src);
+};
+audio.play().then(() => {
+showStatusNotification(`Playing: ${station.title}`);
+toggleVinylSpinAnimation(true);
+}).catch(e => {
+console.warn("Autoplay blocked or aborted.", e);
+if (e.name !== 'AbortError') {
+showStatusNotification("Tap play button below to unlock!");
+}
+});
+}
+// Playback Core: Play Master Tracks / Dynamic tracks
+function playMasterTrackFromLibrary(id) {
+const track = activeLibraryResults.find(t => t.id === id) || studioMasterTracks.find(t => t.id === id);
+if (!track) return;
+// Set active list to current results
+activePlaybackQueue = [...activeLibraryResults];
+currentQueueIndex = activePlaybackQueue.findIndex(t => t.id === id);
+if (currentQueueIndex === -1) {
+activePlaybackQueue.push(track);
+currentQueueIndex = activePlaybackQueue.length - 1;
+}
+playTrackObject(track);
+}
+async function playTrackObject(tr) {
+console.log("playTrackObject called for:", tr.title);
+setupWebAudioAPI(); // Unlock Web Audio
+let playUrl = null;
+if (tr.url) {
+playUrl = tr.url;
+} else if (tr.streamUrl) {
+playUrl = tr.streamUrl;
+}
+// Handle Archive.org lazy metadata stream URL lookup
+if (tr.isArchive && !playUrl) {
+showStatusNotification("Analyzing Archive metadata...");
+try {
+const metaUrl = `https://archive.org/metadata/${tr.identifier}`;
+const metaRes = await fetch(metaUrl);
+const metaJson = await metaRes.json();
+if (metaJson.files && metaJson.files.length > 0) {
+// Find first MP3 file
+const mp3File = metaJson.files.find(f => f.name.toLowerCase().endsWith('.mp3') && f.format && f.format.toLowerCase().includes('mp3'));
+const fileToPlay = mp3File || metaJson.files.find(f => f.name.toLowerCase().endsWith('.mp3')) || metaJson.files[0];
+if (fileToPlay) {
+playUrl = `https://archive.org/download/${tr.identifier}/${encodeURIComponent(fileToPlay.name)}`;
+tr.url = playUrl; // cache
+} else {
+playUrl = `https://archive.org/download/${tr.identifier}/${tr.identifier}.mp3`;
+}
+} else {
+playUrl = `https://archive.org/download/${tr.identifier}/${tr.identifier}.mp3`;
+}
+} catch (err) {
+console.error("Failed to fetch Archive.org metadata, guessing name", err);
+playUrl = `https://archive.org/download/${tr.identifier}/${tr.identifier}.mp3`;
+}
+}
+if (!playUrl) {
+showStatusNotification("Stream URL offline or restricted");
+return;
+}
+activeTrack = tr;
+if (typeof addToMusicHistory === 'function') {
+try { addToMusicHistory(tr); } catch(e) {}
+}
+// Adjust Deck Status Indicator to Studio
+document.getElementById('deckStatusPing').classList.add('hidden');
+document.getElementById('deckStatusIndicator').className = "relative inline-flex rounded-full h-2 w-2 bg-indigo-500";
+document.getElementById('deckStatusText').textContent = tr.isSaavn ? "JioSaavn Feed" : (tr.isJamendo ? "Jamendo CC Stream" : (tr.isLocal ? "Local Audio File" : (tr.isAudius ? "Audius Web3 Network" : (tr.isArchive ? "Archive Retro Stream" : "Studio Master Track"))));
+document.getElementById('deckBitrateBadge').textContent = tr.isSaavn ? "320kbps MP3" : (tr.isJamendo ? "HQ MP3" : (tr.isLocal ? "Source Quality" : (tr.isAudius ? "Lossless OGG/MP3" : (tr.isArchive ? "VBR MP3" : "Lossless FLAC"))));
+// Update Central Metadata Cards
+document.getElementById('centerTrackTitle').textContent = tr.title;
+document.getElementById('centerTrackArtist').textContent = tr.artist;
+document.getElementById('centerTrackAlbum').textContent = tr.album;
+// Update Vinyl Sticker & Tonearm Action
+document.getElementById('vinylCover').src = tr.img;
+engageTonearm(true);
+// Update Footer Player Core
+document.getElementById('footerArtwork').src = tr.img;
+document.getElementById('footerTitle').textContent = tr.title;
+document.getElementById('footerArtist').textContent = tr.artist.toUpperCase();
+if (document.getElementById('mobileFooterArtwork')) document.getElementById('mobileFooterArtwork').src = tr.img;
+if (document.getElementById('mobileFooterTitle')) document.getElementById('mobileFooterTitle').textContent = tr.title;
+if (document.getElementById('mobileFooterArtist')) document.getElementById('mobileFooterArtist').textContent = tr.artist.toUpperCase();
+// Reset Live Stream Progress Seekers View (Enable standard slider timeline)
+document.getElementById('timelineLiveFeed').classList.remove('flex');
+document.getElementById('timelineLiveFeed').classList.add('hidden');
+document.getElementById('seekerCurrentTime').textContent = "0:00";
+document.getElementById('seekerTotalDuration').textContent = tr.duration;
+// Highlight active element selection
+highlightActivePlayingCard(`card_master_${tr.id}`);
+if (tr.source === 'youtube') {
+playUrl = ''; // Clear playUrl so the audio tag doesn't try to play
+if (typeof ytPlayer !== 'undefined' && ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+let vid = tr.url || tr.streamUrl || '';
+if (vid.includes('/api/v')) {
+vid = tr.id.replace('yt-', '').replace('yt_', '');
+}
+ytPlayer.loadVideoById(vid);
+ytPlayer.unMute();
+ytPlayer.setVolume(typeof audio !== 'undefined' ? audio.volume * 100 : 100);
+ytPlayer.playVideo();
+if (typeof audio !== 'undefined') {
+audio.pause();
+audio.removeAttribute('src');
+audio.load();
+}
+if (isVideoBgEnabled) {
+document.getElementById('bgVideoContainer').classList.remove('hidden');
+} else {
+document.getElementById('bgVideoContainer').classList.add('hidden');
+}
+showStatusNotification(`Playing YouTube: ${tr.title}`);
+toggleVinylSpinAnimation(true);
+if (typeof engageTonearm === 'function') engageTonearm(true);
+const masterPlayIcon = document.getElementById('masterPlayIcon');
+if (masterPlayIcon) {
+masterPlayIcon.setAttribute('data-lucide', 'pause');
+lucide.createIcons();
+}
+if (window.ytProgressInterval) clearInterval(window.ytProgressInterval);
+window.ytProgressInterval = setInterval(() => {
+if (typeof ytPlayer !== 'undefined' && ytPlayer && typeof ytPlayer.getCurrentTime === 'function' && typeof ytPlayer.getDuration === 'function') {
+const cur = ytPlayer.getCurrentTime();
+const dur = ytPlayer.getDuration();
+document.getElementById('seekerCurrentTime').textContent = formatTime(cur);
+document.getElementById('seekerTotalDuration').textContent = formatTime(dur);
+const progressPercentage = dur > 0 ? (cur / dur) * 100 : 0;
+document.getElementById('timelineProgress').style.width = `${progressPercentage}%`;
+}
+}, 1000);
+return;
+} else {
+showStatusNotification("YouTube player initializing...");
+if (window.YT && window.YT.Player) {
+onYouTubeIframeAPIReady();
+setTimeout(() => playTrackObject(tr), 1000);
+}
+return;
+}
+} else {
+if (window.ytProgressInterval) clearInterval(window.ytProgressInterval);
+if (typeof ytPlayer !== 'undefined' && ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+if (isVideoBgEnabled) {
+ytPlayer.pauseVideo();
+ytPlayer.mute();
+} else {
+ytPlayer.stopVideo();
+}
+}
+if (!isVideoBgEnabled) {
+const bgCont = document.getElementById('bgVideoContainer');
+if (bgCont) bgCont.classList.add('hidden');
+}
+}
+// Search and play background video if enabled
+if (isVideoBgEnabled) {
+searchAndPlayVideo(tr.title, tr.artist);
+}
+// Load and Play Audio
+console.log("Playing URL:", playUrl);
+// Proxying the stream to bypass potential CORS/Format issues
+if (playUrl && playUrl.startsWith('http')) {
+playUrl = '/api/music/proxy?url=' + encodeURIComponent(playUrl);
+}
+if (audio) audio.crossOrigin = 'anonymous';
+audio.src = playUrl;
+audio.load();
+// Debugging
+audio.onerror = (e) => {
+console.warn("Audio element error:", audio.error);
+console.warn("Audio src was:", audio.src);
+if (audio.error) {
+console.warn("Audio error code:", audio.error.code);
+console.warn("Audio error message:", audio.error.message);
+}
+};
+audio.play().then(() => {
+showStatusNotification(`Playing: ${tr.title}`);
+toggleVinylSpinAnimation(true);
+}).catch(e => {
+console.warn("Autoplay blocked, user interaction expected.", e);
+showStatusNotification("Tap play button below to unlock!");
+});
+}
+// Highlight currently playing card nicely
+function highlightActivePlayingCard(cardId) {
+document.querySelectorAll('.glass-card').forEach(c => {
+c.classList.remove('active-play');
+});
+const activeCard = document.getElementById(cardId);
+if (activeCard) {
+activeCard.classList.add('active-play');
+}
+}
+// Mechanical Vinyl Tonearm Animation pivoting
+function engageTonearm(engage) {
+const tonearm = document.getElementById('tonearm');
+if (engage) {
+tonearm.style.transform = 'rotate(-10deg)';
+} else {
+tonearm.style.transform = 'rotate(-40deg)';
+}
+}
+// Vinyl disk spinning loop
+function toggleVinylSpinAnimation(spin) {
+const spinner = document.getElementById('vinylSpinner');
+if (spin) {
+spinner.classList.add('animate-spin-slow');
+document.getElementById('vinylSpinner').style.animationPlayState = 'running';
+} else {
+document.getElementById('vinylSpinner').style.animationPlayState = 'paused';
+}
+}
+// Toggle master Play / Pause
+function toggleMasterPlay() {
+const masterPlayIcon = document.getElementById('masterPlayIcon');
+if (activeTrack && activeTrack.source === 'youtube') {
+if (typeof ytPlayer !== 'undefined' && ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
+const state = ytPlayer.getPlayerState();
+if (state === YT.PlayerState.PLAYING) {
+ytPlayer.pauseVideo();
+masterPlayIcon.setAttribute('data-lucide', 'play');
+lucide.createIcons();
+toggleVinylSpinAnimation(false);
+if (typeof engageTonearm === 'function') engageTonearm(false);
+} else {
+ytPlayer.playVideo();
+masterPlayIcon.setAttribute('data-lucide', 'pause');
+lucide.createIcons();
+toggleVinylSpinAnimation(true);
+if (typeof engageTonearm === 'function') engageTonearm(true);
+}
+}
+return;
+}
+if (audio.src === "" || audio.src === window.location.href) {
+if(studioMasterTracks.length > 0) playMasterTrackFromLibrary(studioMasterTracks[0].id);
+return;
+}
+if (audio.paused) {
+audio.play().then(() => {
+masterPlayIcon.setAttribute('data-lucide', 'pause');
+lucide.createIcons();
+toggleVinylSpinAnimation(true);
+if (typeof engageTonearm === 'function') engageTonearm(true);
+if (typeof ytPlayer !== 'undefined' && ytPlayer && typeof ytPlayer.playVideo === 'function') {
+ytPlayer.playVideo();
+}
+});
+} else {
+audio.pause();
+if (typeof ytPlayer !== 'undefined' && ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+ytPlayer.pauseVideo();
+}
+masterPlayIcon.setAttribute('data-lucide', 'play');
+lucide.createIcons();
+toggleVinylSpinAnimation(false);
+if (typeof engageTonearm === 'function') engageTonearm(false);
+}
+}
+// Skip to next sequential track in queue
+function playNextTrack() {
+console.log("playNextTrack called. Queue length:", activePlaybackQueue.length, "Current index:", currentQueueIndex);
+if (activePlaybackQueue.length === 0) return;
+let nextIndex = currentQueueIndex + 1;
+if (isShuffleActive) {
+nextIndex = Math.floor(Math.random() * activePlaybackQueue.length);
+} else if (nextIndex >= activePlaybackQueue.length) {
+nextIndex = 0; // wrap around loop
+}
+console.log("Next index:", nextIndex);
+currentQueueIndex = nextIndex;
+const nextTrack = activePlaybackQueue[currentQueueIndex];
+if (nextTrack.isLive) {
+playLiveStation(nextTrack.id);
+} else {
+playTrackObject(nextTrack);
+}
+}
+// Skip back to previous track in queue
+function playPrevTrack() {
+if (activePlaybackQueue.length === 0) return;
+let prevIndex = currentQueueIndex - 1;
+if (isShuffleActive) {
+prevIndex = Math.floor(Math.random() * activePlaybackQueue.length);
+} else if (prevIndex < 0) {
+prevIndex = activePlaybackQueue.length - 1; // wrap around loop
+}
+currentQueueIndex = prevIndex;
+const prevTrack = activePlaybackQueue[currentQueueIndex];
+if (prevTrack.isLive) {
+playLiveStation(prevTrack.id);
+} else {
+playTrackObject(prevTrack);
+}
+}
+// Shuffle Mode Toggle
+function toggleShuffle() {
+isShuffleActive = !isShuffleActive;
+const btn = document.getElementById('shuffleButton');
+const inlineBtn = document.getElementById('inlineShuffleBtn');
+if (isShuffleActive) {
+if (btn) btn.className = "p-2 text-indigo-400 hover:text-indigo-300 transition-all transform scale-105 filter drop-shadow-[0_0_5px_rgba(99,102,241,0.5)]";
+if (inlineBtn) inlineBtn.className = "p-2.5 text-indigo-400 transition-all scale-110 drop-shadow-[0_0_8px_rgba(99,102,241,0.6)]";
+showStatusNotification("Shuffle play mode: ENGAGED");
+} else {
+if (btn) btn.className = "p-2 text-slate-500 hover:text-indigo-400 transition-all";
+if (inlineBtn) inlineBtn.className = "p-2.5 text-slate-400 hover:text-indigo-400 transition-all active:scale-90";
+showStatusNotification("Shuffle play mode: FLAT");
+}
+}
+// Repeat Mode Toggle
+function toggleRepeat() {
+isRepeatActive = !isRepeatActive;
+audio.loop = isRepeatActive;
+const btn = document.getElementById('repeatButton');
+const inlineBtn = document.getElementById('inlineRepeatBtn');
+if (isRepeatActive) {
+if (btn) btn.className = "p-2 text-pink-400 hover:text-pink-300 transition-all transform scale-105 filter drop-shadow-[0_0_5px_rgba(236,72,153,0.5)]";
+if (inlineBtn) inlineBtn.className = "p-2.5 text-pink-400 transition-all scale-110 drop-shadow-[0_0_8px_rgba(236,72,153,0.6)]";
+showStatusNotification("Repeat single track: CONNECTED");
+} else {
+if (btn) btn.className = "p-2 text-slate-500 hover:text-pink-400 transition-all";
+if (inlineBtn) inlineBtn.className = "p-2.5 text-slate-400 hover:text-pink-400 transition-all active:scale-90";
+showStatusNotification("Repeat track: COLLAPSED");
+}
+}
+// Audio seek timeline controller
+let isDraggingTimeline = false;
+function seekAudio(event) {
+if (typeof activeTrack !== 'undefined' && activeTrack && activeTrack.isLive) return;
+const container = document.getElementById('timelineContainer');
+const rect = container.getBoundingClientRect();
+let clientX = event.clientX;
+if (event.touches && event.touches.length > 0) {
+clientX = event.touches[0].clientX;
+} else if (event.changedTouches && event.changedTouches.length > 0) {
+clientX = event.changedTouches[0].clientX;
+}
+let clickX = clientX - rect.left;
+clickX = Math.max(0, Math.min(clickX, rect.width));
+const pct = clickX / rect.width;
+document.getElementById('timelineProgress').style.width = `${pct * 100}%`;
+if (typeof activeTrack !== 'undefined' && activeTrack && activeTrack.source === 'youtube') {
+if (typeof ytPlayer !== 'undefined' && ytPlayer && typeof ytPlayer.getDuration === 'function' && typeof ytPlayer.seekTo === 'function') {
+const dur = ytPlayer.getDuration();
+if (!isDraggingTimeline || event.type === 'mouseup' || event.type === 'touchend') {
+ytPlayer.seekTo(dur * pct, true);
+}
+}
+} else if (typeof audio !== 'undefined' && audio.duration) {
+if (!isDraggingTimeline || event.type === 'mouseup' || event.type === 'touchend') {
+audio.currentTime = audio.duration * pct;
+if (isVideoBgEnabled && typeof ytPlayer !== 'undefined' && ytPlayer && typeof ytPlayer.seekTo === 'function') {
+ytPlayer.seekTo(audio.currentTime, true);
+}
+}
+}
+}
+document.addEventListener('DOMContentLoaded', () => {
+const tlContainer = document.getElementById('timelineContainer');
+if (tlContainer) {
+tlContainer.removeAttribute('onclick');
+tlContainer.addEventListener('mousedown', (e) => { isDraggingTimeline = true; seekAudio(e); });
+tlContainer.addEventListener('touchstart', (e) => { isDraggingTimeline = true; seekAudio(e); }, {passive: true});
+}
+document.addEventListener('mousemove', (e) => { if (isDraggingTimeline) seekAudio(e); });
+document.addEventListener('touchmove', (e) => { if (isDraggingTimeline) { e.preventDefault(); seekAudio(e); } }, {passive: false});
+document.addEventListener('mouseup', (e) => { if (isDraggingTimeline) { seekAudio(e); isDraggingTimeline = false; } });
+document.addEventListener('touchend', (e) => { if (isDraggingTimeline) { seekAudio(e); isDraggingTimeline = false; } });
+});
+// Volumetric Deck Controls
+function initVolumeSettings() {
+const saved = localStorage.getItem('stalker_deck_vol');
+if (saved !== null) {
+audio.volume = parseFloat(saved);
+document.getElementById('volumeSlider').value = saved;
+updateVolumeHUD(parseFloat(saved));
+}
+}
+function adjustVolume(val) {
+audio.volume = parseFloat(val);
+localStorage.setItem('stalker_deck_vol', val);
+updateVolumeHUD(parseFloat(val));
+if (typeof ytPlayer !== 'undefined' && ytPlayer && typeof ytPlayer.setVolume === 'function') {
+if (activeTrack && activeTrack.source === 'youtube') {
+ytPlayer.setVolume(parseFloat(val) * 100);
+}
+}
+}
+function toggleAudioMute() {
+if (audio.volume > 0) {
+localStorage.setItem('stalker_deck_vol_pre', audio.volume);
+audio.volume = 0;
+document.getElementById('volumeSlider').value = 0;
+updateVolumeHUD(0);
+showStatusNotification("Studio deck: MUTED");
+if (typeof ytPlayer !== 'undefined' && ytPlayer && typeof ytPlayer.mute === 'function') {
+ytPlayer.mute();
+}
+} else {
+const prev = localStorage.getItem('stalker_deck_vol_pre') || 1;
+audio.volume = parseFloat(prev);
+document.getElementById('volumeSlider').value = prev;
+updateVolumeHUD(parseFloat(prev));
+showStatusNotification("Studio deck: RESTORED");
+if (typeof ytPlayer !== 'undefined' && ytPlayer && typeof ytPlayer.unMute === 'function') {
+if (activeTrack && activeTrack.source === 'youtube') {
+ytPlayer.unMute();
+ytPlayer.setVolume(parseFloat(prev) * 100);
+}
+}
+}
+}
+function updateVolumeHUD(vol) {
+const icon = document.getElementById('volumeIcon');
+if (!icon) return;
+if (vol === 0) {
+icon.setAttribute('data-lucide', 'volume-x');
+} else if (vol < 0.35) {
+icon.setAttribute('data-lucide', 'volume');
+} else if (vol < 0.7) {
+icon.setAttribute('data-lucide', 'volume-1');
+} else {
+icon.setAttribute('data-lucide', 'volume-2');
+}
+lucide.createIcons();
+}
+// CUSTOM PLAYLIST MANAGERS (STORED LOCALLY UNDER KEY: myMusicPlaylists)
+function loadCustomPlaylists() {
+try {
+const saved = localStorage.getItem('myStudioMusicPlaylists');
+if (saved) {
+customPlaylists = JSON.parse(saved);
+} else {
+// Seed a beautiful default starting playlist so it's not empty!
+customPlaylists = {
+"Deep Space Chill": [studioMasterTracks[0], studioMasterTracks[1], studioMasterTracks[3]]
+};
+localStorage.setItem('myStudioMusicPlaylists', JSON.stringify(customPlaylists));
+}
+} catch (err) {
+customPlaylists = {};
+}
+}
+function saveCustomPlaylists() {
+localStorage.setItem('myStudioMusicPlaylists', JSON.stringify(customPlaylists));
+renderCustomPlaylists();
+}
+// Modern Interactive Studio Playlist Engine & Touch Queue Manager
+let pendingTrackToAdd = null;
+let selectedVibe = '🔥 Top Hits';
+let activeViewedPlaylist = null;
+function selectPlaylistVibe(vibe, btn) {
+selectedVibe = vibe;
+document.querySelectorAll('#vibeSelectorGrid .vibe-btn').forEach(b => {
+b.classList.remove('border-pink-500/50', 'text-white');
+b.classList.add('border-white/8', 'text-zinc-300');
+});
+if (btn) {
+btn.classList.remove('border-white/8', 'text-zinc-300');
+btn.classList.add('border-pink-500/50', 'text-white');
+}
+}
+function openModernPlaylistModal() {
+const modal = document.getElementById('modernPlaylistModal');
+const input = document.getElementById('modalPlaylistNameInput');
+if (modal) {
+modal.style.display = 'flex';
+modal.classList.remove('hidden');
+setTimeout(() => input?.focus(), 150);
+}
+if (window.lucide) lucide.createIcons();
+}
+function closeModernPlaylistModal() {
+const modal = document.getElementById('modernPlaylistModal');
+if (modal) {
+modal.style.display = 'none';
+modal.classList.add('hidden');
+}
+const input = document.getElementById('modalPlaylistNameInput');
+if (input) input.value = '';
+}
+function confirmCreateModernPlaylist() {
+const input = document.getElementById('modalPlaylistNameInput');
+const name = (input?.value || '').trim();
+if (!name) return;
+if (customPlaylists[name]) {
+showStatusNotification("Mixtape already exists!");
+return;
+}
+customPlaylists[name] = [];
+if (pendingTrackToAdd) {
+customPlaylists[name].push(pendingTrackToAdd);
+showStatusNotification(`Created mixtape "${name}" & added "${pendingTrackToAdd.title}"!`);
+pendingTrackToAdd = null;
+} else {
+showStatusNotification(`Created mixtape: ${name}`);
+}
+saveCustomPlaylists();
+closeModernPlaylistModal();
+renderCustomPlaylists();
+// Display newly created playlist immediately in search area
+displayPlaylistTracksInMainArea(name);
+}
+function createNewPlaylistPrompt() {
+pendingTrackToAdd = null;
+openModernPlaylistModal();
+}
+function deletePlaylistPrompt(pName, event) {
+if (event) event.stopPropagation();
+delete customPlaylists[pName];
+saveCustomPlaylists();
+renderCustomPlaylists();
+if (activeViewedPlaylist === pName) {
+activeViewedPlaylist = null;
+handleSearch();
+}
+showStatusNotification(`Deleted mixtape: ${pName}`);
+}
+function addTrackToPlaylistPrompt(trackId, event) {
+if (event) event.stopPropagation();
+const tr = (typeof activeLibraryResults !== 'undefined' ? activeLibraryResults.find(t => t.id === trackId) : null)
+|| (typeof studioMasterTracks !== 'undefined' ? studioMasterTracks.find(t => t.id === trackId) : null)
+|| (typeof activePlaybackQueue !== 'undefined' ? activePlaybackQueue.find(t => t.id === trackId) : null);
+if (!tr) {
+showStatusNotification("Track details not loaded");
+return;
+}
+pendingTrackToAdd = tr;
+const keys = Object.keys(customPlaylists);
+if (keys.length === 0) {
+openModernPlaylistModal();
+return;
+}
+const modal = document.getElementById('addToPlaylistModal');
+const listEl = document.getElementById('addToPlaylistList');
+const titleEl = document.getElementById('addToPlaylistTrackTitle');
+if (titleEl) titleEl.textContent = tr.title || 'Selected Track';
+if (listEl) {
+listEl.innerHTML = keys.map(k => {
+const count = customPlaylists[k].length;
+const exists = customPlaylists[k].some(x => x.id === trackId);
+return `
+<div onclick="saveTrackToMixtape('${k.replace(/'/g, "\\'")}')" class="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-pink-500/10 border border-white/6 hover:border-pink-500/30 cursor-pointer transition-all group">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-xl bg-zinc-900 border border-white/10 flex items-center justify-center text-pink-400 group-hover:scale-105 transition-transform">
+<i data-lucide="music" class="w-4 h-4"></i>
+</div>
+<div class="truncate min-w-0">
+<div class="text-xs font-bold text-white group-hover:text-pink-300 truncate">${k}</div>
+<div class="text-[9px] text-zinc-400 font-medium">${count} tracks ${exists ? '• (Already added)' : ''}</div>
+</div>
+</div>
+<div class="p-1.5 rounded-lg ${exists ? 'text-emerald-400' : 'text-zinc-400 group-hover:text-pink-400'}">
+<i data-lucide="${exists ? 'check' : 'plus'}" class="w-4 h-4"></i>
+</div>
+</div>
+`;
+}).join('');
+}
+if (modal) {
+modal.style.display = 'flex';
+modal.classList.remove('hidden');
+}
+if (window.lucide) lucide.createIcons();
+}
+function saveTrackToMixtape(pName) {
+if (!pendingTrackToAdd || !customPlaylists[pName]) return;
+const dup = customPlaylists[pName].some(x => x.id === pendingTrackToAdd.id);
+if (dup) {
+showStatusNotification("Track already in this mixtape!");
+} else {
+customPlaylists[pName].push(pendingTrackToAdd);
+saveCustomPlaylists();
+renderCustomPlaylists();
+if (activeViewedPlaylist === pName) {
+displayPlaylistTracksInMainArea(pName);
+}
+showStatusNotification(`Saved "${pendingTrackToAdd.title}" to "${pName}"!`);
+}
+closeAddToPlaylistModal();
+}
+function closeAddToPlaylistModal() {
+const modal = document.getElementById('addToPlaylistModal');
+if (modal) {
+modal.style.display = 'none';
+modal.classList.add('hidden');
+}
+pendingTrackToAdd = null;
+}
+// TOUCH PLAYLIST -> LIST ALL SONGS IN MAIN AREA + SHUFFLE + SORT + DRAG REORDER
+function displayPlaylistTracksInMainArea(pName) {
+activeViewedPlaylist = pName;
+const tracks = customPlaylists[pName] || [];
+activeLibraryResults = [...tracks];
+activePlaybackQueue = [...tracks];
+// Update the source badge
+const badge = document.getElementById('activeSourceBadge');
+if (badge) {
+badge.textContent = `📁 ${pName}`;
+badge.className = "text-[9px] font-mono font-black bg-pink-500/10 border border-pink-500/20 text-pink-400 px-2.5 py-0.5 rounded-full uppercase";
+}
+// Replace quick suggestion tags area with playlist toolbar
+const tagsArea = document.getElementById('quickSuggestionTags');
+if (tagsArea) {
+tagsArea.innerHTML = `
+<button onclick="shuffleCurrentPlaylist()" class="flex-shrink-0 px-3 py-1.5 rounded-xl bg-pink-500/15 border border-pink-500/30 text-pink-300 active:bg-pink-500 active:text-white text-[10px] font-bold flex items-center gap-1.5 transition-all">
+🔀 <span>Shuffle</span>
+</button>
+<button onclick="sortPlaylistOrder('title')" class="flex-shrink-0 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 text-[10px] font-bold flex items-center gap-1 transition-all active:bg-white/20">
+🔤 <span>A-Z</span>
+</button>
+<button onclick="sortPlaylistOrder('artist')" class="flex-shrink-0 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 text-[10px] font-bold flex items-center gap-1 transition-all active:bg-white/20">
+👤 <span>Artist</span>
+</button>
+<button onclick="playCustomPlaylist('${pName.replace(/'/g, "\\'")}');" class="flex-shrink-0 px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 active:bg-emerald-500 active:text-white text-[10px] font-bold flex items-center gap-1 transition-all">
+▶️ <span>Play All</span>
+</button>
+<button onclick="resetToLibraryView()" class="flex-shrink-0 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-500 text-[10px] font-bold transition-all active:bg-white/20">
+✕ Back
+</button>
+`;
+}
+// Render tracks using the correct function
+renderPlaylistWithDrag(pName, tracks);
+showStatusNotification(`📁 Loaded "${pName}" — ${tracks.length} songs`);
+}
+// Render playlist tracks with drag-to-reorder
+function renderPlaylistWithDrag(pName, tracks) {
+const container = document.getElementById('studioSongsContainer');
+if (!container) { renderStudioLibrary(tracks); return; }
+if (tracks.length === 0) {
+container.innerHTML = `<div class="text-center py-16 text-slate-500 font-bold uppercase tracking-widest text-[10px] border border-white/5 border-dashed rounded-3xl p-6">
+<div style="font-size:28px;margin-bottom:8px">🎵</div>
+Playlist is empty — search and add songs
+</div>`;
+return;
+}
+container.innerHTML = tracks.map((tr, idx) => `
+<div id="plcard_${idx}" draggable="true"
+ondragstart="dragStart(event, ${idx})"
+ondragover="event.preventDefault()"
+ondrop="dragDrop(event, ${idx}, '${pName.replace(/'/g,"\\'")}');"
+class="glass-card rounded-2xl p-3 flex items-center justify-between group cursor-pointer transition-all active:opacity-70"
+onclick="playTrackObject(customPlaylists['${pName.replace(/'/g,"\\'")}'][${idx}])">
+<div class="flex items-center gap-3 overflow-hidden text-left flex-1 min-w-0">
+<div class="w-8 h-8 rounded-lg overflow-hidden border border-white/5 flex-shrink-0 bg-black flex items-center justify-center text-slate-600 text-[10px] font-bold">
+${tr.img ? `<img src="${tr.img}" class="w-full h-full object-cover" onerror="this.style.display='none'" alt="">` : (idx+1)}
+</div>
+<div class="overflow-hidden min-w-0">
+<div class="text-xs font-bold text-white truncate group-hover:text-indigo-300 transition-colors">${tr.title || 'Unknown'}</div>
+<div class="text-[9px] text-slate-400 truncate uppercase tracking-wider mt-0.5 font-bold">${tr.artist || ''}</div>
+</div>
+</div>
+<div class="flex items-center gap-1.5 flex-shrink-0">
+<button onclick="removeFromPlaylist('${pName.replace(/'/g,"\\'")}',${idx},event)" class="p-1.5 text-slate-600 hover:text-red-400 rounded-lg bg-white/0 hover:bg-white/10 opacity-0 group-hover:opacity-100 transition-all text-[9px]" title="Remove">✕</button>
+<div class="w-7 h-7 rounded-full bg-indigo-600/80 text-white flex items-center justify-center text-[10px]">▶</div>
+<div class="text-slate-600 cursor-grab active:cursor-grabbing px-1 touch-none">⠿</div>
+</div>
+</div>
+`).join('');
+if (window.lucide) lucide.createIcons();
+}
+// Drag reorder helpers
+let dragSrcIdx = null;
+function dragStart(e, idx) { dragSrcIdx = idx; e.dataTransfer.effectAllowed = 'move'; }
+function dragDrop(e, targetIdx, pName) {
+e.preventDefault();
+if (dragSrcIdx === null || dragSrcIdx === targetIdx) return;
+const arr = [...(customPlaylists[pName] || [])];
+const [moved] = arr.splice(dragSrcIdx, 1);
+arr.splice(targetIdx, 0, moved);
+customPlaylists[pName] = arr;
+saveCustomPlaylists();
+displayPlaylistTracksInMainArea(pName);
+dragSrcIdx = null;
+}
+// Remove individual track from playlist
+function removeFromPlaylist(pName, idx, e) {
+if (e) e.stopPropagation();
+if (!customPlaylists[pName]) return;
+customPlaylists[pName].splice(idx, 1);
+saveCustomPlaylists();
+displayPlaylistTracksInMainArea(pName);
+}
+// Reset to normal library view
+function resetToLibraryView() {
+activeViewedPlaylist = null;
+const badge = document.getElementById('activeSourceBadge');
+if (badge) {
+badge.textContent = 'JioSaavn';
+badge.className = "text-[9px] font-mono font-black bg-indigo-500/10 border border-white/10 text-indigo-400 px-2 py-0.5 rounded-full uppercase";
+}
+const tagsArea = document.getElementById('quickSuggestionTags');
+if (tagsArea) renderQuickSuggestions();
+renderStudioLibrary(studioMasterTracks);
+}
+function playCustomPlaylist(pName) {
+displayPlaylistTracksInMainArea(pName);
+const tracks = customPlaylists[pName] || [];
+if (tracks.length > 0) {
+currentQueueIndex = 0;
+playTrackObject(tracks[0]);
+}
+}
+function shuffleCurrentPlaylist() {
+if (!activeViewedPlaylist || !customPlaylists[activeViewedPlaylist]) return;
+const arr = [...customPlaylists[activeViewedPlaylist]];
+for (let i = arr.length - 1; i > 0; i--) {
+const j = Math.floor(Math.random() * (i + 1));
+[arr[i], arr[j]] = [arr[j], arr[i]];
+}
+customPlaylists[activeViewedPlaylist] = arr;
+saveCustomPlaylists();
+displayPlaylistTracksInMainArea(activeViewedPlaylist);
+showStatusNotification("🔀 Mixtape Shuffled!");
+}
+function sortPlaylistOrder(type) {
+if (!activeViewedPlaylist || !customPlaylists[activeViewedPlaylist]) return;
+const arr = [...customPlaylists[activeViewedPlaylist]];
+if (type === 'title') {
+arr.sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+} else if (type === 'artist') {
+arr.sort((a, b) => (a.artist || '').localeCompare(b.artist || ''));
+}
+customPlaylists[activeViewedPlaylist] = arr;
+saveCustomPlaylists();
+displayPlaylistTracksInMainArea(activeViewedPlaylist);
+showStatusNotification(`Sorted mixtape by ${type}!`);
+}
+function renderCustomPlaylists() {
+const container = document.getElementById('playlistsContainer');
+const keys = Object.keys(customPlaylists);
+if (keys.length === 0) {
+container.innerHTML = `
+<div class="text-center py-6 text-[9px] text-slate-500 font-extrabold uppercase tracking-widest border border-dashed border-white/5 rounded-2xl">
+No Custom Playlists Created
+</div>
+`;
+return;
+}
+container.innerHTML = keys.map(pName => `
+<div class="glass-card rounded-xl px-3.5 py-2.5 flex items-center justify-between cursor-pointer group hover:border-pink-500" onclick="playCustomPlaylist('${pName}')">
+<div class="flex items-center gap-3 overflow-hidden text-left flex-1 min-w-0">
+<div class="w-8 h-8 rounded-lg bg-pink-500/10 border border-pink-500/20 text-pink-400 flex items-center justify-center flex-shrink-0 shadow-inner">
+<i data-lucide="music-3" class="w-4 h-4"></i>
+</div>
+<div class="overflow-hidden min-w-0">
+<div class="text-xs font-bold text-white truncate group-hover:text-pink-300 transition-colors">${pName}</div>
+<span class="text-[8px] font-mono font-bold text-slate-500 uppercase">${customPlaylists[pName].length} tracks</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 flex-shrink-0">
+<button onclick="downloadCustomPlaylistAsZip('${pName}', event)" class="p-1.5 text-slate-500 hover:text-indigo-400 rounded-lg bg-white/5 hover:bg-indigo-500/10 transition-colors" title="Download ZIP">
+<i data-lucide="download" class="w-3.5 h-3.5"></i>
+</button>
+<button onclick="deletePlaylistPrompt('${pName}', event)" class="p-1.5 text-slate-500 hover:text-red-400 rounded-lg bg-white/5 hover:bg-red-500/10 transition-colors" title="Delete Mix">
+<i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+</button>
+</div>
+</div>
+`).join('');
+lucide.createIcons();
+}
+// --- YouTube Background Video Logic ---
+let ytPlayer = null;
+let isVideoBgEnabled = false;
+let currentVideoId = null;
+function onYouTubeIframeAPIReady() {
+if (ytPlayer) return;
+try {
+ytPlayer = new YT.Player('ytPlayer', {
+height: '100%',
+width: '100%',
+videoId: currentVideoId || 'jfKfPfyJRdk',
+playerVars: {
+autoplay: 1,
+controls: 0,
+disablekb: 1,
+fs: 0,
+modestbranding: 1,
+rel: 0,
+mute: 1,
+showinfo: 0,
+iv_load_policy: 3,
+playsinline: 1
+},
+events: {
+'onReady': onPlayerReady,
+'onStateChange': onPlayerStateChange
+}
+});
+} catch (err) {
+console.error("Error creating YT Player:", err);
+}
+}
+function onPlayerReady(event) {
+try {
+event.target.mute();
+if (isVideoBgEnabled) {
+if (currentVideoId) {
+event.target.loadVideoById(currentVideoId);
+}
+event.target.playVideo();
+const container = document.getElementById('bgVideoContainer');
+if (container) container.classList.remove('hidden');
+}
+} catch (e) {
+console.warn("onPlayerReady error:", e);
+}
+}
+function onPlayerStateChange(event) {
+updateMobileFooterVisibility();
+if (event.data === YT.PlayerState.ENDED && event.target && typeof event.target.playVideo === 'function') {
+if (activeTrack && activeTrack.source === 'youtube') {
+playNextTrack();
+} else {
+event.target.playVideo(); // Loop background video
+}
+}
+}
+function toggleBackgroundVideo() {
+isVideoBgEnabled = !isVideoBgEnabled;
+const btn = document.getElementById('videoToggleButton');
+if (isVideoBgEnabled) {
+if (btn) {
+btn.classList.add('text-red-400', 'border-red-500/50', 'bg-red-500/10', 'shadow-lg', 'shadow-red-500/20');
+btn.classList.remove('text-slate-400', 'border-white/10', 'bg-white/5');
+}
+showStatusNotification("Background Video Enabled");
+const targetTrack = activeTrack || (typeof studioMasterTracks !== 'undefined' && studioMasterTracks.length > 0 ? studioMasterTracks[0] : null);
+if (targetTrack) {
+searchAndPlayVideo(targetTrack.title, targetTrack.artist);
+} else {
+searchAndPlayVideo("Cyberpunk Synthwave", "Vektor Prime");
+}
+} else {
+if (btn) {
+btn.classList.remove('text-red-400', 'border-red-500/50', 'bg-red-500/10', 'shadow-lg', 'shadow-red-500/20');
+btn.classList.add('text-slate-400', 'border-white/10', 'bg-white/5');
+}
+showStatusNotification("Background Video Disabled");
+if (ytPlayer && typeof ytPlayer.stopVideo === 'function') {
+ytPlayer.stopVideo();
+}
+const container = document.getElementById('bgVideoContainer');
+if (container) container.classList.add('hidden');
+const globalBg = document.getElementById('global-admin-bg-container');
+if (globalBg) globalBg.style.display = 'none';
+}
+}
+async function searchAndPlayVideo(title, artist) {
+if (!isVideoBgEnabled) return;
+let useSongVideo = window.__bgMusicUseSongVideo !== undefined ? window.__bgMusicUseSongVideo : true;
+let defaultBg = window.__bgMusicDefault || "jfKfPfyJRdk";
+try {
+let videoId = null;
+if (useSongVideo) {
+const query = `${title} ${artist} music video`;
+try {
+const res = await fetch(`/api/music/yt-search?q=${encodeURIComponent(query)}`);
+if (res.ok) {
+const data = await res.json();
+if (data.videoId) videoId = data.videoId;
+}
+} catch (e) {
+console.warn("Primary yt-search failed:", e);
+}
+if (!videoId) {
+try {
+const simpleQuery = `${title} ${artist}`;
+const res = await fetch(`/api/music/yt-search?q=${encodeURIComponent(simpleQuery)}`);
+if (res.ok) {
+const data = await res.json();
+if (data.videoId) videoId = data.videoId;
+}
+} catch (e) {
+console.warn("Secondary yt-search failed:", e);
+}
+}
+}
+let finalType = 'youtube';
+if (!videoId) {
+videoId = defaultBg;
+finalType = window.__bgMusicType || 'auto';
+}
+currentVideoId = videoId;
+const container = document.getElementById('bgVideoContainer');
+// If it's explicitly not youtube (e.g. M3U or Direct), fallback to global inject
+if (finalType !== 'youtube' && videoId === defaultBg && window.injectBackground) {
+if (container) container.classList.add('hidden');
+if (ytPlayer && typeof ytPlayer.stopVideo === 'function') ytPlayer.stopVideo();
+window.injectBackground(finalType, videoId);
+} else {
+// Hide any globally injected background
+const globalBg = document.getElementById('global-admin-bg-container');
+if (globalBg) globalBg.style.display = 'none';
+if (container) container.classList.remove('hidden');
+if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+ytPlayer.loadVideoById(currentVideoId);
+ytPlayer.mute();
+ytPlayer.playVideo();
+} else if (window.YT && window.YT.Player) {
+onYouTubeIframeAPIReady();
+}
+}
+} catch (err) {
+console.error("Failed to load background video:", err);
+}
+}
+window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+if (window.YT && window.YT.Player) {
+onYouTubeIframeAPIReady();
+}
+// --- Settings Logic ---
+function toggleSettingsModal(show) {
+const modal = document.getElementById('settingsModal');
+if (show) {
+modal.classList.remove('hidden');
+} else {
+modal.classList.add('hidden');
+}
+}
+let settingsState = {
+bar: true,
+video: typeof isVideoBgEnabled !== 'undefined' ? isVideoBgEnabled : false,
+text: true,
+vinyl: true,
+inlineControls: true,
+playerBar: true,
+fullscreenMode: false,
+blackBg: true
+};
+function toggleSetting(type) {
+settingsState[type] = !settingsState[type];
+const btn = document.getElementById('toggle' + type.charAt(0).toUpperCase() + type.slice(1) + 'Btn');
+const state = settingsState[type];
+if (state) {
+btn.textContent = 'ON';
+if (type === 'bar') {
+btn.className = 'px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-teal-500/20 text-teal-400 border border-teal-500/30';
+document.getElementById('visualizerCanvas').style.display = 'block';
+} else if (type === 'video') {
+btn.className = 'px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-red-500/20 text-red-400 border border-red-500/30';
+if (typeof isVideoBgEnabled !== 'undefined' && !isVideoBgEnabled) toggleBackgroundVideo();
+} else if (type === 'text') {
+btn.className = 'px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-indigo-500/20 text-indigo-400 border border-white/10';
+const els = document.querySelectorAll('.text-center.w-full.max-w-sm.relative.z-20');
+if(els.length > 0) els[0].style.visibility = 'visible';
+} else if (type === 'vinyl') {
+btn.className = 'px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-pink-500/20 text-pink-400 border border-pink-500/30';
+document.getElementById('deckVinylWrapper').style.visibility = 'visible';
+} else if (type === 'inlineControls') {
+btn.className = 'px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
+const wrap = document.getElementById('inlineControlsWrapper');
+if (wrap) wrap.style.visibility = 'visible';
+} else if (type === 'playerBar') {
+btn.className = 'px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-cyan-500/20 text-cyan-400 border border-cyan-500/30';
+const footer = document.getElementById('mobileFooterPlayer');
+if (footer) {
+footer.style.display = 'block';
+footer.classList.remove('hidden');
+}
+} else if (type === 'fullscreenMode') {
+btn.className = 'px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-purple-500/20 text-purple-400 border border-purple-500/30';
+const centerPanel = document.getElementById('musicCenterPanel');
+if (centerPanel && !centerPanel.classList.contains('zoom-mode')) {
+toggleZoom();
+}
+} else if (type === 'blackBg') {
+btn.className = 'px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-amber-500/20 text-amber-400 border border-amber-500/30';
+const centerPanel = document.getElementById('musicCenterPanel');
+if (centerPanel) {
+centerPanel.style.setProperty('background', '#050508', 'important');
+}
+}
+} else {
+btn.textContent = 'OFF';
+btn.className = 'px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-white/5 text-slate-500 border border-white/10';
+if (type === 'bar') {
+document.getElementById('visualizerCanvas').style.display = 'none';
+} else if (type === 'video') {
+if (typeof isVideoBgEnabled !== 'undefined' && isVideoBgEnabled) toggleBackgroundVideo();
+} else if (type === 'text') {
+const els = document.querySelectorAll('.text-center.w-full.max-w-sm.relative.z-20');
+if(els.length > 0) els[0].style.visibility = 'hidden';
+} else if (type === 'vinyl') {
+document.getElementById('deckVinylWrapper').style.visibility = 'hidden';
+} else if (type === 'inlineControls') {
+const wrap = document.getElementById('inlineControlsWrapper');
+if (wrap) wrap.style.visibility = 'hidden';
+} else if (type === 'playerBar') {
+const footer = document.getElementById('mobileFooterPlayer');
+if (footer) {
+footer.style.display = 'none';
+footer.classList.add('hidden');
+}
+} else if (type === 'fullscreenMode') {
+const centerPanel = document.getElementById('musicCenterPanel');
+if (centerPanel && centerPanel.classList.contains('zoom-mode')) {
+toggleZoom();
+}
+} else if (type === 'blackBg') {
+const centerPanel = document.getElementById('musicCenterPanel');
+if (centerPanel) {
+centerPanel.style.setProperty('background', 'transparent', 'important');
+}
+}
+}
+}
+function changeOpacity(type, value) {
+if (type === 'bar') {
+document.getElementById('visualizerCanvas').style.opacity = value;
+} else if (type === 'video') {
+const container = document.getElementById('bgVideoContainer');
+if (container) container.style.opacity = value;
+}
+}
+// Setup initial sync for video button
+setInterval(() => {
+const btn = document.getElementById('toggleVideoBtn');
+if (btn && typeof isVideoBgEnabled !== 'undefined' && isVideoBgEnabled !== settingsState.video) {
+settingsState.video = isVideoBgEnabled;
+if (settingsState.video) {
+btn.textContent = 'ON';
+btn.className = 'px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-red-500/20 text-red-400 border border-red-500/30';
+} else {
+btn.textContent = 'OFF';
+btn.className = 'px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-white/5 text-slate-500 border border-white/10';
+}
+}
+}, 1000);
+// High precision download handler
+async function downloadActiveTrack() {
+if (!activeTrack) {
+showStatusNotification("Select a studio recording track to download.");
+return;
+}
+if (activeTrack.isLive) {
+showStatusNotification("Live radio streams can't be downloaded.");
+return;
+}
+const tr = activeTrack;
+const buttons = [
+document.getElementById('downloadButton'),
+document.getElementById('mobileDownloadButton'),
+document.getElementById('inlineDownloadButton')
+].filter(Boolean);
+const originalHTMLMap = new Map();
+buttons.forEach(b => {
+originalHTMLMap.set(b, b.innerHTML);
+const isSmall = b.id === 'inlineDownloadButton' || b.id === 'mobileDownloadButton';
+b.innerHTML = `<i data-lucide="loader-2" class="${isSmall ? 'w-3.5 h-3.5' : 'w-4 h-4'} animate-spin text-indigo-400"></i>`;
+});
+if (typeof lucide !== 'undefined') lucide.createIcons();
+try {
+const res = await fetch(tr.url);
+const blob = await res.blob();
+const url = URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url;
+a.download = `${tr.artist || 'Artist'} - ${tr.title || 'Track'}.mp3`;
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
+URL.revokeObjectURL(url);
+showStatusNotification("Download completed successfully.");
+} catch (err) {
+console.warn("Client side direct download restricted, redirecting to raw audio file...", err);
+showStatusNotification("Streaming opened in new tab!");
+window.open(tr.url, '_blank');
+} finally {
+buttons.forEach(b => {
+if (originalHTMLMap.has(b)) {
+b.innerHTML = originalHTMLMap.get(b);
+}
+});
+if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+}
+// Media event handlers
+function setupAudioHandlers() {
+const syncIcons = (icon) => {
+const p1 = document.getElementById('masterPlayIcon');
+const p2 = document.getElementById('mobileMasterPlayIcon');
+const p3 = document.getElementById('inlineMasterPlayIcon');
+if (p1) p1.setAttribute('data-lucide', icon);
+if (p2) p2.setAttribute('data-lucide', icon);
+if (p3) p3.setAttribute('data-lucide', icon);
+if (typeof lucide !== 'undefined') lucide.createIcons();
+};
+// Play Event
+audio.addEventListener('play', () => {
+updateMobileFooterVisibility();
+syncIcons('pause');
+toggleVinylSpinAnimation(true);
+engageTonearm(true);
+});
+// Pause Event
+audio.addEventListener('pause', () => {
+updateMobileFooterVisibility();
+syncIcons('play');
+toggleVinylSpinAnimation(false);
+engageTonearm(false);
+});
+// Ended Event
+audio.addEventListener('ended', () => {
+updateMobileFooterVisibility();
+console.log("Audio ended. activeTrack:", activeTrack, "Current time:", audio.currentTime, "ReadyState:", audio.readyState);
+if (activeTrack && activeTrack.isLive) {
+console.warn("Live stream disconnected, ignoring auto-skip.");
+showStatusNotification("Live stream disconnected.");
+return;
+}
+// If track ends very early, it's likely a load error or invalid source
+if (audio.currentTime < 2 || audio.readyState === 0) {
+console.warn("Track ended too early or didn't load, ignoring skip.");
+return;
+}
+playNextTrack();
+});
+// Error Event
+audio.addEventListener('error', (e) => {
+updateMobileFooterVisibility();
+console.warn("Audio error:", e);
+showStatusNotification("Playback error occurred.");
+});
+audio.addEventListener('timeupdate', () => {
+if (activeTrack && activeTrack.isLive) return; // LIVE label stays fixed for radio
+const cur = audio.currentTime;
+const dur = audio.duration || 0;
+const curFormatted = formatTime(cur);
+const durFormatted = dur > 0 ? formatTime(dur) : '0:00';
+const seekCur = document.getElementById('seekerCurrentTime');
+if (seekCur) seekCur.textContent = curFormatted;
+const inCur = document.getElementById('inlineCurrentTime');
+if (inCur) inCur.textContent = curFormatted;
+if (dur > 0) {
+const seekDur = document.getElementById('seekerTotalDuration');
+if (seekDur) seekDur.textContent = durFormatted;
+const inDur = document.getElementById('inlineTotalDuration');
+if (inDur) inDur.textContent = durFormatted;
+if (isVideoBgEnabled && ytPlayer && ytPlayer.getCurrentTime) {
+const ytTime = ytPlayer.getCurrentTime();
+if (Math.abs(ytTime - cur) > 2) {
+ytPlayer.seekTo(cur, true);
+}
+}
+const progressPercentage = (cur / dur) * 100;
+const p1 = document.getElementById('timelineProgress');
+const p2 = document.getElementById('mobileTimelineProgress');
+const p3 = document.getElementById('inlineTimelineProgress');
+if (p1) p1.style.width = `${progressPercentage}%`;
+if (p2) p2.style.width = `${progressPercentage}%`;
+if (p3) p3.style.width = `${progressPercentage}%`;
+}
+});
+}
+function seekMobileAudio(e) {
+if (!audio || !audio.duration) return;
+const rect = e.currentTarget.getBoundingClientRect();
+const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+audio.currentTime = pos * audio.duration;
+}
+function dismissMobilePlayer() {
+if (audio) audio.pause();
+if (typeof ytPlayer !== 'undefined' && ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+ytPlayer.pauseVideo();
+}
+const footer = document.getElementById('mobileFooterPlayer');
+if (footer) {
+footer.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+footer.classList.add('translate-y-full', 'opacity-0', 'pointer-events-none');
+}
+}
+function formatTime(secs) {
+const mins = Math.floor(secs / 60);
+const remain = Math.floor(secs % 60);
+return `${mins}:${remain < 10 ? '0' : ''}${remain}`;
+}
+// Toast notifications
+function showStatusNotification(msg) {
+const toast = document.getElementById('deckNotificationToast');
+document.getElementById('toastMessage').textContent = msg;
+toast.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
+toast.classList.add('translate-y-0', 'opacity-100');
+setTimeout(() => {
+toast.classList.remove('translate-y-0', 'opacity-100');
+toast.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+}, 3500);
+}
+// Modals management
+function toggleEqualizerModal(show) {
+document.getElementById('equalizerModal').classList.toggle('hidden', !show);
+}
+function toggleHelpModal(show) {
+document.getElementById('helpModal').classList.toggle('hidden', !show);
+}
+// EQ Preset Adjusters
+function applyEQPreset(profile) {
+document.querySelectorAll('.eq-preset-btn').forEach(b => {
+b.className = "eq-preset-btn py-2 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold transition-all text-slate-400 hover:text-slate-200 border border-white/5";
+});
+const bBass = document.getElementById('eqSliderBass');
+const bMid = document.getElementById('eqSliderMid');
+const bTreble = document.getElementById('eqSliderTreble');
+if (profile === 'flat') {
+document.getElementById('eqBtnFlat').className = "eq-preset-btn py-2 rounded-xl bg-indigo-600 text-xs font-bold transition-all text-white border border-white/10 shadow-md";
+bBass.value = 0; bMid.value = 0; bTreble.value = 0;
+} else if (profile === 'bass') {
+document.getElementById('eqBtnBass').className = "eq-preset-btn py-2 rounded-xl bg-indigo-600 text-xs font-bold transition-all text-white border border-white/10 shadow-md";
+bBass.value = 8; bMid.value = -1; bTreble.value = 3;
+} else if (profile === 'vocal') {
+document.getElementById('eqBtnVocal').className = "eq-preset-btn py-2 rounded-xl bg-indigo-600 text-xs font-bold transition-all text-white border border-white/10 shadow-md";
+bBass.value = -2; bMid.value = 7; bTreble.value = 4;
+}
+adjustEQSlider('Bass', bBass.value);
+adjustEQSlider('Mid', bMid.value);
+adjustEQSlider('Treble', bTreble.value);
+showStatusNotification(`EQ Profile applied: ${profile.toUpperCase()}`);
+}
+function adjustEQSlider(band, val) {
+document.getElementById(`sliderVal${band}`).innerText = `${val > 0 ? '+' : ''}${val} dB`;
+}
+// Sleep Mode Functionality
+let sleepClockInterval = null;
+function toggleAppSleep(enable = true) {
+const screen = document.getElementById('sleepModeScreen');
+const container = document.getElementById('sleepContainer');
+if (enable) {
+screen.classList.remove('hidden');
+setTimeout(() => {
+screen.classList.remove('opacity-0', 'pointer-events-none');
+container.classList.remove('scale-95');
+}, 50);
+updateSleepClock();
+if (sleepClockInterval) clearInterval(sleepClockInterval);
+sleepClockInterval = setInterval(updateSleepClock, 1000);
+} else {
+screen.classList.add('opacity-0', 'pointer-events-none');
+container.classList.add('scale-95');
+setTimeout(() => {
+screen.classList.add('hidden');
+}, 700);
+if (sleepClockInterval) {
+clearInterval(sleepClockInterval);
+sleepClockInterval = null;
+}
+}
+}
+function updateSleepClock() {
+const now = new Date();
+document.getElementById('sleepScreenTime').textContent = now.toLocaleTimeString('en-US', {hour12: false});
+document.getElementById('sleepScreenDate').textContent = now.toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric'});
+}
+// Keyboard shortkey bindings
+function setupKeyboardDeckShortcuts() {
+document.addEventListener('keydown', (e) => {
+if (e.target.tagName === 'INPUT') return; // ignore when typing
+if (e.code === 'Space') {
+e.preventDefault();
+toggleMasterPlay();
+} else if (e.code === 'ArrowRight') {
+playNextTrack();
+} else if (e.code === 'ArrowLeft') {
+playPrevTrack();
+} else if (e.code === 'ArrowUp') {
+e.preventDefault();
+const nv = Math.min(1, audio.volume + 0.05);
+document.getElementById('volumeSlider').value = nv;
+adjustVolume(nv);
+} else if (e.code === 'ArrowDown') {
+e.preventDefault();
+const nv = Math.max(0, audio.volume - 0.05);
+document.getElementById('volumeSlider').value = nv;
+adjustVolume(nv);
+} else if (e.code === 'KeyM') {
+toggleAudioMute();
+}
+});
+}
+function updateMobileFooterVisibility() {
+const footer = document.getElementById('mobileFooterPlayer');
+if (!footer) return;
+// Always keep player controls container stably docked, visible, and accessible
+footer.classList.remove('translate-y-full', 'opacity-0', 'pointer-events-none', 'translate-y-[150%]');
+footer.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+}
+window.addEventListener('resize', updateMobileFooterVisibility);
+document.addEventListener('DOMContentLoaded', updateMobileFooterVisibility);
+async function downloadCustomPlaylistAsZip(pName, event) {
+if (event) event.stopPropagation();
+if (typeof JSZip === 'undefined' || typeof saveAs === 'undefined') {
+showStatusNotification('ZIP library not loaded.');
+return;
+}
+const playlistTracks = customPlaylists[pName];
+if (!playlistTracks || playlistTracks.length === 0) {
+showStatusNotification('Playlist is empty.');
+return;
+}
+showStatusNotification('Archiving ' + playlistTracks.length + ' tracks...');
+const zip = new JSZip();
+let downloadedCount = 0;
+for (let i = 0; i < playlistTracks.length; i++) {
+const track = playlistTracks[i];
+try {
+showStatusNotification('Fetching: ' + track.title);
+let url = track.downloadUrl || track.url || track.sourceUrl || track.streamUrl;
+if (url) {
+let fetchUrl = url;
+if (!url.startsWith('/')) {
+fetchUrl = '/api/stream-proxy?url=' + encodeURIComponent(url);
+}
+const response = await fetch(fetchUrl);
+if (response.ok) {
+const blob = await response.blob();
+const ext = url.includes('.m4a') ? 'm4a' : (url.includes('.wav') ? 'wav' : 'mp3');
+const fileName = ((track.artist ? track.artist + ' - ' : '') + track.title + '.' + ext).replace(/[\/\?<>\\:\*\|":]/g, '');
+zip.file(fileName, blob);
+downloadedCount++;
+}
+}
+} catch(e) {
+console.error('Failed to download track', track, e);
+}
+}
+if (downloadedCount > 0) {
+showStatusNotification('Zipping ' + downloadedCount + ' tracks...');
+const content = await zip.generateAsync({ type: 'blob' });
+saveAs(content, pName + '.zip');
+showStatusNotification('Download complete!');
+} else {
+showStatusNotification('Failed to download any tracks.');
+}
+}
+async function downloadQueueAsZip() {
+if (typeof JSZip === 'undefined' || typeof saveAs === 'undefined') {
+showStatusNotification('ZIP library not loaded.');
+return;
+}
+if (!activePlaybackQueue || activePlaybackQueue.length === 0) {
+showStatusNotification('Queue is empty.');
+return;
+}
+showStatusNotification(`Archiving ${activePlaybackQueue.length} tracks...`);
+const zip = new JSZip();
+let downloadedCount = 0;
+for (let i = 0; i < activePlaybackQueue.length; i++) {
+const track = activePlaybackQueue[i];
+try {
+showStatusNotification(`Fetching: ${track.title}`);
+let url = track.downloadUrl || track.url || track.sourceUrl || track.streamUrl;
+if (url) {
+let fetchUrl = url;
+if (!url.startsWith('/')) {
+fetchUrl = `/api/stream-proxy?url=${encodeURIComponent(url)}`;
+}
+const response = await fetch(fetchUrl);
+if (response.ok) {
+const blob = await response.blob();
+const ext = url.includes('.m4a') ? 'm4a' : (url.includes('.wav') ? 'wav' : 'mp3');
+const fileName = `${track.artist ? track.artist + ' - ' : ''}${track.title}.${ext}`.replace(/[\/\?<>\\:\*\|":]/g, '');
+zip.file(fileName, blob);
+downloadedCount++;
+}
+}
+} catch(e) {
+console.error('Failed to download track', track, e);
+}
+}
+if (downloadedCount > 0) {
+showStatusNotification(`Zipping ${downloadedCount} tracks...`);
+const content = await zip.generateAsync({ type: 'blob' });
+saveAs(content, 'Aetheris_Playlist.zip');
+showStatusNotification('Download complete!');
+} else {
+showStatusNotification('Failed to download any tracks.');
+}
+}
+async function playDirectLink() {
+const input = document.getElementById("directLinkInput");
+const btn = document.getElementById("playDirectLinkBtn");
+const url = input.value.trim();
+if (!url) {
+showStatusNotification("Please enter a valid JioSaavn or YouTube link");
+return;
+}
+btn.innerHTML = "<i data-lucide=\"loader-2\" class=\"w-4 h-4 animate-spin\"></i>";
+lucide.createIcons();
+try {
+const res = await fetch(`/api/music/resolve-link?url=${encodeURIComponent(url)}`);
+if (res.ok) {
+const data = await res.json();
+let tracks = data.results || (Array.isArray(data) ? data : [data]);
+if (!tracks || tracks.length === 0 || !tracks[0].id) {
+showStatusNotification("No tracks resolved.");
+return;
+}
+// Reset queue to these tracks
+activePlaybackQueue = tracks;
+currentQueueIndex = 0;
+playTrackObject(tracks[0]);
+const track = tracks[0];
+// Inject into search grid
+if (typeof studioMasterTracks !== 'undefined') {
+studioMasterTracks.unshift(track);
+}
+if (typeof activeLibraryResults !== 'undefined') {
+activeLibraryResults.unshift(track);
+renderStudioLibrary(activeLibraryResults);
+} else {
+renderStudioLibrary([track]);
+}
+showStatusNotification("Playing linked track...");
+input.value = "";
+} else {
+showStatusNotification("Failed to resolve link. Ensure it is valid.");
+}
+} catch (err) {
+console.error(err);
+showStatusNotification("Error resolving link.");
+}
+btn.innerHTML = "Play";
+}
+function handleLocalAudioUpload(event) {
+const files = event.target.files;
+if (!files || files.length === 0) return;
+const newTracks = [];
+for (let i = 0; i < files.length; i++) {
+const file = files[i];
+const fileUrl = URL.createObjectURL(file);
+const track = {
+id: `local_${Date.now()}_${i}`,
+title: file.name.replace(/\.[^/.]+$/, ""), // remove extension
+artist: "Local File",
+album: "Local Upload",
+genre: "Uploaded",
+url: fileUrl,
+streamUrl: fileUrl,
+img: "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=480",
+image: "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=480",
+duration: "0:00",
+source: "local",
+isLocal: true
+};
+newTracks.push(track);
+}
+// Set playback queue
+activePlaybackQueue = newTracks;
+currentQueueIndex = 0;
+playTrackObject(newTracks[0]);
+// Inject into search grid
+if (typeof activeLibraryResults !== 'undefined') {
+activeLibraryResults.unshift(...newTracks);
+renderStudioLibrary(activeLibraryResults);
+} else if (typeof studioMasterTracks !== 'undefined') {
+studioMasterTracks.unshift(...newTracks);
+renderStudioLibrary(studioMasterTracks);
+} else {
+renderStudioLibrary(newTracks);
+}
+showStatusNotification(`Loaded ${newTracks.length} local file(s)`);
+// Reset input
+event.target.value = "";
+}
+// Permanent high-fidelity docked player container visibility
+function updateFooterVisibility() {
+const footer = document.getElementById('mobileFooterPlayer');
+if (!footer) return;
+// Keep the player controls stably docked and accessible across mobile & desktop
+footer.classList.remove('translate-y-full', 'opacity-0', 'pointer-events-none', 'translate-y-[150%]');
+footer.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+}
+// Keep player bar visible and synchronized on playback interactions
+const originalToggleMasterPlay = toggleMasterPlay;
+toggleMasterPlay = function() {
+originalToggleMasterPlay();
+updateFooterVisibility();
+};
+const originalRenderNowPlayingUI = renderNowPlayingUI;
+renderNowPlayingUI = function() {
+originalRenderNowPlayingUI();
+updateFooterVisibility();
+};
+// Initial setup
+window.addEventListener('resize', updateFooterVisibility);
+document.addEventListener('DOMContentLoaded', updateFooterVisibility);
+setTimeout(updateFooterVisibility, 100);
+</script>
+<script src="https://www.youtube.com/iframe_api"></script>
+<link rel="stylesheet" href="/local-ai.css">
+<script src="/local-ai.js"></script>
+<script src="/watchdog.js" id="maintenance-watchdog"></script>
+<!-- MODERN STUDIO PLAYLIST CREATOR MODAL -->
+<div id="modernPlaylistModal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4">
+<div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeModernPlaylistModal()"></div>
+<div class="relative w-full max-w-md bg-zinc-950/90 backdrop-blur-2xl border border-white/12 rounded-3xl p-6 shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-200">
+<div class="flex items-center justify-between border-b border-white/8 pb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-2xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400">
+<i data-lucide="music-2" class="w-5 h-5"></i>
+</div>
+<div>
+<h3 class="text-sm font-black uppercase tracking-wider text-white">Create New Mixtape</h3>
+<p class="text-[10px] text-zinc-400 font-medium">Custom playlist stored in your local studio</p>
+</div>
+</div>
+<button onclick="closeModernPlaylistModal()" class="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white flex items-center justify-center transition-colors">
+<i data-lucide="x" class="w-4 h-4"></i>
+</button>
+</div>
+<!-- Playlist Name Input -->
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Playlist Name</label>
+<input type="text" id="modalPlaylistNameInput" placeholder="e.g. Midnight Lofi, Workout Energy, Tamil Vibes..." class="w-full bg-zinc-900/80 border border-white/12 rounded-2xl px-4 py-3 text-xs font-semibold text-white outline-none focus:border-pink-500 transition-colors placeholder:text-zinc-600" onkeydown="if(event.key === 'Enter') confirmCreateModernPlaylist()">
+</div>
+<!-- Vibe Themes -->
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Theme / Vibe</label>
+<div class="grid grid-cols-3 gap-2" id="vibeSelectorGrid">
+<button type="button" onclick="selectPlaylistVibe('🔥 Top Hits', this)" class="vibe-btn active p-2.5 rounded-xl bg-white/5 border border-pink-500/50 text-[11px] font-bold text-white flex items-center justify-center gap-1.5 transition-all">🔥 Hits</button>
+<button type="button" onclick="selectPlaylistVibe('🌙 Midnight', this)" class="vibe-btn p-2.5 rounded-xl bg-white/5 border border-white/8 hover:border-white/20 text-[11px] font-bold text-zinc-300 flex items-center justify-center gap-1.5 transition-all">🌙 Lofi</button>
+<button type="button" onclick="selectPlaylistVibe('⚡ Cyberpunk', this)" class="vibe-btn p-2.5 rounded-xl bg-white/5 border border-white/8 hover:border-white/20 text-[11px] font-bold text-zinc-300 flex items-center justify-center gap-1.5 transition-all">⚡ Synth</button>
+<button type="button" onclick="selectPlaylistVibe('🎧 Master', this)" class="vibe-btn p-2.5 rounded-xl bg-white/5 border border-white/8 hover:border-white/20 text-[11px] font-bold text-zinc-300 flex items-center justify-center gap-1.5 transition-all">🎧 320k</button>
+<button type="button" onclick="selectPlaylistVibe('🌴 Chillout', this)" class="vibe-btn p-2.5 rounded-xl bg-white/5 border border-white/8 hover:border-white/20 text-[11px] font-bold text-zinc-300 flex items-center justify-center gap-1.5 transition-all">🌴 Chill</button>
+<button type="button" onclick="selectPlaylistVibe('🚀 Bass Boost', this)" class="vibe-btn p-2.5 rounded-xl bg-white/5 border border-white/8 hover:border-white/20 text-[11px] font-bold text-zinc-300 flex items-center justify-center gap-1.5 transition-all">🚀 Bass</button>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex gap-2.5 pt-2">
+<button onclick="closeModernPlaylistModal()" class="flex-1 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold text-zinc-400 hover:text-white transition-colors">Cancel</button>
+<button onclick="confirmCreateModernPlaylist()" class="flex-1 py-3 rounded-xl bg-gradient-to-r from-pink-600 to-indigo-600 hover:from-pink-500 hover:to-indigo-500 text-xs font-bold text-white shadow-lg shadow-pink-900/30 transition-all">Create Mixtape</button>
+</div>
+</div>
+</div>
+<!-- MODERN ADD TO PLAYLIST QUICK SELECTOR MODAL -->
+<div id="addToPlaylistModal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4">
+<div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeAddToPlaylistModal()"></div>
+<div class="relative w-full max-w-md bg-zinc-950/90 backdrop-blur-2xl border border-white/12 rounded-3xl p-6 shadow-2xl space-y-4 animate-in fade-in zoom-in-95 duration-200">
+<div class="flex items-center justify-between border-b border-white/8 pb-3">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+<i data-lucide="folder-plus" class="w-4.5 h-4.5"></i>
+</div>
+<div>
+<h3 class="text-xs font-black uppercase tracking-wider text-white">Save Track to Mixtape</h3>
+<p id="addToPlaylistTrackTitle" class="text-[10px] text-indigo-400 font-semibold truncate max-w-[240px]">Select a destination folder</p>
+</div>
+</div>
+<button onclick="closeAddToPlaylistModal()" class="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white flex items-center justify-center transition-colors">
+<i data-lucide="x" class="w-4 h-4"></i>
+</button>
+</div>
+<div id="addToPlaylistList" class="space-y-1.5 max-h-56 overflow-y-auto pr-1">
+<!-- Dynamically populated -->
+</div>
+<div class="pt-2 border-t border-white/8">
+<button onclick="closeAddToPlaylistModal(); openModernPlaylistModal();" class="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/8 hover:border-white/20 text-xs font-bold text-zinc-300 hover:text-white flex items-center justify-center gap-2 transition-all">
+<i data-lucide="plus" class="w-3.5 h-3.5"></i>
+<span>Create New Mixtape</span>
+</button>
+</div>
+</div>
+<!-- MUSIC HISTORY FLOATING DRAWER (DESKTOP & MOBILE QUICK POPUP) -->
+<div id="musicHistorySection" class="fixed bottom-[88px] right-3 sm:right-5 z-40 w-[94vw] max-w-[380px] glass-panel rounded-3xl border border-white/10 shadow-[0_25px_70px_rgba(0,0,0,0.85)] overflow-hidden hidden">
+  <div class="flex items-center justify-between px-4 py-3.5 border-b border-white/10 bg-zinc-950/90 backdrop-blur-xl">
+    <div class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300">
+        <i data-lucide="history" class="w-4 h-4 text-slate-300"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-1.5">
+          <span class="text-xs font-bold uppercase tracking-wider text-white">Song History</span>
+          <span id="drawerHistoryCountBadge" class="text-[9px] font-mono font-bold bg-white/10 text-slate-300 px-1.5 py-0.5 rounded-full">0</span>
+        </div>
+        <p class="text-[9px] text-slate-400 font-medium">Tap any song to resume playback</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-1.5">
+      <button onclick="playAllMusicHistory()" class="text-[9px] font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 transition-all uppercase tracking-wider px-2.5 py-1 rounded-lg">Play All</button>
+      <button onclick="clearMusicHistory()" class="text-[9px] font-medium text-slate-400 hover:text-white transition-colors uppercase tracking-wider px-2 py-1 rounded-lg hover:bg-white/5">Clear</button>
+      <button onclick="toggleMusicHistory(false)" class="w-7 h-7 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+        <i data-lucide="x" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+  </div>
+  <div id="musicHistoryList" class="max-h-[58vh] overflow-y-auto overscroll-contain py-2 px-2.5 space-y-1.5 bg-zinc-950/75 backdrop-blur-xl custom-scrollbar"></div>
+  <div id="musicHistoryEmpty" class="hidden text-center py-10 text-slate-500 text-[10px] font-bold uppercase tracking-widest bg-zinc-950/75 backdrop-blur-xl px-4">
+    <i data-lucide="clock" class="w-6 h-6 mx-auto mb-2 text-slate-600"></i>
+    <div>No songs played yet</div>
+    <p class="text-[9px] text-slate-600 font-medium normal-case tracking-normal mt-1">Songs you play will automatically appear here.</p>
+  </div>
+</div>
+<!-- History Toggle Button (near footer, bottom-right) -->
+<button id="historyToggleBtn" onclick="toggleMusicHistory()" class="fixed bottom-[88px] right-3 sm:right-5 z-30 w-11 h-11 rounded-2xl bg-black/80 border border-white/15 text-slate-300 hover:text-white hover:bg-white/15 transition-all flex items-center justify-center shadow-xl backdrop-blur-xl cursor-pointer" title="Recently Played Songs" aria-label="Music History">
+  <i data-lucide="history" class="w-4 h-4"></i>
+</button>
+<script>
+// ===== FULL SONG HISTORY ENGINE (Desktop & Mobile + localStorage) =====
+const HISTORY_KEY = 'stalker_music_history';
+const MAX_HISTORY = 100;
+let _historyOpen = false;
+
+function getMusicHistory() {
+  try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch { return []; }
+}
+function saveMusicHistory(arr) {
+  try { localStorage.setItem(HISTORY_KEY, JSON.stringify(arr.slice(0, MAX_HISTORY))); } catch {}
+  updateHistoryBadges();
+}
+function updateHistoryBadges() {
+  const count = getMusicHistory().length;
+  ['headerHistoryCountBadge', 'mobHistoryCountBadge', 'leftHistoryCountBadge', 'drawerHistoryCountBadge'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = String(count);
+  });
+}
+function getTrackSourceLabel(tr) {
+  if (!tr) return 'Studio';
+  if (tr.isSaavn || tr.source === 'saavn') return 'JioSaavn';
+  if (tr.source === 'youtube') return 'YouTube';
+  if (tr.isAudius || tr.source === 'audius') return 'Audius';
+  if (tr.isJamendo || tr.source === 'jamendo') return 'Jamendo';
+  if (tr.isArchive || tr.source === 'archive') return 'Archive';
+  if (tr.isLocal || tr.source === 'local') return 'Local';
+  if (tr.isLive) return 'Live Radio';
+  return tr.source || 'Master';
+}
+function addToMusicHistory(track) {
+  if (!track || !track.title) return;
+  const currentHist = getMusicHistory();
+  const existing = currentHist.find(h => (h.id && track.id && String(h.id) === String(track.id)) || (h.title === track.title && h.artist === track.artist));
+  const prevPlayCount = existing && existing.playCount ? Number(existing.playCount) : 0;
+  const hist = currentHist.filter(h => !((h.id && track.id && String(h.id) === String(track.id)) || (h.title === track.title && h.artist === track.artist)));
+  hist.unshift({
+    id: track.id || ('hist-' + Date.now()),
+    title: track.title,
+    artist: track.artist || 'Unknown Artist',
+    album: track.album || 'Single',
+    duration: track.duration || '3:45',
+    img: track.img || track.thumbnail || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=250&h=250',
+    url: (!track.isLocal && track.url) ? track.url : '',
+    streamUrl: (!track.isLocal && track.streamUrl) ? track.streamUrl : '',
+    source: track.source || getTrackSourceLabel(track).toLowerCase(),
+    sourceLabel: getTrackSourceLabel(track),
+    isSaavn: Boolean(track.isSaavn),
+    isJamendo: Boolean(track.isJamendo),
+    isAudius: Boolean(track.isAudius),
+    isArchive: Boolean(track.isArchive),
+    identifier: track.identifier || '',
+    playCount: prevPlayCount + 1,
+    playedAt: Date.now()
+  });
+  saveMusicHistory(hist);
+  renderMusicHistory();
+  if (typeof currentSearchSource !== 'undefined' && currentSearchSource === 'history') {
+    const q = document.getElementById('studioSearchInput')?.value || '';
+    renderArchiveHistoryView(q);
+  }
+}
+function formatHistoryTime(ts) {
+  if (!ts) return '';
+  const diff = Math.floor((Date.now() - ts) / 1000);
+  if (diff < 60) return 'Just now';
+  if (diff < 3600) return Math.floor(diff / 60) + 'm ago';
+  if (diff < 86400) return Math.floor(diff / 3600) + 'h ago';
+  return Math.floor(diff / 86400) + 'd ago';
+}
+function buildHistoryCardHtml(h, compact = false) {
+  const safeId = String(h.id || '').replace(/'/g, "\\'");
+  const isPlayingThis = typeof activeTrack !== 'undefined' && activeTrack && ((activeTrack.id && String(activeTrack.id) === String(h.id)) || activeTrack.title === h.title);
+  const srcLabel = h.sourceLabel || getTrackSourceLabel(h);
+  const playCountBadge = (h.playCount && h.playCount > 1) ? `<span class="text-[8px] font-mono font-bold px-1.5 py-0.5 rounded bg-pink-500/15 text-pink-300 border border-pink-500/25">${h.playCount}×</span>` : '';
+  return `
+    <div class="glass-card ${isPlayingThis ? 'active-play border-white/40 bg-white/10' : ''} rounded-2xl ${compact ? 'p-2' : 'p-2.5 sm:p-3'} flex items-center justify-between gap-2.5 group cursor-pointer transition-all" onclick="playHistoryTrackById('${safeId}')">
+      <div class="flex items-center gap-2.5 min-w-0 flex-1">
+        <div class="${compact ? 'w-9 h-9' : 'w-11 h-11'} rounded-xl overflow-hidden bg-zinc-900 border border-white/10 flex-shrink-0 relative">
+          ${h.img ? `<img src="${h.img}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=200&h=200'">` : ''}
+          <div class="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <i data-lucide="play" class="w-4 h-4 text-white fill-white"></i>
+          </div>
+        </div>
+        <div class="min-w-0 flex-1 text-left">
+          <div class="flex items-center gap-1.5">
+            <span class="text-xs font-bold ${isPlayingThis ? 'text-white' : 'text-slate-200'} truncate group-hover:text-white transition-colors">${h.title}</span>
+            ${playCountBadge}
+          </div>
+          <div class="flex items-center gap-1.5 text-[9px] text-slate-400 font-bold uppercase tracking-wider mt-0.5 truncate">
+            <span class="truncate">${h.artist || 'Unknown Artist'}</span>
+            <span>•</span>
+            <span class="text-slate-300 font-mono shrink-0">${srcLabel}</span>
+          </div>
+          <div class="text-[8px] text-slate-500 font-mono mt-0.5 flex items-center gap-1.5">
+            <span>${formatHistoryTime(h.playedAt)}</span>
+            ${h.duration ? `<span>• ${h.duration}</span>` : ''}
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-1 shrink-0">
+        <button onclick="saveHistoryTrackToPlaylist('${safeId}', event)" class="w-7 h-7 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-slate-300 hover:text-white flex items-center justify-center transition-all" title="Save to Mixtape">
+          <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+        </button>
+        <button onclick="removeSingleHistoryTrack('${safeId}', event)" class="w-7 h-7 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-slate-400 hover:text-white flex items-center justify-center transition-all" title="Remove from History">
+          <i data-lucide="trash-2" class="w-3 h-3"></i>
+        </button>
+        <div class="w-7 h-7 rounded-full bg-white text-black flex items-center justify-center shadow-md group-hover:scale-105 transition-all">
+          <i data-lucide="play" class="w-3 h-3 ml-0.5 fill-current"></i>
+        </div>
+      </div>
+    </div>
+  `;
+}
+function renderMusicHistory() {
+  updateHistoryBadges();
+  const hist = getMusicHistory();
+  // 1. Floating Drawer List
+  const list = document.getElementById('musicHistoryList');
+  const empty = document.getElementById('musicHistoryEmpty');
+  if (list) {
+    if (hist.length === 0) {
+      list.innerHTML = '';
+      if (empty) { empty.classList.remove('hidden'); list.classList.add('hidden'); }
+    } else {
+      if (empty) empty.classList.add('hidden');
+      list.classList.remove('hidden');
+      list.innerHTML = hist.map(h => buildHistoryCardHtml(h, true)).join('');
+    }
+  }
+  // 2. Left Panel Dedicated Song History Section
+  const leftList = document.getElementById('leftMusicHistoryList');
+  if (leftList) {
+    const q = (document.getElementById('leftHistorySearchInput')?.value || '').trim().toLowerCase();
+    const filtered = q ? hist.filter(h => (h.title || '').toLowerCase().includes(q) || (h.artist || '').toLowerCase().includes(q) || (h.sourceLabel || '').toLowerCase().includes(q)) : hist;
+    if (filtered.length === 0) {
+      leftList.innerHTML = `
+        <div class="text-center py-8 text-slate-500 text-[10px] font-bold uppercase tracking-widest border border-white/5 border-dashed rounded-2xl p-4">
+          <i data-lucide="history" class="w-5 h-5 mx-auto mb-1.5 text-slate-600"></i>
+          <div>${q ? 'No matching history tracks' : 'No song history yet'}</div>
+          <p class="text-[9px] text-slate-600 font-medium normal-case tracking-normal mt-0.5">Play any song to build your listening timeline.</p>
+        </div>
+      `;
+    } else {
+      leftList.innerHTML = filtered.map(h => buildHistoryCardHtml(h, true)).join('');
+    }
+  }
+  if (window.lucide) lucide.createIcons();
+}
+function renderArchiveHistoryView(filterQuery = '') {
+  const container = document.getElementById('studioSongsContainer');
+  if (!container) return;
+  const hist = getMusicHistory();
+  const q = (filterQuery || '').trim().toLowerCase();
+  const filtered = q
+    ? hist.filter(h => (h.title || '').toLowerCase().includes(q) || (h.artist || '').toLowerCase().includes(q) || (h.album || '').toLowerCase().includes(q) || (h.sourceLabel || '').toLowerCase().includes(q))
+    : hist;
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="text-center py-14 text-slate-500 font-bold uppercase tracking-widest text-[10px] border border-white/5 border-dashed rounded-3xl p-6 space-y-2">
+        <i data-lucide="history" class="w-7 h-7 text-indigo-400/50 mx-auto mb-2"></i>
+        <div class="text-xs text-slate-300">${q ? 'No Matching Songs in History' : 'Your Song History is Empty'}</div>
+        <p class="text-[10px] text-slate-500 normal-case tracking-normal max-w-xs mx-auto">Every song you stream from JioSaavn, YouTube, Audius, Jamendo, or Master Studio is automatically saved here for instant replay.</p>
+      </div>
+    `;
+    if (window.lucide) lucide.createIcons();
+    return;
+  }
+  const headerBar = `
+    <div class="flex items-center justify-between px-3 py-2 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 mb-2">
+      <div class="flex items-center gap-2">
+        <i data-lucide="clock" class="w-3.5 h-3.5 text-indigo-400"></i>
+        <span class="text-[10px] font-black uppercase tracking-wider text-indigo-200">${filtered.length} Recently Played ${filtered.length === 1 ? 'Song' : 'Songs'}</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <button onclick="playAllMusicHistory()" class="px-2.5 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-[9px] font-black uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer">
+          <i data-lucide="play" class="w-2.5 h-2.5 fill-current"></i> Play All
+        </button>
+        <button onclick="clearMusicHistory()" class="px-2 py-1 rounded-lg bg-white/5 hover:bg-rose-500/20 text-slate-300 hover:text-rose-300 text-[9px] font-bold uppercase tracking-wider transition-all cursor-pointer">
+          Clear All
+        </button>
+      </div>
+    </div>
+  `;
+  container.innerHTML = headerBar + filtered.map(h => buildHistoryCardHtml(h, false)).join('');
+  if (window.lucide) lucide.createIcons();
+}
+function toggleMusicHistory(forceState) {
+  _historyOpen = forceState !== undefined ? forceState : !_historyOpen;
+  const panel = document.getElementById('musicHistorySection');
+  const btn = document.getElementById('historyToggleBtn');
+  if (panel) panel.classList.toggle('hidden', !_historyOpen);
+  if (btn) btn.classList.toggle('text-indigo-400', _historyOpen);
+  if (_historyOpen) renderMusicHistory();
+}
+function removeSingleHistoryTrack(id, event) {
+  if (event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+  const next = getMusicHistory().filter(h => String(h.id) !== String(id));
+  saveMusicHistory(next);
+  renderMusicHistory();
+  if (typeof currentSearchSource !== 'undefined' && currentSearchSource === 'history') {
+    const q = document.getElementById('studioSearchInput')?.value || '';
+    renderArchiveHistoryView(q);
+  }
+  if (typeof showStatusNotification === 'function') showStatusNotification('Removed song from history');
+}
+function saveHistoryTrackToPlaylist(id, event) {
+  if (event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+  const h = getMusicHistory().find(item => String(item.id) === String(id));
+  if (!h) return;
+  if (!activeLibraryResults.some(t => String(t.id) === String(h.id))) {
+    activeLibraryResults.unshift(h);
+  }
+  if (typeof addTrackToPlaylistPrompt === 'function') {
+    addTrackToPlaylistPrompt(h.id, event);
+  }
+}
+function clearMusicHistory() {
+  saveMusicHistory([]);
+  renderMusicHistory();
+  if (typeof currentSearchSource !== 'undefined' && currentSearchSource === 'history') {
+    renderArchiveHistoryView('');
+  }
+  if (typeof showStatusNotification === 'function') showStatusNotification('Song history cleared');
+}
+async function playHistoryTrackById(id) {
+  toggleMusicHistory(false);
+  const hist = getMusicHistory();
+  const item = hist.find(h => String(h.id) === String(id));
+  if (!item) return;
+
+  // Set playback queue to history so Next/Prev buttons step through song history naturally
+  activePlaybackQueue = [...hist];
+  currentQueueIndex = activePlaybackQueue.findIndex(h => String(h.id) === String(id));
+
+  // If the item has a direct playable URL or is YouTube/Archive, play directly
+  if (item.url || item.streamUrl || item.source === 'youtube' || item.isArchive) {
+    playTrackObject(item);
+    return;
+  }
+
+  // Fallback: check studioMasterTracks or activeLibraryResults
+  const libMatch = (activeLibraryResults || []).find(t => String(t.id) === String(id) || t.title === item.title) ||
+                   (studioMasterTracks || []).find(t => String(t.id) === String(id) || t.title === item.title);
+  if (libMatch) {
+    playTrackObject(libMatch);
+    return;
+  }
+
+  // Otherwise resolve dynamically via JioSaavn search
+  if (typeof searchJioSaavn === 'function') {
+    if (typeof showStatusNotification === 'function') showStatusNotification(`Loading "${item.title}"...`);
+    try {
+      const results = await searchJioSaavn(`${item.title} ${item.artist || ''}`.trim());
+      if (results && results.length > 0) {
+        playTrackObject(results[0]);
+        return;
+      }
+    } catch (e) {}
+  }
+}
+function playAllMusicHistory() {
+  const hist = getMusicHistory();
+  if (!hist.length) {
+    if (typeof showStatusNotification === 'function') showStatusNotification('No songs in history yet');
+    return;
+  }
+  toggleMusicHistory(false);
+  activePlaybackQueue = [...hist];
+  currentQueueIndex = 0;
+  playHistoryTrackById(hist[0].id);
+  if (typeof showStatusNotification === 'function') showStatusNotification(`Playing all ${hist.length} songs from History`);
+}
+document.addEventListener('DOMContentLoaded', () => {
+  renderMusicHistory();
+});
+setTimeout(() => {
+  try { renderMusicHistory(); } catch(e) {}
+}, 150);
+</script>
+</body>
+</html>

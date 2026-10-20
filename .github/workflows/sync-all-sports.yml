@@ -1,0 +1,29 @@
+name: Master Sync All Live Sports Feeds
+
+on:
+  schedule:
+    - cron: '0 */2 * * *' # Every 2 hours
+  workflow_dispatch:
+
+jobs:
+  sync-all:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sync All Live Sports (Primary + Fallbacks)
+        run: node scripts/sync-sources.js all
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/ scripts/
+          git diff-index --quiet HEAD || git commit -m "chore(sync): automated sync of all sports feeds"
+          git push

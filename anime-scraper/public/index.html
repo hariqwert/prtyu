@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeStream - M3U Scraper & Video Player Test Suite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/styles.css">
+    <!-- HLS.js for browser video streaming -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="brand">
+            <div class="logo-icon">📺</div>
+            <div>
+                <h1>AnimeStream <span class="badge-tag">Test Lab</span></h1>
+                <p class="subtitle">Automated M3U Scraper & HLS Stream Player</p>
+            </div>
+        </div>
+        <div class="nav-stats">
+            <div class="stat-pill"><span class="dot"></span> Online (Port 3050)</div>
+            <div class="stat-pill secondary" id="statSeries">0 Series</div>
+            <div class="stat-pill secondary" id="statEpisodes">0 Episodes</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- MyAnimeList Hub & Scraper Control Card -->
+        <section class="card scraper-card">
+            <div class="card-header">
+                <div class="header-title-row">
+                    <div>
+                        <h2>⚡ Anime Hub & Automated Stream Scraper</h2>
+                        <span class="hint">Integrated with MyAnimeList to search, import watchlists, and auto-scrape streams</span>
+                    </div>
+                    <!-- Navigation Tabs -->
+                    <div class="hub-tabs">
+                        <button type="button" class="hub-tab active" data-tab="mal-search">🔍 Search MyAnimeList</button>
+                        <button type="button" class="hub-tab" data-tab="mal-user">👤 MAL Watchlist</button>
+                        <button type="button" class="hub-tab" data-tab="direct-url">🔗 Direct Scraper</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 1: MyAnimeList Search Panel -->
+            <div id="tab-mal-search" class="hub-panel active">
+                <form id="malSearchForm" class="scraper-form">
+                    <div class="input-row">
+                        <input type="text" id="malSearchInput" placeholder="Search any anime on MyAnimeList (e.g., Solo Leveling, Bleach, Jujutsu Kaisen, Naruto)..." value="Solo Leveling">
+                        <button type="submit" class="btn btn-primary">Search MAL</button>
+                    </div>
+                    <div class="options-row">
+                        <span class="hint">Click any anime result to auto-match and scrape its high-speed video streams</span>
+                        <div class="quick-samples">
+                            <span>Popular:</span>
+                            <button type="button" class="chip-btn" onclick="quickMalSearch('One Piece')">One Piece</button>
+                            <button type="button" class="chip-btn" onclick="quickMalSearch('Solo Leveling')">Solo Leveling</button>
+                            <button type="button" class="chip-btn" onclick="quickMalSearch('Jujutsu Kaisen')">Jujutsu Kaisen</button>
+                            <button type="button" class="chip-btn" onclick="quickMalSearch('Demon Slayer')">Demon Slayer</button>
+                        </div>
+                    </div>
+                </form>
+                <div id="malSearchResults" class="mal-grid"></div>
+            </div>
+
+            <!-- TAB 2: MyAnimeList User Watchlist Panel -->
+            <div id="tab-mal-user" class="hub-panel">
+                <form id="malUserForm" class="scraper-form">
+                    <div class="input-row">
+                        <input type="text" id="malUsernameInput" placeholder="Enter your MyAnimeList username (e.g. Xinil, or your username)..." value="Xinil">
+                        <select id="malListStatus">
+                            <option value="1" selected>Currently Watching</option>
+                            <option value="6">Plan to Watch</option>
+                            <option value="7">All Anime</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">Load Watchlist</button>
+                    </div>
+                    <div class="options-row">
+                        <span class="hint">Syncs your live MAL watch progress and lets you 1-click scrape next episodes</span>
+                    </div>
+                </form>
+                <div id="malUserResults" class="mal-grid"></div>
+            </div>
+
+            <!-- TAB 3: Direct URL Scraper Panel with Dedicated Single Episode Option -->
+            <div id="tab-direct-url" class="hub-panel">
+                <!-- Single Episode vs Full Season Mode Switcher -->
+                <div class="scrape-mode-toggle">
+                    <label class="mode-radio-card active" id="modeSingleLabel">
+                        <input type="radio" name="scrapeMode" id="modeSingleEp" value="single" checked>
+                        <span class="mode-icon">🎯</span>
+                        <div class="mode-text">
+                            <strong>Single Episode Scrape</strong>
+                            <span>Scrapes & plays ONLY 1 specific episode</span>
+                        </div>
+                    </label>
+                    <label class="mode-radio-card" id="modeSeasonLabel">
+                        <input type="radio" name="scrapeMode" id="modeSeason" value="season">
+                        <span class="mode-icon">⚡</span>
+                        <div class="mode-text">
+                            <strong>Full Season Scrape</strong>
+                            <span>Discovers and scrapes all episodes in season</span>
+                        </div>
+                    </label>
+                </div>
+
+                <form id="scrapeForm" class="scraper-form">
+                    <div class="input-row">
+                        <input type="url" id="targetUrl" placeholder="Enter Anime URL (e.g. https://animesalt.cx/episode/... or /series/...)" required value="https://animesalt.cx/episode/one-piece-21x1155/">
+                        
+                        <!-- Specific Ep # Input -->
+                        <div class="ep-num-input-wrap" id="epNumInputGroup">
+                            <label for="specificEpNum">🎯 Ep #:</label>
+                            <input type="number" id="specificEpNum" placeholder="Auto" value="1155" min="1" title="Specific episode number (auto-detected from URL if left blank)">
+                        </div>
+
+                        <!-- Season Limit Input -->
+                        <div class="ep-num-input-wrap" id="seasonLimitGroup" style="display: none;">
+                            <label for="scrapeLimit">Limit:</label>
+                            <input type="number" id="scrapeLimit" placeholder="All" min="1" max="200" title="Optional limit of episodes to scrape">
+                        </div>
+
+                        <button type="button" id="btnOpenEpModal" class="btn btn-secondary" onclick="openEpisodePicker()" title="Browse and pick any specific episode by number and English title">
+                            📋 Pick Episode
+                        </button>
+                        <button type="submit" id="scrapeBtn" class="btn btn-primary">
+                            <span class="btn-text">🎯 Scrape Single Episode</span>
+                        </button>
+                    </div>
+
+                    <div class="options-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="forceScrape"> Force re-resolve (bypass cache)
+                        </label>
+                        <div class="quick-samples">
+                            <span>Quick Samples:</span>
+                            <button type="button" class="chip-btn" onclick="setSample('https://animesalt.cx/episode/one-piece-21x1155/', 1155)">One Piece Ep 1155</button>
+                            <button type="button" class="chip-btn" onclick="setSample('https://animesalt.cx/episode/one-piece-21x1091/', 1091)">One Piece Ep 1091</button>
+                            <button type="button" class="chip-btn" onclick="setSample('https://animesalt.cx/episode/one-piece-21x1089/', 1089)">One Piece Ep 1089</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Scraper Live Terminal Log -->
+            <div id="terminalContainer" class="terminal-container" style="display: none;">
+                <div class="terminal-header">
+                    <span>Terminal Execution Log</span>
+                    <span id="terminalStatus" class="terminal-badge">RUNNING</span>
+                </div>
+                <pre id="terminalLogs" class="terminal-output"></pre>
+            </div>
+        </section>
+
+        <!-- Main Workspace Grid -->
+        <div class="workspace-grid">
+            <!-- Left: Video Player Panel -->
+            <section class="card player-card">
+                <div class="player-header">
+                    <div class="video-info">
+                        <h3 id="nowPlayingTitle">Select an episode to stream</h3>
+                        <div class="video-tags">
+                            <span class="tag" id="tagSeason">Season --</span>
+                            <span class="tag" id="tagQuality">HLS 1080p</span>
+                            <span class="tag" id="tagAudio">Multi-Audio</span>
+                        </div>
+                    </div>
+                    <div class="player-actions">
+                        <select id="playerEpisodeSwitcher" class="form-select player-ep-select">
+                            <option value="">🎬 Switch Episode...</option>
+                        </select>
+                        <button id="btnCopyStream" class="btn btn-sm btn-outline" title="Copy Raw Master M3U8 URL">📋 Copy URL</button>
+                    </div>
+                </div>
+
+                <div class="video-wrapper">
+                    <video id="videoPlayer" controls playsinline crossorigin="anonymous"></video>
+                    <div id="playerPlaceholder" class="player-placeholder">
+                        <div class="placeholder-content">
+                            <div class="play-icon">▶</div>
+                            <p>Pick an episode from the library to test streaming</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Audio & Subtitle Selector Toolbar -->
+                <div class="player-controls-bar">
+                    <div class="control-select-group">
+                        <label for="audioTrackSelect">🔊 Audio Track:</label>
+                        <select id="audioTrackSelect" class="form-select track-select">
+                            <option value="-1">Auto / Default</option>
+                        </select>
+                    </div>
+                    <div class="control-select-group">
+                        <label for="subtitleTrackSelect">💬 Subtitles:</label>
+                        <select id="subtitleTrackSelect" class="form-select track-select">
+                            <option value="-1">Subtitles: Off</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Custom Stream Tester Input Bar -->
+                <div class="custom-stream-box">
+                    <input type="text" id="customUrlInput" placeholder="Paste any custom .m3u8 stream link to test...">
+                    <button id="btnTestCustom" class="btn btn-sm btn-secondary">Play Direct</button>
+                </div>
+            </section>
+
+            <!-- Right: Stored Library & Episode Explorer -->
+            <section class="card library-card">
+                <div class="library-header">
+                    <div>
+                        <h2>📁 Scraped Anime Library</h2>
+                        <p class="hint">Stored in automated file system</p>
+                    </div>
+                    <div class="library-actions">
+                        <a id="btnDownloadSeasonM3u" href="#" class="btn btn-sm btn-outline" target="_blank">📥 Season M3U</a>
+                        <a id="btnDownloadMasterM3u" href="#" class="btn btn-sm btn-primary" target="_blank">📥 Master M3U</a>
+                    </div>
+                </div>
+
+                <!-- Series & Season Navigation Tabs -->
+                <div class="nav-selectors">
+                    <select id="seriesSelector" class="form-select"></select>
+                    <div id="seasonPills" class="season-pills"></div>
+                </div>
+
+                <!-- Episodes Scroll List -->
+                <div id="episodesList" class="episodes-list">
+                    <div class="loading-state">Loading library...</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Specific Episode Selection Modal -->
+    <div id="epPickerModal" class="modal-overlay" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <h3 id="epModalAnimeTitle">Select Specific Episode</h3>
+                    <span id="epModalSubtitle" class="modal-sub">Browse and pick any episode by number & English title</span>
+                </div>
+                <button type="button" id="btnEpModalClose" class="modal-close-btn" aria-label="Close modal">×</button>
+            </div>
+            
+            <div class="modal-toolbar">
+                <div class="modal-search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="epModalSearchInput" placeholder="Type episode number (e.g. 1089, 1155) or English keywords (Luffy, Egghead)...">
+                    <button type="button" id="epModalClearSearch" class="modal-clear-btn" style="display:none;">✕</button>
+                </div>
+                <div class="modal-stats-bar">
+                    <span id="epModalCount" class="badge-pill">Loading...</span>
+                    <div class="modal-quick-filters">
+                        <button type="button" class="filter-pill active" data-filter="all">All Episodes</button>
+                        <button type="button" class="filter-pill" data-filter="cached">Ready / Cached</button>
+                        <button type="button" class="filter-pill" data-filter="latest">Latest 20</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div id="epModalLoading" class="loading-state" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Discovering episodes and English titles from source...</p>
+                </div>
+                <div id="epModalGrid" class="ep-picker-grid"></div>
+                <div id="epModalEmpty" class="empty-state" style="display: none;">
+                    No episodes matched your search.
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <span class="modal-hint">💡 Clicking any episode will automatically select, scrape (if needed), and play it with audio & subtitle options.</span>
+                <button type="button" id="btnEpModalCancel" class="btn btn-sm btn-outline">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>AnimeStream Test Suite • Automated File System Architecture • Integrated with HLS.js & TorrStream</p>
+    </footer>
+
+    <script src="/public/app.js"></script>
+</body>
+</html>

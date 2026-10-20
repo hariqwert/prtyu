@@ -1,0 +1,29 @@
+name: Sync Sony & SonyLiv Feeds
+
+on:
+  schedule:
+    - cron: '30 */2 * * *' # Every 2 hours
+  workflow_dispatch:
+
+jobs:
+  sync-sony:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sync Sony Streams (Primary + Backups)
+        run: node scripts/sync-sources.js sony
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/sony/
+          git diff-index --quiet HEAD || git commit -m "chore(sync): auto-update Sony live sources"
+          git push

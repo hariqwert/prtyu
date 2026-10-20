@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="100%" height="100%">
+  <defs>
+    <!-- Hyper Laser Crimson Gradient -->
+    <linearGradient id="aethSqCrimson" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff0055" />
+      <stop offset="40%" stop-color="#ff3366" />
+      <stop offset="100%" stop-color="#990022" />
+    </linearGradient>
+
+    <!-- Supercharged Cyan Gradient -->
+    <linearGradient id="aethSqCyan" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f5d4" />
+      <stop offset="50%" stop-color="#00e5ff" />
+      <stop offset="100%" stop-color="#0077b6" />
+    </linearGradient>
+
+    <!-- Ultraviolet Purple Beam -->
+    <linearGradient id="aethSqViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c77dff" />
+      <stop offset="50%" stop-color="#9d4edd" />
+      <stop offset="100%" stop-color="#3c096c" />
+    </linearGradient>
+
+    <!-- Metallic Titanium Platinum -->
+    <linearGradient id="aethSqPlatinum" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="35%" stop-color="#94a3b8" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+
+    <!-- Singularity Core Glow -->
+    <radialGradient id="aethSqFlare" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="30%" stop-color="#00f5d4" stop-opacity="0.95" />
+      <stop offset="65%" stop-color="#ff0055" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Bloom Filters -->
+    <filter id="aethSqBloom" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4.5" result="blur1" />
+      <feMerge>
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="aethSqChroma" stdDeviation="2.5">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Luxury Obsidian Backplate -->
+  <rect x="8" y="8" width="224" height="224" rx="52" fill="#070a10" stroke="rgba(255,255,255,0.09)" stroke-width="2" />
+
+  <!-- AETHERIS EMBLEM -->
+  <g transform="translate(20, 20)">
+    <!-- Outer Gyro Ring -->
+    <circle cx="100" cy="100" r="90" fill="none" stroke="url(#aethSqCyan)" stroke-width="2" stroke-dasharray="12 16" opacity="0.8" />
+
+    <!-- Quantum Flux Tracks -->
+    <ellipse cx="100" cy="100" rx="84" ry="30" fill="none" stroke="url(#aethSqCrimson)" stroke-width="5" transform="rotate(-40 100 100)" filter="url(#aethSqChroma)" stroke-linecap="round" />
+    <ellipse cx="100" cy="100" rx="84" ry="30" fill="none" stroke="url(#aethSqCyan)" stroke-width="5" transform="rotate(40 100 100)" filter="url(#aethSqChroma)" stroke-linecap="round" />
+    <ellipse cx="100" cy="100" rx="84" ry="22" fill="none" stroke="url(#aethSqViolet)" stroke-width="3" filter="url(#aethSqChroma)" stroke-dasharray="10 6" opacity="0.85" />
+
+    <!-- Energetic Photon Nodes -->
+    <circle cx="30" cy="55" r="5.5" fill="#00f5d4" filter="url(#aethSqBloom)" />
+    <circle cx="170" cy="145" r="5.5" fill="#00f5d4" filter="url(#aethSqBloom)" />
+    <circle cx="165" cy="50" r="6" fill="#ff0055" filter="url(#aethSqBloom)" />
+    <circle cx="35" cy="150" r="6" fill="#ff0055" filter="url(#aethSqBloom)" />
+    <circle cx="100" cy="16" r="4.5" fill="#c77dff" filter="url(#aethSqBloom)" />
+    <circle cx="100" cy="184" r="4.5" fill="#c77dff" filter="url(#aethSqBloom)" />
+
+    <!-- Singularity Shield Core -->
+    <g transform="translate(100, 100)">
+      <circle cx="0" cy="0" r="46" fill="url(#aethSqFlare)" />
+      
+      <!-- Crystalline Octagon Hull -->
+      <polygon points="0,-36 26,-26 36,0 26,26 0,36 -26,26 -36,0 -26,-26" fill="#06090e" stroke="url(#aethSqPlatinum)" stroke-width="2.5" />
+      
+      <!-- Internal Quantum Prism -->
+      <polygon points="-11,-19 19,0 -11,19" fill="url(#aethSqCrimson)" filter="url(#aethSqChroma)" />
+      <polygon points="-11,-19 19,0 -2,0" fill="#ffffff" opacity="0.45" />
+
+      <!-- Center Singularity Spark -->
+      <circle cx="2" cy="0" r="4" fill="#ffffff" filter="url(#aethSqBloom)" />
+    </g>
+  </g>
+</svg>

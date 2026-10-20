@@ -1,0 +1,288 @@
+{
+  "animeTitle": "ONE PIECE Live Action",
+  "animeSlug": "one-piece-live-action",
+  "seasonSlug": "season-1",
+  "seasonTitle": "Season 1",
+  "firstScraped": "2026-09-13T08:03:14.783Z",
+  "lastUpdated": "2026-09-13T08:10:36.904Z",
+  "episodes": {
+    "one-piece-live-action-1x1": {
+      "slug": "one-piece-live-action-1x1",
+      "title": "ONE PIECE Live Action - Episode 1",
+      "episodeNumber": 1,
+      "url": "https://animesalt.cx/episode/one-piece-live-action-1x1/",
+      "videoId": "8c97612c3a3f6f599b47dce13298f48a",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/77d3e8692872406893477054d4e97f73/master.m3u8?md5=spWeWO54-CQXym34P8iWMA&expires=1789293865",
+      "poster": "https://as-cdn28.top/p/umsRhZ1_gkEuO9testCOuTYRCJW_w4gCA7H7sQFaCHKCWxhaHtgpunlb2N60Utn_x6HqejmW6qaCCLOh61G71g.jpg",
+      "resolvedAt": "2026-09-13T08:03:15.854Z"
+    },
+    "one-piece-live-action-1x2": {
+      "slug": "one-piece-live-action-1x2",
+      "title": "ONE PIECE Live Action - Episode 2",
+      "episodeNumber": 2,
+      "url": "https://animesalt.cx/episode/one-piece-live-action-1x2/",
+      "videoId": "62f6bceb09ed4b4c9e39a79babba985e",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/10627b2e1310666700f57ea5c94a3ba7/master.m3u8?md5=V7syzdQtLXKhhQ3KGmMTZw&expires=1789293866",
+      "poster": "https://as-cdn28.top/p/CgrOaARfpZDptLulORSflz2XUJDXTuIzgALJp8wYlVspx3Lw0AKKsMQhxTMf48EUhOjmxExhFXhLVMjtAHOx4Q.jpg",
+      "resolvedAt": "2026-09-13T08:03:17.630Z"
+    },
+    "one-piece-live-action-1x3": {
+      "slug": "one-piece-live-action-1x3",
+      "title": "ONE PIECE Live Action - Episode 3: One Piece Live Action 1x3",
+      "englishTitle": "One Piece Live Action 1x3",
+      "episodeNumber": 3,
+      "url": "https://animesalt.cx/episode/one-piece-live-action-1x3/",
+      "videoId": "8ff7d9eca2df771f960b2ab4d0c67e6e",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/95c4c2276f47b9281f9a09ff4ed20f8a/master.m3u8?md5=5O5fLFP9inBhHTqymJn6JA&expires=1789294294",
+      "poster": "https://as-cdn26.top/p/qFmaY0oAxjDIHeKED5WM8lmXnmyx3U7TxkmURHZp0ehXVr0xW28tH0RlmZtem7SE4uiaFFUqUDGNwJkbeq9FSg.jpg",
+      "subtitles": [
+        {
+          "file": "https://as-cdn29.top/p/qFmaY0oAxjDIHeKED5WM8lmXnmyx3U7TxkmURHZp0eiKAhHir7u4wAol_-NFX_4RtKRD1U84hIHGPbj2KcCpz_8Id6smyBldfGuAsNSH2ns.jpg",
+          "label": "Japanese",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn29.top/p/qFmaY0oAxjDIHeKED5WM8lmXnmyx3U7TxkmURHZp0eiKAhHir7u4wAol_-NFX_4RtKRD1U84hIHGPbj2KcCpz59qc3jtuFbOKDoxePIvWBI.jpg",
+          "label": "Japanese",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn29.top/p/qFmaY0oAxjDIHeKED5WM8lmXnmyx3U7TxkmURHZp0eiKAhHir7u4wAol_-NFX_4RKHPr-YwGxlruwpvtl6LV6wzk8RrUwreAunzGmqaGGtA.jpg",
+          "label": "Telugu",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn29.top/p/qFmaY0oAxjDIHeKED5WM8lmXnmyx3U7TxkmURHZp0eiKAhHir7u4wAol_-NFX_4RycXltSRe21NMRnl0llD7sBy-vD-i7j_T3MOoFL33rHY.jpg",
+          "label": "Tamil",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn29.top/p/qFmaY0oAxjDIHeKED5WM8lmXnmyx3U7TxkmURHZp0eiKAhHir7u4wAol_-NFX_4RmqmT5DvIS36Sav9i174uQuxcROpNl6eu7XBvq9G4d30.jpg",
+          "label": "Undefined",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn29.top/p/qFmaY0oAxjDIHeKED5WM8lmXnmyx3U7TxkmURHZp0eiKAhHir7u4wAol_-NFX_4RoSEi5RbXGjf-tC_s23tg0W1rjY_KfrPHn_YrDhgbits.jpg",
+          "label": "English",
+          "language": "eng"
+        }
+      ],
+      "resolvedAt": "2026-09-13T08:10:25.841Z"
+    },
+    "one-piece-live-action-1x4": {
+      "slug": "one-piece-live-action-1x4",
+      "title": "ONE PIECE Live Action - Episode 4: One Piece Live Action 1x4",
+      "englishTitle": "One Piece Live Action 1x4",
+      "episodeNumber": 4,
+      "url": "https://animesalt.cx/episode/one-piece-live-action-1x4/",
+      "videoId": "15e59bc75a6ec0f6874d653a36596549",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/cb8bd06e68f74e1194114562ab807643/master.m3u8?md5=QLguqZ3LRJeqfaEhIeRqnA&expires=1789294296",
+      "poster": "https://as-cdn29.top/p/jYDynhhJCnFrPOAu82lu_Kjek1g095tXLwWjOEkEVuEEdQbwyZWH4XytpnAVCP615DNnsN1H4MgMpmMqdU7kog.jpg",
+      "subtitles": [
+        {
+          "file": "https://as-cdn26.top/p/jYDynhhJCnFrPOAu82lu_Kjek1g095tXLwWjOEkEVuGchdJp5wo2VUZclRBW2ilak7syBmHwOdUBmxNdlSFX0P9jopNgNuHuAPD8l2B1ZyI.jpg",
+          "label": "Japanese",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn26.top/p/jYDynhhJCnFrPOAu82lu_Kjek1g095tXLwWjOEkEVuGchdJp5wo2VUZclRBW2ilak7syBmHwOdUBmxNdlSFX0Or6SCxaJNYTXmuw7JG9Z1A.jpg",
+          "label": "Japanese",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn26.top/p/jYDynhhJCnFrPOAu82lu_Kjek1g095tXLwWjOEkEVuGchdJp5wo2VUZclRBW2ila7B1GgUW7E74S7qF-zl-sylv2Pa6GVcwNjK1PPK5yM3Y.jpg",
+          "label": "Telugu",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn26.top/p/jYDynhhJCnFrPOAu82lu_Kjek1g095tXLwWjOEkEVuGchdJp5wo2VUZclRBW2ilat3NgxTUzgV043Nm_c_Op9xxZ-fgAhkfjMcibfeoewhc.jpg",
+          "label": "Tamil",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn26.top/p/jYDynhhJCnFrPOAu82lu_Kjek1g095tXLwWjOEkEVuGchdJp5wo2VUZclRBW2ilaFPj7r0QB35LeAwgaqACgEbvauOLYRu_SFRALOtecnzU.jpg",
+          "label": "Undefined",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn26.top/p/jYDynhhJCnFrPOAu82lu_Kjek1g095tXLwWjOEkEVuGchdJp5wo2VUZclRBW2ilaJ0YY4Yi7r4YkdLYSbhvU81RtiDRCgS5ytF7LYyZJ-Mo.jpg",
+          "label": "English",
+          "language": "eng"
+        }
+      ],
+      "resolvedAt": "2026-09-13T08:10:27.989Z"
+    },
+    "one-piece-live-action-1x5": {
+      "slug": "one-piece-live-action-1x5",
+      "title": "ONE PIECE Live Action - Episode 5: One Piece Live Action 1x5",
+      "englishTitle": "One Piece Live Action 1x5",
+      "episodeNumber": 5,
+      "url": "https://animesalt.cx/episode/one-piece-live-action-1x5/",
+      "videoId": "4d87b1e68362a3641ee2399990e7fec2",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/c43f5673af04230e3fc488088934432f/master.m3u8?md5=AM1Kqme3uGfPWGIu1S1H0A&expires=1789294298",
+      "poster": "https://as-cdn27.top/p/wjeF0G5ayCVHlvvjrgMn4G9CfnNX7WqJ0GDq33JXjQpkTUuGASizqrQzapOkhizNyqONuxMF_ItiB-7KIK-mdQ.jpg",
+      "subtitles": [
+        {
+          "file": "https://as-cdn28.top/p/wjeF0G5ayCVHlvvjrgMn4G9CfnNX7WqJ0GDq33JXjQoqGTjT-rU4EKAyS8CawfSR7MXvqcTqxprCkGpbWnx7I5lZUb70Uhr2YbQwXOhf7ms.jpg",
+          "label": "Japanese",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn28.top/p/wjeF0G5ayCVHlvvjrgMn4G9CfnNX7WqJ0GDq33JXjQoqGTjT-rU4EKAyS8CawfSR7MXvqcTqxprCkGpbWnx7I8jqVP-wmTHrykF2woPHVdA.jpg",
+          "label": "Japanese",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn28.top/p/wjeF0G5ayCVHlvvjrgMn4G9CfnNX7WqJ0GDq33JXjQoqGTjT-rU4EKAyS8CawfSRqw9b1DE2nQVd5O6g9LYAoOixBIykYeImBqol0ucVCb4.jpg",
+          "label": "Telugu",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn28.top/p/wjeF0G5ayCVHlvvjrgMn4G9CfnNX7WqJ0GDq33JXjQoqGTjT-rU4EKAyS8CawfSRmdwhNOGI12WIUzS91DPyEoQdxmUY1pJbNXdUuwNxhFI.jpg",
+          "label": "Tamil",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn28.top/p/wjeF0G5ayCVHlvvjrgMn4G9CfnNX7WqJ0GDq33JXjQoqGTjT-rU4EKAyS8CawfSRtjiQqeGR7py5ltKLWQ1H4TbhgMi18iEoF7u9gNV6dzI.jpg",
+          "label": "Undefined",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn28.top/p/wjeF0G5ayCVHlvvjrgMn4G9CfnNX7WqJ0GDq33JXjQoqGTjT-rU4EKAyS8CawfSRiTT0HO5RbftWTceeqMj09WZEYIX76slnytOwQEqmulc.jpg",
+          "label": "English",
+          "language": "eng"
+        }
+      ],
+      "resolvedAt": "2026-09-13T08:10:30.241Z"
+    },
+    "one-piece-live-action-1x6": {
+      "slug": "one-piece-live-action-1x6",
+      "title": "ONE PIECE Live Action - Episode 6: One Piece Live Action 1x6",
+      "englishTitle": "One Piece Live Action 1x6",
+      "episodeNumber": 6,
+      "url": "https://animesalt.cx/episode/one-piece-live-action-1x6/",
+      "videoId": "8b9a21934e5eb0b7f177bce0589c1b3d",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/e57a768f1c3be3ae90824964d2d21edc/master.m3u8?md5=xcKqe6AmFQWlyW5ojxy8Aw&expires=1789294301",
+      "poster": "https://as-cdn30.top/p/9_bvZRtNCmbnOwGPV-PKJSR5OekN_O1Mu7PkFwzQeN5hXky-68fzwCJVOOYaHkg5MSB5PsF44b-NrsbN4WKnjg.jpg",
+      "subtitles": [
+        {
+          "file": "https://as-cdn28.top/p/9_bvZRtNCmbnOwGPV-PKJSR5OekN_O1Mu7PkFwzQeN6Ft8yns5AlpxMKLbgxzRryllzlWDwyUneUg98vdJ2JPYJX7-tXN90LGmqJ4kLPSgY.jpg",
+          "label": "Japanese",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn28.top/p/9_bvZRtNCmbnOwGPV-PKJSR5OekN_O1Mu7PkFwzQeN6Ft8yns5AlpxMKLbgxzRryllzlWDwyUneUg98vdJ2JPbaN9aSXDbx3FT0jS6jaxsY.jpg",
+          "label": "Japanese",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn28.top/p/9_bvZRtNCmbnOwGPV-PKJSR5OekN_O1Mu7PkFwzQeN6Ft8yns5AlpxMKLbgxzRryRBLHHJ3YblEgu-9CL8hn-PQ6AN5jsApOLzpYkdLsnO4.jpg",
+          "label": "Telugu",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn28.top/p/9_bvZRtNCmbnOwGPV-PKJSR5OekN_O1Mu7PkFwzQeN6Ft8yns5AlpxMKLbgxzRryRJiraNEnO1RP-KyTKc5-p1JHbRNpmsG9VAqnFGF3S3Q.jpg",
+          "label": "Tamil",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn28.top/p/9_bvZRtNCmbnOwGPV-PKJSR5OekN_O1Mu7PkFwzQeN6Ft8yns5AlpxMKLbgxzRryHSyFwuviP2A5RNfK3oe224qU1fZRwM5Z9euEv7JT_3A.jpg",
+          "label": "Undefined",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn28.top/p/9_bvZRtNCmbnOwGPV-PKJSR5OekN_O1Mu7PkFwzQeN6Ft8yns5AlpxMKLbgxzRry4xnbNqI0BVP2ts-K84BuJtvj41c270Q0Z9htskbh-Dc.jpg",
+          "label": "English",
+          "language": "eng"
+        }
+      ],
+      "resolvedAt": "2026-09-13T08:10:32.329Z"
+    },
+    "one-piece-live-action-1x7": {
+      "slug": "one-piece-live-action-1x7",
+      "title": "ONE PIECE Live Action - Episode 7: One Piece Live Action 1x7",
+      "englishTitle": "One Piece Live Action 1x7",
+      "episodeNumber": 7,
+      "url": "https://animesalt.cx/episode/one-piece-live-action-1x7/",
+      "videoId": "b9e1596ee2ffd515d1b90e232fd474ab",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/dc75f7666902d4eab4c7b2480da20155/master.m3u8?md5=uzfvXxyTvj9lHJ2ycIDrKg&expires=1789294303",
+      "poster": "https://as-cdn30.top/p/0U5egWOt6cIMVlRgBXUMi0lB2P_bN7HNc5PIHvhRV0uchx6s00KIbs0zYYv7I7vExj_D_2d2AyPjMKw33npDsw.jpg",
+      "subtitles": [
+        {
+          "file": "https://as-cdn30.top/p/0U5egWOt6cIMVlRgBXUMi0lB2P_bN7HNc5PIHvhRV0uWHA9zzyB1D5Zse-Wo1HQAzqeiC6tyDZQceeNWHirtDEEoTZzMU-Zl4-k6112h0RA.jpg",
+          "label": "Japanese",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn30.top/p/0U5egWOt6cIMVlRgBXUMi0lB2P_bN7HNc5PIHvhRV0uWHA9zzyB1D5Zse-Wo1HQAzqeiC6tyDZQceeNWHirtDN7D46BoGoySRFF-2yIBSMs.jpg",
+          "label": "Japanese",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn30.top/p/0U5egWOt6cIMVlRgBXUMi0lB2P_bN7HNc5PIHvhRV0uWHA9zzyB1D5Zse-Wo1HQAezWI3gv-VekIF61BxNyCdGfASll2jtThC2L34JxiDg0.jpg",
+          "label": "Telugu",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn30.top/p/0U5egWOt6cIMVlRgBXUMi0lB2P_bN7HNc5PIHvhRV0uWHA9zzyB1D5Zse-Wo1HQAsKMHlJslTCfu0VnylwM1iWLAMJEAESveMLuKsLjDpWI.jpg",
+          "label": "Tamil",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn30.top/p/0U5egWOt6cIMVlRgBXUMi0lB2P_bN7HNc5PIHvhRV0uWHA9zzyB1D5Zse-Wo1HQA0Ns2CSV_Vv8FWhhb4oXP0bkbgLot39Ed3mrTlvNN6d4.jpg",
+          "label": "Undefined",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn30.top/p/0U5egWOt6cIMVlRgBXUMi0lB2P_bN7HNc5PIHvhRV0uWHA9zzyB1D5Zse-Wo1HQAFQaML5GXty-Br2T0pMESh_Znyv_WJ7jF-EmGhPChSMc.jpg",
+          "label": "English",
+          "language": "eng"
+        }
+      ],
+      "resolvedAt": "2026-09-13T08:10:34.424Z"
+    },
+    "one-piece-live-action-1x8": {
+      "slug": "one-piece-live-action-1x8",
+      "title": "ONE PIECE Live Action - Episode 8: One Piece Live Action 1x8",
+      "englishTitle": "One Piece Live Action 1x8",
+      "episodeNumber": 8,
+      "url": "https://animesalt.cx/episode/one-piece-live-action-1x8/",
+      "videoId": "a3f51ed7621fc3c5a6bd5abd3ac8789c",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/9c856082391a855bf7bd6ab22925045f/master.m3u8?md5=Tt1QRxjdRvK9Xben56vEYw&expires=1789294305",
+      "poster": "https://as-cdn26.top/p/YPl-Ma9LO2gf7MYM8o_3MLgwQlLZfDLHNSZZd7AWxT7MvmWW3ouG3ZsQnB4sBoYk3kfeTVI9Vn3tawYE3wLyvw.jpg",
+      "subtitles": [
+        {
+          "file": "https://as-cdn28.top/p/YPl-Ma9LO2gf7MYM8o_3MLgwQlLZfDLHNSZZd7AWxT4U2M2QC1UH4aSnPmHmpxihuJeLVRck_01Qp7_aUT9ArMfJA6f2l_bfof1FkCkrR28.jpg",
+          "label": "Japanese",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn28.top/p/YPl-Ma9LO2gf7MYM8o_3MLgwQlLZfDLHNSZZd7AWxT4U2M2QC1UH4aSnPmHmpxihuJeLVRck_01Qp7_aUT9ArFUgkiU5thDjM-0kMXsEPb8.jpg",
+          "label": "Japanese",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn28.top/p/YPl-Ma9LO2gf7MYM8o_3MLgwQlLZfDLHNSZZd7AWxT4U2M2QC1UH4aSnPmHmpxih4i7EZ6odAfCiSYSR9fVmxjrLFB0_FDmM2Hl74FhiPho.jpg",
+          "label": "Telugu",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn28.top/p/YPl-Ma9LO2gf7MYM8o_3MLgwQlLZfDLHNSZZd7AWxT4U2M2QC1UH4aSnPmHmpxihBWBheci7JdeWwUVJqU3TV-gCaesa3HyD4tapIPvi1Jc.jpg",
+          "label": "Tamil",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn28.top/p/YPl-Ma9LO2gf7MYM8o_3MLgwQlLZfDLHNSZZd7AWxT4U2M2QC1UH4aSnPmHmpxihZYzdWFEoL0sEpkaWC9-6yM6Dl3B_cRoqNAhfczqjtGA.jpg",
+          "label": "Undefined",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn28.top/p/YPl-Ma9LO2gf7MYM8o_3MLgwQlLZfDLHNSZZd7AWxT4U2M2QC1UH4aSnPmHmpxihOiIbOMB2xl4eZRPkHy4_LSDzeoawHJCScZrY4dkMwa0.jpg",
+          "label": "English",
+          "language": "eng"
+        }
+      ],
+      "resolvedAt": "2026-09-13T08:10:36.903Z"
+    }
+  }
+}

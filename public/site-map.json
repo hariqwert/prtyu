@@ -1,0 +1,344 @@
+{
+  "site_name": "Aetheris & Stalker Pro Quantum Entertainment Matrix",
+  "version": "3.0.0",
+  "description": "Master navigation, URL generation schemas, streaming server endpoints, internal routing matrix, and API registry for Aetheris Local AI.",
+  "pages": [
+    {
+      "id": "hero",
+      "name": "3D Quantum Continuum Hero",
+      "file": "/hero.html",
+      "url": "/hero.html",
+      "description": "3D immersive rotational continuum showcase with curated Hollywood, Bollywood, South Indian, Anime, and Live TV stream corridors.",
+      "features": ["3d_carousel", "cinema_spotlight", "quick_stream_launcher", "search_omni", "watchlist_access"],
+      "params": {
+        "search": "Optional query string to pre-filter corridor items"
+      },
+      "url_generator": {
+        "direct": "/hero.html",
+        "with_search": "/hero.html?q={query}"
+      }
+    },
+    {
+      "id": "consumet_main",
+      "name": "Aetheris Cinema & Multi-Hub Matrix",
+      "file": "/consumet.html",
+      "url": "/consumet.html",
+      "description": "Primary entertainment interface housing movies, TV series, anime, live sports, 5200+ IPTV channels, YouTube hub, and torrent streamer.",
+      "hash_tabs": {
+        "home": {
+          "hash": "#home",
+          "url": "/consumet.html#home",
+          "name": "Home Showcase",
+          "description": "Hero billboard, trending cinematic releases, upcoming spotlights, and recommendations."
+        },
+        "movies": {
+          "hash": "#movies",
+          "url": "/consumet.html#movies",
+          "name": "4K Movies Hub",
+          "description": "Extensive 4K/1080p movie catalog with genre filters (Action, Sci-Fi, Horror, Romance, Thriller, Comedy, Animation), years, and rating sorts.",
+          "query_support": "/consumet.html#movies?genre={genre}&year={year}&search={query}"
+        },
+        "tv": {
+          "hash": "#tv",
+          "url": "/consumet.html#tv",
+          "name": "TV Series Hub",
+          "description": "Full television series library with season and episode selectors, air dates, and episode overviews.",
+          "query_support": "/consumet.html#tv?search={query}"
+        },
+        "anime": {
+          "hash": "#anime",
+          "url": "/consumet.html#anime",
+          "name": "Anime Matrix",
+          "description": "Subbed and dubbed anime episodes, ongoing seasonal releases, top-rated anime series, and fast CDN streaming.",
+          "query_support": "/consumet.html#anime?search={query}"
+        },
+        "manga": {
+          "hash": "#manga",
+          "url": "/consumet.html#manga",
+          "name": "Manga Reader",
+          "description": "Manga catalog with chapter readers, image preloading, reading modes, and zoom controls.",
+          "query_support": "/consumet.html#manga?search={query}"
+        },
+        "sports": {
+          "hash": "#sports",
+          "url": "/consumet.html#sports",
+          "name": "Live Sports Center",
+          "description": "Live match feeds for Cricket, Football (Premier League, UCL, La Liga), Formula 1, Tennis, UFC/MMA, NBA, and DD Sports.",
+          "query_support": "/consumet.html#sports?sport={sport_type}"
+        },
+        "channels": {
+          "hash": "#channels",
+          "url": "/consumet.html#channels",
+          "name": "5,200+ Live IPTV & Sports Directory",
+          "description": "Live channel broadcasting directory with sports, entertainment, news, kids, regional (Hindi, Tamil, Telugu, Malayalam, Punjabi), and international feeds.",
+          "query_support": "/consumet.html#channels?category={category}&country={country}&search={query}"
+        },
+        "youtube": {
+          "hash": "#youtube",
+          "url": "/consumet.html#youtube",
+          "name": "YouTube 4K Hub",
+          "description": "YouTube video streaming, trending music videos, documentaries, podcasts, and audio stream extraction.",
+          "query_support": "/consumet.html#youtube?v={videoId}&q={query}"
+        },
+        "torrent": {
+          "hash": "#torrent",
+          "url": "/consumet.html#torrent",
+          "name": "4K Torrent & Debrid Engine",
+          "description": "Direct torrent search across YTS, Torrentio, and PirateBay with high-speed WebTorrent / Debrid playback.",
+          "query_support": "/consumet.html#torrent?q={query}"
+        },
+        "watchlist": {
+          "hash": "#watchlist",
+          "url": "/consumet.html#watchlist",
+          "name": "Watchlist & History",
+          "description": "Locally stored watchlist items, bookmarks, and playback resume points across movies, shows, and channels."
+        },
+        "settings": {
+          "hash": "#settings",
+          "url": "/consumet.html#settings",
+          "name": "Platform Settings",
+          "description": "Configure default streaming servers, subtitle styling, audio preference, cache clearance, and UI themes."
+        }
+      },
+      "modals_and_players": {
+        "cinema_player": {
+          "url_pattern": "/consumet.html#player?id={tmdb_id}&type={movie|tv}&season={season}&episode={episode}&server={server}",
+          "description": "Embeds responsive 4K cinematic player with multi-source failover and auto-retry."
+        },
+        "details_modal": {
+          "url_pattern": "/consumet.html#details?id={tmdb_id}&type={movie|tv}",
+          "description": "Displays backdrop, poster, cast list, official trailer, genres, runtime, and server picker."
+        },
+        "torrent_player": {
+          "url_pattern": "/consumet.html#torrent-player?magnet={encoded_magnet}&title={encoded_title}",
+          "description": "Direct WebTorrent stream buffer player."
+        }
+      }
+    },
+    {
+      "id": "books",
+      "name": "Codex Digital Library & E-Reader",
+      "file": "/books.html",
+      "url": "/books.html",
+      "description": "Universal digital reader with thousands of free classic and modern books, search, dark/sepia/light themes, text-to-speech audio reader, and bookmarking.",
+      "features": ["gutenberg_catalog", "openlibrary_search", "epub_pdf_reader", "voice_narrator", "theme_switcher"],
+      "url_generator": {
+        "direct": "/books.html",
+        "with_search": "/books.html?search={encoded_query}",
+        "with_book_id": "/books.html?book={book_id}"
+      }
+    },
+    {
+      "id": "music",
+      "name": "Quantum Hi-Fi Music Streamer",
+      "file": "/music.html",
+      "url": "/music.html",
+      "description": "High-fidelity audio player integrating JioSaavn, Audius, and YouTube Music streams with live audio visualizer, playlist queue, and lyrics.",
+      "features": ["jiosaavn_search", "audius_trending", "youtube_audio_extract", "visualizer", "queue_manager"],
+      "url_generator": {
+        "direct": "/music.html",
+        "with_search": "/music.html?q={encoded_query}",
+        "with_yt_video": "/music.html?yt={video_id}&title={encoded_title}",
+        "with_track_id": "/music.html?track={track_id}"
+      }
+    },
+    {
+      "id": "stalker_portal",
+      "name": "Stalker Pro MAC Portal & M3U Gateway",
+      "file": "/index.php",
+      "url": "/index.php",
+      "description": "Interactive Stalker IPTV Portal dashboard with MAC handshake authentication, live TV categories, EPG guide, and M3U playlist loader.",
+      "features": ["stalker_handshake", "m3u_indexeddb", "epg_timeline", "channel_grid", "token_refresh"],
+      "url_generator": {
+        "direct": "/index.php",
+        "with_genre": "/index.php?genre={genre_id}"
+      }
+    },
+    {
+      "id": "stalker_player",
+      "name": "Stalker Pro HLS Player",
+      "file": "/play.php",
+      "url": "/play.php",
+      "description": "High performance HLS / MPEG-TS video player powered by Plyr and Hls.js with CORS proxy bypass, channel banners, and keyboard shortcuts.",
+      "url_generator": {
+        "direct": "/play.php",
+        "with_stream": "/play.php?url={encoded_stream_url}&name={encoded_channel_name}&logo={encoded_logo_url}&source={source}"
+      }
+    },
+    {
+      "id": "admin_matrix",
+      "name": "Admin Command Matrix & Monitoring",
+      "file": "/hari.html",
+      "url": "/hari.html",
+      "description": "System administration, live portal status, cache manager, proxy health check, and system telemetry.",
+      "url_generator": {
+        "direct": "/hari.html"
+      }
+    },
+    {
+      "id": "login_config",
+      "name": "Portal Config & Credentials Manager",
+      "file": "/login.php",
+      "url": "/login.php",
+      "description": "Configure external Stalker portal URLs, MAC addresses, timezone, and security tokens.",
+      "url_generator": {
+        "direct": "/login.php"
+      }
+    }
+  ],
+  "streaming_servers": [
+    {
+      "id": "vidsrc",
+      "name": "VidSrc 4K",
+      "badge": "Ultra HD",
+      "movie_url_template": "https://vidsrc.to/embed/movie/{tmdb_id}",
+      "tv_url_template": "https://vidsrc.to/embed/tv/{tmdb_id}/{season}/{episode}",
+      "reliability": "99.5%"
+    },
+    {
+      "id": "vidsrc_me",
+      "name": "VidSrc.me Fast",
+      "badge": "High Speed",
+      "movie_url_template": "https://vidsrc.me/embed/movie?tmdb={tmdb_id}",
+      "tv_url_template": "https://vidsrc.me/embed/tv?tmdb={tmdb_id}&season={season}&episode={episode}",
+      "reliability": "98.8%"
+    },
+    {
+      "id": "vidsrc_pro",
+      "name": "VidSrc Pro Multi",
+      "badge": "Multi-Audio",
+      "movie_url_template": "https://vidsrc.pro/embed/movie/{tmdb_id}",
+      "tv_url_template": "https://vidsrc.pro/embed/tv/{tmdb_id}/{season}/{episode}",
+      "reliability": "99.0%"
+    },
+    {
+      "id": "superembed",
+      "name": "SuperEmbed VIP",
+      "badge": "Auto Subtitles",
+      "movie_url_template": "https://multiembed.mov/?video_id={tmdb_id}&tmdb=1",
+      "tv_url_template": "https://multiembed.mov/?video_id={tmdb_id}&tmdb=1&s={season}&e={episode}",
+      "reliability": "99.2%"
+    },
+    {
+      "id": "vidlink",
+      "name": "VidLink Pro",
+      "badge": "Clean CDN",
+      "movie_url_template": "https://vidlink.pro/movie/{tmdb_id}",
+      "tv_url_template": "https://vidlink.pro/tv/{tmdb_id}/{season}/{episode}",
+      "reliability": "98.5%"
+    },
+    {
+      "id": "movies4u",
+      "name": "Movies4U Indian & Global",
+      "badge": "Fast Relay",
+      "movie_url_template": "https://moviesapi.club/movie/{tmdb_id}",
+      "tv_url_template": "https://moviesapi.club/tv/{tmdb_id}-{season}-{episode}",
+      "reliability": "97.9%"
+    },
+    {
+      "id": "embed2",
+      "name": "2Embed Cloud",
+      "badge": "Global CDN",
+      "movie_url_template": "https://www.2embed.cc/embed/{tmdb_id}",
+      "tv_url_template": "https://www.2embed.cc/embedtv/{tmdb_id}&s={season}&e={episode}",
+      "reliability": "97.5%"
+    },
+    {
+      "id": "autoembed",
+      "name": "AutoEmbed Global",
+      "badge": "Instant Load",
+      "movie_url_template": "https://player.autoembed.cc/embed/movie/{tmdb_id}",
+      "tv_url_template": "https://player.autoembed.cc/embed/tv/{tmdb_id}/{season}/{episode}",
+      "reliability": "98.0%"
+    },
+    {
+      "id": "torrent",
+      "name": "4K Torrentio WebTorrent",
+      "badge": "Lossless 4K HDR",
+      "movie_url_template": "/consumet.html#torrent?tmdb={tmdb_id}&type=movie",
+      "tv_url_template": "/consumet.html#torrent?tmdb={tmdb_id}&type=tv&season={season}&episode={episode}",
+      "reliability": "99.9%"
+    }
+  ],
+  "api_endpoints": [
+    {
+      "route": "/api/local-ai/query",
+      "method": "POST",
+      "description": "Autonomous Local AI conversational intelligence engine and intent executor"
+    },
+    {
+      "route": "/api/local-ai/sitemap",
+      "method": "GET",
+      "description": "Returns the complete site map, URL generation schemas, and channel lists"
+    },
+    {
+      "route": "/api/local-ai/channels",
+      "method": "GET",
+      "params": ["q"],
+      "description": "Fuzzy search through 5,200+ Live IPTV and Sports channels"
+    },
+    {
+      "route": "/api/local-ai/suggestions",
+      "method": "GET",
+      "description": "Smart action recommendation chips for quick launch"
+    },
+    {
+      "route": "/api/music/search",
+      "method": "GET",
+      "params": ["q"],
+      "description": "Search JioSaavn and Audius music tracks and artists"
+    },
+    {
+      "route": "/api/music/yt-search-full",
+      "method": "GET",
+      "params": ["q"],
+      "description": "Full YouTube video search with thumbnails and metadata"
+    },
+    {
+      "route": "/api/music/yt-stream",
+      "method": "GET",
+      "params": ["id"],
+      "description": "Direct audio stream extractor for YouTube videos"
+    },
+    {
+      "route": "/api/sports/matches",
+      "method": "GET",
+      "description": "Real-time live cricket, football, F1, and tennis match schedules and streams"
+    },
+    {
+      "route": "/api/channels/list",
+      "method": "GET",
+      "description": "Full database of 5,200+ Live channels"
+    },
+    {
+      "route": "/api/torrent/search",
+      "method": "GET",
+      "params": ["q"],
+      "description": "YTS / Torrentio / PirateBay magnet search engine"
+    },
+    {
+      "route": "/api/books/search",
+      "method": "GET",
+      "params": ["q"],
+      "description": "Gutenberg and OpenLibrary book catalog search"
+    },
+    {
+      "route": "/api/subtitles/search",
+      "method": "GET",
+      "params": ["tmdb_id", "season", "episode"],
+      "description": "Subtitles downloader and SRT-to-VTT converter"
+    },
+    {
+      "route": "/live.php",
+      "method": "GET",
+      "params": ["url"],
+      "description": "High-performance reverse TS/HLS proxy to bypass CORS and ISP blocks"
+    },
+    {
+      "route": "/proxy",
+      "method": "GET",
+      "params": ["url"],
+      "description": "Universal stream and image proxy"
+    }
+  ]
+}

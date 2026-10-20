@@ -1,0 +1,40 @@
+{
+  "lastScanTime": "2026-10-20T08:01:29.130Z",
+  "scanIntervalMinutes": 5,
+  "autoSwitchEnabled": false,
+  "records": [
+    {
+      "id": "ch_sample_1",
+      "name": "Global News HD",
+      "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+      "status": "healthy",
+      "latencyMs": 146,
+      "lastChecked": "2026-10-20T08:01:28.263Z",
+      "consecutiveFailures": 0,
+      "backupUrl": "",
+      "isBackupSwitched": false
+    },
+    {
+      "id": "ch_sample_3",
+      "name": "Action Cinema",
+      "url": "https://live-par-2-cdn-alt.livepush.io/live/bigbuckbunnyclip/index.m3u8",
+      "status": "backup_active",
+      "latencyMs": 158,
+      "lastChecked": "2026-10-20T08:01:28.305Z",
+      "consecutiveFailures": 340,
+      "backupUrl": "/live.php?token=STALKER_PRO&url=https%3A%2F%2Flive-par-2-cdn-alt.livepush.io%2Flive%2Fbigbuckbunnyclip%2Findex.m3u8",
+      "isBackupSwitched": true
+    },
+    {
+      "id": "ch_sample_2",
+      "name": "Sports 24/7",
+      "url": "https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8",
+      "status": "healthy",
+      "latencyMs": 1007,
+      "lastChecked": "2026-10-20T08:01:29.130Z",
+      "consecutiveFailures": 0,
+      "backupUrl": "",
+      "isBackupSwitched": false
+    }
+  ]
+}

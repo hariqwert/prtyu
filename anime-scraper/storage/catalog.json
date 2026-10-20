@@ -1,0 +1,84 @@
+{
+  "series": {
+    "one-piece": {
+      "title": "One Piece",
+      "slug": "one-piece",
+      "firstScraped": "2026-09-13T07:54:54.746Z",
+      "lastUpdated": "2026-09-13T08:33:30.668Z",
+      "seasons": {
+        "season-21": {
+          "title": "Season 21",
+          "episodesCount": 5,
+          "metadataFile": "metadata\\one-piece\\season-21.json",
+          "playlistFile": "playlists\\one-piece\\season-21.m3u",
+          "lastUpdated": "2026-09-13T08:33:30.668Z"
+        }
+      }
+    },
+    "teen-titans-watch-now-in-hindi-tamil-telugu-malayalam-kannada-amp-english": {
+      "title": "Teen Titans - Watch Now in Hindi, Tamil, Telugu, Malayalam, Kannada &amp; English",
+      "slug": "teen-titans-watch-now-in-hindi-tamil-telugu-malayalam-kannada-amp-english",
+      "firstScraped": "2026-09-13T07:58:41.688Z",
+      "lastUpdated": "2026-09-13T07:58:41.688Z",
+      "seasons": {
+        "season-1": {
+          "title": "Season 1",
+          "episodesCount": 2,
+          "metadataFile": "metadata\\teen-titans-watch-now-in-hindi-tamil-telugu-malayalam-kannada-amp-english\\season-1.json",
+          "playlistFile": "playlists\\teen-titans-watch-now-in-hindi-tamil-telugu-malayalam-kannada-amp-english\\season-1.m3u",
+          "lastUpdated": "2026-09-13T07:58:41.688Z"
+        }
+      }
+    },
+    "one-piece-live-action": {
+      "title": "ONE PIECE Live Action",
+      "slug": "one-piece-live-action",
+      "firstScraped": "2026-09-13T08:03:17.634Z",
+      "lastUpdated": "2026-09-13T08:10:36.906Z",
+      "seasons": {
+        "season-1": {
+          "title": "Season 1",
+          "episodesCount": 8,
+          "metadataFile": "metadata\\one-piece-live-action\\season-1.json",
+          "playlistFile": "playlists\\one-piece-live-action\\season-1.m3u",
+          "lastUpdated": "2026-09-13T08:10:36.906Z"
+        }
+      }
+    },
+    "jujutsu-kaisen-watch-now-in-hindi-tamil-telugu-english-amp-japanese": {
+      "title": "Jujutsu Kaisen - Watch Now in Hindi, Tamil, Telugu, English &amp; Japanese",
+      "slug": "jujutsu-kaisen-watch-now-in-hindi-tamil-telugu-english-amp-japanese",
+      "firstScraped": "2026-09-13T08:18:52.849Z",
+      "lastUpdated": "2026-09-13T08:18:52.849Z",
+      "seasons": {
+        "season-1": {
+          "title": "Season 1",
+          "episodesCount": 24,
+          "metadataFile": "metadata\\jujutsu-kaisen-watch-now-in-hindi-tamil-telugu-english-amp-japanese\\season-1.json",
+          "playlistFile": "playlists\\jujutsu-kaisen-watch-now-in-hindi-tamil-telugu-english-amp-japanese\\season-1.m3u",
+          "lastUpdated": "2026-09-13T08:18:52.849Z"
+        }
+      }
+    },
+    "solo-leveling": {
+      "title": "Solo Leveling",
+      "slug": "solo-leveling",
+      "firstScraped": "2026-09-13T08:29:48.385Z",
+      "lastUpdated": "2026-09-13T08:29:48.385Z",
+      "seasons": {
+        "season-1": {
+          "title": "Season 1",
+          "episodesCount": 1,
+          "metadataFile": "metadata\\solo-leveling\\season-1.json",
+          "playlistFile": "playlists\\solo-leveling\\season-1.m3u",
+          "lastUpdated": "2026-09-13T08:29:48.385Z"
+        }
+      }
+    }
+  },
+  "stats": {
+    "totalSeries": 5,
+    "totalEpisodes": 40,
+    "lastUpdated": "2026-09-13T08:33:30.668Z"
+  }
+}

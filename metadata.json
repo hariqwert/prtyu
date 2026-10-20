@@ -1,0 +1,11 @@
+{
+  "name": "Remix Remix HL",
+  "description": "A high-performance PHP script designed to emulate Mag Set-Top Boxes, ported flawlessly into AI Studio.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "animeTitle": "Solo Leveling",
+  "animeSlug": "solo-leveling",
+  "seasonSlug": "season-1",
+  "seasonTitle": "Season 1",
+  "firstScraped": "2026-09-13T08:29:46.790Z",
+  "lastUpdated": "2026-09-13T08:29:48.379Z",
+  "episodes": {
+    "solo-leveling-1x12": {
+      "slug": "solo-leveling-1x12",
+      "title": "Solo Leveling - Episode 12: Solo Leveling 1x12",
+      "englishTitle": "Solo Leveling 1x12",
+      "episodeNumber": 12,
+      "url": "https://animesalt.cx/episode/solo-leveling-1x12/",
+      "videoId": "b5a4fecffcf98386694f96c74b302131",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/6643b585a795e2fd41c23cb06a827be0/master.m3u8?md5=Wt5vp_D4zNx8LyZqydlDYg&expires=1789295457",
+      "poster": "https://as-cdn27.top/p/svSxfOhKwe1-snX9jMdsmLgwkWPwa-_cJhIEW49cusW7KtbWumJD1xjXJIfw3n0EARqcc8k6tJAuccFtWGZKZA.jpg",
+      "subtitles": [
+        {
+          "file": "https://as-cdn30.top/p/svSxfOhKwe1-snX9jMdsmLgwkWPwa-_cJhIEW49cusUpnd6c_e6WW0B_6eodebkUxngbfSFrTJi8j8Mo3txWATjKqucNoj3GmiotYNlMqec.jpg",
+          "label": "English",
+          "language": "eng"
+        }
+      ],
+      "resolvedAt": "2026-09-13T08:29:48.377Z"
+    }
+  }
+}

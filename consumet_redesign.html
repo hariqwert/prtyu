@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>AETHERIS INFINITY | Ultra Cinema & Live OTT</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Client Security Settings: Disable Right Click & Inspect Shortcuts Only -->
+    <script>
+    (function() {
+        'use strict';
+        window.addEventListener('keydown', function(e) {
+            var k = e.key ? e.key.toUpperCase() : '';
+            var c = e.keyCode || e.which;
+            if (k === 'F12' || c === 123) { e.preventDefault(); return false; }
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && (k === 'I' || c === 73 || k === 'J' || c === 74 || k === 'C' || c === 67)) {
+                e.preventDefault(); return false;
+            }
+            if ((e.ctrlKey || e.metaKey) && (k === 'U' || c === 85)) {
+                e.preventDefault(); return false;
+            }
+        }, true);
+        document.addEventListener('contextmenu', function(e) {
+            var t = e.target ? e.target.tagName : '';
+            if (t === 'INPUT' || t === 'TEXTAREA') return;
+            e.preventDefault();
+            return false;
+        }, true);
+    })();
+    </script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        accent: {
+                            red: '#ef4444',
+                            amber: '#f59e0b',
+                            emerald: '#10b981',
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { -webkit-tap-highlight-color: transparent !important; }
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            overflow-x: hidden;
+            user-select: none;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .glass-panel {
+            background: rgba(18, 18, 22, 0.65);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(10, 10, 12, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-pill:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+        .hero-vignette {
+            background: linear-gradient(0deg, #000000 0%, rgba(0,0,0,0.85) 25%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.7) 100%),
+                        linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.8) 35%, transparent 75%);
+        }
+        .scroller-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 9999px;
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 30;
+            opacity: 0;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+        }
+        .scroller-container:hover .scroller-btn { opacity: 0.9; }
+        .scroller-btn:hover {
+            opacity: 1 !important;
+            background: #ffffff;
+            color: #000000;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .rank-number {
+            font-size: 5.5rem;
+            font-weight: 900;
+            line-height: 0.8;
+            letter-spacing: -0.05em;
+            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.4);
+            color: transparent;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .ambient-glow {
+            animation: pulseGlow 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-24 md:pb-12 text-slate-100">
+
+    <!-- FLOATING TOP NAVIGATION DOCK -->
+    <header class="fixed top-0 inset-x-0 z-50 px-4 sm:px-8 py-3.5 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 glass-panel px-5 py-2.5 rounded-full shadow-2xl">
+            <!-- Brand Logo -->
+            <a href="javascript:void(0)" onclick="switchTab('home')" class="flex items-center gap-2.5 shrink-0 group">
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-red-600 via-amber-500 to-indigo-600 p-[1.5px] shadow-lg group-hover:scale-105 transition-transform">
+                    <div class="w-full h-full bg-black rounded-[10px] flex items-center justify-center">
+                        <i data-lucide="play" class="w-4 h-4 text-white fill-current"></i>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm font-black tracking-tight text-white flex items-center gap-1.5">
+                        AETHERIS <span class="text-[9px] font-black uppercase px-1.5 py-0.5 rounded bg-red-600/30 text-red-400 border border-red-500/40">PRO</span>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Center Navigation Links -->
+            <nav class="hidden md:flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-zinc-400">
+                <button onclick="switchTab('home')" id="nav-home" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 transition-all">Home</button>
+                <button onclick="switchTab('movies')" id="nav-movies" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all">Movies</button>
+                <button onclick="switchTab('tv')" id="nav-tv" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all">Series</button>
+                <button onclick="switchTab('sports')" id="nav-sports" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span> Live Sports
+                </button>
+                <button onclick="switchTab('livetv')" id="nav-livetv" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all flex items-center gap-1.5">
+                    Live TV <span class="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">1.3K</span>
+                </button>
+                <button onclick="switchTab('ipl')" id="nav-ipl" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all text-amber-300">IPL 2026</button>
+            </nav>
+
+            <!-- Right Controls: Quick Search & Watchlist -->
+            <div class="flex items-center gap-2">
+                <button onclick="openSearchModal()" class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-zinc-400 hover:text-white transition-all shadow-inner">
+                    <i data-lucide="search" class="w-3.5 h-3.5"></i>
+                    <span class="hidden sm:inline">Search cinema, sports...</span>
+                    <kbd class="hidden sm:inline text-[10px] font-mono bg-white/10 px-1.5 py-0.5 rounded border border-white/10 text-zinc-300">⌘K</kbd>
+                </button>
+                <button onclick="switchTab('watchlist')" title="My Watchlist" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-center text-zinc-300 hover:text-white transition-all">
+                    <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CINEMATIC BILLBOARD HERO SPOTLIGHT -->
+    <section class="relative w-full h-[68vh] sm:h-[78vh] md:h-[86vh] flex items-end pb-16 px-4 sm:px-8 md:px-16 overflow-hidden">
+        <!-- Background Backdrop -->
+        <div id="heroBackdrop" class="absolute inset-0 bg-cover bg-center transition-all duration-700 transform scale-105" style="background-image: url('https://image.tmdb.org/t/p/original/1CIaRYKf3zg2Xyce1CSfCMg2Vfw.jpg');"></div>
+        <div class="absolute inset-0 hero-vignette pointer-events-none"></div>
+
+        <!-- Ambient Color Bloom -->
+        <div id="heroGlow" class="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-red-600/30 blur-[120px] ambient-glow pointer-events-none"></div>
+
+        <!-- Hero Content Info -->
+        <div class="relative z-10 max-w-3xl space-y-4 animate-fade-in">
+            <div class="flex flex-wrap items-center gap-2">
+                <span id="heroTypeBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-white/15 text-white backdrop-blur-md border border-white/20">PREMIERE</span>
+                <span id="heroRatingBadge" class="flex items-center gap-1 text-[11px] font-black text-amber-400 bg-black/60 px-2.5 py-0.5 rounded-full border border-white/10 backdrop-blur-md">
+                    <i data-lucide="star" class="w-3 h-3 fill-current"></i> <span id="heroRatingText">7.8</span>
+                </span>
+                <span id="heroYearBadge" class="text-xs text-zinc-300 font-bold bg-black/60 px-2.5 py-0.5 rounded-full border border-white/10">2026</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/30">4K ULTRA HD • DOLBY VISION</span>
+            </div>
+
+            <h1 id="heroTitle" class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-none drop-shadow-2xl">
+                Resident Evil
+            </h1>
+
+            <p id="heroOverview" class="text-xs sm:text-sm text-zinc-300/90 line-clamp-3 leading-relaxed max-w-2xl drop-shadow">
+                Medical courier Bryan unwittingly finds himself fighting for survival as one fateful, horrifying night collapses around him in chaos.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+                <button id="heroPlayBtn" onclick="playHeroMedia()" class="px-7 py-3 rounded-full bg-white hover:bg-zinc-200 text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-2xl flex items-center gap-2.5 active:scale-95">
+                    <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                    <span>Watch Now</span>
+                </button>
+                <button id="heroInfoBtn" onclick="openHeroDetailsModal()" class="px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-all backdrop-blur-xl border border-white/15 flex items-center gap-2">
+                    <i data-lucide="info" class="w-4 h-4"></i>
+                    <span>Details & Cast</span>
+                </button>
+                <button onclick="toggleHeroWatchlist()" id="heroWatchlistBtn" class="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/15 flex items-center justify-center transition-all">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mini Carousel Tickers -->
+        <div class="absolute bottom-6 right-4 sm:right-8 z-20 hidden lg:flex items-center gap-2 bg-black/60 backdrop-blur-xl p-1.5 rounded-full border border-white/10" id="heroCarouselDots">
+            <!-- Dynamic Dots -->
+        </div>
+    </section>
+
+    <!-- MAIN APP CONTENT PANELS -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-8 space-y-12 -mt-4 relative z-20">
+
+        <!-- VIEW 1: HOME DASHBOARD -->
+        <div id="view-home" class="space-y-12">
+            <!-- ⚡ LIVE SPORTS NETWORK SHELF -->
+            <section class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-2.5 h-6 bg-red-600 rounded-full shadow-lg shadow-red-600/60 animate-pulse"></span>
+                        <h2 class="text-xl sm:text-2xl font-black uppercase tracking-tight text-white flex items-center gap-2">
+                            Live Sports Arena
+                        </h2>
+                        <span id="homeLiveSportsCountBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-red-600/20 text-red-400 border border-red-500/30">
+                            LIVE TELEMETRY
+                        </span>
+                    </div>
+                    <button onclick="switchTab('sports')" class="text-xs font-bold text-red-400 hover:text-white flex items-center gap-1 transition-colors">
+                        View All Sports <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                </div>
+
+                <div class="scroller-container relative">
+                    <button class="scroller-btn left-2" onclick="scrollShelf('homeLiveSportsShelf', -400)"><i data-lucide="chevron-left"></i></button>
+                    <div id="homeLiveSportsShelf" class="flex gap-4 overflow-x-auto no-scrollbar scroll-smooth py-2">
+                        <div class="col-span-full py-12 text-center text-zinc-500 text-xs font-bold">Connecting to real-time live events...</div>
+                    </div>
+                    <button class="scroller-btn right-2" onclick="scrollShelf('homeLiveSportsShelf', 400)"><i data-lucide="chevron-right"></i></button>
+                </div>
+            </section>
+
+            <!-- 🏏 IPL 2026 HIGHLIGHTS & REPLAYS SHELF -->
+            <section class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-2.5 h-6 bg-amber-500 rounded-full shadow-lg shadow-amber-500/60 animate-pulse"></span>
+                        <h2 class="text-xl sm:text-2xl font-black uppercase tracking-tight text-white flex items-center gap-2">
+                            🏏 IPL 2026 Match Highlights & Replays
+                        </h2>
+                    </div>
+                    <button onclick="switchTab('ipl')" class="text-xs font-bold text-amber-400 hover:text-white flex items-center gap-1 transition-colors">
+                        Full Catalog <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                </div>
+
+                <div class="scroller-container relative">
+                    <button class="scroller-btn left-2" onclick="scrollShelf('homeIplShelf', -400)"><i data-lucide="chevron-left"></i></button>
+                    <div id="homeIplShelf" class="flex gap-4 overflow-x-auto no-scrollbar scroll-smooth py-2">
+                        <div class="col-span-full py-12 text-center text-zinc-500 text-xs font-bold">Loading IPL matches...</div>
+                    </div>
+                    <button class="scroller-btn right-2" onclick="scrollShelf('homeIplShelf', 400)"><i data-lucide="chevron-right"></i></button>
+                </div>
+            </section>
+
+            <!-- 🏆 TOP 10 TRENDING TODAY -->
+            <section class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-2.5 h-6 bg-white rounded-full shadow-lg animate-pulse"></span>
+                        <h2 class="text-xl sm:text-2xl font-black uppercase tracking-tight text-white">
+                            Top 10 Trending Today
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="scroller-container relative">
+                    <button class="scroller-btn left-2" onclick="scrollShelf('homeTop10Shelf', -400)"><i data-lucide="chevron-left"></i></button>
+                    <div id="homeTop10Shelf" class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth py-2">
+                        <!-- Top 10 items with giant typography numbers -->
+                    </div>
+                    <button class="scroller-btn right-2" onclick="scrollShelf('homeTop10Shelf', 400)"><i data-lucide="chevron-right"></i></button>
+                </div>
+            </section>
+
+            <!-- 🎬 BLOCKBUSTER MOVIES -->
+            <section class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-2.5 h-6 bg-purple-500 rounded-full shadow-lg shadow-purple-500/60 animate-pulse"></span>
+                        <h2 class="text-xl sm:text-2xl font-black uppercase tracking-tight text-white">
+                            Blockbuster Cinema
+                        </h2>
+                    </div>
+                    <button onclick="switchTab('movies')" class="text-xs font-bold text-purple-400 hover:text-white flex items-center gap-1 transition-colors">
+                        Browse Movies <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                </div>
+
+                <div class="scroller-container relative">
+                    <button class="scroller-btn left-2" onclick="scrollShelf('homeMoviesShelf', -400)"><i data-lucide="chevron-left"></i></button>
+                    <div id="homeMoviesShelf" class="flex gap-4 overflow-x-auto no-scrollbar scroll-smooth py-2">
+                        <!-- Movie Cards -->
+                    </div>
+                    <button class="scroller-btn right-2" onclick="scrollShelf('homeMoviesShelf', 400)"><i data-lucide="chevron-right"></i></button>
+                </div>
+            </section>
+
+            <!-- 📺 BINGE-WORTHY TV SERIES -->
+            <section class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-2.5 h-6 bg-blue-500 rounded-full shadow-lg shadow-blue-500/60 animate-pulse"></span>
+                        <h2 class="text-xl sm:text-2xl font-black uppercase tracking-tight text-white">
+                            Binge-Worthy TV Series
+                        </h2>
+                    </div>
+                    <button onclick="switchTab('tv')" class="text-xs font-bold text-blue-400 hover:text-white flex items-center gap-1 transition-colors">
+                        Browse Series <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                </div>
+
+                <div class="scroller-container relative">
+                    <button class="scroller-btn left-2" onclick="scrollShelf('homeTvShelf', -400)"><i data-lucide="chevron-left"></i></button>
+                    <div id="homeTvShelf" class="flex gap-4 overflow-x-auto no-scrollbar scroll-smooth py-2">
+                        <!-- Series Cards -->
+                    </div>
+                    <button class="scroller-btn right-2" onclick="scrollShelf('homeTvShelf', 400)"><i data-lucide="chevron-right"></i></button>
+                </div>
+            </section>
+        </div>
+
+        <!-- VIEW 2: LIVE SPORTS ARENA -->
+        <div id="view-sports" class="hidden space-y-8">
+            <!-- Sports Header Filter Hub -->
+            <div class="p-6 rounded-3xl bg-gradient-to-r from-red-950/40 via-zinc-950 to-zinc-900 border border-red-500/30 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-2xl">
+                <div>
+                    <h1 class="text-2xl sm:text-3xl font-black text-white flex items-center gap-2.5">
+                        <span class="w-3 h-8 bg-red-600 rounded-full animate-pulse"></span>
+                        Live Sports Network
+                    </h1>
+                    <p class="text-xs text-zinc-400 mt-1">Multi-angle match coverage, live scorecards, verified broadcast feeds</p>
+                </div>
+
+                <!-- Sport Pills -->
+                <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+                    <button onclick="filterSportsGrid('all')" id="sport-btn-all" class="px-4 py-2 rounded-full font-black text-xs uppercase bg-white text-black transition-all shadow-lg scale-105">⚡ All</button>
+                    <button onclick="filterSportsGrid('cricket')" id="sport-btn-cricket" class="px-4 py-2 rounded-full font-bold text-xs uppercase bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 transition-all">🏏 Cricket</button>
+                    <button onclick="filterSportsGrid('football')" id="sport-btn-football" class="px-4 py-2 rounded-full font-bold text-xs uppercase bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 transition-all">⚽ Football</button>
+                    <button onclick="filterSportsGrid('f1')" id="sport-btn-f1" class="px-4 py-2 rounded-full font-bold text-xs uppercase bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 transition-all">🏎️ F1</button>
+                    <button onclick="filterSportsGrid('combat')" id="sport-btn-combat" class="px-4 py-2 rounded-full font-bold text-xs uppercase bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 transition-all">🥊 UFC / MMA</button>
+                    <button onclick="filterSportsGrid('tennis')" id="sport-btn-tennis" class="px-4 py-2 rounded-full font-bold text-xs uppercase bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 transition-all">🎾 Tennis</button>
+                </div>
+            </div>
+
+            <!-- Sports Live Grid -->
+            <div id="sportsGridContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                <!-- Injected dynamically -->
+            </div>
+        </div>
+
+        <!-- VIEW 3: LIVE TV (1,324 CHANNELS) -->
+        <div id="view-livetv" class="hidden space-y-8">
+            <div class="p-6 rounded-3xl bg-gradient-to-r from-emerald-950/40 via-zinc-950 to-zinc-900 border border-emerald-500/30 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-2xl">
+                <div>
+                    <h1 class="text-2xl sm:text-3xl font-black text-white flex items-center gap-2.5">
+                        <span class="w-3 h-8 bg-emerald-500 rounded-full animate-pulse"></span>
+                        Live TV Network
+                        <span id="livetvTotalBadge" class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">1,324 CHANNELS</span>
+                    </h1>
+                    <p class="text-xs text-zinc-400 mt-1">High-definition satellite and cable channels with auto-token rotation</p>
+                </div>
+                
+                <div class="relative w-full md:w-72">
+                    <i data-lucide="search" class="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                    <input type="text" id="liveTvSearchInput" onkeyup="filterLiveTvChannelsRedesign()" placeholder="Filter 1,324 channels..." class="w-full bg-black/60 border border-white/10 focus:border-emerald-500/60 rounded-full py-2.5 pl-9 pr-4 text-xs text-white placeholder:text-zinc-500 outline-none transition-all shadow-inner">
+                </div>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div id="liveTvCategoriesContainer" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+                <!-- Dynamically populated categories -->
+            </div>
+
+            <!-- Channel Grid with Progressive Infinite Scroll -->
+            <div id="liveTvGridContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+                <!-- Injected dynamically -->
+            </div>
+        </div>
+
+        <!-- VIEW 4: IPL 2026 REPLAYS & HIGHLIGHTS -->
+        <div id="view-ipl" class="hidden space-y-8">
+            <div class="p-6 rounded-3xl bg-gradient-to-r from-amber-950/40 via-zinc-950 to-zinc-900 border border-amber-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-2xl">
+                <div>
+                    <h1 class="text-2xl sm:text-3xl font-black text-white flex items-center gap-2.5">
+                        <span class="w-3 h-8 bg-amber-500 rounded-full animate-pulse"></span>
+                        🏏 IPL 2026 Archive & Highlights
+                    </h1>
+                    <p class="text-xs text-zinc-400 mt-1">Full match replays, qualifiers, eliminators, and championship finals in 1080p</p>
+                </div>
+                <div class="flex items-center gap-2 bg-black/60 p-1.5 rounded-full border border-white/10">
+                    <button onclick="setIplCategoryFilter('ALL')" id="ipl-cat-all" class="px-3.5 py-1.5 rounded-full font-bold text-xs bg-amber-500 text-black shadow">ALL</button>
+                    <button onclick="setIplCategoryFilter('HIGHLIGHTS')" id="ipl-cat-high" class="px-3.5 py-1.5 rounded-full font-bold text-xs text-zinc-400 hover:text-white">HIGHLIGHTS</button>
+                    <button onclick="setIplCategoryFilter('ENGLISH')" id="ipl-cat-en" class="px-3.5 py-1.5 rounded-full font-bold text-xs text-zinc-400 hover:text-white">ENG</button>
+                    <button onclick="setIplCategoryFilter('HINDI')" id="ipl-cat-hi" class="px-3.5 py-1.5 rounded-full font-bold text-xs text-zinc-400 hover:text-white">HIN</button>
+                </div>
+            </div>
+
+            <div id="iplArchiveGridContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                <!-- Injected dynamically -->
+            </div>
+        </div>
+
+        <!-- VIEW 5: MOVIES FULL CATALOG -->
+        <div id="view-movies" class="hidden space-y-8">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                <h1 class="text-2xl sm:text-3xl font-black text-white flex items-center gap-2.5">
+                    <span class="w-3 h-8 bg-purple-500 rounded-full animate-pulse"></span>
+                    Cinematic Movies
+                </h1>
+            </div>
+            <div id="moviesCatalogGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                <!-- Dynamic cards -->
+            </div>
+        </div>
+
+        <!-- VIEW 6: TV SERIES FULL CATALOG -->
+        <div id="view-tv" class="hidden space-y-8">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                <h1 class="text-2xl sm:text-3xl font-black text-white flex items-center gap-2.5">
+                    <span class="w-3 h-8 bg-blue-500 rounded-full animate-pulse"></span>
+                    Television & Series
+                </h1>
+            </div>
+            <div id="tvCatalogGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                <!-- Dynamic cards -->
+            </div>
+        </div>
+
+        <!-- VIEW 7: WATCHLIST -->
+        <div id="view-watchlist" class="hidden space-y-8">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                <h1 class="text-2xl sm:text-3xl font-black text-white flex items-center gap-2.5">
+                    <span class="w-3 h-8 bg-amber-500 rounded-full animate-pulse"></span>
+                    My Watchlist
+                </h1>
+                <button onclick="clearWatchlist()" class="px-4 py-1.5 rounded-full bg-white/10 hover:bg-red-500/20 text-xs font-bold text-zinc-300 hover:text-red-400 border border-white/10 transition-colors">Clear All</button>
+            </div>
+            <div id="watchlistGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                <div class="col-span-full py-20 text-center text-zinc-500 text-sm">Your watchlist is currently empty. Bookmark titles to watch later.</div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- MOBILE FLOATING BOTTOM NAVIGATION BAR -->
+    <nav class="md:hidden fixed bottom-3 inset-x-3 z-50 glass-panel px-4 py-2.5 rounded-2xl flex items-center justify-around text-[10px] font-bold uppercase tracking-wider text-zinc-400 shadow-2xl">
+        <button onclick="switchTab('home')" id="mob-home" class="flex flex-col items-center gap-1 text-white">
+            <i data-lucide="home" class="w-4 h-4"></i>
+            <span>Home</span>
+        </button>
+        <button onclick="switchTab('movies')" id="mob-movies" class="flex flex-col items-center gap-1">
+            <i data-lucide="film" class="w-4 h-4"></i>
+            <span>Movies</span>
+        </button>
+        <button onclick="switchTab('sports')" id="mob-sports" class="flex flex-col items-center gap-1">
+            <i data-lucide="activity" class="w-4 h-4"></i>
+            <span>Sports</span>
+        </button>
+        <button onclick="switchTab('livetv')" id="mob-livetv" class="flex flex-col items-center gap-1">
+            <i data-lucide="tv" class="w-4 h-4"></i>
+            <span>Live TV</span>
+        </button>
+        <button onclick="switchTab('ipl')" id="mob-ipl" class="flex flex-col items-center gap-1">
+            <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i>
+            <span>IPL</span>
+        </button>
+    </nav>
+
+    <!-- QUICK SEARCH MODAL (CMD + K) -->
+    <div id="searchModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-2xl hidden flex items-start justify-center pt-16 sm:pt-24 px-4 animate-fade-in" onclick="if(event.target === this) closeSearchModal()">
+        <div class="w-full max-w-2xl bg-zinc-950 border border-white/15 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh]">
+            <div class="p-4 border-b border-white/10 flex items-center gap-3">
+                <i data-lucide="search" class="w-5 h-5 text-zinc-400"></i>
+                <input type="text" id="globalSearchInput" onkeyup="handleGlobalSearch(this.value)" placeholder="Search movies, TV shows, live sports or channels..." class="bg-transparent text-sm sm:text-base text-white placeholder:text-zinc-500 outline-none w-full font-semibold">
+                <button onclick="closeSearchModal()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-zinc-400 hover:text-white flex items-center justify-center transition-colors">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+            <div id="searchResultsContainer" class="p-4 overflow-y-auto no-scrollbar space-y-3">
+                <p class="text-xs text-zinc-500 text-center py-8">Type anything to search across the entire OTT catalog...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOVIE / SHOW DETAILS DRAWER MODAL -->
+    <div id="detailsModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-2xl hidden flex items-center justify-center p-4" onclick="if(event.target === this) closeDetailsModal()">
+        <div class="w-full max-w-4xl bg-zinc-950 border border-white/15 rounded-3xl shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col">
+            <button onclick="closeDetailsModal()" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/70 hover:bg-white text-zinc-300 hover:text-black flex items-center justify-center transition-all border border-white/10">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+            <div id="detailsModalContent" class="overflow-y-auto no-scrollbar">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATIONS -->
+    <div id="toastContainer" class="fixed bottom-20 md:bottom-8 right-6 z-50 pointer-events-none space-y-2"></div>
+
+    <!-- CORE LOGIC APPLICATION SCRIPT -->
+    <script>
+        // Global App State
+        window.appState = {
+            activeTab: 'home',
+            spotlightSlides: [],
+            spotlightIndex: 0,
+            spotlightTimer: null,
+            liveEvents: [],
+            iplHighlights: [],
+            iplReplays: [],
+            liveTvChannels: [],
+            liveTvCategories: [],
+            liveTvActiveCategory: 'all',
+            liveTvDisplayLimit: 120,
+            allMovies: [],
+            allTv: [],
+            top10: []
+        };
+
+        // Tab Switching
+        function switchTab(tabId) {
+            window.appState.activeTab = tabId;
+            const views = ['home', 'movies', 'tv', 'sports', 'livetv', 'ipl', 'watchlist'];
+            views.forEach(v => {
+                const el = document.getElementById('view-' + v);
+                const nav = document.getElementById('nav-' + v);
+                const mob = document.getElementById('mob-' + v);
+                if (el) el.classList.toggle('hidden', v !== tabId);
+                if (nav) {
+                    nav.className = v === tabId 
+                        ? 'px-3.5 py-1.5 rounded-full text-white bg-white/10 transition-all font-black shadow' 
+                        : 'px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all';
+                }
+                if (mob) {
+                    mob.className = v === tabId ? 'flex flex-col items-center gap-1 text-white font-black' : 'flex flex-col items-center gap-1 text-zinc-400';
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (tabId === 'livetv' && window.appState.liveTvChannels.length === 0) {
+                loadLiveTvCatalog();
+            }
+        }
+
+        // Shelf Horizontal Scroller
+        function scrollShelf(id, offset) {
+            const el = document.getElementById(id);
+            if (el) el.scrollBy({ left: offset, behavior: 'smooth' });
+        }
+
+        // Toast Notification System
+        function showToast(title, desc = '') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+            const toast = document.createElement('div');
+            toast.className = 'glass-panel px-4 py-2.5 rounded-2xl shadow-2xl border border-white/15 text-xs text-white flex items-center gap-2.5 animate-fade-in pointer-events-auto';
+            toast.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><div><span class="font-bold">${title}</span>${desc ? `<p class="text-[10px] text-zinc-400">${desc}</p>` : ''}</div>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Initialize OTT App
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (window.lucide) lucide.createIcons();
+            await loadSpotlightAndCatalogs();
+            await loadLiveSports();
+            await loadIplArchive();
+        });
+
+        // 1. Fetch Spotlight & Catalogs
+        async function loadSpotlightAndCatalogs() {
+            try {
+                const res = await fetch('/api/movies/spotlight');
+                const json = await res.json();
+                if (json.success && json.data) {
+                    window.appState.spotlightSlides = json.data.spotlight || [];
+                    window.appState.top10 = (json.data.trending || []).slice(0, 10);
+                    window.appState.allMovies = json.data.popularMovies || [];
+                    window.appState.allTv = json.data.popularTv || [];
+
+                    renderHeroSpotlight(0);
+                    startSpotlightTimer();
+                    renderTop10Shelf();
+                    renderMoviesShelf();
+                    renderTvShelf();
+                }
+            } catch(e) {
+                console.error("Failed to load spotlight:", e);
+            }
+        }
+
+        // Hero Spotlight Render
+        function renderHeroSpotlight(index) {
+            const slides = window.appState.spotlightSlides;
+            if (!slides || slides.length === 0) return;
+            window.appState.spotlightIndex = index % slides.length;
+            const item = slides[window.appState.spotlightIndex];
+
+            const backdropUrl = item.backdrop ? `https://image.tmdb.org/t/p/original${item.backdrop}` : '';
+            if (backdropUrl) {
+                const bgEl = document.getElementById('heroBackdrop');
+                if (bgEl) bgEl.style.backgroundImage = `url('${backdropUrl}')`;
+            }
+
+            document.getElementById('heroTitle').textContent = item.title || item.name || 'Cinema Premiere';
+            document.getElementById('heroOverview').textContent = item.overview || 'Stream high-definition cinema with immersive spatial audio.';
+            document.getElementById('heroRatingText').textContent = (item.rating ? Number(item.rating).toFixed(1) : '7.8');
+            document.getElementById('heroYearBadge').textContent = item.year || (item.date ? item.date.slice(0, 4) : '2026');
+            document.getElementById('heroTypeBadge').textContent = (item.type || 'MOVIE').toUpperCase();
+
+            // Render Carousel Indicators
+            const dotsContainer = document.getElementById('heroCarouselDots');
+            if (dotsContainer) {
+                dotsContainer.innerHTML = slides.slice(0, 6).map((s, i) => `
+                    <button onclick="renderHeroSpotlight(${i})" class="w-2.5 h-2.5 rounded-full transition-all ${i === window.appState.spotlightIndex ? 'bg-white w-7' : 'bg-white/30 hover:bg-white/60'}"></button>
+                `).join('');
+            }
+
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function startSpotlightTimer() {
+            if (window.appState.spotlightTimer) clearInterval(window.appState.spotlightTimer);
+            window.appState.spotlightTimer = setInterval(() => {
+                renderHeroSpotlight(window.appState.spotlightIndex + 1);
+            }, 7500);
+        }
+
+        function playHeroMedia() {
+            const item = window.appState.spotlightSlides[window.appState.spotlightIndex];
+            if (!item) return;
+            launchPlayer(item.id, item.type || 'movie', item.title || item.name);
+        }
+
+        // Launch Player (routes to play_bingr.php)
+        function launchPlayer(id, type, title, season = 1, episode = 1) {
+            const targetUrl = `/play_bingr.php?id=${encodeURIComponent(id)}&type=${encodeURIComponent(type)}&title=${encodeURIComponent(title)}&s=${season}&e=${episode}&srv=framex&source=consumet_redesign.html`;
+            window.location.href = targetUrl;
+        }
+
+        // Launch Live Stream (routes to play_consumet.php)
+        function launchLiveStream(channelId, url, name) {
+            const targetUrl = `/play_consumet.php?channel_id=${encodeURIComponent(channelId)}&url=${encodeURIComponent(url)}&name=${encodeURIComponent(name)}&source=consumet_redesign.html`;
+            window.location.href = targetUrl;
+        }
+
+        // Render Top 10 Today
+        function renderTop10Shelf() {
+            const container = document.getElementById('homeTop10Shelf');
+            if (!container) return;
+            const items = window.appState.top10;
+            container.innerHTML = items.map((item, idx) => {
+                const poster = item.poster ? `https://image.tmdb.org/t/p/w500${item.poster}` : '/stalker_pro_infinity.svg';
+                const title = item.title || item.name || '';
+                return `
+                    <div onclick="launchPlayer('${item.id}', '${item.type || 'movie'}', '${encodeURIComponent(title)}')" class="relative flex items-end shrink-0 cursor-pointer group">
+                        <span class="rank-number select-none pointer-events-none -mr-7 z-10">${idx + 1}</span>
+                        <div class="w-36 sm:w-44 aspect-[2/3] rounded-2xl overflow-hidden glass-card relative group-hover:scale-105 group-hover:border-white/30 transition-all duration-300 shadow-2xl">
+                            <img src="${poster}" alt="${title}" loading="lazy" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                                <span class="text-xs font-bold text-white truncate w-full">${title}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render Movies Shelf
+        function renderMoviesShelf() {
+            const container = document.getElementById('homeMoviesShelf');
+            const catalogContainer = document.getElementById('moviesCatalogGrid');
+            if (!container) return;
+            const items = window.appState.allMovies;
+            const cardsHtml = items.map(item => createMediaCard(item, 'movie')).join('');
+            container.innerHTML = cardsHtml;
+            if (catalogContainer) catalogContainer.innerHTML = cardsHtml;
+        }
+
+        // Render TV Shelf
+        function renderTvShelf() {
+            const container = document.getElementById('homeTvShelf');
+            const catalogContainer = document.getElementById('tvCatalogGrid');
+            if (!container) return;
+            const items = window.appState.allTv;
+            const cardsHtml = items.map(item => createMediaCard(item, 'tv')).join('');
+            container.innerHTML = cardsHtml;
+            if (catalogContainer) catalogContainer.innerHTML = cardsHtml;
+        }
+
+        // Universal Media Card Component
+        function createMediaCard(item, defaultType = 'movie') {
+            const poster = item.poster ? (item.poster.startsWith('http') ? item.poster : `https://image.tmdb.org/t/p/w500${item.poster}`) : '/stalker_pro_infinity.svg';
+            const title = item.title || item.name || 'Title';
+            const rating = item.rating ? Number(item.rating).toFixed(1) : null;
+            const year = item.year || (item.date ? item.date.slice(0, 4) : '');
+            const type = item.type || defaultType;
+
+            return `
+                <div onclick="launchPlayer('${item.id}', '${type}', '${encodeURIComponent(title)}')" class="w-32 sm:w-40 md:w-48 shrink-0 flex flex-col cursor-pointer group">
+                    <div class="relative aspect-[2/3] rounded-2xl overflow-hidden glass-card mb-2 border border-white/10 group-hover:border-white/30 group-hover:scale-105 transition-all duration-300 shadow-xl">
+                        <img src="${poster}" alt="${title}" loading="lazy" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div class="w-11 h-11 rounded-full bg-white text-black flex items-center justify-center shadow-2xl transform scale-90 group-hover:scale-100 transition-transform">
+                                <i data-lucide="play" class="w-5 h-5 fill-current ml-0.5"></i>
+                            </div>
+                        </div>
+                        ${rating ? `
+                            <div class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] font-black text-amber-400 flex items-center gap-1 shadow">
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i> ${rating}
+                            </div>
+                        ` : ''}
+                    </div>
+                    <div class="px-1">
+                        <h4 class="text-xs font-bold text-white group-hover:text-amber-400 transition-colors truncate" title="${title}">${title}</h4>
+                        <div class="flex items-center justify-between text-[10px] text-zinc-400 mt-0.5">
+                            <span class="uppercase font-semibold">${type}</span>
+                            <span>${year}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 2. Load Live Sports Network
+        async function loadLiveSports() {
+            try {
+                const res = await fetch('/api/streamic/schedule');
+                const json = await res.json();
+                if (json && json.events) {
+                    window.appState.liveEvents = json.events;
+                    document.getElementById('homeLiveSportsCountBadge').textContent = `${json.events.length} ACTIVE MATCHES`;
+                    renderSportsShelf(json.events.slice(0, 15), 'homeLiveSportsShelf');
+                    renderSportsShelf(json.events, 'sportsGridContainer', false);
+                }
+            } catch(e) {
+                console.error("Failed to load sports schedule:", e);
+            }
+        }
+
+        function renderSportsShelf(events, containerId, isShelf = true) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            if (!events.length) {
+                container.innerHTML = '<div class="col-span-full py-12 text-center text-zinc-500 text-xs">No active live matches found at this time.</div>';
+                return;
+            }
+
+            container.innerHTML = events.map(e => {
+                const hasStream = Boolean(e.canWatch && e.primaryPlayUrl);
+                const playAction = hasStream 
+                    ? `window.location.href='${e.primaryPlayUrl}'` 
+                    : `showToast('${e.title}', 'Real-time telemetry tracked on server')`;
+                
+                const widthClass = isShelf ? 'w-48 sm:w-56 shrink-0' : 'w-full';
+                const statusBadge = e.isLive 
+                    ? `<span class="bg-red-600/90 text-white font-black text-[9px] uppercase px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-md shadow-red-600/40"><span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span> LIVE</span>`
+                    : `<span class="bg-black/80 text-zinc-300 font-mono text-[9px] px-2 py-0.5 rounded-full border border-white/10">${e.timeIST}</span>`;
+
+                return `
+                    <div onclick="${playAction}" class="${widthClass} flex flex-col rounded-2xl p-2.5 glass-card hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/10 hover:scale-[1.03] transition-all duration-300 cursor-pointer group">
+                        <div class="relative aspect-video rounded-xl overflow-hidden bg-black/60 mb-2 border border-white/5 flex items-center justify-center p-3">
+                            <div class="flex items-center justify-between w-full">
+                                <div class="flex flex-col items-center text-center gap-1 flex-1 min-w-0">
+                                    <img src="${e.homeTeamLogo || 'https://a.espncdn.com/i/teamlogos/default-team-logo-500.png'}" alt="" class="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow" onerror="this.src='https://a.espncdn.com/i/teamlogos/default-team-logo-500.png'">
+                                    <span class="text-[9px] font-bold text-zinc-300 truncate w-full">${e.homeTeamName || 'Team 1'}</span>
+                                </div>
+                                <div class="px-2 flex flex-col items-center">
+                                    <span class="text-[10px] font-black text-red-500">VS</span>
+                                </div>
+                                <div class="flex flex-col items-center text-center gap-1 flex-1 min-w-0">
+                                    <img src="${e.awayTeamLogo || 'https://a.espncdn.com/i/teamlogos/default-team-logo-500.png'}" alt="" class="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow" onerror="this.src='https://a.espncdn.com/i/teamlogos/default-team-logo-500.png'">
+                                    <span class="text-[9px] font-bold text-zinc-300 truncate w-full">${e.awayTeamName || 'Team 2'}</span>
+                                </div>
+                            </div>
+                            <div class="absolute top-2 left-2 z-10">${statusBadge}</div>
+                        </div>
+                        <div class="px-1">
+                            <h4 class="text-xs font-bold text-white group-hover:text-red-400 transition-colors truncate" title="${e.title}">${e.title}</h4>
+                            <p class="text-[10px] text-zinc-400 truncate mt-0.5 flex items-center justify-between">
+                                <span>${e.liveScore?.summary ? `<span class="text-amber-400 font-bold">${e.liveScore.summary}</span>` : (e.league || e.sportName || 'Live Sports')}</span>
+                                <span class="text-zinc-500 font-mono">${e.timeIST}</span>
+                            </p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function filterSportsGrid(cat) {
+            const btns = ['all', 'cricket', 'football', 'f1', 'combat', 'tennis'];
+            btns.forEach(b => {
+                const btnEl = document.getElementById('sport-btn-' + b);
+                if (btnEl) {
+                    btnEl.className = b === cat 
+                        ? 'px-4 py-2 rounded-full font-black text-xs uppercase bg-white text-black transition-all shadow-lg scale-105' 
+                        : 'px-4 py-2 rounded-full font-bold text-xs uppercase bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 transition-all';
+                }
+            });
+            let list = window.appState.liveEvents;
+            if (cat !== 'all') {
+                list = list.filter(e => (e.category || '').toLowerCase().includes(cat) || (e.sportName || '').toLowerCase().includes(cat));
+            }
+            renderSportsShelf(list, 'sportsGridContainer', false);
+        }
+
+        // 3. Load IPL Archive & Highlights
+        async function loadIplArchive() {
+            try {
+                const [replaysRes, highlightsRes] = await Promise.all([
+                    fetch('/api/sports/ipl-replays'),
+                    fetch('/api/sports/ipl-highlights')
+                ]);
+                const replaysData = await replaysRes.json();
+                const highlightsData = await highlightsRes.json();
+                window.appState.iplReplays = (replaysData.matches || []);
+                window.appState.iplHighlights = (highlightsData.highlights || []);
+
+                renderIplShelf();
+            } catch(e) {
+                console.error("Failed to load IPL data:", e);
+            }
+        }
+
+        function renderIplShelf() {
+            const homeShelf = document.getElementById('homeIplShelf');
+            const archiveGrid = document.getElementById('iplArchiveGridContainer');
+            const allItems = [...window.appState.iplHighlights, ...window.appState.iplReplays];
+
+            if (homeShelf) {
+                homeShelf.innerHTML = allItems.slice(0, 12).map(m => createIplCard(m)).join('');
+            }
+            if (archiveGrid) {
+                archiveGrid.innerHTML = allItems.map(m => createIplCard(m, false)).join('');
+            }
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function createIplCard(m, isShelf = true) {
+            const thumb = m.thumbnail || 'https://resources.pulse.icc-cricket.com/ICC/photo/2023/05/29/70c399b1-5369-4ce4-893c-974a974bdf41/IPL-Final.jpg';
+            const title = m.title || 'IPL 2026 Match';
+            const playUrl = m.playUrl || `/play_consumet.php?url=${encodeURIComponent(m.streamUrl)}&name=${encodeURIComponent(title)}&source=consumet_redesign.html`;
+            const widthClass = isShelf ? 'w-36 sm:w-44 md:w-52 shrink-0' : 'w-full';
+
+            return `
+                <div onclick="window.location.href='${playUrl}'" class="${widthClass} flex flex-col rounded-2xl p-2 glass-card hover:border-amber-500/50 hover:shadow-2xl hover:shadow-amber-500/10 hover:scale-[1.03] transition-all duration-300 cursor-pointer group">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-black/60 mb-2 border border-white/5 shadow-inner">
+                        <img src="${thumb}" alt="${title}" loading="lazy" class="w-full h-full object-cover object-top">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div class="w-11 h-11 rounded-full bg-amber-400 text-black flex items-center justify-center shadow-2xl transform scale-90 group-hover:scale-100 transition-transform">
+                                <i data-lucide="play" class="w-5 h-5 fill-current ml-0.5"></i>
+                            </div>
+                        </div>
+                        <div class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-full bg-amber-500/90 text-black text-[9px] font-black uppercase tracking-wider shadow">
+                            ${m.badge || (m.isHighlight ? 'HIGHLIGHTS' : 'REPLAY')}
+                        </div>
+                    </div>
+                    <div class="px-1">
+                        <h4 class="text-xs font-bold text-white group-hover:text-amber-400 transition-colors truncate" title="${title}">${title}</h4>
+                        <span class="text-[10px] text-zinc-400 truncate block mt-0.5">${m.subtitle || 'IPL 2026 VOD'}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function setIplCategoryFilter(cat) {
+            const btns = ['ALL', 'HIGHLIGHTS', 'ENGLISH', 'HINDI'];
+            btns.forEach(b => {
+                const el = document.getElementById('ipl-cat-' + b.toLowerCase());
+                if (el) {
+                    el.className = b === cat ? 'px-3.5 py-1.5 rounded-full font-bold text-xs bg-amber-500 text-black shadow' : 'px-3.5 py-1.5 rounded-full font-bold text-xs text-zinc-400 hover:text-white';
+                }
+            });
+            let list = [...window.appState.iplHighlights, ...window.appState.iplReplays];
+            if (cat === 'HIGHLIGHTS') list = window.appState.iplHighlights;
+            else if (cat === 'ENGLISH') list = list.filter(m => (m.title || '').toLowerCase().includes('english'));
+            else if (cat === 'HINDI') list = list.filter(m => (m.title || '').toLowerCase().includes('hindi'));
+            
+            const archiveGrid = document.getElementById('iplArchiveGridContainer');
+            if (archiveGrid) archiveGrid.innerHTML = list.map(m => createIplCard(m, false)).join('');
+            if (window.lucide) lucide.createIcons();
+        }
+
+        // 4. Load Live TV (1,324 Channels)
+        async function loadLiveTvCatalog() {
+            const grid = document.getElementById('liveTvGridContainer');
+            if (!grid) return;
+            grid.innerHTML = '<div class="col-span-full py-20 text-center text-zinc-400 text-xs font-bold">Synchronizing 1,324 Live TV Channels...</div>';
+
+            try {
+                const [chanRes, catRes] = await Promise.all([
+                    fetch('/api/jtv/channels'),
+                    fetch('/api/jtv/categories')
+                ]);
+                window.appState.liveTvChannels = await chanRes.json();
+                window.appState.liveTvCategories = await catRes.json();
+
+                renderLiveTvCategories();
+                renderLiveTvGrid(true);
+            } catch(e) {
+                console.error("Live TV load error:", e);
+                grid.innerHTML = '<div class="col-span-full py-16 text-center text-red-400 text-xs">Failed to load channels catalog.</div>';
+            }
+        }
+
+        function renderLiveTvCategories() {
+            const container = document.getElementById('liveTvCategoriesContainer');
+            if (!container) return;
+            const total = window.appState.liveTvChannels.length;
+            let html = `
+                <button onclick="filterLiveTvCat('all')" id="jtv-cat-all" class="px-4 py-2 rounded-full font-black text-xs uppercase bg-emerald-500 text-black shadow-lg scale-105 transition-all shrink-0">
+                    🌟 All (${total})
+                </button>
+            `;
+            for (const c of window.appState.liveTvCategories) {
+                html += `
+                    <button onclick="filterLiveTvCat('${c.name}')" id="jtv-cat-${c.name.toLowerCase()}" class="px-4 py-2 rounded-full font-bold text-xs uppercase bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 transition-all shrink-0">
+                        ${c.icon} ${c.name} (${c.count})
+                    </button>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        function filterLiveTvCat(catName) {
+            window.appState.liveTvActiveCategory = catName;
+            window.appState.liveTvDisplayLimit = 120;
+            renderLiveTvCategories();
+            renderLiveTvGrid(true);
+        }
+
+        function filterLiveTvChannelsRedesign() {
+            window.appState.liveTvDisplayLimit = 120;
+            renderLiveTvGrid(true);
+        }
+
+        function renderLiveTvGrid(resetScroll = false) {
+            const grid = document.getElementById('liveTvGridContainer');
+            const searchInput = document.getElementById('liveTvSearchInput');
+            if (!grid) return;
+
+            const q = (searchInput ? searchInput.value : '').trim().toLowerCase();
+            let channels = window.appState.liveTvChannels;
+
+            if (window.appState.liveTvActiveCategory !== 'all') {
+                channels = channels.filter(c => (c.category || '').toLowerCase() === window.appState.liveTvActiveCategory.toLowerCase());
+            }
+            if (q) {
+                channels = channels.filter(c => (c.name || '').toLowerCase().includes(q) || (c.category || '').toLowerCase().includes(q));
+            }
+
+            const limit = window.appState.liveTvDisplayLimit;
+            const display = channels.slice(0, limit);
+
+            let html = display.map(c => {
+                const isHls = c.source === 'sonyliv' || c.source === 'hotstar' || (c.stream_url && c.stream_url.includes('.m3u8')) || (c.full_stream_url && c.full_stream_url.includes('.m3u8'));
+                const target = isHls ? (c.full_stream_url || c.stream_url) : (c.manifest_url || `/api/jtv/manifest/${c.id}.mpd`);
+                const playUrl = `/play_consumet.php?channel_id=jtv-${encodeURIComponent(c.id)}&url=${encodeURIComponent(target)}&key_id=${encodeURIComponent(c.key_id || '')}&key=${encodeURIComponent(c.key || '')}&name=${encodeURIComponent(c.name)}&source=consumet_redesign.html`;
+
+                return `
+                    <div onclick="window.location.href='${playUrl}'" class="p-3 rounded-2xl glass-card hover:border-emerald-500/60 hover:shadow-xl hover:shadow-emerald-500/10 hover:scale-[1.04] transition-all duration-300 flex flex-col items-center text-center cursor-pointer group">
+                        <div class="w-full aspect-video rounded-xl bg-black/60 border border-white/5 p-2 flex items-center justify-center mb-2 overflow-hidden group-hover:border-emerald-500/30 transition-colors">
+                            <img src="${c.logo || '/stalker_pro_infinity.svg'}" alt="${c.name}" loading="lazy" class="w-full h-full object-contain group-hover:scale-105 transition-transform" onerror="this.src='/stalker_pro_infinity.svg'">
+                        </div>
+                        <span class="text-[9px] font-black uppercase text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 mb-1">${c.category || 'Live TV'}</span>
+                        <h4 class="text-xs font-bold text-white group-hover:text-emerald-300 transition-colors truncate w-full" title="${c.name}">${c.name}</h4>
+                    </div>
+                `;
+            }).join('');
+
+            if (channels.length > limit) {
+                html += `
+                    <div class="col-span-full py-8 text-center flex flex-col items-center gap-3">
+                        <span class="text-xs text-zinc-400">Showing <b class="text-emerald-400">${display.length}</b> of <b class="text-white">${channels.length}</b> channels</span>
+                        <button onclick="window.appState.liveTvDisplayLimit += 120; renderLiveTvGrid(false);" class="px-6 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xs uppercase tracking-wider transition-all shadow-lg active:scale-95 flex items-center gap-2">
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i> Load Next 120 Channels
+                        </button>
+                    </div>
+                `;
+            }
+
+            grid.innerHTML = html;
+            if (window.lucide) lucide.createIcons();
+        }
+
+        // Global Search Modal Handlers
+        function openSearchModal() {
+            const modal = document.getElementById('searchModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.getElementById('globalSearchInput').focus();
+            }
+        }
+        function closeSearchModal() {
+            const modal = document.getElementById('searchModal');
+            if (modal) modal.classList.add('hidden');
+        }
+        window.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                openSearchModal();
+            } else if (e.key === 'Escape') {
+                closeSearchModal();
+                closeDetailsModal();
+            }
+        });
+
+        let searchDebounce = null;
+        async function handleGlobalSearch(query) {
+            clearTimeout(searchDebounce);
+            const container = document.getElementById('searchResultsContainer');
+            if (!container) return;
+            const q = query.trim();
+            if (!q) {
+                container.innerHTML = '<p class="text-xs text-zinc-500 text-center py-8">Type anything to search across the entire OTT catalog...</p>';
+                return;
+            }
+            container.innerHTML = '<div class="py-12 text-center text-zinc-400 text-xs font-bold animate-pulse">Searching global media clusters...</div>';
+
+            searchDebounce = setTimeout(async () => {
+                try {
+                    const res = await fetch(`/api/v1/search?q=${encodeURIComponent(q)}`);
+                    const data = await res.json();
+                    const results = data.results || (Array.isArray(data) ? data : []);
+
+                    if (!results.length) {
+                        container.innerHTML = '<p class="text-xs text-zinc-400 text-center py-8">No matching movies, series, or live events found.</p>';
+                        return;
+                    }
+
+                    container.innerHTML = results.slice(0, 15).map(item => {
+                        const poster = item.poster ? (item.poster.startsWith('http') ? item.poster : `https://image.tmdb.org/t/p/w185${item.poster}`) : '/stalker_pro_infinity.svg';
+                        const title = item.title || item.name || 'Untitled';
+                        const type = item.type || (item.name ? 'tv' : 'movie');
+                        return `
+                            <div onclick="launchPlayer('${item.id}', '${type}', '${encodeURIComponent(title)}')" class="p-3 rounded-2xl glass-card hover:border-white/30 flex items-center justify-between gap-3 cursor-pointer transition-all">
+                                <div class="flex items-center gap-3 min-w-0">
+                                    <img src="${poster}" alt="" class="w-10 h-14 object-cover rounded-lg shrink-0">
+                                    <div class="min-w-0">
+                                        <h4 class="text-xs sm:text-sm font-bold text-white truncate">${title}</h4>
+                                        <span class="text-[10px] text-zinc-400 uppercase font-semibold">${type} • ${item.year || '2026'}</span>
+                                    </div>
+                                </div>
+                                <button class="px-4 py-1.5 rounded-full bg-white text-black font-bold text-xs shrink-0 flex items-center gap-1.5 shadow">
+                                    <i data-lucide="play" class="w-3 h-3 fill-current"></i> Play
+                                </button>
+                            </div>
+                        `;
+                    }).join('');
+                    if (window.lucide) lucide.createIcons();
+                } catch(e) {
+                    container.innerHTML = '<p class="text-xs text-red-400 text-center py-8">Search query failed. Please retry.</p>';
+                }
+            }, 300);
+        }
+
+        // Details Modal
+        function openHeroDetailsModal() {
+            const item = window.appState.spotlightSlides[window.appState.spotlightIndex];
+            if (!item) return;
+            const modal = document.getElementById('detailsModal');
+            const content = document.getElementById('detailsModalContent');
+            if (!modal || !content) return;
+
+            content.innerHTML = `
+                <div class="relative w-full h-64 sm:h-80 bg-cover bg-center" style="background-image: url('https://image.tmdb.org/t/p/original${item.backdrop || item.poster}');">
+                    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="text-[10px] font-black uppercase tracking-wider text-purple-400 bg-purple-500/20 px-2.5 py-0.5 rounded-full border border-purple-500/40">${item.type || 'MOVIE'}</span>
+                        <h2 class="text-2xl sm:text-4xl font-black text-white mt-1.5">${item.title || item.name}</h2>
+                    </div>
+                </div>
+                <div class="p-6 sm:p-8 space-y-6">
+                    <p class="text-sm text-zinc-300 leading-relaxed">${item.overview || 'Experience this feature with 4K UHD streaming.'}</p>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button onclick="launchPlayer('${item.id}', '${item.type || 'movie'}', '${encodeURIComponent(item.title || item.name)}')" class="px-6 py-2.5 rounded-full bg-white text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-xl">
+                            <i data-lucide="play" class="w-4 h-4 fill-current"></i> Play Now
+                        </button>
+                    </div>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function closeDetailsModal() {
+            const modal = document.getElementById('detailsModal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function toggleHeroWatchlist() {
+            showToast('Watchlist Updated', 'Saved to your personal offline watchlist');
+        }
+        function clearWatchlist() {
+            showToast('Watchlist Cleared');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetheris Codex | Quantum Digital Library</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        /* Reader Font Types */
+        .font-serif-lora {
+            font-family: 'Lora', Georgia, serif;
+        }
+        .font-serif-display {
+            font-family: 'Playfair Display', serif;
+        }
+        .font-sans-modern {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-mono-reader {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .font-dyslexic-friendly {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
+            letter-spacing: 0.12em;
+            word-spacing: 0.16em;
+            line-height: 1.8 !important;
+        }
+        /* Reading Highlights */
+        .hl-yellow {
+            background-color: rgba(253, 224, 71, 0.4);
+            border-bottom: 2px solid rgb(234, 179, 8);
+            border-radius: 2px;
+        }
+        .hl-pink {
+            background-color: rgba(244, 114, 182, 0.4);
+            border-bottom: 2px solid rgb(219, 39, 119);
+            border-radius: 2px;
+        }
+        .hl-green {
+            background-color: rgba(74, 222, 128, 0.4);
+            border-bottom: 2px solid rgb(22, 163, 74);
+            border-radius: 2px;
+        }
+        .hl-blue {
+            background-color: rgba(96, 165, 250, 0.4);
+            border-bottom: 2px solid rgb(37, 99, 235);
+            border-radius: 2px;
+        }
+        /* Glassmorphism background */
+        .glass-panel {
+            background: rgba(24, 24, 27, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        /* Pulse animation for active reading */
+        @keyframes subtle-pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+        .reading-pulse {
+            animation: subtle-pulse 3s infinite ease-in-out;
+        }
+    *:focus, *:focus-visible { 
+        outline: none !important; 
+        box-shadow: none !important; 
+        -webkit-tap-highlight-color: transparent !important;
+    }
+    ::-moz-focus-inner {
+        border: 0;
+    }
+</style>
+    <link rel="icon" type="image/png" href="stalker_pro_infinity.svg">
+
+    <style id="tv-mobile-base">
+    /* TV/Remote D-pad focus ring */
+    .tv-focusable:focus, button:focus, a:focus { outline: 2px solid rgba(255,255,255,0.7) !important; outline-offset: 2px !important; }
+    /* Mobile touch improvements */
+    @media (max-width:768px) { button, a, [role=button] { min-height: 44px; touch-action: manipulation; } }
+    </style>
+</head>
+<body class="bg-[#0f0f11] text-zinc-100 min-h-screen overflow-x-hidden selection:bg-amber-500/30 selection:text-amber-200">
+    <!-- Primary Navigation Header -->
+    <header class="sticky top-0 z-40 bg-[#0f0f11]/80 backdrop-blur-md border-b border-zinc-800/80 px-4 py-3.5 sm:px-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <!-- Brand Logotype -->
+            <div class="flex items-center gap-3">
+                <a href="/hero.html" class="p-2 bg-zinc-800/80 hover:bg-zinc-700/80 rounded-xl border border-zinc-700/50 text-zinc-300 transition-all hover:scale-105 active:scale-95 flex items-center justify-center" title="Back to Hero Hub">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </a>
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 bg-black/60 border border-white/15 rounded-xl flex items-center justify-center p-0.5 shadow-[0_0_15px_rgba(249,115,22,0.25)] backdrop-blur-md">
+                        <img src="/stalker_pro_infinity.svg" class="w-full h-full object-contain" alt="Aetheris">
+                    </div>
+                    <div>
+                        <h1 class="text-base sm:text-lg font-black font-mono tracking-widest bg-gradient-to-r from-white via-orange-200 to-amber-400 bg-clip-text text-transparent">AETHERIS CODEX</h1>
+                        <p class="text-[10px] sm:text-xs text-zinc-500 font-mono uppercase tracking-wider">INFINITE DIGITAL LIBRARY</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Global Stats Bar -->
+            <div class="hidden md:flex items-center gap-6 text-xs bg-zinc-900/60 border border-zinc-800/60 px-4 py-1.5 rounded-full">
+                <div class="flex items-center gap-2 text-zinc-400">
+                    <i data-lucide="flame" class="w-4 h-4 text-orange-500 animate-pulse"></i>
+                    <span>Streak: <strong id="globalStreak">1 day</strong></span>
+                </div>
+                <div class="h-4 w-px bg-zinc-800"></div>
+                <div class="flex items-center gap-2 text-zinc-400">
+                    <i data-lucide="timer" class="w-4 h-4 text-amber-500"></i>
+                    <span>Read Today: <strong id="globalTimer">0m</strong></span>
+                </div>
+                <div class="h-4 w-px bg-zinc-800"></div>
+                <div class="flex items-center gap-2 text-zinc-400">
+                    <i data-lucide="award" class="w-4 h-4 text-yellow-500"></i>
+                    <span id="globalRank">Novice Reader</span>
+                </div>
+            </div>
+            <!-- Navigation Links -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="showStatsModal()" class="p-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 rounded-xl border border-zinc-800 hover:border-zinc-700 transition-all flex items-center justify-center gap-2 text-xs font-semibold" title="My Stats & Reading Progress">
+                    <i data-lucide="trending-up" class="w-4.5 h-4.5 text-amber-400"></i>
+                    <span class="hidden sm:inline">Stats</span>
+                </button>
+                <a href="/music.html" class="p-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 rounded-xl border border-zinc-800 hover:border-zinc-700 transition-all flex items-center justify-center gap-2 text-xs font-semibold" title="Music Hub">
+                    <i data-lucide="music" class="w-4.5 h-4.5 text-indigo-400"></i>
+                    <span class="hidden sm:inline">Music Hub</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content Stage -->
+    <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6 relative">
+        <!-- Welcome Banner & Discovery Section -->
+        <section id="librarySection" class="space-y-8">
+            <!-- Hero Spotlight Banner -->
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-900 via-[#18181b] to-zinc-900 border border-zinc-800/80 p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+                <!-- Background Decorative Gradients -->
+                <div class="absolute -top-24 -left-24 w-80 h-80 bg-orange-600/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -right-24 w-80 h-80 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="space-y-4 max-w-2xl relative z-10 text-center md:text-left">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold text-amber-400 bg-amber-500/10 border border-amber-500/20 rounded-full">
+                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                        OVER 70,000+ FREE E-BOOKS
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">Your Ultimate Digital Kindle Library</h2>
+                    <p class="text-sm sm:text-base text-zinc-400 leading-relaxed">
+                        Read classic masterpieces, modern public domain books, and curate your personalized collection. Enjoy customizable eye-safe reading themes, instant double-click dictionary lookups, smart bookmarks, and notes tracking.
+                    </p>
+                    <!-- Search Input Box -->
+                    <div class="pt-2 max-w-lg mx-auto md:mx-0">
+                        <form onsubmit="handleSearch(event)" class="relative flex items-center">
+                            <i data-lucide="search" class="absolute left-4 w-5 h-5 text-zinc-500"></i>
+                            <input id="bookSearchInput" type="text" placeholder="Search by book title, author, topic, language..." class="w-full bg-zinc-950/80 hover:bg-zinc-950 focus:bg-zinc-950 text-white placeholder-zinc-500 text-sm pl-11 pr-24 py-3.5 rounded-2xl border border-zinc-800 focus:border-amber-500/80 focus:ring-1 focus:ring-amber-500/80 outline-none transition-all">
+                            <button type="submit" class="absolute right-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white text-xs font-bold rounded-xl shadow-lg transition-all active:scale-95">
+                                Search
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Custom Kindle Mockup Illustration -->
+                <div class="hidden lg:block relative w-64 h-80 flex-shrink-0 relative z-10 select-none">
+                    <div class="absolute inset-0 bg-zinc-800 rounded-[28px] border-4 border-zinc-700 shadow-2xl p-3 flex flex-col justify-between transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <!-- Kindle screen -->
+                        <div class="bg-[#f5ebd7] rounded-xl flex-1 p-3 text-zinc-800 flex flex-col justify-between">
+                            <div>
+                                <div class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest border-b border-zinc-300 pb-1 flex justify-between items-center">
+                                    <span>STALKER READER</span>
+                                    <span>98%</span>
+                                </div>
+                                <h3 class="font-serif-lora font-bold text-sm text-zinc-900 mt-2 leading-tight">Frankenstein</h3>
+                                <p class="font-serif-lora text-[8px] text-zinc-700 mt-1 leading-normal italic">"I had selected his features as beautiful. Beautiful! Great God!..."</p>
+                            </div>
+                            <div class="flex justify-between items-center text-[8px] text-zinc-500 font-bold border-t border-zinc-300 pt-1">
+                                <span>Chapter 5</span>
+                                <span>Page 42</span>
+                            </div>
+                        </div>
+                        <div class="text-center text-[8px] text-zinc-500 font-bold tracking-widest pt-1">
+                            STALKER KINDLE
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Curated Classical Masterpieces Shelf -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="sparkles" class="w-5 h-5 text-amber-500"></i>
+                        <h3 class="text-lg sm:text-xl font-bold text-white">Curated Masterpieces</h3>
+                    </div>
+                    <span class="text-xs text-zinc-400">Click to load & read instantly</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4" id="curatedShelf">
+                    <!-- Cards will be populated dynamically -->
+                </div>
+            </div>
+            <!-- My Reading List / Bookmarks Section -->
+            <div id="personalListSection" class="space-y-4 hidden">
+                <div class="flex items-center justify-between border-t border-zinc-800/80 pt-6">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="bookmark-check" class="w-5 h-5 text-teal-400"></i>
+                        <h3 class="text-lg sm:text-xl font-bold text-white">My Active Reading List</h3>
+                    </div>
+                    <button onclick="clearReadingHistory()" class="text-xs text-zinc-500 hover:text-red-400 transition-colors">Clear History</button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="personalShelf">
+                    <!-- Personal saved reading cards populated here -->
+                </div>
+            </div>
+            <!-- Interactive Search & Discovery Center -->
+            <div class="bg-zinc-950/40 border border-zinc-800/60 rounded-3xl p-5 sm:p-6 space-y-6 relative overflow-hidden shadow-xl" id="searchCenter">
+                <!-- Background ambient glow -->
+                <div class="absolute -top-32 -right-32 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-32 -left-32 w-64 h-64 bg-orange-600/5 rounded-full blur-3xl pointer-events-none"></div>
+                <!-- Section Title -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-800/60 pb-4">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 bg-amber-500/10 rounded-xl flex items-center justify-center border border-amber-500/20">
+                            <i data-lucide="search" class="w-4 h-4 text-amber-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm sm:text-base font-bold text-white flex items-center gap-1.5">
+                                Unified Search & Discovery Portal
+                            </h3>
+                            <p class="text-[10px] text-zinc-500 font-medium">Explore over 70,000+ local curated and global Gutenberg classics</p>
+                        </div>
+                    </div>
+                    <!-- Quick Stats Badges -->
+                    <div id="searchStatsBadge" class="text-[10px] font-bold text-zinc-400 bg-zinc-900/60 border border-zinc-800/80 px-3 py-1 rounded-full w-fit">
+                        Loading catalog data...
+                    </div>
+                </div>
+                <!-- Search Input with live clear and trigger -->
+                <div class="space-y-3">
+                    <div class="relative flex items-center">
+                        <i data-lucide="search" class="absolute left-4 w-4.5 h-4.5 text-zinc-500"></i>
+                        <input id="portalSearchInput" onkeyup="handleSearchInputKey(event)" type="text" placeholder="Search by book title, author keyword, description..." class="w-full bg-zinc-900/60 hover:bg-zinc-900/80 focus:bg-zinc-900 text-white placeholder-zinc-500 text-xs pl-11 pr-32 py-3 rounded-2xl border border-zinc-800 focus:border-amber-500/80 focus:ring-1 focus:ring-amber-500/80 outline-none transition-all">
+                        <div class="absolute right-2 flex items-center gap-1.5">
+                            <button id="clearSearchBtn" onclick="clearPortalSearch()" class="hidden p-1 text-zinc-500 hover:text-zinc-300 transition-colors" title="Clear Search">
+                                <i data-lucide="x-circle" class="w-4.5 h-4.5"></i>
+                            </button>
+                            <button onclick="triggerPortalSearch()" class="px-3.5 py-1.5 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white text-[11px] font-bold rounded-xl shadow-lg transition-all active:scale-95">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Recently Searched History list (Dynamic) -->
+                    <div id="recentSearchesBox" class="hidden flex items-center gap-2 flex-wrap text-[10px]">
+                        <span class="text-zinc-500 font-semibold">Recent Searches:</span>
+                        <div id="recentSearchesList" class="flex items-center gap-1.5 flex-wrap">
+                            <!-- Clickable historical search items -->
+                        </div>
+                        <button onclick="clearSearchHistory()" class="text-zinc-600 hover:text-red-400 font-bold ml-auto" title="Clear All History">
+                            Clear
+                        </button>
+                    </div>
+                    <!-- Contextual Trending tags (Dynamic based on selected language) -->
+                    <div id="trendingSearchesBox" class="flex items-center gap-2 flex-wrap text-[10px] pt-1">
+                        <span class="text-zinc-500 font-semibold flex items-center gap-1"><i data-lucide="trending-up" class="w-3.5 h-3.5 text-orange-500"></i> Trending:</span>
+                        <div id="trendingList" class="flex items-center gap-1.5 flex-wrap">
+                            <!-- Clickable trending items populated by active language -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Category/Genre horizontal scrolling pill list -->
+                <div class="space-y-2 border-t border-zinc-900 pt-4">
+                    <span class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">Browse by Subject / Genre</span>
+                    <div id="genrePillsList" class="flex items-center gap-2 overflow-x-auto pb-1.5 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
+                        <!-- Clickable genre pills: All, Fiction, Philosophy, History, Horror, Poetry, Romance, Adventure, Science Fiction -->
+                    </div>
+                </div>
+                <!-- Advance Filtering Bar (Source, Language, Sort) -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 border-t border-zinc-900 pt-4">
+                    <!-- Language Selection -->
+                    <div class="space-y-1.5">
+                        <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">Target Language</label>
+                        <div class="relative">
+                            <i data-lucide="languages" class="absolute left-3 top-2.5 w-4 h-4 text-zinc-400"></i>
+                            <select id="langFilter" onchange="handleLangChange()" class="w-full bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-xs text-zinc-300 font-semibold rounded-xl pl-9 pr-4 py-2 outline-none transition-all focus:border-amber-500/80">
+                                <option value="openlibrary">🌐 Open Library (All Languages)</option>
+                                <option value="googlebooks">🌐 Google Books (All Languages)</option>
+                                <option value="en">English</option>
+                                <option value="ml">മലയാളം (Malayalam)</option>
+                                <option value="hi">हिन्दी (Hindi)</option>
+                                <option value="ta">தமிழ் (Tamil)</option>
+                                <option value="kn">ಕನ್ನಡ (Kannada)</option>
+                                <option value="te">తెలుగు (Telugu)</option>
+                                <option value="sa">संस्कृतम् (Sanskrit)</option>
+                                <option value="bn">বাংলা (Bengali)</option>
+                                <option value="mr">मराठी (Marathi)</option>
+                                <option value="ur">اردو (Urdu)</option>
+                                <option value="fr">French</option>
+                                <option value="es">Spanish</option>
+                                <option value="de">German</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Source Selection -->
+                    <div class="space-y-1.5">
+                        <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">Library Source</label>
+                        <div class="relative">
+                            <i data-lucide="database" class="absolute left-3 top-2.5 w-4 h-4 text-zinc-400"></i>
+                            <select id="sourceFilter" onchange="handleSourceChange()" class="w-full bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-xs text-zinc-300 font-semibold rounded-xl pl-9 pr-4 py-2 outline-none transition-all focus:border-amber-500/80">
+                                <option value="all">All Sources (Curated + Gutenberg)</option>
+                                <option value="local">Curated Regional Classics Only</option>
+                                <option value="online">Gutenberg Global Index Only</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Sorting Order selection -->
+                    <div class="space-y-1.5">
+                        <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">Sort Criteria</label>
+                        <div class="relative">
+                            <i data-lucide="arrow-up-down" class="absolute left-3 top-2.5 w-4 h-4 text-zinc-400"></i>
+                            <select id="sortFilter" onchange="handleSortChange()" class="w-full bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-xs text-zinc-300 font-semibold rounded-xl pl-9 pr-4 py-2 outline-none transition-all focus:border-amber-500/80">
+                                <option value="popular">Most Popular (Downloads)</option>
+                                <option value="title_asc">Title: A to Z</option>
+                                <option value="title_desc">Title: Z to A</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Main Results Stage -->
+            <div class="space-y-5 border-t border-zinc-800/60 pt-6">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xs font-bold text-zinc-400 flex items-center gap-2" id="catalogTitle">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Search Results & Live Catalog
+                    </h3>
+                </div>
+                <!-- Books Grid -->
+                <div id="catalogLoading" class="hidden flex flex-col items-center justify-center py-16 gap-3">
+                    <div class="w-10 h-10 border-4 border-amber-500/20 border-t-amber-500 rounded-full animate-spin"></div>
+                    <p class="text-xs text-zinc-400">Searching lakhs of books across servers...</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4" id="booksCatalogGrid">
+                    <!-- Dynamic search / popular items populate here -->
+                </div>
+                <!-- Pagination controls -->
+                <div id="catalogPagination" class="flex justify-center items-center gap-4 pt-6 hidden">
+                    <button id="prevPageBtn" onclick="changePage(-1)" class="p-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-700 rounded-xl transition-all disabled:opacity-30 disabled:pointer-events-none flex items-center justify-center">
+                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </button>
+                    <span id="pageInfo" class="text-xs font-bold text-zinc-400 bg-zinc-900/60 border border-zinc-800/80 px-4 py-2 rounded-xl">Page 1</span>
+                    <button id="nextPageBtn" onclick="changePage(1)" class="p-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-700 rounded-xl transition-all disabled:opacity-30 disabled:pointer-events-none flex items-center justify-center">
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Immersive E-Reader Workspace (Initially hidden) -->
+        <section id="readerSection" class="hidden fixed inset-0 z-50 bg-[#0f0f11] flex flex-col overflow-hidden">
+            <!-- Reader Top Bar Controls -->
+            <div class="bg-[#0f0f11] border-b border-zinc-800/80 px-4 py-3 flex items-center justify-between gap-4 flex-shrink-0 relative z-20">
+                <!-- Close and Info -->
+                <div class="flex items-center gap-3 overflow-hidden">
+                    <button onclick="exitReader()" class="p-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 rounded-xl border border-zinc-800 transition-all flex items-center justify-center" title="Close E-Reader & Save Progress">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                    <div class="overflow-hidden">
+                        <h4 id="readerBookTitle" class="text-sm font-bold text-white truncate max-w-[150px] sm:max-w-xs md:max-w-md">Book Title</h4>
+                        <p id="readerBookAuthor" class="text-[10px] text-zinc-400 truncate">Author</p>
+                    </div>
+                </div>
+                <!-- Interactive Layout, Fonts & Themes Config Panel -->
+                <div class="flex items-center gap-1.5 sm:gap-2.5">
+                    <!-- Chapter Directory Selector -->
+                    <button onclick="toggleReaderSidebar()" class="p-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 rounded-xl border border-zinc-800 transition-all flex items-center justify-center gap-1.5 text-xs font-bold" title="Chapters Table of Contents">
+                        <i data-lucide="menu" class="w-4.5 h-4.5 text-amber-400"></i>
+                        <span class="hidden md:inline">Chapters</span>
+                    </button>
+                    <!-- Layout Settings Toggle -->
+                    <div class="relative">
+                        <button onclick="toggleSettingsMenu()" class="p-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 rounded-xl border border-zinc-800 transition-all flex items-center justify-center gap-1.5 text-xs font-bold" title="Configure Reader Layout (Fonts, Themes)">
+                            <i data-lucide="sliders" class="w-4.5 h-4.5 text-amber-400"></i>
+                            <span class="hidden md:inline">A/a View</span>
+                        </button>
+                        <!-- Settings Dropdown Panel (Kindle Like) -->
+                        <div id="readerSettingsMenu" class="hidden absolute right-0 mt-3 w-80 glass-panel rounded-2xl p-5 shadow-2xl space-y-5 text-zinc-300 text-xs">
+                            <div class="flex items-center justify-between pb-2 border-b border-zinc-800">
+                                <h5 class="font-bold text-zinc-100 flex items-center gap-1.5">
+                                    <i data-lucide="settings" class="w-4 h-4 text-amber-500"></i> E-Reader Options
+                                </h5>
+                                <button onclick="toggleSettingsMenu()" class="text-zinc-500 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+                            </div>
+                            <!-- Typography Font Face Options -->
+                            <div class="space-y-2">
+                                <span class="text-[11px] font-bold text-zinc-400 uppercase tracking-widest">Font Family</span>
+                                <div class="grid grid-cols-2 gap-1.5">
+                                    <button onclick="changeFontFace('serif-lora')" class="px-2.5 py-1.5 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-lg text-center font-serif-lora text-zinc-100 font-semibold">Serif (Lora)</button>
+                                    <button onclick="changeFontFace('serif-display')" class="px-2.5 py-1.5 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-lg text-center font-serif-display text-zinc-100 font-semibold">Display</button>
+                                    <button onclick="changeFontFace('sans-modern')" class="px-2.5 py-1.5 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-lg text-center font-sans-modern text-zinc-100 font-semibold">Sans (Inter)</button>
+                                    <button onclick="changeFontFace('dyslexic-friendly')" class="px-2.5 py-1.5 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-lg text-center font-dyslexic-friendly text-[10px] text-zinc-100 font-semibold" style="line-height:1.2!important;">Dyslexic</button>
+                                </div>
+                            </div>
+                            <!-- Font Scaling Adjuster -->
+                            <div class="space-y-2">
+                                <span class="text-[11px] font-bold text-zinc-400 uppercase tracking-widest">Font Size</span>
+                                <div class="flex items-center justify-between bg-zinc-950 p-1.5 rounded-xl border border-zinc-800">
+                                    <button onclick="adjustFontSize(-2)" class="w-9 h-9 bg-zinc-900 hover:bg-zinc-800 rounded-lg font-bold flex items-center justify-center transition-all active:scale-95 text-xs">A-</button>
+                                    <span id="fontSizeBadge" class="font-bold text-zinc-200">16px</span>
+                                    <button onclick="adjustFontSize(2)" class="w-9 h-9 bg-zinc-900 hover:bg-zinc-800 rounded-lg font-bold flex items-center justify-center transition-all active:scale-95 text-sm">A+</button>
+                                </div>
+                            </div>
+                            <!-- Eye-Safe Preset Color Themes -->
+                            <div class="space-y-2">
+                                <span class="text-[11px] font-bold text-zinc-400 uppercase tracking-widest">Eye-Safe Themes</span>
+                                <div class="grid grid-cols-5 gap-2">
+                                    <button onclick="changeReadTheme('theme-paper')" class="w-full h-9 bg-white border border-zinc-300 rounded-lg text-zinc-900 font-bold hover:scale-105 active:scale-95 transition-all text-[10px]" title="Crisp Paper">Paper</button>
+                                    <button onclick="changeReadTheme('theme-sepia')" class="w-full h-9 bg-[#fbf0db] border border-[#eccfa4] rounded-lg text-[#5e4636] font-bold hover:scale-105 active:scale-95 transition-all text-[10px]" title="Classic Sepia">Sepia</button>
+                                    <button onclick="changeReadTheme('theme-slate')" class="w-full h-9 bg-zinc-100 border border-zinc-300 rounded-lg text-zinc-800 font-bold hover:scale-105 active:scale-95 transition-all text-[10px]" title="Warm Slate">Slate</button>
+                                    <button onclick="changeReadTheme('theme-sage')" class="w-full h-9 bg-[#f1f3f0] border border-[#d8ded6] rounded-lg text-[#2c3e2b] font-bold hover:scale-105 active:scale-95 transition-all text-[10px]" title="Calm Sage">Sage</button>
+                                    <button onclick="changeReadTheme('theme-midnight')" class="w-full h-9 bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-300 font-bold hover:scale-105 active:scale-95 transition-all text-[10px]" title="Deep Midnight">Dark</button>
+                                </div>
+                            </div>
+                            <!-- Line Spacing Selection -->
+                            <div class="space-y-2">
+                                <span class="text-[11px] font-bold text-zinc-400 uppercase tracking-widest">Line Spacing</span>
+                                <div class="grid grid-cols-3 gap-1.5 text-center">
+                                    <button onclick="changeLineHeight('tight')" class="py-1.5 bg-zinc-800 border border-zinc-700 rounded-lg hover:bg-zinc-700">Tight</button>
+                                    <button onclick="changeLineHeight('normal')" class="py-1.5 bg-zinc-800 border border-zinc-700 rounded-lg hover:bg-zinc-700">Relaxed</button>
+                                    <button onclick="changeLineHeight('loose')" class="py-1.5 bg-zinc-800 border border-zinc-700 rounded-lg hover:bg-zinc-700">Spacious</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- E-Reader Body Canvas -->
+            <div class="flex-grow flex relative overflow-hidden">
+                <!-- Table of Contents Sidebar -->
+                <div id="readerSidebar" class="w-72 bg-[#121215] border-r border-zinc-800/80 flex flex-col overflow-hidden transition-all duration-300 relative z-10">
+                    <div class="p-4 border-b border-zinc-800/80 flex items-center justify-between flex-shrink-0">
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-zinc-400 flex items-center gap-1.5">
+                            <i data-lucide="list" class="w-4 h-4 text-amber-500"></i> Table of Contents
+                        </span>
+                        <button onclick="toggleReaderSidebar()" class="text-zinc-500 hover:text-white"><i data-lucide="chevrons-left" class="w-4 h-4"></i></button>
+                    </div>
+                    <!-- Directory scroll -->
+                    <div id="readerChapterList" class="flex-grow overflow-y-auto p-2 space-y-1">
+                        <!-- Dynamic chapter indexes populated here -->
+                    </div>
+                </div>
+                <!-- Text Presentation Viewport (Standard Kindle theme class applied dynamically) -->
+                <div id="readerCanvas" class="flex-grow overflow-y-auto px-6 sm:px-12 py-8 relative transition-colors duration-200">
+                    <!-- Immersive Book Intro Frame -->
+                    <div id="readerIntroFrame" class="max-w-2xl mx-auto py-12 text-center space-y-6 hidden">
+                        <div class="w-40 h-56 bg-zinc-800 mx-auto rounded-xl shadow-2xl relative overflow-hidden flex flex-col justify-between p-4 border border-zinc-700">
+                            <!-- book mockup card inside reader -->
+                            <div class="text-[8px] text-zinc-400 tracking-widest font-bold">PROJECT GUTENBERG</div>
+                            <h5 id="introMockTitle" class="text-xs font-black font-serif-display text-white line-clamp-3">Book Title</h5>
+                            <div id="introMockAuthor" class="text-[9px] text-zinc-400 italic">Author</div>
+                        </div>
+                        <div class="space-y-2">
+                            <h3 id="introMainTitle" class="text-xl sm:text-2xl font-black text-zinc-800">Book Title</h3>
+                            <p id="introMainAuthor" class="text-xs font-semibold text-zinc-500">By Author Name</p>
+                        </div>
+                        <button onclick="startBookRead()" class="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-2xl shadow-lg hover:shadow-amber-500/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-sm">
+                            Begin Reading
+                        </button>
+                    </div>
+                    <!-- Main Text Output Frame -->
+                    <div id="readerTextFrame" class="max-w-2xl mx-auto space-y-6 select-text text-justify font-serif-lora leading-relaxed text-zinc-800 transition-all pb-24">
+                        <!-- Book Text parsed dynamically inside -->
+                    </div>
+                    <!-- Double Click / Highlight Hint Toast -->
+                    <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-zinc-950/90 text-zinc-300 text-[10px] px-3.5 py-2 rounded-full border border-zinc-800 shadow-xl opacity-0 pointer-events-none transition-opacity duration-500 flex items-center gap-1.5" id="highlightToast">
+                        <i data-lucide="info" class="w-3.5 h-3.5 text-amber-500"></i> Double-click any word for dictionary definition. Highlight text to annotate.
+                    </div>
+                </div>
+            </div>
+            <!-- Reader Bottom Controls: Page turn, stats and progress slider -->
+            <div class="bg-[#0f0f11] border-t border-zinc-800/80 px-4 py-3 flex items-center justify-between gap-4 flex-shrink-0 relative z-20">
+                <!-- Chapter backward -->
+                <button onclick="navigateChapter(-1)" id="prevChapterBtn" class="p-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 rounded-xl transition-all disabled:opacity-30 disabled:pointer-events-none flex items-center gap-1.5 text-xs font-bold">
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i> Prev Chapter
+                </button>
+                <!-- Book progress stats bar -->
+                <div class="flex-grow max-w-lg hidden sm:flex items-center gap-3">
+                    <span id="progressPercentBadge" class="text-[10px] font-extrabold text-zinc-400 bg-zinc-900 border border-zinc-800/80 px-2.5 py-1 rounded-lg">0%</span>
+                    <input type="range" id="readerProgressSlider" min="0" max="100" value="0" oninput="handleScrollProgressChange(this.value)" class="flex-grow accent-amber-500 bg-zinc-800 h-1.5 rounded-lg appearance-none cursor-pointer">
+                    <span id="chapterProgressBadge" class="text-[10px] font-extrabold text-zinc-400 bg-zinc-900 border border-zinc-800/80 px-2.5 py-1 rounded-lg">Chapter 1/1</span>
+                </div>
+                <!-- Chapter forward -->
+                <button onclick="navigateChapter(1)" id="nextChapterBtn" class="p-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 rounded-xl transition-all disabled:opacity-30 disabled:pointer-events-none flex items-center gap-1.5 text-xs font-bold">
+                    Next Chapter <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </section>
+    </main>
+    <!-- Interactive Floating Selection Annotation Menu -->
+    <div id="selectionMenu" class="hidden fixed z-50 bg-zinc-950 border border-zinc-800 rounded-2xl p-2 shadow-2xl flex items-center gap-1.5">
+        <button onclick="applyAnnotationHighlight('yellow')" class="w-6 h-6 rounded-full bg-yellow-400 hover:scale-110 active:scale-95 transition-all border border-white/20" title="Highlight Yellow"></button>
+        <button onclick="applyAnnotationHighlight('pink')" class="w-6 h-6 rounded-full bg-pink-400 hover:scale-110 active:scale-95 transition-all border border-white/20" title="Highlight Pink"></button>
+        <button onclick="applyAnnotationHighlight('green')" class="w-6 h-6 rounded-full bg-green-400 hover:scale-110 active:scale-95 transition-all border border-white/20" title="Highlight Green"></button>
+        <button onclick="applyAnnotationHighlight('blue')" class="w-6 h-6 rounded-full bg-blue-400 hover:scale-110 active:scale-95 transition-all border border-white/20" title="Highlight Blue"></button>
+        <div class="w-px h-6 bg-zinc-800"></div>
+        <button onclick="openNoteInput()" class="p-1.5 hover:bg-zinc-800 text-zinc-300 hover:text-amber-400 rounded-lg transition-all" title="Add Sticky Note">
+            <i data-lucide="sticky-note" class="w-4 h-4"></i>
+        </button>
+        <button onclick="lookupSelectedWord()" class="p-1.5 hover:bg-zinc-800 text-zinc-300 hover:text-amber-400 rounded-lg transition-all" title="Define Selected">
+            <i data-lucide="book" class="w-4 h-4"></i>
+        </button>
+    </div>
+    <!-- Floating Sticky Note Modal / Card -->
+    <div id="noteModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 max-w-sm w-full space-y-4 shadow-2xl">
+            <div class="flex items-center justify-between">
+                <h5 class="font-bold text-white flex items-center gap-1.5"><i data-lucide="sticky-note" class="text-amber-500 w-4 h-4"></i> Add Sticky Note</h5>
+                <button onclick="closeNoteModal()" class="text-zinc-500 hover:text-white"><i data-lucide="x" class="w-4.5 h-4.5"></i></button>
+            </div>
+            <p id="noteModalSelectedText" class="text-[11px] text-zinc-400 italic line-clamp-3 bg-zinc-950 p-2.5 rounded-xl border border-zinc-800/60"></p>
+            <textarea id="noteModalTextArea" placeholder="Type your notes, ideas, or annotations here..." rows="4" class="w-full bg-zinc-950 text-white placeholder-zinc-500 text-xs p-3 rounded-xl border border-zinc-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none resize-none"></textarea>
+            <div class="flex gap-2 justify-end">
+                <button onclick="closeNoteModal()" class="px-3.5 py-1.5 bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition-all text-xs font-bold">Cancel</button>
+                <button onclick="saveStickyNote()" class="px-4 py-1.5 bg-gradient-to-r from-amber-500 to-orange-600 text-white rounded-lg transition-all active:scale-95 text-xs font-bold">Save Note</button>
+            </div>
+        </div>
+    </div>
+    <!-- Floating Dictionary Popover -->
+    <div id="dictionaryModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 max-w-md w-full space-y-4 shadow-2xl text-zinc-300">
+            <div class="flex items-center justify-between">
+                <span class="text-[10px] font-black tracking-widest uppercase text-amber-500 flex items-center gap-1.5"><i data-lucide="book" class="w-3.5 h-3.5"></i> Instant Dictionary</span>
+                <button onclick="closeDictionaryModal()" class="text-zinc-500 hover:text-white"><i data-lucide="x" class="w-4.5 h-4.5"></i></button>
+            </div>
+            <div id="dictionaryLoading" class="flex flex-col items-center justify-center py-6 gap-2">
+                <div class="w-6 h-6 border-2 border-amber-500/20 border-t-amber-500 rounded-full animate-spin"></div>
+                <p class="text-[10px] text-zinc-500">Searching definitions...</p>
+            </div>
+            <div id="dictionaryContent" class="space-y-3.5 hidden">
+                <div class="flex items-end justify-between border-b border-zinc-800/80 pb-2.5">
+                    <div>
+                        <h4 id="dictWord" class="text-lg font-black text-white">Word</h4>
+                        <p id="dictPhonetic" class="text-xs text-amber-400 font-semibold italic">Phonetic</p>
+                    </div>
+                </div>
+                <div id="dictMeanings" class="space-y-3 max-h-60 overflow-y-auto pr-1">
+                    <!-- Dynamic dictionary definitions populated inside -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Stats & Achievements Popover -->
+    <div id="statsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md p-4">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 max-w-lg w-full space-y-6 shadow-2xl relative overflow-hidden">
+            <!-- decorative background glows -->
+            <div class="absolute -top-12 -right-12 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+                <h4 class="text-lg font-extrabold text-white flex items-center gap-2"><i data-lucide="trending-up" class="text-amber-500"></i> Reading Dashboard</h4>
+                <button onclick="closeStatsModal()" class="text-zinc-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <!-- Stats grid -->
+            <div class="grid grid-cols-3 gap-3">
+                <div class="bg-zinc-950 p-4 rounded-2xl border border-zinc-800/80 text-center">
+                    <span class="text-[10px] font-extrabold text-zinc-500 uppercase tracking-widest">Streak</span>
+                    <p id="statsStreakVal" class="text-xl font-black text-white mt-1">1 Day</p>
+                    <span class="text-[9px] text-orange-400 font-medium">Keep reading!</span>
+                </div>
+                <div class="bg-zinc-950 p-4 rounded-2xl border border-zinc-800/80 text-center">
+                    <span class="text-[10px] font-extrabold text-zinc-500 uppercase tracking-widest">Time Active</span>
+                    <p id="statsTimerVal" class="text-xl font-black text-white mt-1">0 Min</p>
+                    <span class="text-[9px] text-zinc-500 font-medium">Today's goal: 20m</span>
+                </div>
+                <div class="bg-zinc-950 p-4 rounded-2xl border border-zinc-800/80 text-center">
+                    <span class="text-[10px] font-extrabold text-zinc-500 uppercase tracking-widest">E-Books Read</span>
+                    <p id="statsBooksVal" class="text-xl font-black text-white mt-1">0</p>
+                    <span class="text-[9px] text-zinc-500 font-medium">In your library</span>
+                </div>
+            </div>
+            <!-- Reading achievements -->
+            <div class="space-y-3">
+                <h5 class="text-xs font-extrabold text-zinc-400 uppercase tracking-widest">Unlocked Badges</h5>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="bg-zinc-950/60 p-3 rounded-xl border border-zinc-800/60 flex items-center gap-2.5 opacity-100" id="badgeNovice">
+                        <div class="w-8 h-8 rounded-lg bg-zinc-800/80 flex items-center justify-center border border-zinc-700/50 text-amber-500 font-bold"><i data-lucide="award" class="w-5 h-5"></i></div>
+                        <div>
+                            <div class="text-xs font-bold text-slate-200">Novice Reader</div>
+                            <div class="text-[9px] text-zinc-500">First book opened</div>
+                        </div>
+                    </div>
+                    <div class="bg-zinc-950/60 p-3 rounded-xl border border-zinc-800/60 flex items-center gap-2.5 opacity-50" id="badgePageTurner">
+                        <div class="w-8 h-8 rounded-lg bg-zinc-800/80 flex items-center justify-center border border-zinc-700/50 text-orange-500 font-bold"><i data-lucide="book-open" class="w-5 h-5"></i></div>
+                        <div>
+                            <div class="text-xs font-bold text-slate-200">Page Turner</div>
+                            <div class="text-[9px] text-zinc-500">Read 5+ minutes</div>
+                        </div>
+                    </div>
+                    <div class="bg-zinc-950/60 p-3 rounded-xl border border-zinc-800/60 flex items-center gap-2.5 opacity-50" id="badgeBookworm">
+                        <div class="w-8 h-8 rounded-lg bg-zinc-800/80 flex items-center justify-center border border-zinc-700/50 text-indigo-500 font-bold"><i data-lucide="glasses" class="w-5 h-5"></i></div>
+                        <div>
+                            <div class="text-xs font-bold text-slate-200">Bookworm</div>
+                            <div class="text-[9px] text-zinc-500">Create a highlight</div>
+                        </div>
+                    </div>
+                    <div class="bg-zinc-950/60 p-3 rounded-xl border border-zinc-800/60 flex items-center gap-2.5 opacity-50" id="badgeKindleMaster">
+                        <div class="w-8 h-8 rounded-lg bg-zinc-800/80 flex items-center justify-center border border-zinc-700/50 text-yellow-500 font-bold"><i data-lucide="crown" class="w-5 h-5"></i></div>
+                        <div>
+                            <div class="text-xs font-bold text-slate-200">Kindle Master</div>
+                            <div class="text-[9px] text-zinc-500">3-day streak active</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Notes tracker list -->
+            <div class="space-y-3">
+                <h5 class="text-xs font-extrabold text-zinc-400 uppercase tracking-widest">My Highlights & Sticky Notes</h5>
+                <div id="personalNotesList" class="space-y-2 max-h-40 overflow-y-auto pr-1">
+                    <p class="text-[11px] text-zinc-500 italic py-2 text-center">No annotations or notes added yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- E-Book JavaScript Logic Engine -->
+    <script>
+        // Core Curated Classics Collection
+        const curatedBooks = [
+            { id: 84, title: "Frankenstein", author: "Mary Wollstonecraft Shelley", cover: "https://gutenberg.org/cache/epub/84/pg84.cover.medium.jpg", desc: "A masterpiece of horror and science fiction about creation and consequence." },
+            { id: 345, title: "Dracula", author: "Bram Stoker", cover: "https://gutenberg.org/cache/epub/345/pg345.cover.medium.jpg", desc: "The legendary gothic tale of Count Dracula and the battle for humanity." },
+            { id: 1342, title: "Pride and Prejudice", author: "Jane Austen", cover: "https://gutenberg.org/cache/epub/1342/pg1342.cover.medium.jpg", desc: "The supreme romantic comedy detailing Darcy and Elizabeth's love saga." },
+            { id: 1661, title: "Sherlock Holmes", author: "Arthur Conan Doyle", cover: "https://gutenberg.org/cache/epub/1661/pg1661.cover.medium.jpg", desc: "Twelve classic detective mystery mysteries solved by the Baker Street sleuth." },
+            { id: 11, title: "Alice in Wonderland", author: "Lewis Carroll", cover: "https://gutenberg.org/cache/epub/11/pg11.cover.medium.jpg", desc: "The whimsical, psychedelic trip of Alice down the rabbit hole into Wonderland." },
+            { id: 2701, title: "Moby Dick", author: "Herman Melville", cover: "https://gutenberg.org/cache/epub/2701/pg2701.cover.medium.jpg", desc: "The obsessive sea voyage of Captain Ahab seeking vengeance on the white whale." },
+            { id: 98, title: "A Tale of Two Cities", author: "Charles Dickens", cover: "https://gutenberg.org/cache/epub/98/pg98.cover.medium.jpg", desc: "The historical masterpiece set in London and Paris during the French Revolution." },
+            { id: 1400, title: "Great Expectations", author: "Charles Dickens", cover: "https://gutenberg.org/cache/epub/1400/pg1400.cover.medium.jpg", desc: "A beautiful coming-of-age story tracking the life and fortunes of orphan Pip." }
+        ];
+        // State Store variables
+        let currentCatalogPage = 1;
+        let selectedLang = 'en';
+        let currentSearchQuery = '';
+        let activeBook = null;
+        let bookChapters = [];
+        let activeChapterIndex = 0;
+        let totalStatsMinutes = 0;
+        let userRank = 'Novice Reader';
+        let readingStreak = 1;
+        // Timer tracking active reading minutes
+        let activeMinutesTracker = 0;
+        let activeSecondsCounter = 0;
+        // E-reader visual customizations default states
+        let readerTheme = 'theme-sepia';
+        let readerFontSize = 18;
+        let readerFontFace = 'serif-lora';
+        let readerLineHeight = 'normal';
+        // Advanced Search Portal State Store variables
+        let selectedGenre = 'All Genres';
+        let selectedSource = 'all';
+        let selectedSort = 'popular';
+        let searchHistory = JSON.parse(localStorage.getItem('stalker_book_search_history') || '[]');
+        const trendingKeywordsMap = {
+            en: ["Frankenstein", "Dracula", "Sherlock Holmes", "Alice", "Moby Dick"],
+            ml: ["Indulekha", "Marthandavarma", "Karuna", "Ramanan"],
+            hi: ["Godaan", "Gaban", "Chandrakanta", "Premchand"],
+            ta: ["Ponniyin Selvan", "Tirukkural", "Sivagamiyin", "Bharathiyar"],
+            kn: ["Basavanna Vachana", "Mankuthimmana", "Kavirajamarga"],
+            te: ["Vemana Satakam", "Kanyasulkam", "Mahaprasthanam"],
+            sa: ["Bhagavad Gita", "Ramayana", "Mahabharata", "Kalidasa"],
+            bn: ["Gitanjali", "Devdas", "Chokher Bali", "Rabindranath"],
+            mr: ["Shyamchi Aai", "Mrityunjay", "Yayati"],
+            ur: ["Ghalib Poems", "Umrao Jan", "Mirza Ghalib"]
+        };
+        // Initialize Applet
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            loadStats();
+            renderCuratedShelf();
+            // Render advanced search controls
+            renderGenrePills();
+            updateTrendingAndHistoryUI();
+            loadPopularBooks();
+            renderSavedBookmarks();
+            setupReadingTimer();
+            setupDoubleClickHandler();
+            setupTextSelectionHandler();
+            setupKeyboardNavigation();
+        });
+        // ------------------ Discover/Shelf Loading ------------------
+        // Render Curated Classics Cards
+        function renderCuratedShelf() {
+            const container = document.getElementById('curatedShelf');
+            if (!container) return;
+            container.innerHTML = curatedBooks.map(book => `
+                <div onclick="openBookById(${book.id}, '${escapeHtml(book.title)}', '${escapeHtml(book.author)}')" class="bg-zinc-900/40 hover:bg-zinc-900 border border-zinc-800/80 rounded-2xl p-2.5 cursor-pointer group hover:scale-[1.03] hover:border-amber-500/40 transition-all text-center flex flex-col justify-between">
+                    <div class="relative overflow-hidden rounded-xl bg-zinc-950 aspect-[2/3] shadow-md mb-2">
+                        <img src="${book.cover}" alt="${book.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-2">
+                            <span class="text-[9px] font-bold text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full border border-amber-500/20">Read Now</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-[11px] font-bold text-zinc-200 line-clamp-1 group-hover:text-white">${book.title}</h4>
+                        <p class="text-[9px] text-zinc-500 truncate mt-0.5">${book.author}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+        // Search & Fetch popular books via Gutendex API and Local Regional API
+        async function loadPopularBooks() {
+            const grid = document.getElementById('booksCatalogGrid');
+            const loader = document.getElementById('catalogLoading');
+            const pagination = document.getElementById('catalogPagination');
+            const statsBadge = document.getElementById('searchStatsBadge');
+            const catalogTitle = document.getElementById('catalogTitle');
+            if (!grid) return;
+            grid.innerHTML = '';
+            loader.classList.remove('hidden');
+            pagination.classList.add('hidden');
+            if (statsBadge) statsBadge.innerText = "Querying databases...";
+            // Dynamically set title depending on search context
+            if (catalogTitle) {
+                let titleText = "Popular E-Books";
+                if (currentSearchQuery && selectedGenre !== 'All Genres') {
+                    titleText = `Search Results: "${currentSearchQuery}" in ${selectedGenre}`;
+                } else if (currentSearchQuery) {
+                    titleText = `Search Results: "${currentSearchQuery}"`;
+                } else if (selectedGenre !== 'All Genres') {
+                    titleText = `${selectedGenre} Collection`;
+                }
+                catalogTitle.innerHTML = `<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> ${titleText}`;
+            }
+            try {
+                // 1. Fetch Local Curated Regional Books if any matching language & source isn't online-only
+                let regionalBooks = [];
+                if (selectedSource !== 'online') {
+                    try {
+                        const regRes = await fetch(`/api/books/regional?lang=${selectedLang}`);
+                        if (regRes.ok) {
+                            regionalBooks = await regRes.json();
+                        }
+                    } catch (e) {
+                        console.warn("[Catalog] Local regional books fetch failed:", e);
+                    }
+                    // Filter regional books locally by query if applicable
+                    if (currentSearchQuery) {
+                        const q = currentSearchQuery.toLowerCase();
+                        regionalBooks = regionalBooks.filter(b => 
+                            b.title.toLowerCase().includes(q) || 
+                            b.author.toLowerCase().includes(q) ||
+                            b.desc.toLowerCase().includes(q)
+                        );
+                    }
+                    // Filter regional books locally by genre pill if applicable
+                    if (selectedGenre !== 'All Genres') {
+                        regionalBooks = regionalBooks.filter(b => matchesGenre(b, selectedGenre));
+                    }
+                }
+                // 2. Fetch online Gutenberg catalog or Open Library if source isn't local-only
+                let onlineBooks = [];
+                let hasOnlineNext = false;
+                let hasOnlinePrev = false;
+                if (selectedSource !== 'local') {
+                    if (selectedLang === 'googlebooks') {
+                        try {
+                            let query = currentSearchQuery ? currentSearchQuery.trim() : "subject:fiction";
+                            let url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=24&startIndex=${(currentCatalogPage - 1) * 24}`;
+                            const res = await fetch(url);
+                            if (res.ok) {
+                                const gbData = await res.json();
+                                const items = gbData.items || [];
+                                onlineBooks = items.map(item => {
+                                    const vol = item.volumeInfo;
+                                    const coverImg = vol.imageLinks ? (vol.imageLinks.thumbnail || vol.imageLinks.smallThumbnail).replace('http:', 'https:') : `https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=200&auto=format&fit=crop`;
+                                    const author = vol.authors ? vol.authors[0] : "Unknown Author";
+                                    return {
+                                        id: `gb_${item.id}`,
+                                        title: vol.title,
+                                        authors: [{ name: author }],
+                                        download_count: vol.ratingsCount || 100,
+                                        formats: { 'image/jpeg': coverImg }
+                                    };
+                                });
+                                hasOnlineNext = items.length === 24;
+                                hasOnlinePrev = currentCatalogPage > 1;
+                            }
+                        } catch (err) {
+                            console.warn("[Catalog] Google Books API failed:", err);
+                        }
+                    } else if (selectedLang === 'openlibrary') {
+                        // Query Open Library Search API
+                        try {
+                            let query = currentSearchQuery ? currentSearchQuery.trim() : "";
+                            let genre = selectedGenre !== 'All Genres' ? selectedGenre : "";
+                            let url = `https://openlibrary.org/search.json?limit=24&page=${currentCatalogPage}`;
+                            if (query) {
+                                url += `&q=${encodeURIComponent(query)}`;
+                            } else if (genre) {
+                                url += `&q=subject:${encodeURIComponent(genre.toLowerCase())}`;
+                            } else {
+                                url += `&q=classics`;
+                            }
+                            const proxyUrl = `/api/books/catalog-proxy?url=${encodeURIComponent(url)}`;
+                            const res = await fetch(proxyUrl);
+                            if (res.ok) {
+                                const olData = await res.json();
+                                const docs = olData.docs || [];
+                                onlineBooks = docs.map(doc => {
+                                    const coverId = doc.cover_i;
+                                    const coverImg = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg` : `https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=200&auto=format&fit=crop`;
+                                    const author = doc.author_name ? doc.author_name[0] : "Unknown Author";
+                                    return {
+                                        id: `ol_${doc.key.replace(/^\/(works|books)\//, '')}`,
+                                        title: doc.title,
+                                        authors: [{ name: author }],
+                                        download_count: doc.already_read_count || doc.edition_count || 100,
+                                        formats: { 'image/jpeg': coverImg }
+                                    };
+                                });
+                                hasOnlineNext = (currentCatalogPage * 24) < (olData.numFound || 0);
+                                hasOnlinePrev = currentCatalogPage > 1;
+                            }
+                        } catch (err) {
+                            console.warn("[Catalog] Open Library API failed:", err);
+                        }
+                    } else {
+                        // Standard Gutenberg fetch
+                        try {
+                            let url = `https://gutendex.com/books/?page=${currentCatalogPage}&languages=${selectedLang}`;
+                            if (currentSearchQuery) {
+                                url += `&search=${encodeURIComponent(currentSearchQuery)}`;
+                            }
+                            if (selectedGenre !== 'All Genres') {
+                                url += `&topic=${encodeURIComponent(selectedGenre.toLowerCase())}`;
+                            }
+                            const proxyUrl = `/api/books/catalog-proxy?url=${encodeURIComponent(url)}`;
+                            const res = await fetch(proxyUrl);
+                            if (res.ok) {
+                                const onlineData = await res.json();
+                                onlineBooks = onlineData.results || [];
+                                hasOnlineNext = !!onlineData.next;
+                                hasOnlinePrev = !!onlineData.previous;
+                            }
+                        } catch (err) {
+                            console.warn("[Catalog] Gutendex online catalog failed:", err);
+                        }
+                    }
+                }
+                loader.classList.add('hidden');
+                if (regionalBooks.length === 0 && onlineBooks.length === 0) {
+                    grid.innerHTML = `
+                        <div class="col-span-full py-16 text-center text-zinc-500 text-xs">
+                            <i data-lucide="book-x" class="w-10 h-10 mx-auto text-zinc-700 mb-2"></i>
+                            <p class="font-bold text-zinc-300 text-sm mb-1">No Books Found</p>
+                            <p class="text-zinc-500">We couldn't find any match for your filters or query in ${selectedLang.toUpperCase()}.</p>
+                            <button onclick="resetAllPortalFilters()" class="mt-4 px-4 py-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl text-zinc-300 text-xs transition-all font-semibold">
+                                Reset Filters & Search
+                            </button>
+                        </div>
+                    `;
+                    if (statsBadge) statsBadge.innerText = "0 results found";
+                    lucide.createIcons();
+                    return;
+                }
+                // Update results statistics badge
+                if (statsBadge) {
+                    let totalLabel = "";
+                    if (selectedSource === 'local') {
+                        totalLabel = `Found ${regionalBooks.length} local curated classic${regionalBooks.length !== 1 ? 's' : ''}`;
+                    } else if (selectedSource === 'online') {
+                        totalLabel = `Found ${onlineBooks.length} online classic${onlineBooks.length !== 1 ? 's' : ''}`;
+                    } else {
+                        totalLabel = `Found ${regionalBooks.length} curated • ${onlineBooks.length} online classic${onlineBooks.length !== 1 ? 's' : ''}`;
+                    }
+                    statsBadge.innerText = totalLabel;
+                }
+                // Sort books depending on criteria
+                if (selectedSort === 'title_asc') {
+                    regionalBooks.sort((a, b) => a.title.localeCompare(b.title));
+                    onlineBooks.sort((a, b) => a.title.localeCompare(b.title));
+                } else if (selectedSort === 'title_desc') {
+                    regionalBooks.sort((a, b) => b.title.localeCompare(a.title));
+                    onlineBooks.sort((a, b) => b.title.localeCompare(a.title));
+                }
+                let htmlContent = "";
+                // Render local curated regional books (always highlighted first for regional cultural exposure)
+                if (regionalBooks.length > 0) {
+                    htmlContent += regionalBooks.map(book => {
+                        const safeTitle = escapeHtml(book.title);
+                        const safeAuthor = escapeHtml(book.author);
+                        const safeId = book.id; // string
+                        return `
+                            <div onclick="openBookById('${safeId}', '${safeTitle}', '${safeAuthor}')" class="relative bg-gradient-to-b from-amber-950/20 to-zinc-900 border border-amber-500/20 hover:border-amber-500/50 rounded-2xl p-2.5 cursor-pointer group hover:scale-[1.03] transition-all text-center flex flex-col justify-between">
+                                <div class="absolute top-2 left-2 z-10 bg-gradient-to-r from-amber-500 to-amber-600 text-[8px] font-black text-black px-1.5 py-0.5 rounded-full uppercase tracking-wider shadow">
+                                    Curated Classic
+                                </div>
+                                <div class="relative overflow-hidden rounded-xl bg-zinc-950 aspect-[2/3] shadow-md mb-2 mt-4 sm:mt-0">
+                                    <img src="${book.cover}" alt="${safeTitle}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=200&auto=format&fit=crop'">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-2">
+                                        <span class="text-[9px] font-bold text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full border border-amber-500/20">Read Instantly</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-[11px] font-bold text-amber-400 line-clamp-1 group-hover:text-amber-300">${book.title}</h4>
+                                    <p class="text-[9px] text-zinc-400 truncate mt-0.5">${book.author}</p>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+                // Render online Gutenberg books
+                if (onlineBooks.length > 0) {
+                    htmlContent += onlineBooks.map(book => {
+                        const coverImg = book.formats['image/jpeg'] || `https://gutenberg.org/cache/epub/${book.id}/pg${book.id}.cover.medium.jpg`;
+                        const author = book.authors[0] ? book.authors[0].name : "Unknown Author";
+                        const safeTitle = escapeHtml(book.title);
+                        const safeAuthor = escapeHtml(author);
+                        return `
+                            <div onclick="openBookById(${book.id}, '${safeTitle}', '${safeAuthor}')" class="bg-zinc-900/40 hover:bg-zinc-900 border border-zinc-800/80 rounded-2xl p-2.5 cursor-pointer group hover:scale-[1.03] hover:border-orange-500/40 transition-all text-center flex flex-col justify-between">
+                                <div class="relative overflow-hidden rounded-xl bg-zinc-950 aspect-[2/3] shadow-md mb-2">
+                                    <img src="${coverImg}" alt="${safeTitle}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=200&auto=format&fit=crop'">
+                                    <div class="absolute top-2 right-2 bg-black/70 border border-zinc-800 text-[8px] font-bold text-zinc-300 px-1.5 py-0.5 rounded-lg flex items-center gap-1">
+                                        <i data-lucide="download" class="w-2.5 h-2.5"></i> ${book.download_count}
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-[11px] font-bold text-zinc-200 line-clamp-1 group-hover:text-white">${book.title}</h4>
+                                    <p class="text-[9px] text-zinc-500 truncate mt-0.5">${author}</p>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+                grid.innerHTML = htmlContent;
+                // Show pagination only if there are online books with pagination in play
+                if (selectedSource !== 'local' && onlineBooks.length > 0 && (hasOnlineNext || hasOnlinePrev)) {
+                    pagination.classList.remove('hidden');
+                    document.getElementById('pageInfo').innerText = `Page ${currentCatalogPage}`;
+                    document.getElementById('prevPageBtn').disabled = !hasOnlinePrev;
+                    document.getElementById('nextPageBtn').disabled = !hasOnlineNext;
+                } else {
+                    pagination.classList.add('hidden');
+                }
+                lucide.createIcons();
+            } catch (err) {
+                console.error("[Catalog] Loading books failed:", err);
+                loader.classList.add('hidden');
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-zinc-500 text-xs">
+                        <i data-lucide="alert-circle" class="w-10 h-10 mx-auto text-zinc-700 mb-2"></i>
+                        Server Connection Error. Unable to fetch online catalog right now. Try curated classics!
+                    </div>
+                `;
+                lucide.createIcons();
+            }
+        }
+        // Render genre pills dynamically
+        function renderGenrePills() {
+            const container = document.getElementById('genrePillsList');
+            if (!container) return;
+            const genres = ["All Genres", "Fiction", "Philosophy", "History", "Horror", "Poetry", "Romance", "Adventure", "Science Fiction"];
+            container.innerHTML = genres.map(g => {
+                const activeClass = (selectedGenre === g) 
+                    ? 'bg-amber-500 text-black border-amber-500 font-extrabold shadow-md' 
+                    : 'bg-zinc-900/60 hover:bg-zinc-900 text-zinc-400 hover:text-white border-zinc-800 hover:border-zinc-700 font-semibold';
+                return `
+                    <button onclick="setPortalGenre('${g}')" class="px-3.5 py-1.5 rounded-xl border text-[10px] whitespace-nowrap transition-all active:scale-95 flex-shrink-0 ${activeClass}">
+                        ${g}
+                    </button>
+                `;
+            }).join('');
+        }
+        function setPortalGenre(g) {
+            selectedGenre = g;
+            currentCatalogPage = 1;
+            renderGenrePills();
+            loadPopularBooks();
+        }
+        // Render trending recommendations & search history tags
+        function updateTrendingAndHistoryUI() {
+            // 1. Render Trending Tags based on Selected Language
+            const trendingContainer = document.getElementById('trendingList');
+            if (trendingContainer) {
+                const keywords = trendingKeywordsMap[selectedLang] || trendingKeywordsMap['en'];
+                trendingContainer.innerHTML = keywords.map(kw => `
+                    <button onclick="applyTrendingSearch('${escapeHtml(kw)}')" class="bg-zinc-900/40 hover:bg-zinc-900 hover:text-amber-400 border border-zinc-800/80 hover:border-zinc-700 px-2.5 py-1 rounded-lg text-zinc-400 transition-all font-medium">
+                        ${kw}
+                    </button>
+                `).join('');
+            }
+            // 2. Render Search History
+            const historyContainer = document.getElementById('recentSearchesList');
+            const historyBox = document.getElementById('recentSearchesBox');
+            if (historyContainer && historyBox) {
+                if (searchHistory.length === 0) {
+                    historyBox.classList.add('hidden');
+                } else {
+                    historyBox.classList.remove('hidden');
+                    historyContainer.innerHTML = searchHistory.map(term => `
+                        <div class="bg-zinc-900/60 border border-zinc-800 px-2.5 py-0.5 rounded-lg flex items-center gap-1.5 text-zinc-400 text-[9px] group transition-all">
+                            <span class="cursor-pointer hover:text-white" onclick="applyTrendingSearch('${escapeHtml(term)}')">${term}</span>
+                            <button onclick="removeSearchHistoryItem('${escapeHtml(term)}')" class="text-zinc-600 hover:text-red-400 transition-colors">
+                                <i data-lucide="x" class="w-2.5 h-2.5"></i>
+                            </button>
+                        </div>
+                    `).join('');
+                    lucide.createIcons();
+                }
+            }
+        }
+        // Handle trending/history search selection
+        function applyTrendingSearch(term) {
+            const input = document.getElementById('portalSearchInput');
+            if (input) {
+                input.value = term;
+                document.getElementById('clearSearchBtn').classList.remove('hidden');
+            }
+            currentSearchQuery = term;
+            currentCatalogPage = 1;
+            saveSearchToHistory(term);
+            loadPopularBooks();
+            // Scroll down to search results
+            document.getElementById('booksCatalogGrid').scrollIntoView({ behavior: 'smooth' });
+        }
+        // Handle input clear trigger and Enter keypresses
+        function handleSearchInputKey(e) {
+            const val = e.target.value.trim();
+            const clearBtn = document.getElementById('clearSearchBtn');
+            if (clearBtn) {
+                if (val) clearBtn.classList.remove('hidden');
+                else clearBtn.classList.add('hidden');
+            }
+            if (e.key === 'Enter') {
+                triggerPortalSearch();
+            }
+        }
+        function triggerPortalSearch() {
+            const input = document.getElementById('portalSearchInput');
+            if (!input) return;
+            currentSearchQuery = input.value.trim();
+            currentCatalogPage = 1;
+            if (currentSearchQuery) {
+                saveSearchToHistory(currentSearchQuery);
+            }
+            loadPopularBooks();
+        }
+        function clearPortalSearch() {
+            const input = document.getElementById('portalSearchInput');
+            if (input) {
+                input.value = '';
+            }
+            document.getElementById('clearSearchBtn').classList.add('hidden');
+            currentSearchQuery = '';
+            currentCatalogPage = 1;
+            loadPopularBooks();
+        }
+        // Save terms to LocalStorage
+        function saveSearchToHistory(term) {
+            if (!term) return;
+            searchHistory = searchHistory.filter(h => h.toLowerCase() !== term.toLowerCase());
+            searchHistory.unshift(term);
+            if (searchHistory.length > 5) {
+                searchHistory.pop();
+            }
+            localStorage.setItem('stalker_book_search_history', JSON.stringify(searchHistory));
+            updateTrendingAndHistoryUI();
+        }
+        function removeSearchHistoryItem(term) {
+            searchHistory = searchHistory.filter(h => h !== term);
+            localStorage.setItem('stalker_book_search_history', JSON.stringify(searchHistory));
+            updateTrendingAndHistoryUI();
+        }
+        function clearSearchHistory() {
+            searchHistory = [];
+            localStorage.removeItem('stalker_book_search_history');
+            updateTrendingAndHistoryUI();
+        }
+        // Connect Hero Search box with the unified Explorer Center
+        function handleSearch(e) {
+            e.preventDefault();
+            const input = document.getElementById('bookSearchInput');
+            const q = input.value.trim();
+            // Sync with Search Portal input
+            const portalInput = document.getElementById('portalSearchInput');
+            if (portalInput) {
+                portalInput.value = q;
+                const clearBtn = document.getElementById('clearSearchBtn');
+                if (clearBtn) {
+                    if (q) clearBtn.classList.remove('hidden');
+                    else clearBtn.classList.add('hidden');
+                }
+            }
+            currentSearchQuery = q;
+            currentCatalogPage = 1;
+            if (q) {
+                saveSearchToHistory(q);
+            }
+            loadPopularBooks();
+            // Scroll down smoothly to search results
+            const target = document.getElementById('searchCenter');
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        // Handle source and filters dropdown triggers
+        function handleSourceChange() {
+            selectedSource = document.getElementById('sourceFilter').value;
+            currentCatalogPage = 1;
+            loadPopularBooks();
+        }
+        function handleSortChange() {
+            selectedSort = document.getElementById('sortFilter').value;
+            currentCatalogPage = 1;
+            loadPopularBooks();
+        }
+        function handleLangChange() {
+            selectedLang = document.getElementById('langFilter').value;
+            currentCatalogPage = 1;
+            // Auto sync lang selection on UI
+            const langEl = document.getElementById('langFilter');
+            if (langEl) langEl.value = selectedLang;
+            // Instantly update language-dependent trending suggestions
+            updateTrendingAndHistoryUI();
+            loadPopularBooks();
+        }
+        function resetAllPortalFilters() {
+            selectedGenre = 'All Genres';
+            selectedSource = 'all';
+            selectedSort = 'popular';
+            currentSearchQuery = '';
+            currentCatalogPage = 1;
+            const portalInput = document.getElementById('portalSearchInput');
+            if (portalInput) portalInput.value = '';
+            const clearBtn = document.getElementById('clearSearchBtn');
+            if (clearBtn) clearBtn.classList.add('hidden');
+            const sourceEl = document.getElementById('sourceFilter');
+            if (sourceEl) sourceEl.value = 'all';
+            const sortEl = document.getElementById('sortFilter');
+            if (sortEl) sortEl.value = 'popular';
+            renderGenrePills();
+            loadPopularBooks();
+        }
+        // Local description-to-genre matcher (zero-dependency, performs full semantic classifications offline)
+        function matchesGenre(book, genre) {
+            if (!genre || genre === 'All Genres' || genre === 'all') return true;
+            const g = genre.toLowerCase();
+            const title = (book.title || '').toLowerCase();
+            const desc = (book.desc || '').toLowerCase();
+            const author = (book.author || '').toLowerCase();
+            if (g === 'fiction') {
+                return desc.includes('novel') || desc.includes('fiction') || desc.includes('story') || title.includes('novel') || desc.includes('tragedy');
+            }
+            if (g === 'philosophy') {
+                return desc.includes('philosophical') || desc.includes('philosophy') || desc.includes('ethics') || desc.includes('virtue') || desc.includes('buddhist') || desc.includes('teachings') || desc.includes('theological');
+            }
+            if (g === 'history') {
+                return desc.includes('historical') || desc.includes('history') || desc.includes('dynasty') || desc.includes('century') || desc.includes('epic') || desc.includes('kingdom') || desc.includes('chronicle');
+            }
+            if (g === 'horror') {
+                return desc.includes('horror') || desc.includes('gothic') || desc.includes('dark') || desc.includes('vampire') || desc.includes('monster') || title.includes('dracula') || title.includes('frankenstein');
+            }
+            if (g === 'poetry') {
+                return desc.includes('poetry') || desc.includes('verses') || desc.includes('poem') || desc.includes('elegy') || desc.includes('vachana') || title.includes('poems') || desc.includes('couplets') || desc.includes('satakam') || desc.includes('poetic');
+            }
+            if (g === 'romance') {
+                return desc.includes('romance') || desc.includes('romantic') || desc.includes('love') || desc.includes('heartbreak') || desc.includes('infatuation');
+            }
+            if (g === 'adventure') {
+                return desc.includes('adventure') || desc.includes('fantasy') || desc.includes('voyage') || desc.includes('mystery') || desc.includes('detective') || desc.includes('spy') || desc.includes('sea');
+            }
+            if (g === 'science fiction') {
+                return desc.includes('science fiction') || desc.includes('creation') || title.includes('frankenstein') || desc.includes('scientific');
+            }
+            return false;
+        }
+        // Pagination
+        function changePage(dir) {
+            currentCatalogPage += dir;
+            if (currentCatalogPage < 1) currentCatalogPage = 1;
+            loadPopularBooks();
+            document.getElementById('booksCatalogGrid').scrollIntoView({ behavior: 'smooth' });
+        }
+        // ------------------ Active Reading/Bookmarks Shelf ------------------
+        function getReadingHistory() {
+            return JSON.parse(localStorage.getItem('stalker_reading_history') || '[]');
+        }
+        function saveToReadingHistory(book) {
+            let history = getReadingHistory();
+            history = history.filter(h => h.id !== book.id);
+            history.unshift(book);
+            // Limit to last 8 books
+            if (history.length > 8) history.pop();
+            localStorage.setItem('stalker_reading_history', JSON.stringify(history));
+            renderSavedBookmarks();
+        }
+        function renderSavedBookmarks() {
+            const shelf = document.getElementById('personalShelf');
+            const section = document.getElementById('personalListSection');
+            if (!shelf || !section) return;
+            const history = getReadingHistory();
+            if (history.length === 0) {
+                section.classList.add('hidden');
+                return;
+            }
+            section.classList.remove('hidden');
+            shelf.innerHTML = history.map(book => {
+                const cover = book.cover || `https://gutenberg.org/cache/epub/${book.id}/pg${book.id}.cover.medium.jpg`;
+                return `
+                    <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 hover:border-amber-500/40 cursor-pointer group transition-all" onclick="openBookById('${book.id}', '${escapeHtml(book.title)}', '${escapeHtml(book.author)}')">
+                        <img src="${cover}" class="w-12 h-16 rounded-lg object-cover shadow-md" onerror="this.src='https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=200&auto=format&fit=crop'">
+                        <div class="flex-grow overflow-hidden">
+                            <h4 class="text-xs font-bold text-zinc-100 truncate group-hover:text-white">${book.title}</h4>
+                            <p class="text-[10px] text-zinc-400 truncate">${book.author}</p>
+                            <!-- Progress Bar -->
+                            <div class="mt-2.5">
+                                <div class="flex items-center justify-between text-[9px] text-zinc-500 font-bold mb-1">
+                                    <span>Progress</span>
+                                    <span>${book.progress || 0}%</span>
+                                </div>
+                                <div class="w-full bg-zinc-950 h-1.5 rounded-full overflow-hidden border border-zinc-800/80">
+                                    <div class="bg-gradient-to-r from-amber-500 to-orange-500 h-full rounded-full" style="width: ${book.progress || 0}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        function clearReadingHistory() {
+            localStorage.removeItem('stalker_reading_history');
+            renderSavedBookmarks();
+        }
+        // ------------------ Book Parsing & Dynamic Chapters Engine ------------------
+        async function openBookById(bookId, title, author) {
+            // Unhide reader section instantly
+            const reader = document.getElementById('readerSection');
+            reader.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+            document.getElementById('readerBookTitle').innerText = title;
+            document.getElementById('readerBookAuthor').innerText = author;
+            document.getElementById('introMockTitle').innerText = title;
+            document.getElementById('introMockAuthor').innerText = author;
+            document.getElementById('introMainTitle').innerText = title;
+            document.getElementById('introMainAuthor').innerText = "Written by " + author;
+            // Load saved settings
+            applyReaderPreferences();
+            // Set Loading state
+            const textFrame = document.getElementById('readerTextFrame');
+            textFrame.innerHTML = `
+                <div class="flex flex-col items-center justify-center py-24 gap-4 text-center">
+                    <div class="w-10 h-10 border-4 border-amber-500/20 border-t-amber-500 rounded-full animate-spin"></div>
+                    <p class="text-sm font-bold text-zinc-400">Fetching book contents from server...</p>
+                </div>
+            `;
+            document.getElementById('readerIntroFrame').classList.add('hidden');
+            document.getElementById('readerTextFrame').classList.remove('hidden');
+            activeBook = { id: bookId, title, author, progress: 0, chapterIndex: 0, scrollOffset: 0 };
+            try {
+                let isRegional = typeof bookId === 'string' && bookId.startsWith('reg_');
+                let isOpenLibrary = typeof bookId === 'string' && bookId.startsWith('ol_');
+                if (isRegional) {
+                    const res = await fetch(`/api/books/regional/content?id=${bookId}`);
+                    if (!res.ok) throw new Error("Regional book content fetch failed");
+                    const bookData = await res.json();
+                    // Directly assign chapters for regional books
+                    bookChapters = bookData.chapters || [];
+                    // Populate Table of Contents UI
+                    const dirContainer = document.getElementById('readerChapterList');
+                    if (dirContainer) {
+                        dirContainer.innerHTML = bookChapters.map((ch, idx) => `
+                            <button onclick="loadChapterByIndex(${idx})" id="toc_ch_${idx}" class="w-full text-left p-2.5 hover:bg-white/5 rounded-xl transition-all text-xs font-bold truncate flex items-center justify-between text-zinc-400 border border-transparent">
+                                <span class="truncate">${ch.title}</span>
+                                <span class="text-[9px] text-zinc-600 font-semibold">Ch ${idx+1}</span>
+                            </button>
+                        `).join('');
+                    }
+                } else if (isOpenLibrary) {
+                    // Fetch or generate Open Library content using server-side Gemini 3.5-flash
+                    const res = await fetch(`/api/books/openlibrary/content?id=${bookId}&title=${encodeURIComponent(title)}&author=${encodeURIComponent(author)}`);
+                    if (!res.ok) throw new Error("Open Library content generation failed");
+                    const bookData = await res.json();
+                    // Directly assign chapters
+                    bookChapters = bookData.chapters || [];
+                    // Populate Table of Contents UI
+                    const dirContainer = document.getElementById('readerChapterList');
+                    if (dirContainer) {
+                        dirContainer.innerHTML = bookChapters.map((ch, idx) => `
+                            <button onclick="loadChapterByIndex(${idx})" id="toc_ch_${idx}" class="w-full text-left p-2.5 hover:bg-white/5 rounded-xl transition-all text-xs font-bold truncate flex items-center justify-between text-zinc-400 border border-transparent">
+                                <span class="truncate">${ch.title}</span>
+                                <span class="text-[9px] text-zinc-600 font-semibold">Ch ${idx+1}</span>
+                            </button>
+                        `).join('');
+                    }
+                } else {
+                    // Standard Gutenberg books loading with robust multi-mirror fallback pipeline
+                    const sources = [
+                        `http://aleph.gutenberg.org/cache/epub/${bookId}/pg${bookId}.txt`,
+                        `https://www.gutenberg.org/cache/epub/${bookId}/pg${bookId}.txt`,
+                        `https://www.gutenberg.org/files/${bookId}/${bookId}-0.txt`,
+                        `http://gutenberg.readingroo.ms/cache/epub/${bookId}/pg${bookId}.txt`
+                    ];
+                    let fullText = "";
+                    let fetchSuccess = false;
+                    let errorMessages = [];
+                    for (const url of sources) {
+                        try {
+                            const response = await fetch(`/api/books/proxy?url=${encodeURIComponent(url)}`);
+                            if (response.ok) {
+                                const text = await response.text();
+                                // Validate that we got a valid, non-blocked text payload of standard book length (e.g. >2000 chars)
+                                if (text && text.length > 2000 && !text.trim().startsWith('<html') && !text.trim().startsWith('<!DOCTYPE') && !text.includes('automated downloads')) {
+                                    fullText = text;
+                                    fetchSuccess = true;
+                                    console.log(`[Reader] Successfully loaded book ${bookId} from:`, url);
+                                    break;
+                                } else {
+                                    console.warn(`[Reader] Content from ${url} was invalid, too short, or blocked.`);
+                                    errorMessages.push(`${url} returned invalid/blocked/short content`);
+                                }
+                            } else {
+                                console.warn(`[Reader] Mirror ${url} returned status:`, response.status);
+                                errorMessages.push(`${url} returned status ${response.status}`);
+                            }
+                        } catch (e) {
+                            console.warn(`[Reader] Failed to fetch from: ${url}`, e);
+                            errorMessages.push(`${url} connection failed: ${e.message}`);
+                        }
+                    }
+                    if (!fetchSuccess || !fullText) {
+                        throw new Error("All Gutenberg mirror sources failed or were rate-limited. Details:\n" + errorMessages.join("\n"));
+                    }
+                    // Parse raw text into intelligent readable chunks/chapters
+                    parseBookTextIntoChapters(fullText);
+                }
+                // Restore reading progress from history
+                const history = getReadingHistory();
+                const savedInfo = history.find(b => b.id === bookId);
+                if (savedInfo) {
+                    activeChapterIndex = savedInfo.chapterIndex || 0;
+                    activeBook.scrollOffset = savedInfo.scrollOffset || 0;
+                } else {
+                    activeChapterIndex = 0;
+                    activeBook.scrollOffset = 0;
+                }
+                // Show Book Intro page
+                showBookIntroduction();
+                // Save badge
+                unlockBadge('Novice');
+            } catch (err) {
+                console.warn("[Reader] Failed to load book:", err);
+                textFrame.innerHTML = `
+                    <div class="flex flex-col items-center justify-center py-24 gap-4 text-center">
+                        <i data-lucide="alert-octagon" class="w-12 h-12 text-red-500"></i>
+                        <p class="text-sm font-bold text-zinc-400">Failed to fetch online ebook.</p>
+                        <p class="text-xs text-zinc-500 max-w-sm">CORS restrictions or rate limiting blocked this request. Close reader and try again.</p>
+                        <button onclick="exitReader()" class="px-5 py-2 bg-zinc-800 hover:bg-zinc-700 text-xs font-bold rounded-xl border border-zinc-700">Go Back</button>
+                    </div>
+                `;
+                lucide.createIcons();
+            }
+        }
+        // Intelligently parses Gutenberg raw text into chapters
+        function parseBookTextIntoChapters(text) {
+            bookChapters = [];
+            // Standard gutenberg book structure starts after "START OF THE PROJECT GUTENBERG EBOOK"
+            let startIdx = text.search(/START OF TH(E|IS) PROJECT GUTENBERG EBOOK/i);
+            if (startIdx === -1) startIdx = 0;
+            else {
+                // Find next newline
+                const nextNewline = text.indexOf('\n', startIdx);
+                if (nextNewline !== -1) startIdx = nextNewline + 1;
+            }
+            let endIdx = text.search(/END OF TH(E|IS) PROJECT GUTENBERG EBOOK/i);
+            if (endIdx === -1) endIdx = text.length;
+            const cleanText = text.substring(startIdx, endIdx);
+            // Split by typical chapter headings
+            // Regex to match "CHAPTER I", "Chapter 1", "CHAPTER ONE", etc.
+            const chapterRegex = /\n\s*(CHAPTER\s+[IVXLCDM\d]+|Chapter\s+[IVXLCDM\d]+|CHAPTER\s+[A-Z]+|Chapter\s+[A-Z]+)\b/i;
+            let parts = cleanText.split(chapterRegex);
+            if (parts.length <= 1) {
+                // If splitting failed, split by large length intervals (e.g. 10000 characters per page)
+                const segmentLength = 15000;
+                let pointer = 0;
+                let index = 1;
+                while (pointer < cleanText.length) {
+                    const chunk = cleanText.substring(pointer, pointer + segmentLength);
+                    bookChapters.push({
+                        title: `Section ${index++}`,
+                        content: chunk
+                    });
+                    pointer += segmentLength;
+                }
+            } else {
+                // Populate Chapter List
+                // First element before split is Preface/Intro
+                if (parts[0].trim().length > 100) {
+                    bookChapters.push({
+                        title: "Preface",
+                        content: parts[0]
+                    });
+                }
+                for (let i = 1; i < parts.length; i += 2) {
+                    const title = parts[i].trim();
+                    const content = parts[i+1] || "";
+                    if (content.trim().length > 50) {
+                        bookChapters.push({
+                            title: title,
+                            content: content
+                        });
+                    }
+                }
+            }
+            // Populate table of contents UI
+            const dirContainer = document.getElementById('readerChapterList');
+            if (dirContainer) {
+                dirContainer.innerHTML = bookChapters.map((ch, idx) => `
+                    <button onclick="loadChapterByIndex(${idx})" id="toc_ch_${idx}" class="w-full text-left p-2.5 hover:bg-white/5 rounded-xl transition-all text-xs font-bold truncate flex items-center justify-between text-zinc-400 border border-transparent">
+                        <span class="truncate">${ch.title}</span>
+                        <span class="text-[9px] text-zinc-600 font-semibold">Ch ${idx+1}</span>
+                    </button>
+                `).join('');
+            }
+        }
+        // Show intro frame with cover
+        function showBookIntroduction() {
+            document.getElementById('readerIntroFrame').classList.remove('hidden');
+            document.getElementById('readerTextFrame').classList.add('hidden');
+            // Highlight active TOC item if any
+            updateChapterStatsBadges();
+        }
+        // Action when "Begin Reading" is clicked
+        function startBookRead() {
+            document.getElementById('readerIntroFrame').classList.add('hidden');
+            document.getElementById('readerTextFrame').classList.remove('hidden');
+            loadChapterByIndex(activeChapterIndex);
+        }
+        // Display exact chapter text with clean spacing
+        function loadChapterByIndex(index) {
+            if (index < 0 || index >= bookChapters.length) return;
+            activeChapterIndex = index;
+            const chapter = bookChapters[index];
+            const textFrame = document.getElementById('readerTextFrame');
+            // Parse plain text chapter content into beautifully spaced HTML paragraphs
+            const paragraphs = chapter.content
+                .split(/\r?\n\r?\n/)
+                .map(p => p.trim())
+                .filter(p => p.length > 0)
+                .map(p => {
+                    // Replace standard Gutenberg multiple lines with single spaces
+                    const cleanP = p.replace(/\s+/g, " ");
+                    return `<p class="paragraph-node mb-5 text-justify hover:bg-black/5 dark:hover:bg-white/5 p-1 rounded transition-colors duration-200 cursor-pointer" onclick="handleParagraphClick(event)">${escapeHtml(cleanP)}</p>`;
+                })
+                .join('');
+            textFrame.innerHTML = `
+                <div class="border-b border-zinc-300 pb-4 mb-6">
+                    <span class="text-[10px] font-black tracking-widest text-amber-500 uppercase">Chapter ${index + 1} of ${bookChapters.length}</span>
+                    <h2 class="text-xl sm:text-2xl font-black font-serif-display mt-1 text-zinc-900 dark:text-white">${chapter.title}</h2>
+                </div>
+                ${paragraphs}
+            `;
+            // Restore scroll position
+            const canvas = document.getElementById('readerCanvas');
+            canvas.scrollTop = 0;
+            if (activeBook.scrollOffset > 0) {
+                setTimeout(() => {
+                    canvas.scrollTop = (activeBook.scrollOffset / 100) * canvas.scrollHeight;
+                }, 100);
+            }
+            // Update bottom bar & sidebar badges
+            updateChapterStatsBadges();
+            // Setup scroll listener to save progress real-time
+            canvas.removeEventListener('scroll', handleCanvasScroll);
+            canvas.addEventListener('scroll', handleCanvasScroll);
+            // Hide sidebar on small viewports
+            if (window.innerWidth < 768) {
+                document.getElementById('readerSidebar').classList.add('hidden');
+            }
+        }
+        // Progress Scroll Tracker
+        function handleCanvasScroll() {
+            const canvas = document.getElementById('readerCanvas');
+            const percent = Math.min(100, Math.round((canvas.scrollTop / (canvas.scrollHeight - canvas.clientHeight)) * 100)) || 0;
+            document.getElementById('progressPercentBadge').innerText = `${percent}%`;
+            document.getElementById('readerProgressSlider').value = percent;
+            // Save Progress info
+            if (activeBook) {
+                activeBook.progress = percent;
+                activeBook.chapterIndex = activeChapterIndex;
+                activeBook.scrollOffset = percent;
+                saveToReadingHistory(activeBook);
+            }
+        }
+        // Slide handler
+        function handleScrollProgressChange(value) {
+            const canvas = document.getElementById('readerCanvas');
+            canvas.scrollTop = (value / 100) * (canvas.scrollHeight - canvas.clientHeight);
+        }
+        // Navigation chapter buttons
+        function navigateChapter(dir) {
+            const nextIdx = activeChapterIndex + dir;
+            if (nextIdx >= 0 && nextIdx < bookChapters.length) {
+                activeBook.scrollOffset = 0; // reset scroll on chapter transition
+                loadChapterByIndex(nextIdx);
+            }
+        }
+        // Toggle directory sidebar
+        function toggleReaderSidebar() {
+            const sidebar = document.getElementById('readerSidebar');
+            sidebar.classList.toggle('hidden');
+        }
+        function updateChapterStatsBadges() {
+            // Highlight active sidebar item
+            bookChapters.forEach((_, idx) => {
+                const el = document.getElementById(`toc_ch_${idx}`);
+                if (!el) return;
+                if (idx === activeChapterIndex) {
+                    el.classList.add('bg-amber-500/10', 'text-amber-400', 'border-amber-500/30');
+                    el.classList.remove('text-zinc-400', 'border-transparent');
+                } else {
+                    el.classList.remove('bg-amber-500/10', 'text-amber-400', 'border-amber-500/30');
+                    el.classList.add('text-zinc-400', 'border-transparent');
+                }
+            });
+            // Update bottom stats
+            document.getElementById('chapterProgressBadge').innerText = `Ch ${activeChapterIndex + 1}/${bookChapters.length}`;
+            document.getElementById('prevChapterBtn').disabled = activeChapterIndex === 0;
+            document.getElementById('nextChapterBtn').disabled = activeChapterIndex === bookChapters.length - 1;
+        }
+        function exitReader() {
+            document.getElementById('readerSection').classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+            activeBook = null;
+            renderSavedBookmarks();
+        }
+        // ------------------ E-Reader Customizer & Themes ------------------
+        function toggleSettingsMenu() {
+            const menu = document.getElementById('readerSettingsMenu');
+            menu.classList.toggle('hidden');
+        }
+        function applyReaderPreferences() {
+            const canvas = document.getElementById('readerCanvas');
+            const textFrame = document.getElementById('readerTextFrame');
+            // Apply Theme background & colors
+            canvas.className = "flex-grow overflow-y-auto px-6 sm:px-12 py-8 relative transition-colors duration-200";
+            if (readerTheme === 'theme-paper') {
+                canvas.classList.add('bg-white', 'text-zinc-900');
+                textFrame.classList.remove('dark:text-white');
+                textFrame.classList.add('text-zinc-800');
+            } else if (readerTheme === 'theme-sepia') {
+                canvas.classList.add('bg-[#fbf0db]', 'text-[#5e4636]');
+                textFrame.classList.remove('dark:text-white');
+                textFrame.classList.add('text-[#3c2a1c]');
+            } else if (readerTheme === 'theme-slate') {
+                canvas.classList.add('bg-zinc-100', 'text-zinc-800');
+                textFrame.classList.remove('dark:text-white');
+                textFrame.classList.add('text-zinc-900');
+            } else if (readerTheme === 'theme-sage') {
+                canvas.classList.add('bg-[#f1f3f0]', 'text-[#2c3e2b]');
+                textFrame.classList.remove('dark:text-white');
+                textFrame.classList.add('text-[#1e2a1d]');
+            } else if (readerTheme === 'theme-midnight') {
+                canvas.classList.add('bg-[#121212]', 'text-zinc-300');
+                textFrame.classList.remove('text-zinc-800');
+                textFrame.classList.add('dark:text-white');
+            }
+            // Apply Typography Font style
+            textFrame.className = "max-w-2xl mx-auto space-y-6 select-text text-justify transition-all pb-24";
+            if (readerFontFace === 'serif-lora') textFrame.classList.add('font-serif-lora');
+            else if (readerFontFace === 'serif-display') textFrame.classList.add('font-serif-display');
+            else if (readerFontFace === 'sans-modern') textFrame.classList.add('font-sans-modern');
+            else if (readerFontFace === 'dyslexic-friendly') textFrame.classList.add('font-dyslexic-friendly');
+            // Line heights
+            if (readerLineHeight === 'tight') textFrame.style.lineHeight = '1.4';
+            else if (readerLineHeight === 'normal') textFrame.style.lineHeight = '1.7';
+            else if (readerLineHeight === 'loose') textFrame.style.lineHeight = '2.1';
+            // Font size
+            textFrame.style.fontSize = `${readerFontSize}px`;
+            document.getElementById('fontSizeBadge').innerText = `${readerFontSize}px`;
+        }
+        function changeReadTheme(theme) {
+            readerTheme = theme;
+            applyReaderPreferences();
+        }
+        function changeFontFace(fontClass) {
+            readerFontFace = fontClass;
+            applyReaderPreferences();
+        }
+        function adjustFontSize(delta) {
+            readerFontSize += delta;
+            if (readerFontSize < 12) readerFontSize = 12;
+            if (readerFontSize > 32) readerFontSize = 32;
+            applyReaderPreferences();
+        }
+        function changeLineHeight(height) {
+            readerLineHeight = height;
+            applyReaderPreferences();
+        }
+        // ------------------ Click Paragraph Selection Menu & Note System ------------------
+        let pendingSelectionText = '';
+        let pendingSelectionNode = null;
+        function setupTextSelectionHandler() {
+            const canvas = document.getElementById('readerCanvas');
+            const menu = document.getElementById('selectionMenu');
+            canvas.addEventListener('mouseup', (e) => {
+                const selection = window.getSelection();
+                const selectedText = selection.toString().trim();
+                if (selectedText.length > 1) {
+                    pendingSelectionText = selectedText;
+                    // Display floating annotator menu right beside mouse coordinate
+                    menu.classList.remove('hidden');
+                    menu.style.top = `${e.clientY - 45}px`;
+                    menu.style.left = `${Math.min(window.innerWidth - 200, Math.max(10, e.clientX - 80))}px`;
+                } else {
+                    // Only hide if we aren't clicking the menu itself
+                    if (!e.target.closest('#selectionMenu')) {
+                        menu.classList.add('hidden');
+                    }
+                }
+            });
+            // Hide menu on canvas key/scroll change
+            canvas.addEventListener('scroll', () => {
+                menu.classList.add('hidden');
+            });
+        }
+        function handleParagraphClick(e) {
+            pendingSelectionNode = e.currentTarget;
+        }
+        function applyAnnotationHighlight(color) {
+            if (!pendingSelectionNode) return;
+            // Save annotation to localstorage
+            const bookId = activeBook.id;
+            const textToSave = pendingSelectionText;
+            saveToLocalStorageAnnotations({
+                id: Date.now(),
+                bookId,
+                bookTitle: activeBook.title,
+                text: textToSave,
+                type: 'highlight',
+                color: color,
+                timestamp: new Date().toLocaleDateString()
+            });
+            // Perform visually stunning highlight in paragraph
+            const originalHTML = pendingSelectionNode.innerHTML;
+            const highlightedText = `<span class="hl-${color}">${pendingSelectionText}</span>`;
+            // Basic text replace (non-destructive)
+            if (originalHTML.includes(pendingSelectionText)) {
+                pendingSelectionNode.innerHTML = originalHTML.replace(pendingSelectionText, highlightedText);
+            }
+            document.getElementById('selectionMenu').classList.add('hidden');
+            // Show toast instruction
+            showHighlightToast("Highlight saved to library!");
+            unlockBadge('Bookworm');
+        }
+        function openNoteInput() {
+            document.getElementById('selectionMenu').classList.add('hidden');
+            document.getElementById('noteModalSelectedText').innerText = `"${pendingSelectionText}"`;
+            document.getElementById('noteModalTextArea').value = '';
+            document.getElementById('noteModal').classList.remove('hidden');
+        }
+        function closeNoteModal() {
+            document.getElementById('noteModal').classList.add('hidden');
+        }
+        function saveStickyNote() {
+            const noteText = document.getElementById('noteModalTextArea').value.trim();
+            if (!noteText) return;
+            saveToLocalStorageAnnotations({
+                id: Date.now(),
+                bookId: activeBook.id,
+                bookTitle: activeBook.title,
+                text: pendingSelectionText,
+                type: 'note',
+                note: noteText,
+                timestamp: new Date().toLocaleDateString()
+            });
+            closeNoteModal();
+            showHighlightToast("Sticky note saved!");
+        }
+        function saveToLocalStorageAnnotations(item) {
+            const annotations = JSON.parse(localStorage.getItem('stalker_ebook_annotations') || '[]');
+            annotations.unshift(item);
+            localStorage.setItem('stalker_ebook_annotations', JSON.stringify(annotations));
+            renderAnnotationsList();
+        }
+        function getAnnotations() {
+            return JSON.parse(localStorage.getItem('stalker_ebook_annotations') || '[]');
+        }
+        function deleteAnnotation(id) {
+            let annotations = getAnnotations();
+            annotations = annotations.filter(a => a.id !== id);
+            localStorage.setItem('stalker_ebook_annotations', JSON.stringify(annotations));
+            renderAnnotationsList();
+        }
+        function renderAnnotationsList() {
+            const container = document.getElementById('personalNotesList');
+            if (!container) return;
+            const list = getAnnotations();
+            if (list.length === 0) {
+                container.innerHTML = `<p class="text-[11px] text-zinc-500 italic py-2 text-center">No annotations or notes added yet.</p>`;
+                return;
+            }
+            container.innerHTML = list.map(item => {
+                if (item.type === 'highlight') {
+                    return `
+                        <div class="bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 flex items-start justify-between gap-3 text-xs">
+                            <div class="space-y-1 overflow-hidden">
+                                <span class="text-[9px] bg-${item.color}-500/10 text-${item.color}-400 px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">Highlight</span>
+                                <p class="text-[10px] text-zinc-300 italic line-clamp-2">"${item.text}"</p>
+                                <p class="text-[8px] text-zinc-500">${item.bookTitle} • ${item.timestamp}</p>
+                            </div>
+                            <button onclick="deleteAnnotation(${item.id})" class="text-zinc-600 hover:text-red-400 p-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 flex items-start justify-between gap-3 text-xs">
+                            <div class="space-y-1 overflow-hidden">
+                                <span class="text-[9px] bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">Sticky Note</span>
+                                <p class="text-[10px] text-zinc-400 italic line-clamp-1">"${item.text}"</p>
+                                <p class="text-xs text-white font-bold bg-zinc-900/50 p-2 rounded-lg border border-zinc-800 mt-1">${item.note}</p>
+                                <p class="text-[8px] text-zinc-500">${item.bookTitle} • ${item.timestamp}</p>
+                            </div>
+                            <button onclick="deleteAnnotation(${item.id})" class="text-zinc-600 hover:text-red-400 p-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+                        </div>
+                    `;
+                }
+            }).join('');
+            lucide.createIcons();
+        }
+        function showHighlightToast(msg) {
+            const toast = document.getElementById('highlightToast');
+            toast.innerText = msg;
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 3000);
+        }
+        // ------------------ Double Click Dictionary Lookup ------------------
+        function setupDoubleClickHandler() {
+            const canvas = document.getElementById('readerCanvas');
+            canvas.addEventListener('dblclick', (e) => {
+                const selection = window.getSelection();
+                const word = selection.toString().trim();
+                // Clean up punctuation
+                const cleanWord = word.replace(/[^a-zA-Z]/g, "");
+                if (cleanWord.length > 2) {
+                    fetchDictionaryDefinition(cleanWord);
+                }
+            });
+        }
+        function lookupSelectedWord() {
+            document.getElementById('selectionMenu').classList.add('hidden');
+            const cleanWord = pendingSelectionText.replace(/[^a-zA-Z]/g, "");
+            if (cleanWord.length > 1) {
+                fetchDictionaryDefinition(cleanWord);
+            }
+        }
+        async function fetchDictionaryDefinition(word) {
+            const modal = document.getElementById('dictionaryModal');
+            const loader = document.getElementById('dictionaryLoading');
+            const content = document.getElementById('dictionaryContent');
+            modal.classList.remove('hidden');
+            loader.classList.remove('hidden');
+            content.classList.add('hidden');
+            try {
+                const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word.toLowerCase())}`);
+                if (!res.ok) throw new Error("Word not found");
+                const data = await res.json();
+                loader.classList.add('hidden');
+                content.classList.remove('hidden');
+                const entry = data[0];
+                document.getElementById('dictWord').innerText = entry.word;
+                document.getElementById('dictPhonetic').innerText = entry.phonetic || "";
+                const meaningsDiv = document.getElementById('dictMeanings');
+                meaningsDiv.innerHTML = entry.meanings.map(m => `
+                    <div class="space-y-1 pb-2 border-b border-zinc-800/60 last:border-0">
+                        <span class="text-[9px] font-bold text-amber-500 bg-amber-500/10 px-1.5 py-0.5 rounded-md uppercase tracking-wider">${m.partOfSpeech}</span>
+                        <p class="text-xs text-zinc-200 leading-relaxed font-semibold mt-1">${escapeHtml(m.definitions[0].definition)}</p>
+                        ${m.definitions[0].example ? `<p class="text-[10px] text-zinc-500 italic mt-0.5">Example: "${escapeHtml(m.definitions[0].example)}"</p>` : ''}
+                    </div>
+                `).join('');
+            } catch (err) {
+                loader.classList.add('hidden');
+                content.classList.remove('hidden');
+                document.getElementById('dictWord').innerText = word;
+                document.getElementById('dictPhonetic').innerText = "Not found";
+                document.getElementById('dictMeanings').innerHTML = `<p class="text-xs text-zinc-500 italic">No definitions found for "${word}" in English dictionary.</p>`;
+            }
+        }
+        function closeDictionaryModal() {
+            document.getElementById('dictionaryModal').classList.add('hidden');
+        }
+        // ------------------ Active Reading Time & Streaks ------------------
+        function setupReadingTimer() {
+            setInterval(() => {
+                // If reader is currently active, increment counters
+                const reader = document.getElementById('readerSection');
+                if (reader && !reader.classList.contains('hidden')) {
+                    activeSecondsCounter++;
+                    if (activeSecondsCounter >= 60) {
+                        activeSecondsCounter = 0;
+                        activeMinutesTracker++;
+                        updateReadingStats();
+                    }
+                }
+            }, 1000);
+        }
+        function updateReadingStats() {
+            let total = parseInt(localStorage.getItem('stalker_total_read_minutes') || '0');
+            total++;
+            localStorage.setItem('stalker_total_read_minutes', total.toString());
+            // Check milestones
+            if (total >= 5) {
+                unlockBadge('PageTurner');
+            }
+            loadStats();
+        }
+        function loadStats() {
+            const minutes = parseInt(localStorage.getItem('stalker_total_read_minutes') || '0');
+            const streak = parseInt(localStorage.getItem('stalker_streak') || '1');
+            const books = getReadingHistory().length;
+            // Rank system
+            let rank = 'Novice Reader';
+            if (minutes >= 60) rank = 'Scholar';
+            else if (minutes >= 30) rank = 'Intellectual';
+            else if (minutes >= 15) rank = 'Bookworm';
+            else if (minutes >= 5) rank = 'Page Turner';
+            userRank = rank;
+            document.getElementById('globalStreak').innerText = `${streak} ${streak === 1 ? 'day' : 'days'}`;
+            document.getElementById('globalTimer').innerText = `${minutes}m`;
+            document.getElementById('globalRank').innerText = rank;
+            // Stats modal values
+            document.getElementById('statsStreakVal').innerText = `${streak} ${streak === 1 ? 'Day' : 'Days'}`;
+            document.getElementById('statsTimerVal').innerText = `${minutes} Min`;
+            document.getElementById('statsBooksVal').innerText = books;
+            if (streak >= 3) {
+                unlockBadge('KindleMaster');
+            }
+        }
+        function unlockBadge(id) {
+            const el = document.getElementById(`badge${id}`);
+            if (el) {
+                el.classList.remove('opacity-50');
+                el.classList.add('opacity-100', 'border-amber-500/40', 'bg-amber-500/5');
+            }
+        }
+        function showStatsModal() {
+            renderAnnotationsList();
+            document.getElementById('statsModal').classList.remove('hidden');
+        }
+        function closeStatsModal() {
+            document.getElementById('statsModal').classList.add('hidden');
+        }
+        // ------------------ Keyboard Paging Navigation ------------------
+        function setupKeyboardNavigation() {
+            document.addEventListener('keydown', (e) => {
+                const reader = document.getElementById('readerSection');
+                if (reader && !reader.classList.contains('hidden')) {
+                    if (e.key === 'ArrowRight') {
+                        // Page scroll down or next chapter
+                        const canvas = document.getElementById('readerCanvas');
+                        if (canvas.scrollTop + canvas.clientHeight >= canvas.scrollHeight - 20) {
+                            navigateChapter(1);
+                        } else {
+                            canvas.scrollBy({ top: canvas.clientHeight - 40, behavior: 'smooth' });
+                        }
+                    } else if (e.key === 'ArrowLeft') {
+                        // Page scroll up or prev chapter
+                        const canvas = document.getElementById('readerCanvas');
+                        if (canvas.scrollTop <= 10) {
+                            navigateChapter(-1);
+                        } else {
+                            canvas.scrollBy({ top: -(canvas.clientHeight - 40), behavior: 'smooth' });
+                        }
+                    } else if (e.key === 'Escape') {
+                        exitReader();
+                    }
+                }
+            });
+        }
+        // ------------------ Helper Utils ------------------
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+<link rel="stylesheet" href="/local-ai.css">
+<script src="/local-ai.js"></script>
+<script src="/watchdog.js" id="maintenance-watchdog"></script>
+</body>
+</html>

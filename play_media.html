@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Player | Stalker Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * { -webkit-tap-highlight-color: transparent !important; }
+        body { margin: 0; padding: 0; background: #000; overflow: hidden; }
+        iframe { width: 100vw; height: 100vh; border: none; }
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 50;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(0,0,0,0.8);
+            border-color: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+    </style>
+    <link rel="icon" type="image/png" href="stalker_pro_infinity.svg">
+    <link rel="stylesheet" href="assets/local-ai.css?v=2.0">
+</head>
+<body>
+    <button class="back-btn" onclick="window.history.back()">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Back
+    </button>
+    <iframe id="mediaFrame" allowfullscreen="true" scrolling="no" frameborder="0"></iframe>
+    <script>
+        lucide.createIcons();
+        const urlParams = new URLSearchParams(window.location.search);
+        const url = urlParams.get('url');
+        const title = urlParams.get('title');
+        if (title) document.title = title + " | Stalker Pro";
+        if (url) {
+            document.getElementById('mediaFrame').src = url;
+        } else {
+            document.body.innerHTML = '<div class="text-white flex items-center justify-center h-screen font-bold">Error: No media URL provided.</div>';
+        }
+    </script>
+<script src="/watchdog.js" id="maintenance-watchdog"></script>
+    <script src="assets/local-ai.js?v=2.0"></script>
+</body>
+</html>

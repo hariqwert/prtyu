@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta name="robots" content="noindex">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Movie & TV Show Info | Aetheris Cinema Matrix</title>
+  <link rel="icon" type="image/svg+xml" href="/aetheris_infinity.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/local-ai.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          colors: {
+            cyan: { 400: '#00f2fe', 500: '#00d2fe' },
+            neon: { blue: '#00f2fe', purple: '#9d4edd', red: '#ff0055', gold: '#f59e0b' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { -webkit-tap-highlight-color: transparent; }
+    body {
+      background-color: #05070f;
+      color: #f1f5f9;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+    .glass-panel {
+      background: rgba(10, 15, 30, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .glass-glow {
+      box-shadow: 0 0 40px rgba(0, 242, 254, 0.12), inset 0 0 20px rgba(0, 242, 254, 0.05);
+    }
+    .hero-gradient {
+      background: linear-gradient(180deg, rgba(5,7,15,0.2) 0%, rgba(5,7,15,0.85) 65%, #05070f 100%);
+    }
+    .btn-server.active {
+      background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+      color: #000;
+      font-weight: 800;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #05070f; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00f2fe; }
+  </style>
+</head>
+<body class="min-h-screen relative selection:bg-cyan-500 selection:text-black">
+
+  <!-- Top Navigation Bar -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/10 px-4 md:px-8 py-3.5 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <a href="/consumet.html" class="flex items-center gap-2.5 group">
+        <img src="/aetheris_infinity.svg" alt="Aetheris Logo" class="w-8 h-8 group-hover:scale-110 transition-transform duration-300">
+        <span class="text-lg font-black tracking-wider text-white flex items-center gap-1.5">
+          <span>AETHERIS</span>
+          <span class="text-[10px] font-black uppercase tracking-widest bg-cyan-500/20 text-cyan-400 px-1.5 py-0.5 rounded border border-cyan-500/30">INFO & 4K</span>
+        </span>
+      </a>
+    </div>
+
+    <div class="flex items-center gap-2.5">
+      <button onclick="window.history.back()" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 hover:text-white transition-all text-xs font-bold flex items-center gap-1.5">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span class="hidden sm:inline">Back</span>
+      </button>
+      <a href="/consumet.html#movies" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 hover:text-white transition-all text-xs font-bold flex items-center gap-1.5">
+        <i data-lucide="film" class="w-4 h-4 text-cyan-400"></i>
+        <span class="hidden sm:inline">Movies</span>
+      </a>
+      <a href="/consumet.html#sports" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 hover:text-white transition-all text-xs font-bold flex items-center gap-1.5">
+        <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i>
+        <span class="hidden sm:inline">Sports</span>
+      </a>
+      <button onclick="window.__AETHERIS_AI__ && window.__AETHERIS_AI__.openModal()" class="px-3 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-black text-xs flex items-center gap-1.5 shadow-lg shadow-cyan-500/20 transition-transform active:scale-95">
+        <i data-lucide="sparkles" class="w-4 h-4"></i>
+        <span>AI Assistant</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Hero Backdrop Container -->
+  <div id="media-backdrop-container" class="relative w-full h-[65vh] md:h-[75vh] overflow-hidden">
+    <img id="media-backdrop" src="" alt="Backdrop" class="w-full h-full object-cover filter brightness-[0.6] scale-105 transition-all duration-1000">
+    <div class="absolute inset-0 hero-gradient"></div>
+    
+    <!-- Floating Info Content in Hero -->
+    <div class="absolute bottom-6 left-0 right-0 px-4 md:px-12 max-w-7xl mx-auto flex flex-col md:flex-row items-end md:items-center gap-6">
+      <img id="media-poster" src="" alt="Poster" class="hidden md:block w-48 h-72 object-cover rounded-2xl border-2 border-white/20 shadow-2xl glass-glow shrink-0">
+      
+      <div class="space-y-3 flex-1">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span id="media-type-badge" class="px-2.5 py-1 bg-red-600 text-white font-black text-[10px] rounded-lg uppercase tracking-wider shadow">MOVIE</span>
+          <span id="media-rating-badge" class="px-2.5 py-1 bg-amber-500/20 border border-amber-500/40 text-amber-300 font-black text-[11px] rounded-lg flex items-center gap-1">★ 8.5</span>
+          <span id="media-year-badge" class="px-2.5 py-1 bg-white/10 text-zinc-300 font-bold text-xs rounded-lg">2024</span>
+          <span id="media-runtime-badge" class="px-2.5 py-1 bg-white/10 text-zinc-300 font-bold text-xs rounded-lg">2h 15m</span>
+          <span id="media-quality-badge" class="px-2.5 py-1 bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-black text-[10px] rounded-lg uppercase tracking-widest">4K ULTRA HD</span>
+        </div>
+
+        <h1 id="media-title" class="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-lg">Loading Title...</h1>
+        <p id="media-tagline" class="text-sm md:text-base font-semibold text-cyan-300 italic">Exploring the multiverse...</p>
+        
+        <div id="media-genres" class="flex items-center gap-1.5 flex-wrap pt-1">
+          <!-- Dynamic genres -->
+        </div>
+
+        <!-- Next Episode Release Notification Alert Banner in Info Hero -->
+        <div id="media-next-episode-alert" class="w-full hidden pt-1"></div>
+
+        <!-- Action Buttons (Equally Sized Grid / Uniform Layout) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 w-full max-w-2xl">
+          <button onclick="playWithBing()" id="btn-hero-bing" class="h-12 px-4 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-black text-xs tracking-wider uppercase flex items-center justify-center gap-2 shadow-xl shadow-red-600/30 transition-transform active:scale-95 border border-red-400/40 w-full">
+            <i data-lucide="play" class="w-4 h-4 fill-white shrink-0"></i>
+            <span id="btn-hero-bing-text" class="truncate">Play Bing 4K</span>
+          </button>
+
+          <button onclick="scrollToPlayer()" class="h-12 px-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-black text-xs tracking-wider uppercase flex items-center justify-center gap-2 transition-all active:scale-95 w-full">
+            <i data-lucide="tv" class="w-4 h-4 text-cyan-400 shrink-0"></i>
+            <span class="truncate">Cinema Player</span>
+          </button>
+          
+          <button onclick="openTrailerModal()" class="h-12 px-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2 transition-all active:scale-95 w-full">
+            <i data-lucide="clapperboard" class="w-4 h-4 text-amber-400 shrink-0"></i>
+            <span class="truncate">Watch Trailer</span>
+          </button>
+
+          <button onclick="askAiAboutMovie()" class="h-12 px-4 rounded-2xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2 transition-all active:scale-95 w-full">
+            <i data-lucide="bot" class="w-4 h-4 text-cyan-400 shrink-0"></i>
+            <span class="truncate">Ask AI Plot</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Layout (Player, Synopsis, AI Chat, Cast) -->
+  <main class="max-w-7xl mx-auto px-4 md:px-12 py-10 space-y-12">
+
+    <!-- 4K Cinema Streaming Player Section -->
+    <section id="cinema-player-section" class="space-y-4">
+      <div class="flex items-center justify-between flex-wrap gap-3">
+        <div class="flex items-center gap-2">
+          <div class="w-2.5 h-6 bg-cyan-400 rounded-full shadow-[0_0_12px_#00f2fe]"></div>
+          <h2 class="text-xl font-black text-white tracking-wide">4K ULTRA HD CINEMA PLAYER</h2>
+        </div>
+
+        <!-- TV Season / Episode Selectors (Hidden for Movies) -->
+        <div id="tv-controls-container" class="hidden flex items-center gap-2">
+          <select id="season-select" onchange="onSeasonChange()" class="bg-zinc-900 border border-white/20 rounded-xl px-3 py-1.5 text-xs font-bold text-white outline-none focus:border-cyan-400">
+            <option value="1">Season 1</option>
+          </select>
+          <select id="episode-select" onchange="onEpisodeChange()" class="bg-zinc-900 border border-white/20 rounded-xl px-3 py-1.5 text-xs font-bold text-white outline-none focus:border-cyan-400">
+            <option value="1">Episode 1</option>
+          </select>
+          <button onclick="playWithBing()" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white rounded-xl text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+            <i data-lucide="play" class="w-3.5 h-3.5 fill-white"></i> Direct Bing
+          </button>
+        </div>
+      </div>
+
+      <!-- Video Player Frame Container -->
+      <div class="relative w-full aspect-video rounded-3xl overflow-hidden glass-panel glass-glow border border-cyan-500/30 bg-black shadow-2xl">
+        <iframe id="cinema-iframe" src="" class="w-full h-full border-0" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture"></iframe>
+        
+        <!-- Player Overlay Loader -->
+        <div id="player-loader" class="absolute inset-0 bg-black/80 flex flex-col items-center justify-center gap-3 z-10">
+          <div class="w-12 h-12 border-4 border-cyan-500/20 border-t-cyan-400 rounded-full animate-spin"></div>
+          <p class="text-xs font-bold text-cyan-300 tracking-wider">Connecting to High-Speed 4K Stream Server...</p>
+        </div>
+      </div>
+
+      <!-- Server Switcher Bar -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-2 pt-1">
+        <span class="text-xs font-bold text-zinc-400 whitespace-nowrap mr-1">Switch Server:</span>
+        <button onclick="playWithBing()" id="srv-btn-bing" class="btn-server px-4 py-2 rounded-xl text-xs font-black bg-gradient-to-r from-red-600 to-amber-600 text-white shadow-md border border-red-400/40 hover:scale-105 transition-all whitespace-nowrap flex items-center gap-1.5">
+          <i data-lucide="zap" class="w-3.5 h-3.5 fill-white"></i> Direct Bing 4K
+        </button>
+        <button onclick="setServer('vidsrc')" id="srv-btn-vidsrc" class="btn-server active px-4 py-2 rounded-xl text-xs font-bold bg-white/5 border border-white/10 hover:border-cyan-500/40 transition-all whitespace-nowrap">VidSrc 4K</button>
+        <button onclick="setServer('superembed')" id="srv-btn-superembed" class="btn-server px-4 py-2 rounded-xl text-xs font-bold bg-white/5 border border-white/10 hover:border-cyan-500/40 transition-all whitespace-nowrap">SuperEmbed</button>
+        <button onclick="setServer('vidlink')" id="srv-btn-vidlink" class="btn-server px-4 py-2 rounded-xl text-xs font-bold bg-white/5 border border-white/10 hover:border-cyan-500/40 transition-all whitespace-nowrap">VidLink Pro</button>
+        <button onclick="setServer('twoembed')" id="srv-btn-twoembed" class="btn-server px-4 py-2 rounded-xl text-xs font-bold bg-white/5 border border-white/10 hover:border-cyan-500/40 transition-all whitespace-nowrap">2Embed</button>
+        <button onclick="setServer('vidrift')" id="srv-btn-vidrift" class="btn-server px-4 py-2 rounded-xl text-xs font-bold bg-white/5 border border-white/10 hover:border-cyan-500/40 transition-all whitespace-nowrap">VidRift</button>
+        <button onclick="setServer('cinezo')" id="srv-btn-cinezo" class="btn-server px-4 py-2 rounded-xl text-xs font-bold bg-white/5 border border-white/10 hover:border-cyan-500/40 transition-all whitespace-nowrap">Cinezo</button>
+        <button onclick="setServer('vidbinge')" id="srv-btn-vidbinge" class="btn-server px-4 py-2 rounded-xl text-xs font-bold bg-white/5 border border-white/10 hover:border-cyan-500/40 transition-all whitespace-nowrap">VidBinge</button>
+        <button onclick="openTorrentPlayer()" id="srv-btn-torrent" class="btn-server px-4 py-2 rounded-xl text-xs font-bold bg-white/5 border border-white/10 hover:border-cyan-500/40 transition-all whitespace-nowrap text-amber-400">⚡ 4K Torrentio</button>
+      </div>
+    </section>
+
+    <!-- Grid: Synopsis & Details + Integrated Movie AI Chatbox -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- Left 2 Cols: Synopsis, Cast, Director, Stats -->
+      <div class="lg:col-span-2 space-y-8">
+        <!-- Synopsis Box -->
+        <div class="glass-panel p-6 rounded-3xl space-y-4">
+          <h3 class="text-lg font-black text-white flex items-center gap-2">
+            <i data-lucide="align-left" class="w-5 h-5 text-cyan-400"></i>
+            <span>Storyline & Synopsis</span>
+          </h3>
+          <p id="media-overview" class="text-sm md:text-base text-zinc-300 leading-relaxed">
+            Loading movie overview and plot details...
+          </p>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-white/10 text-xs">
+            <div>
+              <span class="text-zinc-500 block font-semibold">Director</span>
+              <span id="media-director" class="text-white font-bold">Christopher Nolan</span>
+            </div>
+            <div>
+              <span class="text-zinc-500 block font-semibold">Status</span>
+              <span id="media-status" class="text-emerald-400 font-bold">Released</span>
+            </div>
+            <div>
+              <span class="text-zinc-500 block font-semibold">Original Language</span>
+              <span id="media-language" class="text-white font-bold uppercase">English (EN)</span>
+            </div>
+            <div>
+              <span class="text-zinc-500 block font-semibold">Budget</span>
+              <span id="media-budget" class="text-white font-bold">$160,000,000</span>
+            </div>
+            <div>
+              <span class="text-zinc-500 block font-semibold">Revenue</span>
+              <span id="media-revenue" class="text-amber-400 font-bold">$836,800,000</span>
+            </div>
+            <div>
+              <span class="text-zinc-500 block font-semibold">IMDB ID</span>
+              <span id="media-imdb" class="text-cyan-400 font-mono font-bold">tt1375666</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Cast Carousel -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-black text-white flex items-center gap-2">
+            <i data-lucide="users" class="w-5 h-5 text-cyan-400"></i>
+            <span>Starring Cast</span>
+          </h3>
+          <div id="media-cast-container" class="flex gap-4 overflow-x-auto pb-4">
+            <!-- Dynamic Cast cards -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Right 1 Col: Integrated Interactive Movie AI Chatbox -->
+      <div class="glass-panel p-6 rounded-3xl space-y-4 flex flex-col h-[520px] shadow-2xl border border-cyan-500/20">
+        <div class="flex items-center justify-between pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+              <i data-lucide="bot" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h4 class="text-xs font-black text-white uppercase tracking-wider">Movie AI Intelligence</h4>
+              <p class="text-[10px] text-zinc-400">Ask anything about this title</p>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-[9px] font-black rounded-full border border-emerald-500/30">ONLINE</span>
+        </div>
+
+        <!-- Quick Question Chips -->
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-[10px]">
+          <button onclick="askMovieQuestion('Explain the ending of this movie in simple terms')" class="px-2.5 py-1 bg-white/5 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-500/30 rounded-lg text-zinc-300 hover:text-white whitespace-nowrap transition-all">💡 Explain Ending</button>
+          <button onclick="askMovieQuestion('Tell me 3 interesting behind-the-scenes facts about this movie')" class="px-2.5 py-1 bg-white/5 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-500/30 rounded-lg text-zinc-300 hover:text-white whitespace-nowrap transition-all">🎬 3 Facts</button>
+          <button onclick="askMovieQuestion('Recommend 3 other movies exactly like this one')" class="px-2.5 py-1 bg-white/5 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-500/30 rounded-lg text-zinc-300 hover:text-white whitespace-nowrap transition-all">🍿 Similar Movies</button>
+        </div>
+
+        <!-- Chat Message Log -->
+        <div id="movie-chat-log" class="flex-1 overflow-y-auto space-y-3 pr-1 text-xs">
+          <div class="p-3 bg-white/5 rounded-2xl border border-white/10 text-zinc-300 leading-relaxed">
+            👋 I am your <strong>Movie AI Copilot</strong>. Ask me anything about this movie's storyline, cast, hidden Easter eggs, or director choices!
+          </div>
+        </div>
+
+        <!-- Input Form -->
+        <form id="movie-chat-form" onsubmit="handleMovieChatSubmit(event)" class="flex items-center gap-2 pt-2 border-t border-white/10">
+          <input type="text" id="movie-chat-input" placeholder="Ask about plot, cast, trivia..." class="flex-1 bg-black/60 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-zinc-500 outline-none focus:border-cyan-400 transition-colors">
+          <button type="submit" class="p-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-black transition-transform active:scale-95">
+            <i data-lucide="send" class="w-4 h-4"></i>
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Recommendations / Similar Movies Carousel -->
+    <section class="space-y-4 pt-6 border-t border-white/10">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-black text-white flex items-center gap-2">
+          <i data-lucide="sparkles" class="w-5 h-5 text-amber-400"></i>
+          <span>More Movies Like This</span>
+        </h3>
+      </div>
+      <div id="similar-movies-container" class="flex gap-4 overflow-x-auto pb-4">
+        <!-- Dynamic Similar movies -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Trailer Modal -->
+  <div id="trailer-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden flex items-center justify-center p-4">
+    <div class="relative w-full max-w-4xl aspect-video bg-black rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
+      <button onclick="closeTrailerModal()" class="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/70 text-white hover:bg-red-600 transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <iframe id="trailer-iframe" src="" class="w-full h-full border-0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+    </div>
+  </div>
+
+  <script>
+    const TMDB_KEY = "9d83476d2e27f56748167514c69cd2b4";
+    let currentMediaId = null;
+    let currentMediaType = 'movie';
+    let currentSeason = 1;
+    let currentEpisode = 1;
+    let currentServer = 'vidrift';
+    let currentMediaData = null;
+
+    // Parse URL params
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramId = urlParams.get('id') || urlParams.get('tmdbId');
+    const paramType = urlParams.get('type') || 'movie';
+    const paramSeason = parseInt(urlParams.get('s') || '1', 10);
+    const paramEpisode = parseInt(urlParams.get('e') || '1', 10);
+    const paramQuery = urlParams.get('q') || urlParams.get('title') || urlParams.get('search');
+
+    if (paramId) currentMediaId = paramId;
+    if (paramType) currentMediaType = paramType;
+    if (paramSeason) currentSeason = paramSeason;
+    if (paramEpisode) currentEpisode = paramEpisode;
+
+    async function initPage() {
+      if (paramQuery) {
+        await searchAndLoad(paramQuery);
+      } else if (paramId) {
+        await loadMediaDetails(currentMediaId, currentMediaType);
+      } else {
+        // Dynamically load trending/featured title instead of hardcoded default
+        try {
+          const res = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${TMDB_KEY}`);
+          const json = await res.json();
+          if (json.results && json.results.length > 0) {
+            currentMediaId = json.results[0].id;
+            currentMediaType = 'movie';
+            await loadMediaDetails(currentMediaId, currentMediaType);
+          } else {
+            currentMediaId = 872585; // Oppenheimer
+            await loadMediaDetails(currentMediaId, 'movie');
+          }
+        } catch (e) {
+          currentMediaId = 872585;
+          await loadMediaDetails(currentMediaId, 'movie');
+        }
+      }
+      updatePlayerUrl();
+      lucide.createIcons();
+    }
+
+    async function searchAndLoad(query) {
+      // 1. Try local Bingr Gateway first
+      try {
+        const bingrRes = await fetch(`/api/bingr/search?q=${encodeURIComponent(query)}`);
+        const bingrJson = await bingrRes.json();
+        if (bingrJson?.results && bingrJson.results.length > 0) {
+          const item = bingrJson.results[0];
+          currentMediaId = item.id;
+          currentMediaType = item.type || (item.name ? 'tv' : 'movie');
+          await loadMediaDetails(currentMediaId, currentMediaType);
+          return;
+        }
+      } catch (e) {}
+
+      // 2. Fallback to TMDB multi-search
+      try {
+        const res = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${TMDB_KEY}&query=${encodeURIComponent(query)}`);
+        const json = await res.json();
+        if (json.results && json.results.length > 0) {
+          const item = json.results.find(r => r.media_type !== 'person') || json.results[0];
+          currentMediaId = item.id;
+          currentMediaType = item.media_type || (item.title ? 'movie' : 'tv');
+          await loadMediaDetails(currentMediaId, currentMediaType);
+        }
+      } catch (e) {
+        console.error('Search failed:', e);
+      }
+    }
+
+    async function loadMediaDetails(id, type) {
+      try {
+        const [detailsRes, creditsRes, videosRes, similarRes] = await Promise.all([
+          fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${TMDB_KEY}&append_to_response=release_dates,content_ratings`),
+          fetch(`https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${TMDB_KEY}`),
+          fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${TMDB_KEY}`),
+          fetch(`https://api.themoviedb.org/3/${type}/${id}/similar?api_key=${TMDB_KEY}`)
+        ]);
+
+        const details = await detailsRes.json();
+        const credits = await creditsRes.json();
+        const videos = await videosRes.json();
+        const similar = await similarRes.json();
+
+        currentMediaData = details;
+        renderDetails(details, credits, videos, similar);
+      } catch (e) {
+        console.error('Failed to load media details:', e);
+      }
+    }
+
+    function renderDetails(details, credits, videos, similar) {
+      const title = details.title || details.name || 'Untitled';
+      document.title = `${title} (Info & 4K Stream) | Aetheris`;
+
+      const backdrop = details.backdrop_path 
+        ? `https://image.tmdb.org/t/p/original${details.backdrop_path}` 
+        : (details.poster_path ? `https://image.tmdb.org/t/p/original${details.poster_path}` : 'https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=1200');
+      const poster = details.poster_path 
+        ? `https://image.tmdb.org/t/p/w500${details.poster_path}` 
+        : 'https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=400';
+
+      document.getElementById('media-backdrop').src = backdrop;
+      document.getElementById('media-poster').src = poster;
+      document.getElementById('media-title').textContent = title;
+      document.getElementById('media-tagline').textContent = details.tagline || 'Experience in High Definition 4K HDR';
+      document.getElementById('media-overview').textContent = details.overview || 'No synopsis available.';
+
+      const rating = details.vote_average ? details.vote_average.toFixed(1) : '8.0';
+      document.getElementById('media-rating-badge').textContent = `★ ${rating}`;
+
+      const year = (details.release_date || details.first_air_date || '').substring(0, 4) || '2024';
+      document.getElementById('media-year-badge').textContent = year;
+
+      const runtime = details.runtime ? `${Math.floor(details.runtime / 60)}h ${details.runtime % 60}m` : (details.episode_run_time?.[0] ? `${details.episode_run_time[0]}m` : 'TV Series');
+      document.getElementById('media-runtime-badge').textContent = runtime;
+
+      document.getElementById('media-type-badge').textContent = currentMediaType.toUpperCase();
+
+      // Genres
+      const genresContainer = document.getElementById('media-genres');
+      genresContainer.innerHTML = (details.genres || []).map(g => `
+        <span class="px-2.5 py-0.5 bg-white/10 text-zinc-300 rounded-lg text-xs font-semibold">${g.name}</span>
+      `).join('');
+
+      // Extra Stats
+      const director = (credits.crew || []).find(c => c.job === 'Director')?.name || 'N/A';
+      document.getElementById('media-director').textContent = director;
+      document.getElementById('media-status').textContent = details.status || 'Released';
+      document.getElementById('media-language').textContent = (details.original_language || 'EN').toUpperCase();
+      document.getElementById('media-budget').textContent = details.budget ? `$${details.budget.toLocaleString()}` : 'N/A';
+      document.getElementById('media-revenue').textContent = details.revenue ? `$${details.revenue.toLocaleString()}` : 'N/A';
+      document.getElementById('media-imdb').textContent = details.imdb_id || 'N/A';
+
+      // TV Series Controls Setup & Next Episode Alert
+      const nextAlertEl = document.getElementById('media-next-episode-alert');
+      if (currentMediaType === 'tv' && details.next_episode_to_air) {
+        const ne = details.next_episode_to_air;
+        let dateFormatted = ne.air_date || 'TBA';
+        try {
+          if (ne.air_date) {
+            const d = new Date(ne.air_date + 'T00:00:00');
+            dateFormatted = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+          }
+        } catch(e) {}
+        if (nextAlertEl) {
+          nextAlertEl.innerHTML = `
+            <div class="flex items-center justify-between gap-3 px-4 py-3 bg-gradient-to-r from-amber-500/20 via-orange-500/15 to-indigo-950/40 border border-amber-500/40 rounded-2xl text-amber-200 shadow-xl shadow-amber-500/10 backdrop-blur-md animate-fade-in max-w-2xl">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-9 h-9 rounded-xl bg-amber-500/30 border border-amber-400/50 flex items-center justify-center text-amber-300 shrink-0">
+                  <i data-lucide="bell-ring" class="w-4 h-4 animate-bounce text-amber-400"></i>
+                </div>
+                <div class="min-w-0">
+                  <span class="text-[10px] font-black uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                    Next Episode Release
+                  </span>
+                  <p class="text-xs sm:text-sm font-extrabold text-white truncate mt-0.5">
+                    Season ${ne.season_number} Ep ${ne.episode_number} ${ne.name ? `• "${ne.name}"` : ''}
+                  </p>
+                </div>
+              </div>
+              <div class="text-right shrink-0">
+                <span class="text-[9px] uppercase font-black text-zinc-400 block">Releases</span>
+                <span class="px-2.5 py-1 bg-amber-500 text-black font-black text-xs rounded-lg shadow-md whitespace-nowrap inline-block">${dateFormatted}</span>
+              </div>
+            </div>
+          `;
+          nextAlertEl.classList.remove('hidden');
+        }
+      } else if (nextAlertEl) {
+        nextAlertEl.classList.add('hidden');
+        nextAlertEl.innerHTML = '';
+      }
+
+      if (currentMediaType === 'tv' && details.seasons) {
+        const tvContainer = document.getElementById('tv-controls-container');
+        tvContainer.classList.remove('hidden');
+        const seasonSelect = document.getElementById('season-select');
+        seasonSelect.innerHTML = details.seasons.filter(s => s.season_number > 0).map(s => `
+          <option value="${s.season_number}" ${s.season_number === currentSeason ? 'selected' : ''}>Season ${s.season_number} (${s.episode_count} eps)</option>
+        `).join('');
+        populateEpisodes(currentSeason);
+        
+        // Update hero button text for latest episode
+        let dispSeason = currentSeason;
+        let dispEp = 1;
+        const validSeasons = details.seasons.filter(s => s.season_number > 0 && s.episode_count > 0);
+        if (validSeasons.length > 0) {
+          const lastS = validSeasons[validSeasons.length - 1];
+          dispSeason = lastS.season_number;
+          dispEp = lastS.episode_count;
+        }
+        const heroBingText = document.getElementById('btn-hero-bing-text');
+        if (heroBingText) {
+          heroBingText.textContent = `Play S${dispSeason} E${dispEp} (Bing)`;
+        }
+      } else {
+        const heroBingText = document.getElementById('btn-hero-bing-text');
+        if (heroBingText) heroBingText.textContent = 'Play Bing 4K';
+      }
+
+      // Cast
+      const castContainer = document.getElementById('media-cast-container');
+      castContainer.innerHTML = (credits.cast || []).slice(0, 10).map(c => `
+        <div class="shrink-0 w-28 text-center space-y-1 group">
+          <img src="${c.profile_path ? 'https://image.tmdb.org/t/p/w185' + c.profile_path : 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150'}" class="w-20 h-20 rounded-full object-cover mx-auto border-2 border-white/15 group-hover:border-cyan-400 transition-all shadow-lg" alt="${c.name}">
+          <p class="text-xs font-bold text-white truncate">${c.name}</p>
+          <p class="text-[10px] text-zinc-400 truncate">${c.character || 'Cast'}</p>
+        </div>
+      `).join('');
+
+      // Similar
+      const similarContainer = document.getElementById('similar-movies-container');
+      similarContainer.innerHTML = (similar.results || []).slice(0, 10).map(s => `
+        <a href="/info.html?id=${s.id}&type=${s.media_type || currentMediaType}" class="shrink-0 w-36 sm:w-44 group space-y-2">
+          <img src="${s.poster_path ? 'https://image.tmdb.org/t/p/w342' + s.poster_path : 'https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=300'}" class="w-full aspect-[2/3] object-cover rounded-2xl border border-white/10 group-hover:border-cyan-400 group-hover:scale-105 transition-all shadow-xl" alt="${s.title || s.name}">
+          <p class="text-xs font-bold text-white group-hover:text-cyan-300 truncate">${s.title || s.name}</p>
+        </a>
+      `).join('');
+
+      // Setup Trailer Key for On-Demand Playback
+      const trailer = (videos.results || []).find(v => v.type === 'Trailer' && v.site === 'YouTube') || videos.results?.[0];
+      window._currentTrailerKey = trailer ? trailer.key : null;
+      const trailerBtn = document.getElementById('watch-trailer-btn');
+      if (trailerBtn) {
+        if (!window._currentTrailerKey) {
+          trailerBtn.classList.add('opacity-50', 'pointer-events-none');
+        } else {
+          trailerBtn.classList.remove('opacity-50', 'pointer-events-none');
+        }
+      }
+    }
+
+    function populateEpisodes(seasonNum) {
+      const episodeSelect = document.getElementById('episode-select');
+      episodeSelect.innerHTML = Array.from({ length: 24 }, (_, i) => i + 1).map(ep => `
+        <option value="${ep}" ${ep === currentEpisode ? 'selected' : ''}>Episode ${ep}</option>
+      `).join('');
+    }
+
+    function onSeasonChange() {
+      currentSeason = parseInt(document.getElementById('season-select').value, 10);
+      currentEpisode = 1;
+      populateEpisodes(currentSeason);
+      updatePlayerUrl();
+    }
+
+    function onEpisodeChange() {
+      currentEpisode = parseInt(document.getElementById('episode-select').value, 10);
+      updatePlayerUrl();
+    }
+
+    function setServer(serverKey) {
+      currentServer = serverKey;
+      document.querySelectorAll('.btn-server').forEach(b => b.classList.remove('active'));
+      const btn = document.getElementById(`srv-btn-${serverKey}`);
+      if (btn) btn.classList.add('active');
+      updatePlayerUrl();
+    }
+
+    function updatePlayerUrl() {
+      const iframe = document.getElementById('cinema-iframe');
+      const loader = document.getElementById('player-loader');
+      loader.classList.remove('hidden');
+
+      let url = '';
+      if (currentMediaType === 'tv') {
+        switch (currentServer) {
+          case 'vidsrc': url = `https://vidsrc.to/embed/tv/${currentMediaId}/${currentSeason}/${currentEpisode}`; break;
+          case 'superembed': url = `https://multiembed.mov/directstream.php?video_id=${currentMediaId}&tmdb=1&s=${currentSeason}&e=${currentEpisode}`; break;
+          case 'vidapi': url = `https://vidapi.xyz/embed/tv/${currentMediaId}/${currentSeason}/${currentEpisode}`; break;
+            case 'vidlink': url = `https://vidlink.pro/tv/${currentMediaId}/${currentSeason}/${currentEpisode}?autoplay=true`; break;
+            case 'embedsu': url = `https://embed.su/embed/tv/${currentMediaId}/${currentSeason}/${currentEpisode}`; break;
+            case 'autoembed': url = `https://player.autoembed.cc/embed/tv/${currentMediaId}/${currentSeason}/${currentEpisode}`; break;
+          case 'twoembed': url = `https://www.2embed.cc/embedtv/${currentMediaId}?s=${currentSeason}&e=${currentEpisode}`; break;
+          case 'vidrift': url = `https://embed.vidrift.in/embed/tv/${currentMediaId}/${currentSeason}/${currentEpisode}`; break;
+          case 'cinezo': url = `https://player.cinezo.live/embed/tv/${currentMediaId}/${currentSeason}/${currentEpisode}`; break;
+          case 'vidbinge': url = `https://vidbinge.dev/embed/tv/${currentMediaId}/${currentSeason}/${currentEpisode}`; break;
+          default: url = `https://vidsrc.to/embed/tv/${currentMediaId}/${currentSeason}/${currentEpisode}`;
+        }
+      } else {
+        switch (currentServer) {
+          case 'vidsrc': url = `https://vidsrc.to/embed/movie/${currentMediaId}`; break;
+          case 'superembed': url = `https://multiembed.mov/directstream.php?video_id=${currentMediaId}&tmdb=1`; break;
+          case 'vidapi': url = `https://vidapi.xyz/embed/movie/${currentMediaId}`; break;
+            case 'vidlink': url = `https://vidlink.pro/movie/${currentMediaId}?autoplay=true`; break;
+            case 'embedsu': url = `https://embed.su/embed/movie/${currentMediaId}`; break;
+            case 'autoembed': url = `https://player.autoembed.cc/embed/movie/${currentMediaId}`; break;
+          case 'twoembed': url = `https://www.2embed.cc/embed/${currentMediaId}`; break;
+          case 'vidrift': url = `https://embed.vidrift.in/embed/movie/${currentMediaId}`; break;
+          case 'cinezo': url = `https://player.cinezo.live/embed/movie/${currentMediaId}`; break;
+          case 'vidbinge': url = `https://vidbinge.dev/embed/movie/${currentMediaId}`; break;
+          default: url = `https://vidsrc.to/embed/movie/${currentMediaId}`;
+        }
+      }
+
+      iframe.src = url;
+      iframe.onload = () => {
+        setTimeout(() => loader.classList.add('hidden'), 600);
+      };
+    }
+
+    function scrollToPlayer() {
+      document.getElementById('cinema-player-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function openTrailerModal() {
+      if (window._currentTrailerKey) {
+        document.getElementById('trailer-iframe').src = `https://www.youtube-nocookie.com/embed/${window._currentTrailerKey}?autoplay=1`;
+      }
+      document.getElementById('trailer-modal').classList.remove('hidden');
+    }
+
+    function closeTrailerModal() {
+      document.getElementById('trailer-modal').classList.add('hidden');
+      const iframe = document.getElementById('trailer-iframe');
+      if (iframe) iframe.src = '';
+    }
+
+    function openTorrentPlayer() {
+      const title = currentMediaData?.title || currentMediaData?.name || 'movie';
+      window.location.href = `/consumet.html#torrent?q=${encodeURIComponent(title)}&type=${currentMediaType}&s=${currentSeason}&e=${currentEpisode}`;
+    }
+
+    function playWithBing() {
+      const title = currentMediaData?.title || currentMediaData?.name || 'Media';
+      const year = (currentMediaData?.release_date || currentMediaData?.first_air_date || '').substring(0, 4);
+      let queryParams = `type=${currentMediaType}&id=${currentMediaId}&title=${encodeURIComponent(title)}`;
+      if (year) queryParams += `&year=${year}`;
+      if (currentMediaType === 'tv') {
+        let epToPlay = currentEpisode || 1;
+        let sToPlay = currentSeason || 1;
+        // If series has seasons, pick selected or latest
+        if (currentMediaData?.seasons) {
+          const valid = currentMediaData.seasons.filter(s => s.season_number > 0 && s.episode_count > 0);
+          if (valid.length > 0 && currentSeason === 1 && currentEpisode === 1) {
+            sToPlay = valid[valid.length - 1].season_number;
+            epToPlay = valid[valid.length - 1].episode_count;
+          }
+        }
+        queryParams += `&season=${sToPlay}&episode=${epToPlay}`;
+      }
+      window.location.href = `/api/bingr/play?${queryParams}`;
+    }
+
+    // Integrated Movie AI Chat Logic
+    async function handleMovieChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('movie-chat-input');
+      const val = input.value.trim();
+      if (!val) return;
+      input.value = '';
+      await askMovieQuestion(val);
+    }
+
+    async function askMovieQuestion(question) {
+      const log = document.getElementById('movie-chat-log');
+      const userBubble = document.createElement('div');
+      userBubble.className = 'p-3 bg-cyan-500/10 border border-cyan-500/20 text-cyan-200 rounded-2xl ml-4';
+      userBubble.textContent = question;
+      log.appendChild(userBubble);
+      log.scrollTop = log.scrollHeight;
+
+      const botBubble = document.createElement('div');
+      botBubble.className = 'p-3 bg-white/5 border border-white/10 text-zinc-300 rounded-2xl mr-4 flex items-center gap-2';
+      botBubble.innerHTML = `<div class="w-3 h-3 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin"></div><span>Analyzing cinematic neural context...</span>`;
+      log.appendChild(botBubble);
+      log.scrollTop = log.scrollHeight;
+
+      try {
+        const title = currentMediaData?.title || currentMediaData?.name || 'this movie';
+        const res = await fetch('/api/local-ai/query', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt: `Regarding the movie/show "${title}" (${currentMediaType}): ${question}` })
+        });
+        const json = await res.json();
+        botBubble.innerHTML = json.chatResponse || 'Could not retrieve cinematic insight at this moment.';
+      } catch (err) {
+        botBubble.textContent = 'AI engine connection error. Please try again.';
+      }
+      log.scrollTop = log.scrollHeight;
+    }
+
+    function askAiAboutMovie() {
+      const title = currentMediaData?.title || currentMediaData?.name || 'this title';
+      if (window.__AETHERIS_AI__) {
+        window.__AETHERIS_AI__.openModal();
+        window.__AETHERIS_AI__.sendPrompt(`Tell me everything about ${title}`);
+      } else {
+        askMovieQuestion(`Give me a full plot analysis of ${title}`);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', initPage);
+  </script>
+  <!-- Load Local AI Global Widget -->
+  <script src="/assets/local-ai.js"></script>
+</body>
+</html>

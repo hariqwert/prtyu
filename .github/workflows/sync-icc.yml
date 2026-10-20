@@ -1,0 +1,29 @@
+name: Sync ICC Cricket Tournaments
+
+on:
+  schedule:
+    - cron: '45 */2 * * *' # Every 2 hours
+  workflow_dispatch:
+
+jobs:
+  sync-icc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sync ICC Streams (Primary + Backups)
+        run: node scripts/sync-sources.js icc
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/icc/
+          git diff-index --quiet HEAD || git commit -m "chore(sync): auto-update ICC tournament sources"
+          git push

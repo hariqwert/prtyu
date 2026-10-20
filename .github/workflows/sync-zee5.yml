@@ -1,0 +1,29 @@
+name: Sync Zee & Zee5 Feeds
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Every 6 hours
+  workflow_dispatch:
+
+jobs:
+  sync-zee5:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sync Zee5 Streams (Primary + Backups)
+        run: node scripts/sync-sources.js zee5
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/zee5/
+          git diff-index --quiet HEAD || git commit -m "chore(sync): auto-update Zee5 live sources"
+          git push

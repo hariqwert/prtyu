@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aetheris Media | YouTube & Cloud Stream</title>
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="torrent.css">
+  <style>
+    .yt-hero-card {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(17, 24, 39, 0.8) 100%);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    .yt-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .yt-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .yt-card {
+      background: rgba(18, 22, 34, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(16px);
+    }
+    .yt-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(239, 68, 68, 0.4);
+      box-shadow: 0 12px 28px rgba(239, 68, 68, 0.15);
+    }
+    .yt-thumb-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+    .yt-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .yt-duration {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .yt-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+    .yt-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .yt-author {
+      font-size: 12px;
+      color: #a1a1aa;
+      margin-bottom: 12px;
+    }
+    .yt-btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .btn-yt-mp4 {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: #fff;
+      border: none;
+    }
+    .btn-yt-mp3 {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #fff;
+      border: none;
+    }
+    .yt-player-card {
+      background: rgba(18, 22, 34, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .yt-iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      border: none;
+      background: #000;
+    }
+    /* DOWNLOAD TIMELINE & PROGRESS CARD */
+    .dl-timeline-card {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(18, 22, 34, 0.95) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);
+      backdrop-filter: blur(20px);
+      transition: all 0.3s ease;
+    }
+    .dl-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .dl-title-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .dl-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #10b981;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dl-progress-track {
+      width: 100%;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 16px;
+    }
+    .dl-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ef4444 0%, #10b981 100%);
+      border-radius: 10px;
+      transition: width 0.2s ease-out;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+    }
+    .dl-timeline-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .dl-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #71717a;
+      z-index: 1;
+    }
+    .dl-step.active {
+      color: #10b981;
+    }
+    .dl-step-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #27272a;
+      border: 2px solid #52525b;
+      transition: all 0.3s ease;
+    }
+    .dl-step.active .dl-step-dot {
+      background: #10b981;
+      border-color: #059669;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+    }
+    .dl-metrics {
+      display: flex;
+      justify-content: space-between;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #a1a1aa;
+    }
+    .dl-metric-item strong {
+      color: #fff;
+    }
+    .hidden {
+      display: none !important;
+    }
+    .cookie-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .cookie-modal-overlay.hidden {
+      display: none !important;
+    }
+    .cookie-modal-box {
+      background: #0f131f;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      max-width: 560px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+      position: relative;
+    }
+  </style>
+    <link rel="icon" type="image/png" href="stalker_pro_infinity.svg">
+
+    <style id="tv-mobile-base">
+    /* TV/Remote D-pad focus ring */
+    .tv-focusable:focus, button:focus, a:focus { outline: 2px solid rgba(255,255,255,0.7) !important; outline-offset: 2px !important; }
+    /* Mobile touch improvements */
+    @media (max-width:768px) { button, a, [role=button] { min-height: 44px; touch-action: manipulation; } }
+    </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <a href="/torrent.html" class="brand" style="text-decoration: none;">
+        <img src="/stalker_pro_infinity.svg" alt="Aetheris" style="height: 36px; width: auto; filter: drop-shadow(0 0 10px rgba(255,255,255,0.4));" />
+        <span class="badge" style="margin-left: 10px; background: rgba(239,68,68,0.2); color: #ef4444; border-color: rgba(239,68,68,0.4);">AETHERIS STREAM</span>
+      </a>
+      <div class="server-status-container">
+        <button type="button" id="openCookieModalBtn" onclick="window.showCookieModal && window.showCookieModal()" class="btn btn-secondary btn-sm" style="border-color: rgba(234,179,8,0.4); color: #facc15; background: rgba(234,179,8,0.1); cursor: pointer;">
+          <i data-lucide="cookie"></i> <span id="cookieBtnText">YouTube Cookies</span>
+        </button>
+        <a href="/torrent.html" class="btn btn-secondary btn-sm" style="text-decoration: none;">
+          <i data-lucide="video"></i> Torrent Streamer
+        </a>
+        <div class="status-pill online">
+          <span class="status-dot"></span>
+          <span class="status-text">YouTube Engine Online</span>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Search Hero Card -->
+      <section class="yt-hero-card">
+        <div class="yt-badge"><i data-lucide="video"></i> Ultra-Fast YouTube Downloader</div>
+        <h1 class="hero-title" style="font-size: 2rem; margin-bottom: 8px;">Download Any YouTube Video or MP3 Audio</h1>
+        <p class="hero-subtitle" style="margin-bottom: 20px;">Paste YouTube link (watch?v=..., shorts/...) or type video title to stream and download instantly in 1080p MP4 & 320kbps MP3.</p>
+        <form id="ytForm" class="magnet-input-group">
+          <div class="input-wrapper">
+            <i data-lucide="search" class="input-icon" style="color: #ef4444;"></i>
+            <input 
+              type="text" 
+              id="ytInput" 
+              placeholder="Paste YouTube link (https://www.youtube.com/watch?v=...) or search term (e.g. Alan Walker Faded)"
+              autocomplete="off"
+              required
+            >
+            <button type="button" class="btn-clear" id="clearInputBtn" title="Clear input">
+              <i data-lucide="x"></i>
+            </button>
+          </div>
+          <div class="action-buttons">
+            <button type="button" class="btn btn-secondary" id="pasteBtn">
+              <i data-lucide="clipboard"></i>
+              <span>Paste</span>
+            </button>
+            <button type="submit" class="btn btn-yt-mp4 btn-glow" id="searchBtn">
+              <i data-lucide="download"></i>
+              <span>Search & Download</span>
+            </button>
+          </div>
+        </form>
+        <!-- Quick Demo Chips -->
+        <div class="quick-samples" style="margin-top: 16px;">
+          <span class="samples-label"><i data-lucide="sparkles"></i> Try Sample Search:</span>
+          <div class="samples-chips">
+            <button type="button" class="sample-chip yt-chip" data-query="Alan Walker Faded">
+              <i data-lucide="music"></i> Alan Walker - Faded
+            </button>
+            <button type="button" class="sample-chip yt-chip" data-query="Lofi Beats to Study">
+              <i data-lucide="radio"></i> Lofi Beats Live
+            </button>
+            <button type="button" class="sample-chip yt-chip" data-query="4K Nature Relaxation Film">
+              <i data-lucide="film"></i> 4K Nature Relaxation
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- LIVE DOWNLOAD TIMELINE CARD (Appears on Download Click) -->
+      <div id="dlTimelineCard" class="dl-timeline-card hidden">
+        <div class="dl-header">
+          <div class="dl-title-box">
+            <div class="dl-icon" id="dlStatusIcon"><i data-lucide="download-cloud"></i></div>
+            <div>
+              <h4 id="dlVideoTitle" style="font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 2px;">Downloading YouTube Stream...</h4>
+              <span id="dlStatusText" style="font-size: 12px; color: #10b981; font-weight: 600;">⚡ Initializing Stream Resolver...</span>
+            </div>
+          </div>
+          <div style="font-size: 20px; font-weight: 800; color: #10b981;" id="dlPercentText">0%</div>
+        </div>
+        <!-- Animated Progress Track -->
+        <div class="dl-progress-track">
+          <div id="dlProgressFill" class="dl-progress-fill"></div>
+        </div>
+        <!-- Download Timeline Milestone Steps -->
+        <div class="dl-timeline-steps">
+          <div class="dl-step active" id="step1">
+            <div class="dl-step-dot"></div>
+            <span>1. Resolve Link</span>
+          </div>
+          <div class="dl-step" id="step2">
+            <div class="dl-step-dot"></div>
+            <span>2. Connect Stream</span>
+          </div>
+          <div class="dl-step" id="step3">
+            <div class="dl-step-dot"></div>
+            <span>3. Transfer Data</span>
+          </div>
+          <div class="dl-step" id="step4">
+            <div class="dl-step-dot"></div>
+            <span>4. Saved to Disk</span>
+          </div>
+        </div>
+        <!-- Live Speed & Size Metrics -->
+        <div class="dl-metrics">
+          <div class="dl-metric-item">Downloaded: <strong id="dlLoadedBytes">0.0 MB</strong> / <strong id="dlTotalBytes">Calculating...</strong></div>
+          <div class="dl-metric-item">Speed: <strong id="dlSpeedText">0.0 MB/s</strong></div>
+          <div class="dl-metric-item">ETA: <strong id="dlEtaText">--</strong></div>
+        </div>
+        <!-- Bot Block / Alternative Download Action Box -->
+        <div id="dlFallbackBox" class="hidden" style="margin-top: 16px; padding: 14px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 12px;">
+          <div style="font-size: 13px; font-weight: 700; color: #fca5a5; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            <i data-lucide="alert-triangle" style="width: 16px; height: 16px;"></i> Direct Fallback Download Options:
+          </div>
+          <p style="font-size: 12px; color: #d1d5db; margin-bottom: 12px;">
+            YouTube requires bot verification on cloud servers. You can download directly via high-speed web gateways or provide cookies below:
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <button type="button" id="btnOpenCookieFromDl" class="btn btn-sm btn-secondary" style="color: #facc15; border-color: rgba(234,179,8,0.4);">
+              <i data-lucide="cookie"></i> Add YouTube Cookies
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Interactive Player Area (Appears on Play) -->
+      <div id="ytPlayerContainer" class="yt-player-card hidden">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 id="ytPlayerTitle" style="font-size: 16px; font-weight: 700; color: #fff;">Now Playing YouTube Stream</h3>
+          <button class="btn btn-sm btn-outline" id="closePlayerBtn"><i data-lucide="x"></i> Close Player</button>
+        </div>
+        <iframe id="ytIframe" class="yt-iframe" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+      <!-- Search Results Area -->
+      <section>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <h3 style="font-size: 18px; font-weight: 700; color: #fff;" id="resultsTitle">🔍 YouTube Videos</h3>
+          <span id="resultsCount" style="color: #a1a1aa; font-size: 13px;">Ready</span>
+        </div>
+        <div id="ytResultsGrid" class="yt-grid">
+          <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #a1a1aa; background: rgba(18,22,34,0.4); border-radius: 16px; border: 1px dashed rgba(255,255,255,0.1);">
+            <i data-lucide="play-square" style="width: 48px; height: 48px; color: #ef4444; margin-bottom: 12px;"></i>
+            <p style="font-size: 15px; font-weight: 600;">Paste a YouTube Link or Search Above</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <!-- YouTube Cookie Configuration Modal -->
+  <div id="cookieModal" class="cookie-modal-overlay hidden" style="display: none;">
+    <div class="cookie-modal-box">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 style="font-size: 18px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px;">
+          <i data-lucide="cookie" style="color: #facc15;"></i> Configure YouTube Cookies
+        </h3>
+        <button type="button" id="closeCookieModalBtn" onclick="window.hideCookieModal && window.hideCookieModal()" class="btn-clear" style="color: #a1a1aa; cursor: pointer; background: transparent; border: none; font-size: 18px; padding: 4px;">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <div style="font-size: 12px; color: #9ca3af; line-height: 1.6; margin-bottom: 16px; background: rgba(0,0,0,0.3); padding: 12px; border-radius: 10px;">
+        <strong style="color: #fff;">How to bypass YouTube Bot Block on Cloud:</strong><br>
+        1. In Chrome / Edge / Brave / Firefox, install the free extension <strong>"Get cookies.txt LOCALLY"</strong>.<br>
+        2. Open <strong>youtube.com</strong> while logged into your browser.<br>
+        3. Click the extension icon and click <strong>"Export"</strong> or copy the cookies text.<br>
+        4. Paste the text below or upload your <code style="color:#facc15;">youtube_cookies.txt</code> file.
+      </div>
+
+      <div style="margin-bottom: 12px;">
+        <label style="font-size: 11px; font-weight: 700; color: #d1d5db; display: block; margin-bottom: 6px;">
+          Upload cookies.txt File:
+        </label>
+        <input type="file" id="cookieFileInput" accept=".txt" style="font-size: 12px; color: #9ca3af; width: 100%;" />
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <label style="font-size: 11px; font-weight: 700; color: #d1d5db; display: block; margin-bottom: 6px;">
+          Or Paste Netscape Format Cookies:
+        </label>
+        <textarea id="cookieTextarea" rows="6" placeholder="# Netscape HTTP Cookie File&#10;.youtube.com  TRUE  /  TRUE  1780000000  PREF  f4=4000000&#10;.youtube.com  TRUE  /  TRUE  1780000000  VISITOR_INFO1_LIVE  ..." style="width: 100%; background: #090d16; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #e2e8f0; font-family: monospace; font-size: 11px; padding: 10px; resize: vertical;"></textarea>
+      </div>
+
+      <div id="cookieStatusMsg" style="font-size: 12px; margin-bottom: 14px; min-height: 18px;"></div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <button type="button" id="deleteCookieBtn" class="btn btn-outline btn-sm hidden" style="color: #ef4444; border-color: rgba(239,68,68,0.4);">
+          <i data-lucide="trash-2"></i> Delete Stored Cookies
+        </button>
+        <button type="button" id="saveCookieBtn" class="btn btn-yt-mp4 btn-sm" style="margin-left: auto;">
+          <i data-lucide="check"></i> Save Cookies
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ytForm = document.getElementById('ytForm');
+    const ytInput = document.getElementById('ytInput');
+    const pasteBtn = document.getElementById('pasteBtn');
+    const clearInputBtn = document.getElementById('clearInputBtn');
+    const ytResultsGrid = document.getElementById('ytResultsGrid');
+    const resultsCount = document.getElementById('resultsCount');
+    const resultsTitle = document.getElementById('resultsTitle');
+    const ytPlayerContainer = document.getElementById('ytPlayerContainer');
+    const ytIframe = document.getElementById('ytIframe');
+    const ytPlayerTitle = document.getElementById('ytPlayerTitle');
+    const closePlayerBtn = document.getElementById('closePlayerBtn');
+    // Download Timeline Elements
+    const dlTimelineCard = document.getElementById('dlTimelineCard');
+    const dlVideoTitle = document.getElementById('dlVideoTitle');
+    const dlStatusText = document.getElementById('dlStatusText');
+    const dlPercentText = document.getElementById('dlPercentText');
+    const dlProgressFill = document.getElementById('dlProgressFill');
+    const dlLoadedBytes = document.getElementById('dlLoadedBytes');
+    const dlTotalBytes = document.getElementById('dlTotalBytes');
+    const dlSpeedText = document.getElementById('dlSpeedText');
+    const dlEtaText = document.getElementById('dlEtaText');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    const step4 = document.getElementById('step4');
+    if (window.lucide) window.lucide.createIcons();
+    pasteBtn.addEventListener('click', async () => {
+      try {
+        const text = await navigator.clipboard.readText();
+        if (text) {
+          ytInput.value = text.trim();
+          ytInput.focus();
+        }
+      } catch (e) {}
+    });
+    clearInputBtn.addEventListener('click', () => {
+      ytInput.value = '';
+      ytInput.focus();
+    });
+    closePlayerBtn.addEventListener('click', () => {
+      ytPlayerContainer.classList.add('hidden');
+      ytIframe.src = '';
+    });
+    document.querySelectorAll('.yt-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const q = chip.getAttribute('data-query');
+        if (q) {
+          ytInput.value = q;
+          performSearch(q);
+        }
+      });
+    });
+    ytForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = ytInput.value.trim();
+      if (q) performSearch(q);
+    });
+    async function performSearch(query) {
+      resultsTitle.textContent = `Search Results for "${query}"`;
+      resultsCount.textContent = 'Searching YouTube...';
+      ytResultsGrid.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #ef4444;">
+          <div class="spinner" style="margin: 0 auto 12px; border-top-color: #ef4444;"></div>
+          <p style="font-weight: 600;">Fetching YouTube videos & download links...</p>
+        </div>`;
+      try {
+        const res = await fetch(`/api/v1/youtube/search?q=${encodeURIComponent(query)}`);
+        const data = await res.json();
+        const results = data.results || [];
+        if (results.length === 0) {
+          resultsCount.textContent = '0 results';
+          ytResultsGrid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #ef4444; background: rgba(239,68,68,0.05); border-radius: 16px;">
+              <p style="font-weight: 600;">No videos found. Try pasting direct video link (https://www.youtube.com/watch?v=...)</p>
+            </div>`;
+          return;
+        }
+        resultsCount.textContent = `${results.length} videos found`;
+        ytResultsGrid.innerHTML = '';
+        results.forEach(v => {
+          const card = document.createElement('div');
+          card.className = 'yt-card';
+          const durationStr = v.lengthSeconds ? formatDuration(v.lengthSeconds) : '';
+          card.innerHTML = `
+            <div class="yt-thumb-container">
+              <img class="yt-thumb" src="${v.thumbnail}" alt="${v.title}" loading="lazy" />
+              ${durationStr ? `<span class="yt-duration">${durationStr}</span>` : ''}
+            </div>
+            <div class="yt-body">
+              <div>
+                <div class="yt-title" title="${v.title}">${v.title}</div>
+                <div class="yt-author"><i data-lucide="user" style="width:12px; height:12px; display:inline-block; vertical-align:middle;"></i> ${v.author} ${v.viewCountText ? `• ${v.viewCountText}` : ''}</div>
+              </div>
+              <!-- Quality Selector Dropdown -->
+              <div style="margin-bottom: 10px;">
+                <label style="font-size: 11px; font-weight: 700; color: #a1a1aa; display: block; margin-bottom: 4px;">
+                  <i data-lucide="sliders" style="width: 12px; height: 12px; display: inline-block;"></i> Select Video Quality:
+                </label>
+                <select class="quality-select" id="quality_${v.videoId}" style="width: 100%; background: rgba(0,0,0,0.6); color: #10b981; border: 1px solid rgba(16,185,129,0.3); border-radius: 8px; padding: 6px 10px; font-size: 12px; font-weight: 700; outline: none;">
+                  <option value="1080" selected>🌟 1080p Full HD (Default)</option>
+                  <option value="2160">🚀 4K Ultra HD (2160p)</option>
+                  <option value="1440">💎 2K Quad HD (1440p)</option>
+                  <option value="720">⚡ 720p HD</option>
+                  <option value="480">📺 480p Standard Quality</option>
+                  <option value="360">📱 360p Fast Mobile</option>
+                </select>
+              </div>
+              <div class="yt-btn-group">
+                <button class="btn btn-sm btn-yt-mp4 btn-play-yt" data-id="${v.videoId}" data-title="${v.title}">
+                  <i data-lucide="play"></i> Stream Video
+                </button>
+                <button class="btn btn-sm btn-yt-mp4 btn-dl-mp4" data-id="${v.videoId}" data-title="${v.title}">
+                  <i data-lucide="download"></i> Download MP4 Video
+                </button>
+                <button class="btn btn-sm btn-yt-mp3 btn-dl-mp3" data-id="${v.videoId}" data-title="${v.title}">
+                  <i data-lucide="music"></i> Download MP3 Audio (320k)
+                </button>
+              </div>
+            </div>
+          `;
+          card.querySelector('.btn-play-yt').addEventListener('click', () => {
+            ytPlayerContainer.classList.remove('hidden');
+            ytPlayerTitle.textContent = `🎬 ${v.title}`;
+            ytIframe.src = `https://www.youtube.com/embed/${v.videoId}?autoplay=1`;
+            ytPlayerContainer.scrollIntoView({ behavior: 'smooth' });
+          });
+          card.querySelector('.btn-dl-mp4').addEventListener('click', async () => {
+            const qSel = card.querySelector('.quality-select');
+            const selectedQ = qSel ? qSel.value : '1080';
+            triggerDownload(v.videoId, 'mp4', v.title, selectedQ);
+          });
+          card.querySelector('.btn-dl-mp3').addEventListener('click', async () => {
+            triggerDownload(v.videoId, 'mp3', v.title, '320');
+          });
+          ytResultsGrid.appendChild(card);
+        });
+        if (window.lucide) window.lucide.createIcons();
+      } catch (e) {
+        resultsCount.textContent = 'Error';
+        ytResultsGrid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #ef4444;">
+            <p>Failed to search YouTube. Check server connection.</p>
+          </div>`;
+      }
+    }
+    async function triggerDownload(videoId, format, title, quality = '1080') {
+      const ytUrl = `https://www.youtube.com/watch?v=${videoId}`;
+      const cobaltUrl = `https://cobalt.meowing.de/#${encodeURIComponent(ytUrl)}`;
+      
+      // Update UI to show we forwarded
+      dlTimelineCard.classList.remove('hidden');
+      dlTimelineCard.scrollIntoView({ behavior: 'smooth' });
+      dlVideoTitle.textContent = `🚀 Sent to Processing Engine: ${title || videoId}`;
+      
+      if (dlStatusIcon) dlStatusIcon.innerHTML = '<i data-lucide="loader" class="spinner"></i>';
+      if (dlStatusText) dlStatusText.innerHTML = '<span style="color:#eab308; font-weight: 600;">Processing Request...</span>';
+      
+      // Open as a small popup window instead of a full tab to keep UX clean while bypassing iframe blocks
+      const width = 600;
+      const height = 500;
+      const left = (window.innerWidth / 2) - (width / 2);
+      const top = (window.innerHeight / 2) - (height / 2);
+      window.open(cobaltUrl, 'CobaltDownload', `width=${width},height=${height},top=${top},left=${left},toolbar=no,menubar=no,scrollbars=yes,resizable=yes`);
+
+      // Simulated Timeline for UX
+      updateProgress(10, `Phase 1: Initializing external download popup...`, 1);
+      
+      setTimeout(() => {
+        updateProgress(50, `Phase 2: Transferring media to engine...`, 2);
+      }, 1500);
+
+      setTimeout(() => {
+        updateProgress(100, `Phase 3: Task passed successfully! Check popup.`, 4);
+        if (dlStatusIcon) dlStatusIcon.innerHTML = '<i data-lucide="check-circle" style="color:#10b981;"></i>';
+        if (dlStatusText) dlStatusText.innerHTML = '<span style="color:#10b981; font-weight: 600;">Download Triggered</span>';
+        if (window.lucide) window.lucide.createIcons();
+      }, 3000);
+      
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    // Global Cookie Modal Controls
+    window.showCookieModal = function() {
+      const modal = document.getElementById('cookieModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.style.display = 'flex';
+      }
+    };
+    window.hideCookieModal = function() {
+      const modal = document.getElementById('cookieModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+      }
+    };
+
+    // Cookie Modal Logic
+    const cookieModal = document.getElementById('cookieModal');
+    const openCookieModalBtn = document.getElementById('openCookieModalBtn');
+    const btnOpenCookieFromDl = document.getElementById('btnOpenCookieFromDl');
+    const closeCookieModalBtn = document.getElementById('closeCookieModalBtn');
+    const cookieTextarea = document.getElementById('cookieTextarea');
+    const cookieFileInput = document.getElementById('cookieFileInput');
+    const saveCookieBtn = document.getElementById('saveCookieBtn');
+    const deleteCookieBtn = document.getElementById('deleteCookieBtn');
+    const cookieStatusMsg = document.getElementById('cookieStatusMsg');
+    const cookieBtnText = document.getElementById('cookieBtnText');
+
+    async function checkCookieStatus() {
+      try {
+        const r = await fetch('/api/v1/youtube/cookies');
+        const d = await r.json();
+        if (d && d.hasCookies) {
+          if (cookieBtnText) cookieBtnText.textContent = '🍪 Cookies Active';
+          if (openCookieModalBtn) {
+            openCookieModalBtn.style.borderColor = 'rgba(16,185,129,0.4)';
+            openCookieModalBtn.style.color = '#10b981';
+            openCookieModalBtn.style.background = 'rgba(16,185,129,0.1)';
+          }
+          if (deleteCookieBtn) deleteCookieBtn.classList.remove('hidden');
+          if (cookieTextarea && !cookieTextarea.value && d.content) {
+            cookieTextarea.value = d.content;
+          }
+        } else {
+          if (cookieBtnText) cookieBtnText.textContent = 'YouTube Cookies';
+          if (deleteCookieBtn) deleteCookieBtn.classList.add('hidden');
+        }
+      } catch(e) {}
+    }
+    checkCookieStatus();
+
+    if (openCookieModalBtn) openCookieModalBtn.addEventListener('click', window.showCookieModal);
+    if (btnOpenCookieFromDl) btnOpenCookieFromDl.addEventListener('click', window.showCookieModal);
+    if (closeCookieModalBtn) closeCookieModalBtn.addEventListener('click', window.hideCookieModal);
+
+    // Close on backdrop click
+    if (cookieModal) {
+      cookieModal.addEventListener('click', (e) => {
+        if (e.target === cookieModal) window.hideCookieModal();
+      });
+    }
+
+    if (cookieFileInput) {
+      cookieFileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            if (cookieTextarea) cookieTextarea.value = event.target.result;
+          };
+          reader.readAsText(file);
+        }
+      });
+    }
+
+    if (saveCookieBtn) {
+      saveCookieBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const content = cookieTextarea ? cookieTextarea.value.trim() : '';
+        if (!content) {
+          if (cookieStatusMsg) {
+            cookieStatusMsg.innerHTML = '<span style="color:#ef4444; font-weight: 600;">⚠️ Please paste cookies or upload a cookies.txt file first.</span>';
+          }
+          return;
+        }
+        saveCookieBtn.disabled = true;
+        saveCookieBtn.innerHTML = '<i data-lucide="loader-2" class="spin"></i> Saving...';
+        if (cookieStatusMsg) {
+          cookieStatusMsg.innerHTML = '<span style="color:#60a5fa;">⏳ Processing and validating cookies...</span>';
+        }
+        try {
+          const r = await fetch('/api/v1/youtube/cookies', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ cookies: content })
+          });
+          const d = await r.json();
+          if (d && d.success) {
+            if (cookieStatusMsg) {
+              cookieStatusMsg.innerHTML = '<span style="color:#10b981; font-weight: 700;">✅ YouTube Cookies saved & activated! Bot block unlocked.</span>';
+            }
+            checkCookieStatus();
+            setTimeout(() => {
+              window.hideCookieModal();
+              if (cookieStatusMsg) cookieStatusMsg.innerHTML = '';
+            }, 1500);
+          } else {
+            if (cookieStatusMsg) {
+              cookieStatusMsg.innerHTML = `<span style="color:#ef4444; font-weight: 600;">❌ ${d.error || 'Failed to save cookies'}</span>`;
+            }
+          }
+        } catch (err) {
+          if (cookieStatusMsg) {
+            cookieStatusMsg.innerHTML = `<span style="color:#ef4444; font-weight: 600;">❌ Network Error: ${err.message}</span>`;
+          }
+        } finally {
+          saveCookieBtn.disabled = false;
+          saveCookieBtn.innerHTML = '<i data-lucide="check"></i> Save Cookies';
+          if (window.lucide) window.lucide.createIcons();
+        }
+      });
+    }
+
+    if (deleteCookieBtn) {
+      deleteCookieBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        if (!confirm('Are you sure you want to remove the stored YouTube cookies?')) return;
+        try {
+          await fetch('/api/v1/youtube/cookies', { method: 'DELETE' });
+          if (cookieTextarea) cookieTextarea.value = '';
+          if (cookieStatusMsg) {
+            cookieStatusMsg.innerHTML = '<span style="color:#10b981;">Cookies successfully removed.</span>';
+          }
+          checkCookieStatus();
+        } catch(e) {}
+      });
+    }
+
+    function updateProgress(pct, statusText, stepNum) {
+      dlProgressFill.style.width = `${pct}%`;
+      dlPercentText.textContent = `${pct}%`;
+      dlStatusText.textContent = statusText;
+      [step1, step2, step3, step4].forEach((step, idx) => {
+        if (idx + 1 <= stepNum) {
+          step.classList.add('active');
+        } else {
+          step.classList.remove('active');
+        }
+      });
+    }
+    function formatDuration(sec) {
+      const h = Math.floor(sec / 3600);
+      const m = Math.floor((sec % 3600) / 60);
+      const s = Math.floor(sec % 60);
+      if (h > 0) return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+      return `${m}:${s.toString().padStart(2, '0')}`;
+    }
+  </script>
+
+    <!-- Aetheris AI Widget -->
+    <link rel="stylesheet" href="/local-ai.css">
+    <script src="/local-ai.js"></script>
+</body>
+</html>

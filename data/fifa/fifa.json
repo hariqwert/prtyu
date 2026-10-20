@@ -1,0 +1,15 @@
+{
+    "metadata": {
+        "name": "Fifa Plus Live Events",
+        "telegram": "https://t.me/livesportsplay",
+        "owner": "Md Sohanur Rahman Hady",
+        "last_update_time": "06:30:23 PM 27-05-2026",
+        "total_live": 0,
+        "total_upcoming": 0
+    },
+    "matches": [
+        {
+            "status": "No matches available for now"
+        }
+    ]
+}

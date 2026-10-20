@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stalker Pro Video Player | Direct M3U Streamer</title>
+    <link rel="icon" type="image/svg+xml" href="/aetheris_infinity.svg">
+
+    <!-- Fonts & Preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Official HLS.js Library (https://github.com/video-dev/hls.js/) -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.17/dist/hls.min.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #03050c;
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+        .font-mono-nums {
+            font-family: 'JetBrains Mono', monospace;
+            font-variant-numeric: tabular-nums;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(3, 5, 12, 0.8);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        /* Custom range styling */
+        input[type="range"] {
+            accent-color: #38bdf8;
+        }
+        /* Video Container Aspect Ratio & Polish */
+        .video-wrapper {
+            position: relative;
+            background: #000;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85);
+        }
+        .video-wrapper:fullscreen {
+            width: 100vw;
+            height: 100vh;
+            border-radius: 0 !important;
+        }
+        /* Smooth control transitions */
+        .player-controls {
+            transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hide-controls {
+            opacity: 0;
+            pointer-events: none;
+        }
+        /* Active channel indicator */
+        .channel-item.active {
+            background: rgba(56, 189, 248, 0.12);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#03050c] text-slate-100 antialiased selection:bg-sky-500 selection:text-white">
+
+    <!-- Top Navigation Bar (Strict 3-Zone Contract) -->
+    <header class="w-full border-b border-white/10 bg-[#050814]/90 backdrop-blur-md sticky top-0 z-40">
+        <div class="max-w-[1720px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+            
+            <!-- Zone 1: Single text element Brand Wordmark -->
+            <a href="/player.html" class="flex items-center gap-2.5 group shrink-0">
+                <div class="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 group-hover:scale-105 transition-transform duration-200">
+                    <i data-lucide="play" class="w-4 h-4 fill-sky-400"></i>
+                </div>
+                <div class="flex items-baseline gap-1.5">
+                    <span class="text-base font-bold tracking-tight text-white">Live Player</span>
+                    <span class="text-xs text-sky-400 font-mono-nums">v2.0</span>
+                </div>
+            </a>
+
+            <!-- Zone 2: Navigation Links -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-400">
+                <a href="/hero.html" class="hover:text-white transition-colors">Hub</a>
+                <a href="/consumet.html" class="hover:text-white transition-colors">Cinema</a>
+                <a href="/index.php" class="hover:text-white transition-colors">Live TV</a>
+                <a href="/music.html" class="hover:text-white transition-colors">Audio</a>
+                <a href="/books.html" class="hover:text-white transition-colors">Library</a>
+            </nav>
+
+            <!-- Zone 3: Primary Actions -->
+            <div class="flex items-center gap-2.5">
+                <button id="btnOpenPasteModal" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors whitespace-nowrap">
+                    <i data-lucide="clipboard" class="w-3.5 h-3.5"></i>
+                    <span>Paste M3U</span>
+                </button>
+                <button id="btnLoadDemo" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-sky-300 hover:text-sky-200 bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 rounded-lg transition-colors whitespace-nowrap">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    <span>Demo Playlist</span>
+                </button>
+                <label for="m3uFileInput" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-sky-600 hover:bg-sky-500 rounded-lg cursor-pointer transition-colors shadow-sm shadow-sky-600/30 whitespace-nowrap">
+                    <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                    <span>Upload M3U</span>
+                </label>
+                <input type="file" id="m3uFileInput" accept=".m3u,.m3u8,text/plain" class="hidden">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace Container -->
+    <main class="flex-1 max-w-[1720px] w-full mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Left / Center Column: Player & Direct URL Controls & Telemetry (8 Cols) -->
+        <div class="lg:col-span-8 flex flex-col gap-4">
+
+            <!-- Stream URL Input Bar -->
+            <div class="p-3 bg-[#070b18] border border-white/10 rounded-xl flex flex-col sm:flex-row gap-2 items-center">
+                <div class="relative flex-1 w-full">
+                    <i data-lucide="link" class="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                    <input type="text" id="streamUrlInput" placeholder="Paste live match or any .m3u8 stream URL..." class="w-full bg-black/40 border border-white/10 rounded-lg pl-9 pr-3 py-2 text-xs sm:text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-sky-500 font-mono transition-colors">
+                </div>
+                <div class="flex items-center gap-2 w-full sm:w-auto shrink-0">
+                    <button id="btnPlayUrl" class="flex-1 sm:flex-none px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm shadow-sky-600/30">
+                        <i data-lucide="play" class="w-3.5 h-3.5 fill-white"></i>
+                        <span>Play Stream</span>
+                    </button>
+                    <button id="btnStopStream" title="Stop Playback" class="p-2 bg-white/5 hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white rounded-lg transition-colors">
+                        <i data-lucide="square" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Video Player Display Container -->
+            <div id="videoContainer" class="video-wrapper group rounded-2xl overflow-hidden border border-white/10 aspect-video relative flex items-center justify-center select-none">
+                
+                <!-- Pure HTML5 Video Element -->
+                <video id="videoElement" class="w-full h-full object-contain bg-black" playsinline></video>
+
+                <!-- Initial Idle / No Source Splash Overlay -->
+                <div id="playerIdleSplash" class="absolute inset-0 bg-[#060914] flex flex-col items-center justify-center gap-3 p-6 text-center z-10">
+                    <div class="w-16 h-16 rounded-2xl bg-sky-500/10 border border-sky-500/25 flex items-center justify-center text-sky-400">
+                        <i data-lucide="tv-2" class="w-8 h-8"></i>
+                    </div>
+                    <div class="max-w-md">
+                        <h2 class="text-base sm:text-lg font-bold text-white mb-1">Live Sports & Video Player</h2>
+                        <p class="text-xs text-slate-400">Direct high-performance video streaming engine. Upload your M3U playlist file or click Demo Playlist to start streaming.</p>
+                    </div>
+                    <div class="flex flex-wrap items-center justify-center gap-2 pt-1">
+                        <label for="m3uFileInput2" class="px-3.5 py-1.5 text-xs font-semibold text-white bg-sky-600 hover:bg-sky-500 rounded-lg cursor-pointer transition-colors shadow-sm shadow-sky-600/30">
+                            Upload M3U File
+                        </label>
+                        <input type="file" id="m3uFileInput2" accept=".m3u,.m3u8,text/plain" class="hidden">
+                        <button id="btnIdleDemo" class="px-3.5 py-1.5 text-xs font-semibold text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors">
+                            Load Demo Stream
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Video Loading Spinner -->
+                <div id="playerSpinner" class="hidden absolute inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center z-20 pointer-events-none">
+                    <div class="flex flex-col items-center gap-2">
+                        <div class="w-10 h-10 border-2 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
+                        <span class="text-xs font-mono text-sky-400" id="spinnerText">Loading HLS Manifest...</span>
+                    </div>
+                </div>
+
+                <!-- Error Notification Banner -->
+                <div id="playerErrorOverlay" class="hidden absolute inset-0 bg-black/85 backdrop-blur-sm flex flex-col items-center justify-center gap-3 p-6 text-center z-25">
+                    <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400">
+                        <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+                    </div>
+                    <div class="max-w-md">
+                        <h3 class="text-sm font-bold text-red-300 mb-1" id="errorMessageTitle">Playback Error</h3>
+                        <p class="text-xs text-slate-400" id="errorMessageText">The requested HLS stream could not be loaded. This is often caused by remote server CORS headers or token restrictions.</p>
+                    </div>
+                    <div class="flex flex-wrap items-center justify-center gap-2">
+                        <button id="btnRetryStream" class="px-4 py-2 text-xs font-semibold text-white bg-sky-600 hover:bg-sky-500 rounded-lg transition-colors flex items-center gap-1.5 shadow-sm shadow-sky-600/30">
+                            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                            <span>Retry Stream</span>
+                        </button>
+                        <button id="btnDismissError" class="px-3.5 py-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors">
+                            Dismiss
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Big Center Play Button Overlay -->
+                <button id="btnBigPlay" class="hidden absolute w-16 h-16 rounded-full bg-sky-600/90 hover:bg-sky-500 text-white flex items-center justify-center shadow-xl shadow-sky-600/30 transition-transform active:scale-95 z-20">
+                    <i data-lucide="play" class="w-7 h-7 fill-white translate-x-0.5"></i>
+                </button>
+
+                <!-- Custom Overlay Controls Bar -->
+                <div id="playerControls" class="player-controls absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent pt-12 pb-3 px-4 flex flex-col gap-2 z-30">
+                    
+                    <!-- Progress / Scrubbing Bar (Visible on VOD) -->
+                    <div id="progressContainer" class="w-full flex items-center gap-2 group/bar cursor-pointer select-none">
+                        <div class="relative w-full h-1.5 group-hover/bar:h-2.5 bg-white/20 rounded-full overflow-hidden transition-all">
+                            <!-- Buffered Range -->
+                            <div id="bufferBar" class="absolute left-0 top-0 bottom-0 bg-white/30 rounded-full w-0 transition-all duration-200"></div>
+                            <!-- Played Range -->
+                            <div id="progressBar" class="absolute left-0 top-0 bottom-0 bg-sky-500 rounded-full w-0"></div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Controls Row -->
+                    <div class="flex items-center justify-between gap-2">
+                        
+                        <!-- Left Group: Play/Pause, Live Indicator, Time, Volume -->
+                        <div class="flex items-center gap-3">
+                            <button id="btnPlayPause" class="text-white hover:text-sky-400 transition-colors p-1" title="Play/Pause (Space)">
+                                <i data-lucide="play" id="iconPlayPause" class="w-5 h-5 fill-current"></i>
+                            </button>
+
+                            <!-- Live Badge (Toggles based on HLS live vs VOD) -->
+                            <div id="liveIndicator" class="hidden items-center gap-1.5 px-2 py-0.5 rounded bg-red-600/20 border border-red-500/40 text-red-400 text-xs font-bold cursor-pointer" title="Click to sync to live edge">
+                                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                                <span>LIVE</span>
+                            </div>
+
+                            <!-- Current / Total Time -->
+                            <div id="timeDisplay" class="text-xs font-mono-nums text-slate-300">
+                                <span id="currentTime">00:00</span>
+                                <span id="timeDivider" class="text-slate-500">/</span>
+                                <span id="totalDuration" class="text-slate-400">00:00</span>
+                            </div>
+
+                            <!-- Volume Slider & Mute Toggle -->
+                            <div class="flex items-center gap-1.5 group/vol">
+                                <button id="btnMute" class="text-white hover:text-sky-400 transition-colors p-1" title="Mute (M)">
+                                    <i data-lucide="volume-2" id="iconVolume" class="w-4 h-4"></i>
+                                </button>
+                                <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1" class="w-16 h-1 bg-white/20 rounded-full cursor-pointer accent-sky-400">
+                            </div>
+                        </div>
+
+                        <!-- Right Group: HLS Quality, Audio, Subtitles, Speed, PiP, Fullscreen -->
+                        <div class="flex items-center gap-2">
+                            
+                            <!-- Quality Level Selector Dropdown -->
+                            <div class="relative">
+                                <button id="btnQualityDropdown" class="flex items-center gap-1 text-xs font-mono-nums px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-slate-200 transition-colors" title="Select Video Quality">
+                                    <i data-lucide="settings" class="w-3.5 h-3.5 text-slate-400"></i>
+                                    <span id="labelQuality">Auto</span>
+                                </button>
+                                <div id="menuQuality" class="hidden absolute bottom-full right-0 mb-2 w-44 bg-[#0a0f1d] border border-white/15 rounded-xl shadow-2xl p-1 z-50 text-xs flex flex-col gap-0.5 max-h-56 overflow-y-auto">
+                                    <!-- Populated dynamically from hls.levels -->
+                                </div>
+                            </div>
+
+                            <!-- Audio Tracks Dropdown -->
+                            <div class="relative">
+                                <button id="btnAudioDropdown" class="flex items-center gap-1 text-xs font-mono-nums px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-slate-200 transition-colors" title="Audio Track">
+                                    <i data-lucide="headphones" class="w-3.5 h-3.5 text-slate-400"></i>
+                                    <span id="labelAudio">Audio</span>
+                                </button>
+                                <div id="menuAudio" class="hidden absolute bottom-full right-0 mb-2 w-40 bg-[#0a0f1d] border border-white/15 rounded-xl shadow-2xl p-1 z-50 text-xs flex flex-col gap-0.5">
+                                    <!-- Populated dynamically from hls.audioTracks -->
+                                </div>
+                            </div>
+
+                            <!-- Subtitles Dropdown -->
+                            <div class="relative">
+                                <button id="btnSubtitleDropdown" class="flex items-center gap-1 text-xs font-mono-nums px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-slate-200 transition-colors" title="Subtitles">
+                                    <i data-lucide="captions" class="w-3.5 h-3.5 text-slate-400"></i>
+                                    <span id="labelSubtitle">CC</span>
+                                </button>
+                                <div id="menuSubtitle" class="hidden absolute bottom-full right-0 mb-2 w-40 bg-[#0a0f1d] border border-white/15 rounded-xl shadow-2xl p-1 z-50 text-xs flex flex-col gap-0.5">
+                                    <!-- Populated dynamically from hls.subtitleTracks -->
+                                </div>
+                            </div>
+
+                            <!-- Picture-in-Picture -->
+                            <button id="btnPip" class="text-slate-300 hover:text-white p-1 transition-colors" title="Picture in Picture (P)">
+                                <i data-lucide="picture-in-picture-2" class="w-4 h-4"></i>
+                            </button>
+
+                            <!-- Fullscreen Toggle -->
+                            <button id="btnFullscreen" class="text-slate-300 hover:text-white p-1 transition-colors" title="Fullscreen (F)">
+                                <i data-lucide="maximize" id="iconFullscreen" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Channel Details Card -->
+            <div id="nowPlayingCard" class="p-4 bg-[#070b18] border border-white/10 rounded-xl flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3.5 min-w-0">
+                    <div id="nowPlayingLogo" class="w-12 h-12 rounded-lg bg-black border border-white/10 flex items-center justify-center p-1.5 shrink-0 overflow-hidden">
+                        <i data-lucide="tv" class="w-6 h-6 text-slate-600"></i>
+                    </div>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-2">
+                            <h3 id="nowPlayingTitle" class="text-sm sm:text-base font-bold text-white truncate">No Active Stream</h3>
+                            <span id="nowPlayingBadge" class="hidden text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">HLS Direct</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-slate-400 mt-0.5 truncate">
+                            <span id="nowPlayingGroup">Upload an M3U file to start</span>
+                            <span aria-hidden="true">·</span>
+                            <span id="nowPlayingUrl" class="font-mono text-slate-500 truncate">hls.js pure client</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button id="btnCopyStreamUrl" class="p-2 text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors text-xs flex items-center gap-1.5" title="Copy Direct Stream URL">
+                        <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                        <span class="hidden sm:inline">Copy URL</span>
+                    </button>
+                    <button id="btnToggleTelemetry" class="p-2 text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors text-xs flex items-center gap-1.5" title="Toggle Real-Time Telemetry">
+                        <i data-lucide="activity" class="w-3.5 h-3.5 text-sky-400"></i>
+                        <span class="hidden sm:inline">Telemetry</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Live Stream Diagnostics & Telemetry Panel (Collapsible) -->
+            <div id="telemetrySection" class="p-4 bg-[#050814] border border-white/10 rounded-xl flex flex-col gap-3">
+                <div class="flex items-center justify-between pb-2 border-b border-white/10">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="cpu" class="w-4 h-4 text-sky-400"></i>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300">Live HLS Diagnostics & Metrics</h4>
+                    </div>
+                    <span class="text-[11px] font-mono-nums text-slate-500" id="hlsEngineVersion">HLS.js Direct Engine</span>
+                </div>
+
+                <!-- Grid of Live Telemetry Metrics -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                    <div class="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                        <span class="text-[11px] text-slate-400 block mb-0.5">Resolution & FPS</span>
+                        <span id="metricResolution" class="font-mono-nums text-slate-100 font-semibold">0 x 0</span>
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                        <span class="text-[11px] text-slate-400 block mb-0.5">Current Bitrate</span>
+                        <span id="metricBitrate" class="font-mono-nums text-slate-100 font-semibold">0 kbps</span>
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                        <span class="text-[11px] text-slate-400 block mb-0.5">Forward Buffer</span>
+                        <span id="metricBuffer" class="font-mono-nums text-emerald-400 font-semibold">0.00 s</span>
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                        <span class="text-[11px] text-slate-400 block mb-0.5">Dropped Frames</span>
+                        <span id="metricDroppedFrames" class="font-mono-nums text-slate-100 font-semibold">0</span>
+                    </div>
+                </div>
+
+                <!-- HLS Event Log Viewer -->
+                <div class="flex flex-col gap-1.5 mt-1">
+                    <div class="flex items-center justify-between text-[11px] text-slate-400">
+                        <span>HLS Engine Events Feed</span>
+                        <button id="btnClearLog" class="hover:text-slate-200 transition-colors">Clear</button>
+                    </div>
+                    <div id="hlsEventLog" class="h-24 overflow-y-auto bg-black/60 rounded-lg p-2 font-mono text-[11px] text-slate-400 space-y-0.5 border border-white/5 select-text">
+                        <div class="text-slate-500">[System] Pure HLS.js ready. Select a stream to initialize decoder.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Public Pure HLS Samples Gallery (1-Click Test Streams) -->
+            <div class="p-4 bg-[#070b18] border border-white/10 rounded-xl">
+                <div class="flex items-center justify-between mb-3">
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300">Verified Public Test Streams</h4>
+                        <p class="text-xs text-slate-500">Official CORS-enabled HLS sample streams for instant verification</p>
+                    </div>
+                    <span class="text-[11px] font-mono-nums text-sky-400">CORS OK</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                    <button class="btn-sample-stream text-left p-2.5 rounded-lg bg-black/40 hover:bg-sky-500/10 border border-white/5 hover:border-sky-500/30 transition-all flex flex-col gap-1 group" data-url="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" data-title="Big Buck Bunny" data-group="Animation">
+                        <span class="text-xs font-semibold text-white group-hover:text-sky-300 transition-colors">Big Buck Bunny</span>
+                        <span class="text-[10px] text-slate-500 font-mono-nums">1080p · Adaptive Multi-Bitrate</span>
+                    </button>
+                    <button class="btn-sample-stream text-left p-2.5 rounded-lg bg-black/40 hover:bg-sky-500/10 border border-white/5 hover:border-sky-500/30 transition-all flex flex-col gap-1 group" data-url="https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8" data-title="Sintel Film" data-group="Short Film">
+                        <span class="text-xs font-semibold text-white group-hover:text-sky-300 transition-colors">Sintel Film (Akamai)</span>
+                        <span class="text-[10px] text-slate-500 font-mono-nums">4K · Multi-Language Audio</span>
+                    </button>
+                    <button class="btn-sample-stream text-left p-2.5 rounded-lg bg-black/40 hover:bg-sky-500/10 border border-white/5 hover:border-sky-500/30 transition-all flex flex-col gap-1 group" data-url="https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8" data-title="Akamai 24/7 Live Test" data-group="Live Broadcast">
+                        <span class="text-xs font-semibold text-white group-hover:text-sky-300 transition-colors">Akamai Live 24/7</span>
+                        <span class="text-[10px] text-emerald-400 font-mono-nums">Continuous Live Broadcast</span>
+                    </button>
+                    <button class="btn-sample-stream text-left p-2.5 rounded-lg bg-black/40 hover:bg-sky-500/10 border border-white/5 hover:border-sky-500/30 transition-all flex flex-col gap-1 group" data-url="https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8" data-title="Apple BipBop Advanced" data-group="Reference">
+                        <span class="text-xs font-semibold text-white group-hover:text-sky-300 transition-colors">Apple BipBop (fMP4)</span>
+                        <span class="text-[10px] text-slate-500 font-mono-nums">fMP4 · CEA-608 · Multi-Audio</span>
+                    </button>
+                    <button class="btn-sample-stream text-left p-2.5 rounded-lg bg-black/40 hover:bg-sky-500/10 border border-white/5 hover:border-sky-500/30 transition-all flex flex-col gap-1 group" data-url="https://test-streams.mux.dev/test_001/stream.m3u8" data-title="Mux Tears of Steel" data-group="Sci-Fi">
+                        <span class="text-xs font-semibold text-white group-hover:text-sky-300 transition-colors">Tears of Steel</span>
+                        <span class="text-[10px] text-slate-500 font-mono-nums">High-Motion Benchmark</span>
+                    </button>
+                    <button class="btn-sample-stream text-left p-2.5 rounded-lg bg-black/40 hover:bg-sky-500/10 border border-white/5 hover:border-sky-500/30 transition-all flex flex-col gap-1 group" data-url="https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,960x540_1500,.f4v.csmil/master.m3u8" data-title="Akamai Multi-Rate" data-group="Reference">
+                        <span class="text-xs font-semibold text-white group-hover:text-sky-300 transition-colors">Akamai Multi-Rate</span>
+                        <span class="text-[10px] text-slate-500 font-mono-nums">Adaptive Bitrate Ladder</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Column: M3U Playlist Explorer & Channel Browser (4 Cols) -->
+        <div class="lg:col-span-4 flex flex-col gap-3">
+            
+            <!-- Playlist Manager Header -->
+            <div class="p-4 bg-[#070b18] border border-white/10 rounded-xl flex flex-col gap-3">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                            <span>M3U Playlist Channels</span>
+                            <span id="channelCountBadge" class="text-xs text-sky-400 font-mono-nums">0</span>
+                        </h3>
+                        <p class="text-[11px] text-slate-500" id="playlistSourceDesc">No playlist loaded</p>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <button id="btnClearPlaylist" class="px-2.5 py-1 text-xs text-slate-400 hover:text-red-400 bg-white/5 hover:bg-red-500/10 border border-white/10 rounded-lg transition-colors" title="Clear Playlist">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Instant Channel Search Input -->
+                <div class="relative">
+                    <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2"></i>
+                    <input type="text" id="channelSearchInput" placeholder="Filter channels by name or group..." class="w-full bg-black/40 border border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-sky-500 transition-colors">
+                </div>
+
+                <!-- Group / Category Tabs -->
+                <div id="categoryTabsContainer" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 text-xs">
+                    <button class="category-tab active px-3 py-1 rounded-md bg-sky-600 text-white font-medium shrink-0" data-group="all">All</button>
+                </div>
+            </div>
+
+            <!-- Drag & Drop Zone (Visible when no channels loaded) -->
+            <div id="dropZone" class="p-8 border-2 border-dashed border-white/15 hover:border-sky-500/50 rounded-xl bg-[#060914] flex flex-col items-center justify-center text-center gap-3 transition-colors cursor-pointer">
+                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-slate-400">
+                    <i data-lucide="file-up" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-white mb-0.5">Drag & Drop M3U Playlist</h4>
+                    <p class="text-[11px] text-slate-400 max-w-xs">Drop your .m3u or .m3u8 file here, or click to browse from your computer.</p>
+                </div>
+            </div>
+
+            <!-- Virtual Channel List Container -->
+            <div id="channelList" class="hidden flex-1 max-h-[750px] overflow-y-auto space-y-1.5 pr-1">
+                <!-- Populated dynamically via renderChannels() -->
+            </div>
+
+            <!-- CORS & Dual-Mode Guidance Card -->
+            <div class="p-3.5 bg-black/30 border border-white/5 rounded-xl text-xs text-slate-400 flex items-start gap-2.5">
+                <i data-lucide="shield-check" class="w-4 h-4 text-sky-400 shrink-0 mt-0.5"></i>
+                <div class="space-y-1 text-[11px]">
+                    <span class="font-semibold text-slate-200 block">Pure Direct vs. CORS Bypass Modes</span>
+                    <p class="text-slate-400">
+                        <strong class="text-sky-300">Pure Direct:</strong> Plays 100% directly in your browser with zero server relay (works for CORS-friendly CDNs like Mux, Bitmovin, Cloudflare, etc.).
+                    </p>
+                    <p class="text-slate-400">
+                        <strong class="text-sky-300">CORS Bypass:</strong> Built specifically for strict CDNs like <strong class="text-slate-300">Akamai (SonyLIV, Star, Jio, VLC feeds)</strong> that block web browser origins or demand specific user-agent headers.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Paste M3U Raw Text Modal -->
+    <div id="pasteModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="w-full max-w-2xl bg-[#0a0f1d] border border-white/15 rounded-2xl p-5 shadow-2xl flex flex-col gap-4">
+            <div class="flex items-center justify-between pb-2 border-b border-white/10">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="clipboard-type" class="w-4 h-4 text-sky-400"></i>
+                    <h3 class="text-sm font-bold text-white">Paste M3U Playlist Text</h3>
+                </div>
+                <button id="btnClosePasteModal" class="text-slate-400 hover:text-white transition-colors p-1">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+            <textarea id="rawM3uTextarea" placeholder="#EXTM3U&#10;#EXTINF:-1 tvg-logo=&quot;https://...&quot; group-title=&quot;News&quot;,Sample News HD&#10;https://example.com/live/stream.m3u8" class="w-full h-64 bg-black/50 border border-white/10 rounded-xl p-3 font-mono text-xs text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-sky-500"></textarea>
+            <div class="flex items-center justify-end gap-2">
+                <button id="btnCancelPaste" class="px-4 py-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors">
+                    Cancel
+                </button>
+                <button id="btnParseRawM3u" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5">
+                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                    <span>Parse & Load Playlist</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script: Pure HLS.js Player Engine & M3U Parser -->
+    <script>
+        // State
+        let hls = null;
+        let channels = [];
+        let activeGroup = 'all';
+        let activeChannelIndex = -1;
+        let controlsHideTimeout = null;
+        let telemetryInterval = null;
+        let streamMode = 'direct'; // 'direct' (pure HLS.js) or 'proxy' (CORS / Akamai bypass)
+        let lastRawStreamUrl = '';
+        let lastChannelInfo = null;
+
+        // DOM Elements
+        const video = document.getElementById('videoElement');
+        const videoContainer = document.getElementById('videoContainer');
+        const playerControls = document.getElementById('playerControls');
+        const playerIdleSplash = document.getElementById('playerIdleSplash');
+        const playerSpinner = document.getElementById('playerSpinner');
+        const spinnerText = document.getElementById('spinnerText');
+        const playerErrorOverlay = document.getElementById('playerErrorOverlay');
+        const errorMessageTitle = document.getElementById('errorMessageTitle');
+        const errorMessageText = document.getElementById('errorMessageText');
+        const btnBigPlay = document.getElementById('btnBigPlay');
+        const btnPlayPause = document.getElementById('btnPlayPause');
+        const iconPlayPause = document.getElementById('iconPlayPause');
+        const liveIndicator = document.getElementById('liveIndicator');
+        const currentTimeEl = document.getElementById('currentTime');
+        const totalDurationEl = document.getElementById('totalDuration');
+        const progressBar = document.getElementById('progressBar');
+        const bufferBar = document.getElementById('bufferBar');
+        const progressContainer = document.getElementById('progressContainer');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const btnMute = document.getElementById('btnMute');
+        const iconVolume = document.getElementById('iconVolume');
+        const btnFullscreen = document.getElementById('btnFullscreen');
+        const btnPip = document.getElementById('btnPip');
+        const streamUrlInput = document.getElementById('streamUrlInput');
+        const btnPlayUrl = document.getElementById('btnPlayUrl');
+        const btnStopStream = document.getElementById('btnStopStream');
+        const m3uFileInput = document.getElementById('m3uFileInput');
+        const m3uFileInput2 = document.getElementById('m3uFileInput2');
+        const dropZone = document.getElementById('dropZone');
+        const channelList = document.getElementById('channelList');
+        const channelCountBadge = document.getElementById('channelCountBadge');
+        const playlistSourceDesc = document.getElementById('playlistSourceDesc');
+        const channelSearchInput = document.getElementById('channelSearchInput');
+        const categoryTabsContainer = document.getElementById('categoryTabsContainer');
+        const btnClearPlaylist = document.getElementById('btnClearPlaylist');
+        const btnLoadDemo = document.getElementById('btnLoadDemo');
+        const btnIdleDemo = document.getElementById('btnIdleDemo');
+
+        // Quality, Audio, Subtitle Menus
+        const btnQualityDropdown = document.getElementById('btnQualityDropdown');
+        const menuQuality = document.getElementById('menuQuality');
+        const labelQuality = document.getElementById('labelQuality');
+        const btnAudioDropdown = document.getElementById('btnAudioDropdown');
+        const menuAudio = document.getElementById('menuAudio');
+        const labelAudio = document.getElementById('labelAudio');
+        const btnSubtitleDropdown = document.getElementById('btnSubtitleDropdown');
+        const menuSubtitle = document.getElementById('menuSubtitle');
+        const labelSubtitle = document.getElementById('labelSubtitle');
+
+        // Now Playing Elements
+        const nowPlayingTitle = document.getElementById('nowPlayingTitle');
+        const nowPlayingGroup = document.getElementById('nowPlayingGroup');
+        const nowPlayingUrl = document.getElementById('nowPlayingUrl');
+        const nowPlayingBadge = document.getElementById('nowPlayingBadge');
+        const nowPlayingLogo = document.getElementById('nowPlayingLogo');
+        const btnCopyStreamUrl = document.getElementById('btnCopyStreamUrl');
+
+        // Telemetry Elements
+        const metricResolution = document.getElementById('metricResolution');
+        const metricBitrate = document.getElementById('metricBitrate');
+        const metricBuffer = document.getElementById('metricBuffer');
+        const metricDroppedFrames = document.getElementById('metricDroppedFrames');
+        const hlsEventLog = document.getElementById('hlsEventLog');
+        const btnClearLog = document.getElementById('btnClearLog');
+
+        // Paste Modal Elements
+        const btnOpenPasteModal = document.getElementById('btnOpenPasteModal');
+        const btnClosePasteModal = document.getElementById('btnClosePasteModal');
+        const btnCancelPaste = document.getElementById('btnCancelPaste');
+        const pasteModal = document.getElementById('pasteModal');
+        const rawM3uTextarea = document.getElementById('rawM3uTextarea');
+        const btnParseRawM3u = document.getElementById('btnParseRawM3u');
+
+        // Initialize Lucide Icons
+        function refreshIcons() {
+            if (window.lucide && typeof lucide.createIcons === 'function') {
+                lucide.createIcons();
+            }
+        }
+
+        // Format Seconds -> mm:ss or hh:mm:ss
+        function formatTime(seconds) {
+            if (isNaN(seconds) || !isFinite(seconds) || seconds < 0) return '00:00';
+            const h = Math.floor(seconds / 3600);
+            const m = Math.floor((seconds % 3600) / 60);
+            const s = Math.floor(seconds % 60);
+            if (h > 0) {
+                return `${h}:${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+            }
+            return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+
+        // Append Event to Log
+        function logEvent(text, type = 'info') {
+            const time = new Date().toLocaleTimeString();
+            const colorClass = type === 'error' ? 'text-red-400' : type === 'warn' ? 'text-amber-400' : type === 'success' ? 'text-emerald-400' : 'text-slate-400';
+            const row = document.createElement('div');
+            row.className = colorClass;
+            row.textContent = `[${time}] ${text}`;
+            hlsEventLog.appendChild(row);
+            hlsEventLog.scrollTop = hlsEventLog.scrollHeight;
+        }
+
+        btnClearLog.addEventListener('click', () => {
+            hlsEventLog.innerHTML = '<div class="text-slate-500">[System] Log cleared.</div>';
+        });
+
+        // ==========================================
+        // 1. PURE HLS.JS STREAM ENGINE (WITH AUTO-CORS BYPASS)
+        // ==========================================
+        function initHlsStream(rawUrl, channelInfo = null, forceProxy = false) {
+            if (!rawUrl || !rawUrl.trim()) return;
+            rawUrl = rawUrl.trim();
+            lastRawStreamUrl = rawUrl;
+            lastChannelInfo = channelInfo;
+
+            playerIdleSplash.classList.add('hidden');
+            playerErrorOverlay.classList.add('hidden');
+            playerSpinner.classList.remove('hidden');
+            spinnerText.textContent = 'Connecting HLS.js...';
+
+            streamUrlInput.value = rawUrl;
+
+            const useProxy = forceProxy || streamMode === 'proxy';
+            let effectivePlaybackUrl = rawUrl;
+
+            if (useProxy && rawUrl.startsWith('http')) {
+                effectivePlaybackUrl = `/live.php?token=STALKER_PRO&id=${encodeURIComponent(rawUrl)}&m3u=1`;
+                logEvent(`Connecting via CORS Bypass Proxy: ${effectivePlaybackUrl}`, 'info');
+            } else {
+                logEvent(`Connecting direct client-side HLS.js: ${rawUrl}`, 'info');
+            }
+
+            // Update Metadata Card
+            if (channelInfo) {
+                nowPlayingTitle.textContent = channelInfo.name || 'HLS Live Stream';
+                nowPlayingGroup.textContent = channelInfo.group || 'Direct Stream';
+                nowPlayingUrl.textContent = rawUrl;
+                nowPlayingBadge.classList.remove('hidden');
+                nowPlayingBadge.textContent = useProxy ? 'CORS Bypass' : 'Pure Direct';
+
+                if (channelInfo.logo) {
+                    nowPlayingLogo.innerHTML = `<img src="${channelInfo.logo}" alt="${channelInfo.name}" class="w-full h-full object-contain" onerror="this.src=''; this.parentElement.innerHTML='<i data-lucide=\\'tv\\' class=\\'w-6 h-6 text-slate-600\\'></i>'; refreshIcons();">`;
+                } else {
+                    nowPlayingLogo.innerHTML = `<i data-lucide="tv" class="w-6 h-6 text-sky-400"></i>`;
+                }
+            } else {
+                const guessedName = rawUrl.split('/').pop().split('?')[0] || 'Live Stream';
+                nowPlayingTitle.textContent = guessedName;
+                nowPlayingGroup.textContent = 'Live Broadcast';
+                nowPlayingUrl.textContent = rawUrl;
+                nowPlayingBadge.classList.remove('hidden');
+                nowPlayingBadge.textContent = 'Live';
+                nowPlayingLogo.innerHTML = `<i data-lucide="play" class="w-6 h-6 text-sky-400"></i>`;
+            }
+            refreshIcons();
+
+            // Destroy previous HLS instance
+            if (hls) {
+                hls.destroy();
+                hls = null;
+            }
+
+            // Check Hls.isSupported()
+            if (Hls.isSupported()) {
+                const config = {
+                    debug: false,
+                    enableWorker: true,
+                    lowLatencyMode: true,
+                    backBufferLength: 60,
+                    maxBufferLength: 30,
+                    maxMaxBufferLength: 600,
+                    startLevel: -1 // Auto ABR
+                };
+
+                hls = new Hls(config);
+                hls.attachMedia(video);
+
+                hls.on(Hls.Events.MEDIA_ATTACHED, () => {
+                    logEvent('HLS Media element attached', 'info');
+                    hls.loadSource(effectivePlaybackUrl);
+                });
+
+                hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
+                    logEvent(`Manifest parsed: ${data.levels.length} quality levels detected`, 'success');
+                    playerSpinner.classList.add('hidden');
+                    populateQualityLevels(data.levels);
+                    populateAudioTracks(hls.audioTracks);
+                    populateSubtitleTracks(hls.subtitleTracks);
+
+                    video.play().catch(e => {
+                        logEvent(`Autoplay prevented: ${e.message}`, 'warn');
+                        btnBigPlay.classList.remove('hidden');
+                    });
+                });
+
+                hls.on(Hls.Events.LEVEL_SWITCHED, (event, data) => {
+                    const level = hls.levels[data.level];
+                    if (level) {
+                        const res = `${level.width}x${level.height}`;
+                        const br = Math.round(level.bitrate / 1000);
+                        metricResolution.textContent = res;
+                        metricBitrate.textContent = `${br} kbps`;
+                        logEvent(`Quality level switched: ${res} @ ${br}kbps`);
+                    }
+                });
+
+                hls.on(Hls.Events.AUDIO_TRACK_SWITCHED, (event, data) => {
+                    const track = hls.audioTracks[data.id];
+                    if (track) {
+                        labelAudio.textContent = track.name || `Audio ${data.id}`;
+                        logEvent(`Audio track switched: ${track.name}`);
+                    }
+                });
+
+                hls.on(Hls.Events.ERROR, (event, data) => {
+                    logEvent(`HLS Error: ${data.type} - ${data.details}`, data.fatal ? 'error' : 'warn');
+
+                    if (data.fatal) {
+                        switch (data.type) {
+                            case Hls.ErrorTypes.NETWORK_ERROR:
+                                logEvent('Fatal network error encountered. Checking CORS restrictions...', 'error');
+                                if (!useProxy) {
+                                    logEvent('Attempting auto-fallback to CORS Bypass engine...', 'warn');
+                                    setStreamMode('proxy');
+                                    initHlsStream(lastRawStreamUrl, lastChannelInfo, true);
+                                } else {
+                                    showPlayerError('HLS Network Error', 'Failed to load manifest or segments from remote server. The stream token or remote CDN endpoint may be expired or geo-restricted.');
+                                }
+                                break;
+                            case Hls.ErrorTypes.MEDIA_ERROR:
+                                logEvent('Fatal media error encountered, recovering media decoder...', 'error');
+                                hls.recoverMediaError();
+                                break;
+                            default:
+                                logEvent('Fatal unrecoverable error. Destroying HLS pipeline.', 'error');
+                                showPlayerError('HLS Playback Failure', `${data.details}. Make sure the remote stream URL is active and allows playback.`);
+                                hls.destroy();
+                                break;
+                        }
+                    }
+                });
+
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                // Safari / Native iOS HLS Fallback
+                logEvent('Native HLS mode (Safari engine)', 'info');
+                video.src = effectivePlaybackUrl;
+                video.addEventListener('loadedmetadata', () => {
+                    playerSpinner.classList.add('hidden');
+                    video.play().catch(() => {
+                        btnBigPlay.classList.remove('hidden');
+                    });
+                }, { once: true });
+            } else {
+                showPlayerError('HLS Unsupported', 'Your browser does not support MediaSource Extensions or native HLS video playback.');
+            }
+        }
+
+        function showPlayerError(title, msg) {
+            playerSpinner.classList.add('hidden');
+            playerErrorOverlay.classList.remove('hidden');
+            errorMessageTitle.textContent = title;
+            errorMessageText.textContent = msg;
+        }
+
+        document.getElementById('btnDismissError').addEventListener('click', () => {
+            playerErrorOverlay.classList.add('hidden');
+        });
+
+        document.getElementById('btnRetryStream').addEventListener('click', () => {
+            playerErrorOverlay.classList.add('hidden');
+            const url = streamUrlInput.value;
+            if (url) initHlsStream(url, lastChannelInfo, false);
+        });
+
+        // Quality Levels UI Builder
+        function populateQualityLevels(levels) {
+            menuQuality.innerHTML = '';
+            
+            // Auto Option
+            const autoBtn = document.createElement('button');
+            autoBtn.className = 'w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-white/10 text-sky-400 font-semibold flex items-center justify-between';
+            autoBtn.innerHTML = `<span>Auto (ABR)</span><span class="text-[10px] text-slate-500">Adaptive</span>`;
+            autoBtn.onclick = () => {
+                if (hls) hls.currentLevel = -1;
+                labelQuality.textContent = 'Auto';
+                menuQuality.classList.add('hidden');
+            };
+            menuQuality.appendChild(autoBtn);
+
+            levels.forEach((lvl, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-white/10 text-slate-300 font-mono-nums flex items-center justify-between';
+                const heightLabel = lvl.height ? `${lvl.height}p` : `Level ${idx + 1}`;
+                const kbps = Math.round(lvl.bitrate / 1000);
+                btn.innerHTML = `<span>${heightLabel}</span><span class="text-[10px] text-slate-500">${kbps}k</span>`;
+                btn.onclick = () => {
+                    if (hls) hls.currentLevel = idx;
+                    labelQuality.textContent = heightLabel;
+                    menuQuality.classList.add('hidden');
+                };
+                menuQuality.appendChild(btn);
+            });
+        }
+
+        // Audio Tracks UI Builder
+        function populateAudioTracks(tracks) {
+            menuAudio.innerHTML = '';
+            if (!tracks || tracks.length <= 1) {
+                btnAudioDropdown.classList.add('hidden');
+                return;
+            }
+            btnAudioDropdown.classList.remove('hidden');
+
+            tracks.forEach((track, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-white/10 text-slate-300 flex items-center justify-between';
+                btn.textContent = track.name || `Audio ${idx + 1}`;
+                btn.onclick = () => {
+                    if (hls) hls.audioTrack = idx;
+                    labelAudio.textContent = track.name || `Audio ${idx + 1}`;
+                    menuAudio.classList.add('hidden');
+                };
+                menuAudio.appendChild(btn);
+            });
+        }
+
+        // Subtitle Tracks UI Builder
+        function populateSubtitleTracks(tracks) {
+            menuSubtitle.innerHTML = '';
+            if (!tracks || tracks.length === 0) {
+                btnSubtitleDropdown.classList.add('hidden');
+                return;
+            }
+            btnSubtitleDropdown.classList.remove('hidden');
+
+            // Off Option
+            const offBtn = document.createElement('button');
+            offBtn.className = 'w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-white/10 text-slate-400';
+            offBtn.textContent = 'Off';
+            offBtn.onclick = () => {
+                if (hls) hls.subtitleTrack = -1;
+                labelSubtitle.textContent = 'CC';
+                menuSubtitle.classList.add('hidden');
+            };
+            menuSubtitle.appendChild(offBtn);
+
+            tracks.forEach((track, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-white/10 text-slate-300';
+                btn.textContent = track.name || `Subtitle ${idx + 1}`;
+                btn.onclick = () => {
+                    if (hls) hls.subtitleTrack = idx;
+                    labelSubtitle.textContent = track.lang || `Track ${idx + 1}`;
+                    menuSubtitle.classList.add('hidden');
+                };
+                menuSubtitle.appendChild(btn);
+            });
+        }
+
+        // Dropdown Click Handlers
+        btnQualityDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuQuality.classList.toggle('hidden');
+            menuAudio.classList.add('hidden');
+            menuSubtitle.classList.add('hidden');
+        });
+        btnAudioDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuAudio.classList.toggle('hidden');
+            menuQuality.classList.add('hidden');
+            menuSubtitle.classList.add('hidden');
+        });
+        btnSubtitleDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuSubtitle.classList.toggle('hidden');
+            menuQuality.classList.add('hidden');
+            menuAudio.classList.add('hidden');
+        });
+        document.addEventListener('click', () => {
+            menuQuality.classList.add('hidden');
+            menuAudio.classList.add('hidden');
+            menuSubtitle.classList.add('hidden');
+        });
+
+        // ==========================================
+        // 2. VIDEO PLAYER CONTROLS & INTERACTION
+        // ==========================================
+        function togglePlay() {
+            if (video.paused || video.ended) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        btnPlayPause.addEventListener('click', togglePlay);
+        btnBigPlay.addEventListener('click', () => {
+            btnBigPlay.classList.add('hidden');
+            video.play();
+        });
+
+        video.addEventListener('click', togglePlay);
+
+        video.addEventListener('play', () => {
+            iconPlayPause.setAttribute('data-lucide', 'pause');
+            btnBigPlay.classList.add('hidden');
+            refreshIcons();
+        });
+
+        video.addEventListener('pause', () => {
+            iconPlayPause.setAttribute('data-lucide', 'play');
+            btnBigPlay.classList.remove('hidden');
+            refreshIcons();
+        });
+
+        // Volume
+        volumeSlider.addEventListener('input', (e) => {
+            video.volume = parseFloat(e.target.value);
+            video.muted = video.volume === 0;
+            updateVolumeIcon();
+        });
+
+        btnMute.addEventListener('click', () => {
+            video.muted = !video.muted;
+            updateVolumeIcon();
+        });
+
+        function updateVolumeIcon() {
+            if (video.muted || video.volume === 0) {
+                iconVolume.setAttribute('data-lucide', 'volume-x');
+            } else if (video.volume < 0.5) {
+                iconVolume.setAttribute('data-lucide', 'volume-1');
+            } else {
+                iconVolume.setAttribute('data-lucide', 'volume-2');
+            }
+            refreshIcons();
+        }
+
+        // Fullscreen
+        btnFullscreen.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                videoContainer.requestFullscreen().catch(err => alert(err.message));
+            } else {
+                document.exitFullscreen();
+            }
+        });
+
+        // PiP
+        btnPip.addEventListener('click', async () => {
+            if (document.pictureInPictureElement) {
+                await document.exitPictureInPicture();
+            } else if (document.pictureInPictureEnabled) {
+                await video.requestPictureInPicture();
+            }
+        });
+
+        // Time & Progress Updates
+        video.addEventListener('timeupdate', () => {
+            const isLive = !isFinite(video.duration);
+
+            if (isLive) {
+                liveIndicator.classList.remove('hidden');
+                liveIndicator.classList.add('flex');
+                progressContainer.classList.add('opacity-30', 'pointer-events-none');
+                currentTimeEl.textContent = formatTime(video.currentTime);
+                totalDurationEl.textContent = 'LIVE';
+            } else {
+                liveIndicator.classList.add('hidden');
+                liveIndicator.classList.remove('flex');
+                progressContainer.classList.remove('opacity-30', 'pointer-events-none');
+                currentTimeEl.textContent = formatTime(video.currentTime);
+                totalDurationEl.textContent = formatTime(video.duration);
+
+                if (video.duration > 0) {
+                    const pct = (video.currentTime / video.duration) * 100;
+                    progressBar.style.width = `${pct}%`;
+                }
+            }
+
+            // Update Buffer Bar
+            if (video.buffered.length > 0) {
+                const end = video.buffered.end(video.buffered.length - 1);
+                if (video.duration > 0) {
+                    bufferBar.style.width = `${(end / video.duration) * 100}%`;
+                }
+            }
+        });
+
+        // Seek Bar Scrubbing
+        progressContainer.addEventListener('click', (e) => {
+            if (!isFinite(video.duration) || video.duration <= 0) return;
+            const rect = progressContainer.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            video.currentTime = pos * video.duration;
+        });
+
+        // Live Edge Sync
+        liveIndicator.addEventListener('click', () => {
+            if (hls && hls.liveSyncPosition) {
+                video.currentTime = hls.liveSyncPosition;
+                logEvent('Synced to HLS live edge position');
+            }
+        });
+
+        // Direct Stream URL Input Play
+        btnPlayUrl.addEventListener('click', () => {
+            const url = streamUrlInput.value.trim();
+            if (url) {
+                initHlsStream(url);
+            }
+        });
+
+        streamUrlInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                btnPlayUrl.click();
+            }
+        });
+
+        btnStopStream.addEventListener('click', () => {
+            if (hls) {
+                hls.destroy();
+                hls = null;
+            }
+            video.pause();
+            video.removeAttribute('src');
+            video.load();
+            playerIdleSplash.classList.remove('hidden');
+            nowPlayingTitle.textContent = 'No Active Stream';
+            nowPlayingGroup.textContent = 'Stream stopped';
+            nowPlayingUrl.textContent = '';
+            nowPlayingBadge.classList.add('hidden');
+            logEvent('Playback stopped by user');
+        });
+
+        // Keyboard Shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+            if (e.code === 'Space' || e.key === 'k') {
+                e.preventDefault();
+                togglePlay();
+            } else if (e.key === 'f') {
+                e.preventDefault();
+                btnFullscreen.click();
+            } else if (e.key === 'm') {
+                e.preventDefault();
+                btnMute.click();
+            } else if (e.key === 'p') {
+                e.preventDefault();
+                btnPip.click();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                video.currentTime = Math.min(video.duration || 999999, video.currentTime + 5);
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                video.currentTime = Math.max(0, video.currentTime - 5);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                video.volume = Math.min(1, video.volume + 0.1);
+                volumeSlider.value = video.volume;
+                updateVolumeIcon();
+            } else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                video.volume = Math.max(0, video.volume - 0.1);
+                volumeSlider.value = video.volume;
+                updateVolumeIcon();
+            }
+        });
+
+        // Copy Stream URL
+        btnCopyStreamUrl.addEventListener('click', () => {
+            const url = streamUrlInput.value;
+            if (url) {
+                navigator.clipboard.writeText(url).then(() => {
+                    const original = btnCopyStreamUrl.innerHTML;
+                    btnCopyStreamUrl.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span class="hidden sm:inline">Copied!</span>`;
+                    refreshIcons();
+                    setTimeout(() => {
+                        btnCopyStreamUrl.innerHTML = original;
+                        refreshIcons();
+                    }, 2000);
+                });
+            }
+        });
+
+        // Open in official HLS.js demo in new tab
+        if (btnOpenHlsDemoExternal) {
+            btnOpenHlsDemoExternal.addEventListener('click', () => {
+                const url = streamUrlInput.value.trim() || lastRawStreamUrl;
+                if (!url) {
+                    alert('Please enter or select a stream URL first.');
+                    return;
+                }
+                const demoConfigBase64 = btoa(JSON.stringify({
+                    enableStreaming: true,
+                    autoRecoverError: true,
+                    stopOnStall: false,
+                    dumpMP4: false,
+                    levelCapping: -1,
+                    limitMetrics: -1
+                }));
+                const hlsjsConfigBase64 = btoa(JSON.stringify({
+                    debug: true,
+                    enableWorker: true,
+                    lowLatencyMode: true,
+                    backBufferLength: 90
+                }));
+                const baseOrigin = (window.location && window.location.origin && !window.location.origin.includes('localhost')) ? window.location.origin : 'https://ellamoonu.ai.studio';
+                const targetUrl = streamMode === 'proxy' 
+                    ? `${baseOrigin}/live.php?token=STALKER_PRO&id=${encodeURIComponent(url)}&m3u=1`
+                    : (url.startsWith('/') ? `${baseOrigin}${url}` : url);
+                const demoFullUrl = `https://hlsjs.video-dev.org/demo/?src=${encodeURIComponent(targetUrl)}&demoConfig=${encodeURIComponent(demoConfigBase64)}&hlsjsConfig=${encodeURIComponent(hlsjsConfigBase64)}`;
+                window.open(demoFullUrl, '_blank', 'noopener,noreferrer');
+                logEvent(`Opened official HLS.js demo externally: ${demoFullUrl}`, 'success');
+            });
+        }
+
+        // Telemetry Update Interval (every 1s)
+        function startTelemetry() {
+            if (telemetryInterval) clearInterval(telemetryInterval);
+            telemetryInterval = setInterval(() => {
+                if (video.videoWidth && video.videoHeight) {
+                    metricResolution.textContent = `${video.videoWidth} x ${video.videoHeight}`;
+                }
+
+                if (video.buffered && video.buffered.length > 0) {
+                    const cur = video.currentTime;
+                    let ahead = 0;
+                    for (let i = 0; i < video.buffered.length; i++) {
+                        if (video.buffered.start(i) <= cur && cur <= video.buffered.end(i)) {
+                            ahead = video.buffered.end(i) - cur;
+                            break;
+                        }
+                    }
+                    metricBuffer.textContent = `${ahead.toFixed(2)} s`;
+                }
+
+                if (video.getVideoPlaybackQuality) {
+                    const quality = video.getVideoPlaybackQuality();
+                    metricDroppedFrames.textContent = `${quality.droppedVideoFrames} / ${quality.totalVideoFrames}`;
+                }
+            }, 1000);
+        }
+        startTelemetry();
+
+        // ==========================================
+        // 3. M3U PARSING & PLAYLIST ENGINE
+        // ==========================================
+        function parseM3U(content) {
+            const lines = content.split(/\r?\n/);
+            const parsed = [];
+            let currentMeta = null;
+
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+
+                if (line.startsWith('#EXTINF:')) {
+                    currentMeta = {
+                        name: '',
+                        logo: '',
+                        group: 'Uncategorized',
+                        id: '',
+                        url: ''
+                    };
+
+                    // Extract attributes: tvg-logo, group-title, tvg-name, tvg-id
+                    const logoMatch = line.match(/tvg-logo="([^"]+)"/i) || line.match(/logo="([^"]+)"/i);
+                    if (logoMatch) currentMeta.logo = logoMatch[1];
+
+                    const groupMatch = line.match(/group-title="([^"]+)"/i);
+                    if (groupMatch) currentMeta.group = groupMatch[1].trim();
+
+                    const idMatch = line.match(/tvg-id="([^"]+)"/i);
+                    if (idMatch) currentMeta.id = idMatch[1];
+
+                    // Extract Channel Title after the last comma
+                    const commaIdx = line.lastIndexOf(',');
+                    if (commaIdx !== -1) {
+                        currentMeta.name = line.substring(commaIdx + 1).trim();
+                    }
+                } else if (!line.startsWith('#')) {
+                    // This is the stream URL
+                    if (currentMeta) {
+                        currentMeta.url = line;
+                        if (!currentMeta.name) {
+                            currentMeta.name = line.split('/').pop().split('?')[0] || `Stream ${parsed.length + 1}`;
+                        }
+                        parsed.push(currentMeta);
+                        currentMeta = null;
+                    } else if (line.startsWith('http://') || line.startsWith('https://')) {
+                        // Plain URL without EXTINF
+                        parsed.push({
+                            name: line.split('/').pop().split('?')[0] || `Stream ${parsed.length + 1}`,
+                            logo: '',
+                            group: 'Direct Streams',
+                            id: `stream_${parsed.length + 1}`,
+                            url: line
+                        });
+                    }
+                }
+            }
+
+            return parsed;
+        }
+
+        function loadChannelsIntoUi(channelArray, sourceLabel = 'Uploaded M3U File') {
+            if (!channelArray || channelArray.length === 0) {
+                alert('No valid playable stream entries found in M3U file.');
+                return;
+            }
+
+            channels = channelArray;
+            channelCountBadge.textContent = channels.length;
+            playlistSourceDesc.textContent = `${sourceLabel} · ${channels.length} channels loaded`;
+
+            // Cache playlist to localStorage
+            try {
+                localStorage.setItem('pure_hls_playlist', JSON.stringify({
+                    source: sourceLabel,
+                    channels: channels.slice(0, 1500)
+                }));
+            } catch (e) {}
+
+            dropZone.classList.add('hidden');
+            channelList.classList.remove('hidden');
+
+            renderCategoryTabs();
+            renderChannels();
+
+            // Auto-play the first channel if idle
+            if (video.paused && (!video.src || video.src === '')) {
+                playChannel(0);
+            }
+        }
+
+        function renderCategoryTabs() {
+            const groups = new Set();
+            channels.forEach(ch => {
+                if (ch.group) groups.add(ch.group);
+            });
+
+            categoryTabsContainer.innerHTML = '';
+            
+            // All Tab
+            const allBtn = document.createElement('button');
+            allBtn.className = `category-tab px-3 py-1 rounded-md text-xs font-medium shrink-0 transition-colors ${activeGroup === 'all' ? 'bg-sky-600 text-white' : 'bg-white/5 text-slate-400 hover:text-white'}`;
+            allBtn.textContent = `All (${channels.length})`;
+            allBtn.onclick = () => {
+                activeGroup = 'all';
+                renderCategoryTabs();
+                renderChannels();
+            };
+            categoryTabsContainer.appendChild(allBtn);
+
+            Array.from(groups).sort().forEach(grp => {
+                const count = channels.filter(c => c.group === grp).length;
+                const btn = document.createElement('button');
+                btn.className = `category-tab px-3 py-1 rounded-md text-xs font-medium shrink-0 transition-colors ${activeGroup === grp ? 'bg-sky-600 text-white' : 'bg-white/5 text-slate-400 hover:text-white'}`;
+                btn.textContent = `${grp} (${count})`;
+                btn.onclick = () => {
+                    activeGroup = grp;
+                    renderCategoryTabs();
+                    renderChannels();
+                };
+                categoryTabsContainer.appendChild(btn);
+            });
+        }
+
+        function renderChannels() {
+            const query = channelSearchInput.value.toLowerCase().trim();
+            channelList.innerHTML = '';
+
+            const filtered = channels.filter((ch, idx) => {
+                const matchesGroup = activeGroup === 'all' || ch.group === activeGroup;
+                const matchesQuery = !query || 
+                    ch.name.toLowerCase().includes(query) || 
+                    (ch.group && ch.group.toLowerCase().includes(query)) ||
+                    ch.url.toLowerCase().includes(query);
+                return matchesGroup && matchesQuery;
+            });
+
+            if (filtered.length === 0) {
+                channelList.innerHTML = `
+                    <div class="p-6 text-center text-xs text-slate-500">
+                        No channels matching "${query}" in group "${activeGroup}".
+                    </div>
+                `;
+                return;
+            }
+
+            const fragment = document.createDocumentFragment();
+
+            filtered.forEach((ch) => {
+                const actualIndex = channels.indexOf(ch);
+                const isActive = actualIndex === activeChannelIndex;
+
+                const item = document.createElement('div');
+                item.className = `channel-item p-2.5 rounded-xl border border-white/5 hover:border-white/20 bg-[#060914] hover:bg-[#0b1022] flex items-center justify-between gap-3 cursor-pointer transition-all ${isActive ? 'active' : ''}`;
+                
+                item.innerHTML = `
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-8 h-8 rounded-lg bg-black border border-white/10 flex items-center justify-center p-1 shrink-0 overflow-hidden">
+                            ${ch.logo ? `<img src="${ch.logo}" alt="${ch.name}" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i data-lucide="tv" class="hidden w-4 h-4 text-slate-600"></i>` : `<i data-lucide="tv" class="w-4 h-4 text-slate-600"></i>`}
+                        </div>
+                        <div class="min-w-0">
+                            <h4 class="text-xs font-semibold text-white truncate ${isActive ? 'text-sky-400 font-bold' : ''}">${ch.name}</h4>
+                            <div class="flex items-center gap-1.5 text-[10px] text-slate-500 truncate">
+                                <span>${ch.group || 'Live'}</span>
+                                <span aria-hidden="true">·</span>
+                                <span class="font-mono truncate">${ch.url.split('/').pop().split('?')[0] || 'stream.m3u8'}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0">
+                        ${isActive ? `<span class="flex h-2 w-2 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span></span>` : `<i data-lucide="play" class="w-3.5 h-3.5 text-slate-600 hover:text-white transition-colors"></i>`}
+                    </div>
+                `;
+
+                item.onclick = () => {
+                    playChannel(actualIndex);
+                };
+
+                fragment.appendChild(item);
+            });
+
+            channelList.appendChild(fragment);
+            refreshIcons();
+        }
+
+        function playChannel(index) {
+            if (index < 0 || index >= channels.length) return;
+            activeChannelIndex = index;
+            const channel = channels[index];
+            initHlsStream(channel.url, channel);
+            renderChannels();
+        }
+
+        // Search Input Filter
+        channelSearchInput.addEventListener('input', () => {
+            renderChannels();
+        });
+
+        // File Input Handler
+        function handleFile(file) {
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const text = e.target.result;
+                const parsed = parseM3U(text);
+                loadChannelsIntoUi(parsed, file.name);
+            };
+            reader.readAsText(file);
+        }
+
+        m3uFileInput.addEventListener('change', (e) => {
+            handleFile(e.target.files[0]);
+        });
+        m3uFileInput2.addEventListener('change', (e) => {
+            handleFile(e.target.files[0]);
+        });
+
+        // Drag & Drop
+        dropZone.addEventListener('click', () => {
+            m3uFileInput.click();
+        });
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('border-sky-500', 'bg-sky-500/5');
+        });
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('border-sky-500', 'bg-sky-500/5');
+        });
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('border-sky-500', 'bg-sky-500/5');
+            if (e.dataTransfer.files.length > 0) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
+
+        // Clear Playlist
+        btnClearPlaylist.addEventListener('click', () => {
+            channels = [];
+            activeChannelIndex = -1;
+            channelCountBadge.textContent = '0';
+            playlistSourceDesc.textContent = 'No playlist loaded';
+            dropZone.classList.remove('hidden');
+            channelList.classList.add('hidden');
+            categoryTabsContainer.innerHTML = '';
+            localStorage.removeItem('pure_hls_playlist');
+            logEvent('Playlist cleared from session and storage');
+        });
+
+        // Load Curated Demo Playlist
+        function loadDemoM3u() {
+            const demoChannels = [
+                {
+                    name: 'Big Buck Bunny (1080p)',
+                    logo: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=100&auto=format&fit=crop&q=80',
+                    group: 'Animation & Films',
+                    id: 'bbb_1080',
+                    url: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
+                },
+                {
+                    name: 'Sintel 4K Animation (Akamai)',
+                    logo: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=100&auto=format&fit=crop&q=80',
+                    group: 'Animation & Films',
+                    id: 'sintel_4k',
+                    url: 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8'
+                },
+                {
+                    name: 'Akamai 24/7 Live Broadcast Test',
+                    logo: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=100&auto=format&fit=crop&q=80',
+                    group: 'Live Broadcasts',
+                    id: 'akamai_live',
+                    url: 'https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8'
+                },
+                {
+                    name: 'Apple BipBop Advanced (fMP4 + Audio)',
+                    logo: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=100&auto=format&fit=crop&q=80',
+                    group: 'Reference Benchmarks',
+                    id: 'apple_bipbop',
+                    url: 'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8'
+                },
+                {
+                    name: 'Tears of Steel (Mux Benchmark)',
+                    logo: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=100&auto=format&fit=crop&q=80',
+                    group: 'Sci-Fi & Action',
+                    id: 'tears_of_steel',
+                    url: 'https://test-streams.mux.dev/test_001/stream.m3u8'
+                },
+                {
+                    name: 'Akamai Multi-Bitrate Ladder',
+                    logo: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=100&auto=format&fit=crop&q=80',
+                    group: 'Reference Benchmarks',
+                    id: 'akamai_ladder',
+                    url: 'https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,960x540_1500,.f4v.csmil/master.m3u8'
+                }
+            ];
+            loadChannelsIntoUi(demoChannels, 'Verified Demo M3U Collection');
+        }
+
+        btnLoadDemo.addEventListener('click', loadDemoM3u);
+        btnIdleDemo.addEventListener('click', loadDemoM3u);
+
+        // Sample Stream Buttons (1-click test cards)
+        document.querySelectorAll('.btn-sample-stream').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const url = btn.getAttribute('data-url');
+                const title = btn.getAttribute('data-title');
+                const group = btn.getAttribute('data-group');
+                initHlsStream(url, { name: title, group: group, url: url });
+            });
+        });
+
+        // Paste Modal Handling
+        btnOpenPasteModal.addEventListener('click', () => {
+            pasteModal.classList.remove('hidden');
+            rawM3uTextarea.focus();
+        });
+        btnClosePasteModal.addEventListener('click', () => {
+            pasteModal.classList.add('hidden');
+        });
+        btnCancelPaste.addEventListener('click', () => {
+            pasteModal.classList.add('hidden');
+        });
+        btnParseRawM3u.addEventListener('click', () => {
+            const raw = rawM3uTextarea.value.trim();
+            if (raw) {
+                const parsed = parseM3U(raw);
+                loadChannelsIntoUi(parsed, 'Pasted M3U Text');
+                pasteModal.classList.add('hidden');
+                rawM3uTextarea.value = '';
+            } else {
+                alert('Please paste M3U playlist text before parsing.');
+            }
+        });
+
+        // Check LocalStorage for Saved Playlist or URL param on startup
+        window.addEventListener('DOMContentLoaded', () => {
+            refreshIcons();
+
+            // Check if ?url= or ?stream= query param is provided
+            const urlParams = new URLSearchParams(window.location.search);
+            const initialUrl = urlParams.get('url') || urlParams.get('stream');
+
+            if (initialUrl) {
+                initHlsStream(initialUrl, { name: urlParams.get('name') || 'Live Stream', group: 'Live' });
+                return;
+            }
+
+            try {
+                const saved = localStorage.getItem('pure_hls_playlist');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (parsed && Array.isArray(parsed.channels) && parsed.channels.length > 0) {
+                        loadChannelsIntoUi(parsed.channels, parsed.source || 'Saved Playlist');
+                        return;
+                    }
+                }
+            } catch (e) {}
+
+            // Pre-load demo playlist on initial first run
+            loadDemoM3u();
+        });
+    </script>
+</body>
+</html>

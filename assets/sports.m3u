@@ -1,0 +1,861 @@
+#EXTM3U
+#EXTINF:-1 tvg-name="DD Sports [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/imagespublic/17/8/DDSports_1579505057008_tv.jpg" group-title="Sports",DD Sports [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=00f634f3ef7a5a8282b41a8dbe11a802:4f45c1e279595e264f1cb1578641cb7f,ef21e692f3af590b8d31064eb07f7e6c:e5a15827a8f8e47135de54f4b224ff47,1bbe2053d860562ca6926fa6d3d9c4fd:5013ffb04450eb66bd33ded2fa893e8b,dab8eeac092656bf829ba309c002c9d1:e9ac75dffbaf27a1d31d19d9878feed4,477d3698ac4555f7a3c30b3840547660:78c2ebd34df8ffdf45c30f0a684ac776
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-204&m3u=1
+#EXTINF:-1 tvg-name="Sony Sports Ten 1 HD [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/5/8/300256_1753198281835_l_medium.jpg" group-title="Sports",Sony Sports Ten 1 HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=3cd96ce073bb51428a454251943143b8:9cf359bd8e323b05248caacc2b4da6c9,4ad1bbe0ba195aceb58a6e5f1ee3cc6f:4804a8a9a97bb14b0488e08942ab85e3,b5185c603f4c5cb794d9dae1b55bce38:c019b2cd8c7944cc90b66cfce3b7132c,36ce7134ee6753beb5c0126e5c8cce02:c28f9b7c3c5d8b8416820173637770a4,8307b4c86cbc54e3a4a635b662e5a44a:41a0b587ea7e3bff24156ef9b27c87dc,8ef8595765be890b424ee5d99ef6f953:adcff05f3aa10995f1efd4b0bb394d49,7a94b1419d77d2e184c7adcd10afc15a:1c4ce982d24be3d88dc0b1e2e4d74368,8779aa225d6050b3094944e00a2b0059:841054a0202ce08983f696e563d12941,3525c924e54154b39533d86b1c7a428a:8548b566fc6608a7d3bd601ee5f3d889,8619386d035251ad9340fc40879a52c6:9c5fb4a4f95089d9d1a3dc19b0d06e47,81ce3115633b29fe26c88d5ccec3cde2:84b9fb91c2bf59863d06fa5e0b757a4d
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-162&m3u=1
+#EXTINF:-1 tvg-name="Sony Sports Ten 2 HD [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/94/91/300273_1753198175927_l_medium.jpg" group-title="Sports",Sony Sports Ten 2 HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=84e65beaaafe5025bcfe200dd578b439:9de2b3c4fab329cc200f5e8fc141a78e,be1b0ec2fea6539695669550702a9326:f334264cf8662224630da702b4f682d1,48d25597832c5defb1c3c5df4ca1da5c:2d96c38c98d5f2c75d6c53b86d23c98b,0eca8159b4ed5cb9b205f3a4e7cbe8d2:38a7b3746ab6a687b34f5cc0dfb01ff3,bc3eb526f6125a33a8f44658daeb03f5:511554c790f7bd575bd0aa1e9c17f34c,91fce77f2f8056f084ed961c7ebe86ed:8214bd5eb6c21444e8ea644824affd79,7eb23fdb3765a427e5c0b0a1dcd7c7a6:fe44ecddba1ab9df11c5522d85c39127,060242b563d188a97ac529066c4dcdc3:d4a4920bb65a879b937a6cf9eb4c1592,aa0992cc96a0815c05619dd5ac448b15:24a1c23da2922264f06b2be0f24a3894,996b070e24d7d4670d4e39acdc426edd:429fd3f762e31db48cc8132ba0be525a,9eb13a589c9454e2be1f123b98ebbd09:dd503e53bc323a51d67c349f3be1993b
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-891&m3u=1
+#EXTINF:-1 tvg-name="Sony Sports Ten 3 Hindi HD [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/1/58/300255_1758886957880_l_medium.jpg" group-title="Sports",Sony Sports Ten 3 Hindi HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=c20ba4e9d0635bab9f17b177f0d91039:fcb4a266539ac7b03ef02c5600c5598d,c592c427c0d35e9a8ad88cdcb76a16c1:8ecb737e4015c22451d6c14fe37e9e15,10f4930166fa5b6ab5d71a4a978bdfac:9dfa22aa4d6a3d820101f59013de0236,140edf90fa0b5c99864f2442df4df535:991b51ed2e690c96163a31ae4a6f6452,e392571e46bd5461854986ae9e58083d:1167c024aa8bbad2c1beaf218cfeec11,9206064ad8c9576d290ff2a7aae70b92:840e26bca9696f6afc2dd21b54072bb9,b36a06969623c2079f1b2ab5a9d1c7c5:f2ac8463bf3ce3090632352c26a8057c,dc7a410ba231bb588bdc474288669d19:b1dd02e33b6b83e04df4b72eaabd16f6,08638117638b55649c6befa7f5cb34f6:58ddb6bbdf8d8b1e2aac2b5312e99086,111e6908b965566e97139efddf7ef459:c87903abbc052e1f21e51ebd928d9cb1,17c4a71ccf934a616c91dd002dce09f4:b6af28ce54a2a3e26856cf2b06cccdb1
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-892&m3u=1
+#EXTINF:-1 tvg-name="Sony Sports Ten 4 Telugu [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/69/98/301739_1758886924465_l_medium.jpg" group-title="Sports",Sony Sports Ten 4 Telugu [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=1ad58b00412951e6a2e0498854ac71ef:311f42432c82b6f8a0a3fca8c5c6db7b,b874de344b6b596084dde9554cc863cf:e630107f55cf046dd13b6d3618253221,f3417cda6d2651bc9b0cbb47f4e9a39b:3444ac2415b9862c5a2dcdea8daf6803,9f4968b7111c582296ecf88c671019f7:cf581a247a800af4c6e75bf53bd82e11,5332469ebb4f533f926329e8ace88cb6:8982f5c47820ad584f05f53ee8955a97,b14cdf86a8e8561bb68f98bf608d14f1:fe95ef259d5202e5471b8804c5323b8a
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1773&m3u=1
+#EXTINF:-1 tvg-name="Sony Sports Ten 4 Tamil [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/21/10/304240_1787558465564_l_medium.jpg" group-title="Sports",Sony Sports Ten 4 Tamil [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=60f0e00fc1eb501d8f4e155572f5467f:5e7ff1b9064a1837363ec691e35443db,e4fa9a394a915031910e1bc4dfbf9964:b1a8b4d229408cbbd94631e203a1719f,339855badd315df0b8a89eea0757ee9f:957d74aa8c9801856f05515e3216a811,42356836f8245f92bcdd44cff7208b27:62b4e4f4ce5e4b6bc2ea1ffcc3949267,f117d12214e1579da8a90a3803958e12:cfdb48f1dde060361517f05dcfc87bfe,fa9ae315a29652db96c335e993b8c4bf:8ac0bc132a1c277052d8b023392e1685
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-3514&m3u=1
+#EXTINF:-1 tvg-name="Sony Sports Ten 4 Kannada [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/88/41/304241_1787558888185_l_medium.jpg" group-title="Sports",Sony Sports Ten 4 Kannada [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=2a6f882e5a6950a290b3f4abecda9b99:f611a2f1ab3b2f9ba20d5b28e2f307c7,89f718cf6798592ba7959774a180083d:5a9df03a9d5d265bb84c5dbe209379de,dc27e6d7d5165fb09916a0abfc9f0fd5:eb615521eb94823b9660063e5d1a32a1,29fbce3c6dcb5b2abd0b4f08a73b30e4:aef80830a031da5a4b584663bb8d3b1a,5056e88c726656f6bab25d3a9d39fcc6:45450b6cda48888d195bbe82fdcdc3de
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-3585&m3u=1
+#EXTINF:-1 tvg-name="Sony Sports Ten 5 HD [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/31/97/300258_1753198241206_l_medium.jpg" group-title="Sports",Sony Sports Ten 5 HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=eda78fae44b85f68b6891aaf825c6a48:2952c06dc7605e93b17eb8c2d71e8268,95f5934dd0ab5a06b202cd40cbe7034c:12aacc102252fa4eb56a59a0f2c72594,eb1b258b8e7954cc98a78410e8a9c135:cdde3fed05dd407b652662aac19a4391,77e57a4b0c1458e994fe3b1cdfb128fe:e470f52bd71f8977dfe2f26ee5fea39d,1bc6044d7ac4543e9d21d9df2546b537:2bbca364245e8f87f5633692e33866fe,654c9e21b9dbe0ccfb6216779aadf143:2b2a8f6726f6520a0291d4c1218df45a,9691105db953d0bf43bd45a60daacdaa:fb21cfe47dff9693cc8b351f1aa6bbe1,42566c7287ce545d91234b03485cce8a:bd251578248e2f8df050eb81b04d056a,2b66229b90b9d2b66a0f91f62fc50bf4:dad09f9b5867be2a179d58db854f4910,8cb7b40cefe053ea91895e3194bb9912:467cf6d740b7212fcfc648644fb79943,5244667ee96e6039df792d7d7c598732:9be10de1281728dbada5b3ac36a610b8
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-155&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 2 Hindi HD [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/56/36/301229_1760688472627_l_medium.jpg" group-title="Sports",Star Sports 2 Hindi HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=5b50f11a09a15275b5742ef2d6e001e0:9b9ce35c8d91340939031aba5e433991,0c1a4c4f4a60538a8841ad67b5df3488:939f425e0ef782f16cc9db4b84b47195,8e48435ba038548299ee73fef998535d:b89d18e54ad2b5576c27c3259db19a3e,17a32401741c5072bd2f550f72be7a42:0ddcf0f656f52008a2276a85adbcf42e,22e4de22a39b5ce78425c739c4941e7b:b4134f4a41cc0d214ba909cc4ebdb0ba
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1984&m3u=1
+#EXTINF:-1 tvg-name="Star Sports Khel [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/88/40/301246_1760689454012_l_medium.jpg" group-title="Sports",Star Sports Khel [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=942646c32cde5325a7c33b137cf7d46e:ebb1edf4d1ca69738d8cf378a00ad35d,2898824f2440509698d04f0109f1d285:58e2fbc4e5ae22f973c21c402340debc,1eb81f72a86d56c3bdfe905c2e987d1d:4720e2ac970828d2befb2cf838d486fb,906cc35528ca58348e7fed58f8796687:3a1eaff9da6a0083567fb1ea1eaa21f5,1dfe1c29b8f15ab3a158bb27eb5b8d3f:432ff00824d61ff1da1348cc53e0968c
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1998&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 1 HD [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/76/32/301981_1749665662917_p.jpg" group-title="Sports",Star Sports 1 HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=f217e9fe133e5b948c323abef1e39b47:63640dc4430d14003def0c97a2dbab4d,06dd6287c4b956419d15d6c8e513aeed:a82d6b850b5c281c0054fc6d55e1c6ba,45825561f4ef516691a9e16d1d35dd1d:3951fe7fbf4b0b33e6246fc401f76797,bf95222d9be85d85a91281e796e99481:bc932276031b3e63758cf67b147c3557,eda3132244745c10920b01536bc8a75b:2b5f8bdba279032943a040078bb22b35
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1106&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 2 HD [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/41/51/301983_1753189521352_l_medium.jpg" group-title="Sports",Star Sports 2 HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=04204c98718a52bf9e88d5e676fd7a63:7eebb539b03f674a26e84ae096320c70,c1ea31b9099b5030b14b67b41dc547d2:db74fb55442bc9cf7e8e9f364b3fe37f,33fab6f82a59590eb875f949389e03a9:26eff9e972154e624faf259ae0ee78ec,a5ad7dec861451a49029044a3b9d30bb:eff028a1ed3253b6a68b6a9cb4f1a0e4,b99144f27b865d6ba1007fead82b2783:b2f10f09a771327b9bc69484d78e4595
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1109&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 1 Hindi HD [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/5/6/301982_1760005838319_l_medium.jpg" group-title="Sports",Star Sports 1 Hindi HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=209975f6753d5de1ac26d604dace5313:1c54093eff75aeeccd30ebbc53c0e5a3,a1ce6b9514f35174bda80ddd425bfd88:5c5e158724eced92f92ca8286fb28fd9,dd2fa604afc45e528f8a2283bf3cb628:bf01e6e8ff74797fb5215fead779e8b9,11073b8f426e5092a2effada3bfaf721:5d1c59a8052956bd056810f260161e5f,7bdccdb3dd015c37a0c3bd70675c8e4c:6f1b59376090d1f7ce33cbd264e87c36
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1108&m3u=1
+#EXTINF:-1 tvg-name="Star Sports Select 2 [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/98/48/301989_1749664474734_p.jpg" group-title="Sports",Star Sports Select 2 [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=2af0f67137b15f5aabcaa3f2661ba59d:f3a33dbc38942246a89ff471d0062c66,0fde10db386c58aaa92f5932092f0039:db555aaa769ad60c24dc1ef9005a056b,c18272dca01056fb83d6ef0cfd0a93ad:52b8bf00ebe06d6e7cdcd221faed846a,2b307daa57a75698acfac3e85d4ff8c5:d3c17909d061caa2e0a9c75e195ae3d4,22531ef1b5805a5cb5afc03f33468fac:3dfc474db4086f173d342f20cdc8e04c
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1114&m3u=1
+#EXTINF:-1 tvg-name="Star Sports Select 1 [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/13/82/301994_1753199405995_l_medium.jpg" group-title="Sports",Star Sports Select 1 [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=215579a9533d5eb1974eff2778f34853:7ea41017954ec6a5317e8b7ba94bcab5,00ff99896b8255da8e2aa9c5f34ab032:a23957bf29cd2e732c74bb97854a3df4,2fc7c3483e9c55649ef931c45f07c23a:fe4b825679c963bd512fdc915ca1285c,df07fac4675a597f92cbe2edbffb7c23:0d6b8e6559306e043bf26c7c8ffce7ae,e59df2d0e3545c9aae4889fb2aa2a3c4:e1e9fac754f6c9c772f7a05536aff920
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1123&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 2 Kannada [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/11/37/301993_1753188279062_l_medium.jpg" group-title="Sports",Star Sports 2 Kannada [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=3d52a45ec0f45503a376421d69fba185:1db0ffdc619c49dc048ceb4fffb190c2,176a62f9913a554b98a15979c28e2cb7:d482f78bfc4cbfee74b80f0ffdf66d4c,03962c6586ce5c0db61cd22ea796bb85:06bbcc9cddd4148a754320d5bc8378b8,30759c7ff28f563d94370739cdd1f31d:a4ea0cf50335265759e68660b2b2e61c,c1ef762b00a35caea7dcafe355b09610:16538c004d246559a88cba2b57b55857,7af2add2968a56309519ac2680c18f25:f992a14e0def17ccdfe16f58c4ce56c5,c1912ef5d59d6294c3fb320a3055a4af:955c74eb562982ceeffc783b596b53a1,3e21bd6fbe7df4ca1c424268070ab851:6d8b3b875f13799209d7654a86782313,e538f2cc72114d7785b4b5303441a31d:87bee8c558864951f82e5c6caa0282fa,bf4131c5bb8701ebb100635aaaa7bb80:451169b3ed1b9e0adeba5ecd487682fe
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1122&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 1 Tamil [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/69/73/301995_1753199516930_l_medium.jpg" group-title="Sports",Star Sports 1 Tamil [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=79ab966495a759bd88fce5cf42fdb1e3:77c116373217d070073ae128bc43aea3,98d64cf45a5c573bb2748de1b5705d82:77f9ddfe39ed4b3a2c553522b969ec70,d17006fd6b205e7b8847df113bb213ae:0e20bb3c253b5659a0faae19b102555f,c18ddd5e92535dbe966277225da678db:e726b549ff5b0a3de8d462f383cd3380,a05f788e6082561fad5565ab7457c995:5756af02f8923b1e8767ff375bafb4aa
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1124&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 1 Telugu [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/26/67/302119_1753202587563_l_medium.jpg" group-title="Sports",Star Sports 1 Telugu [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=50eaa3fe2ce95eb4908495ea19e3b6d5:a4a789b10f04c39070d64ef131b59911,c60582b4c0b95e80ae34b1a462f07990:9967dfba4b60a86a9c7a4c861d26337c,e3321b5b1af253f39010ce4bf6085da6:8eb2ab45a84ca9eef4630d6a2ce9f786,8aa7da0842d65285b23e55619ab0f1c6:fe01e21ac81a19049d3ba82b5bd33dfa,4705b7d90af65fa28d3e6b7c9e6b7fc2:bfdbe4ecb7f1496978eb9d022a6640b5
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1651&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 1 Kannada [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/13/91/302118_1753188135280_l_medium.jpg" group-title="Sports",Star Sports 1 Kannada [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=fb2bb07aecbf5bc2b807b2dced129cda:80d4747512a52bb7c64c8f60813a0f8f,ae3f86f454395a8ab0793c8a619aa1f6:6034309b589445745ec1c00fd6161a4a,5934f65f151c581d9dc75e181c7a406e:ffd92e68261477c61df082b64e648cbf,ec959436fe455d3a8af330c4c93e86cc:56f3b61ef52fb050671036bf50a109dd,bab01ce8ab695712a5fe390f1b4ffca2:5685130a845e217080b84fc170b67f00
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1650&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 2 Tamil HD [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/50/43/302120_1753202206969_l_medium.jpg" group-title="Sports",Star Sports 2 Tamil HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=bd9dfd385dbc56a99a048f88d3828571:eecf613dad0b8250ffaddc7ba86be68b,a2e868d50d315372a0e7375ee90375d1:0d885213a727867407ca23037e6ffe53,92cfd893ab8551d59a773afce91fc790:906e0d6c4accf6bdaad9a6167f8ae53a,6c41267ed8725915bee0695dd5e76d40:4e2ba836b17c916e7368b30453987f2f,75ed4a2f9c96531fbdc16458ec75e24d:d61e00cf48a772526e85dccbdfc166ae
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-3273&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 2 Telugu HD [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/84/67/302121_1753185947631_l_medium.jpg" group-title="Sports",Star Sports 2 Telugu HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=22da87a3906750e78c0e770cc4b88c7e:d25db631bbcdb027d9a3fdddf5ddeba8,7635f19465ac599197cdf889d9ad9739:068980c25dd4fe33631fe07a35c1289f,86180ee8e6b05175adddc5eb66b01faf:eaaf6aec5ea8cedeb6d248f2e96d6b93,5515e7889d225404939f53765feba2ea:56fa91e2ee09e5a989c630cb3b2df13d,01fc3874f21058dcbf8204f07616ce81:8ba560fb1fcdfeaddfc254965e3a42f6
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-3274&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 1 Tamil HD [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/19/19/302122_1753202506698_l_medium.jpg" group-title="Sports",Star Sports 1 Tamil HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=2487a38f900d5fe1ba98eed635d96c6e:58e2099b555b7ea59dee0b957b694cea,439d31fa05525a99b856e852d035023b:83728b98188b1fa8bf69509e1796fb27,1e6246cad111577f90bd2082378b7ed2:976e4e4f92d10b8d1702559a9babb5e0,8d89858c927e55a2b03faaa98fca9eb2:f74858f329157adebdbc5556d0417f47,1e9099af7f025ad6b3fd363bb2db8faf:c45a762695c40f6675b8b56ac50e97a5
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-3277&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 1 Telugu HD [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/19/57/302123_1753189675445_l_medium.jpg" group-title="Sports",Star Sports 1 Telugu HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=45bfaa5f2e8c5723a8da41a5c9cd38c1:672fa31cd32888671db2daf259479d49,2130ba84a11d58cb8cf1fae897c241cf:f812838e18377db5fe72277934548d83,a56a509011675303900ead16165ba38f:c4c4c7aec0ff4a3fa0c6d8cb1ae56c30,c7ecbd81d476502b9f25e08bfa07b842:52e369879fd23e08a6158c8c1224c4dd,a2bcadea362c563d9a9f68dfb2557087:5f4370e02e5eea8c9771d36a27a14afb
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-3278&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 2 Hindi [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/57/17/302124_1760690003311_l_medium.jpg" group-title="Sports",Star Sports 2 Hindi [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=b4ae2599a33f5cbc8eff216f82284cef:98cc66f56da9a4e8163f5f831f03cd43,f52d8e6b43c95ee7b5d1092c127049bc:8b6f00199715e5e736fc970e2e887709,602ce22ddc995d4495d10c1adeeb8e8c:be784f89f9513333c7621900c7a1d89b,d20fa4f491ff5e74a4b5b149caed397b:913de95cba91eadbeee9784882185f70,f9af22f6d76f5f5d98a35eed7fc35292:b979fbf840b5c984733d28aaf683762e
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1985&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 3 [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/78/2/302117_1753186009563_l_medium.jpg" group-title="Sports",Star Sports 3 [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=2904732c8fb55ebeaa0f59316916997e:f69101b71872dcfb2cd1987d3773c0f4,82dc7db814ef5165a3d93102f40a5142:f767c4c59fbfeaf84754994a0ed5dc8b,6fbf6696ff3051768337a34da0e66eb8:cae19d171fb1015a89342e5185f8cc7b,2f040ce640ee57978b0bcbb975af00a4:88c56371262c1bbe843c174720bbdeb0,c19b6cfea03150bea01a255345e5d706:8ed757eda2b740285bcf9a8fd9263422,e4e8647eaf0659ac85f61765a5abcdc1:d749c9b27505beb0e1a8b6c30ca65de6,c1f2dcd67cf78cbb23f5db87dae7ff8e:6d93d8d36ec5dba433f2ac9f4ad84f73,b4eef24e5fafdca6a76b1c2a086689e3:9ebaf5fb8f5ebd1bf096c99c2c9a43ce,e7e5e06197b95dafc19068a8a5b70049:512aed219e9bc8431b7cb2afd7550c4d,4b15b7607d7179b8d0d9f2fa4460857b:eca33d9cc5a32fd438bde8d3ba064caf
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1389&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 2 Tamil [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/28/30/304030_1759239180896_l_medium.jpg" group-title="Sports",Star Sports 2 Tamil [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=bfb4dda563535486a380c44fecc92015:27bbe04fb5447de6f3286e1030c7b179,0a0ad7fdf02955d483496e5d5ad41b64:cc1d01a4ccfd47da4f5ff62e20686505,dc4c605a752d535e8c0e31b9a5deae16:21cb8bd7a0606e2dd9fb190ff719f126,a9f12248bf2a5da99366dd6ce07ff0e5:e87623a2552185d5fbe2f227354c2b15,b9fae8a03b2750a4b0db12f0f6b65f15:3b1ab225fb8e08c9b59cfd6ededaddc8
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-2853&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 2 Telugu [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/63/39/304029_1759237887443_l_medium.jpg" group-title="Sports",Star Sports 2 Telugu [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=a83960ba4fc854e88c3bcd7f16f08f27:56218453c4619b01c1a0913779234faf,e85ffc940cfc5c5790a24b714acef1cd:fda416daac7608bfd608ab4c5b724a84,a64b68eea65c5881a0fc5742bd389806:9b446fde7106eb1b7821c5cf251df932,4d3a6feedae059fb8f92f5bcba25128d:46c14f188789753b7befc2707829cb6a,5387c6a9f68a5cecbe1238194db9a82a:14345a3dab1d1bf5e64570b5aa377883
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-2852&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 1 Hindi [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/13/81/302112_1753186300125_l_medium.jpg" group-title="Sports",Star Sports 1 Hindi [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=6a28a05d0f9a5e09987e4267eab5a947:38d9de645400fe2df985177aafb6a248,187e53dccc7c50f5b43306635bc93adb:72f9a4a4ff898de730991ae465d06388,30039b6e2c545c01aa84e649875c4977:7aa610c68000fe9ed97851d40a52abff,c2f0a204c6c353428954740d05d73c3d:6543b1984330109886d2864d06096590,a9cb8b39035a5393a4450f56c35b15a2:96f3585aab24109d64b74e9f0c6a5ed3
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-362&m3u=1
+#EXTINF:-1 tvg-name="Star Sports Select 2 HD [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/98/79/302114_1763719749756_l_medium.jpg" group-title="Sports",Star Sports Select 2 HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=e5c47cf992a75f98b4e1a4d262de61e8:441f225881f816c6bedece0e86ef80e7,cb4b21e0cad15e00ba3819fb91660fec:fe6480d2894746ba5799a3c2847e5589,928d9058c0a8550fb6ba315124a76cd5:46811be73195049a23b731bd9344cad4,25fbb2a932b25e9aacae947b2f873d3c:ac6a6a416b9d26be6819e80c2fe5d39f,2c443dffefb256a5b7a1364cc4af3529:1d78f35200eb5977a95de669788cf128,6017d0514d425fa38f6e80ba6dcc852f:0018944b00adf2078f62386f30c68b74,635c740da1cc6d220e356a9b32388a34:0a6c7162aa9174ca4f48914924313465,26a953325a18595be75d2a9655a12afa:44d33860be354f77554aa422fd6d44dd,3db73fcd1d50da37cf7519f663d6bc07:80ba58c928ced9f69d0546529a9a1672,573b359b03bcbde109a9b239cd4297cf:6491a65fe527e0919553e1d1abd75e7a
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-461&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 1 [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/56/92/302115_1753188404703_l_medium.jpg" group-title="Sports",Star Sports 1 [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=dbd441bf8f33570f8b99188e6f0dace5:4b7bfd46ffe9c4787baf7693c4802fb7,741063a722dc579bbc83cf968442f0e7:be83cc5e2f9cd5b58620e8ffb1ad00ce,a415207154a154e59d6259f6c436937c:56c3bac0e95368220dd75b6312a4458c,252c89dc4b3956a0bb92063740fdbf0a:7f78443c0d44e2ee4e1113bba3a32e25,66b9f83c28505d10b0b7154624b91258:eef259ed3a060abbf9dd0bffcd917f35
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1142&m3u=1
+#EXTINF:-1 tvg-name="Star Sports Select 1 HD [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/96/65/302113_1753203780129_l_medium.jpg" group-title="Sports",Star Sports Select 1 HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=cc04426ac28359a7b620934ddbbecb7c:0074c460557b1f21a60fa0aada550e3a,337fe34bbf2152c1bfe5ea8787072cd4:4efacd3a5af887dea393f0b957d266b6,8fc8499852ea5182b2a9307bd921cea1:c0ff2fbd59e26d6633f98af470c4d7b6,272c9b98274250f1b0bae9e19612275a:0fbbb12efcf16e2817b3c881847b2abf,fe38155e1cee53778db627b35bd2d20b:13d7c44c0e3fee8d9186a0491207629c
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-460&m3u=1
+#EXTINF:-1 tvg-name="Star Sports 2 [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/11/30/302116_1753202248468_l_medium.jpg" group-title="Sports",Star Sports 2 [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=2b81174684c8579fac72c577e1143224:976fcc489b4cb178a6fc103577c4aabc,5c18774a8dd85b8c82d42294f16b21b7:9bf764fb4a6e8b557b7829689ee06391,d49703e538a2545fa2d8d57f34a4d0ba:9ef07c1b359ee137db0493cebd6acdf0,5600b8266e5e570ca150a725cf746992:804fcc4a1693490d546bcfeddb1438f5,988ab009ff1853bf9c1aec3f8fa24cf0:168f946b9af57ac8965755958f2337cd
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1141&m3u=1
+#EXTINF:-1 tvg-name="Eurosport [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/31/7/301589_1764577915153_l_medium.jpg" group-title="Sports",Eurosport [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=389e35e8b5db5726bc56f83a9365c6ab:0a6f766f37e7c3622a4860b3c15bbc9b,7f52f53d78805b2bb75b0f860095eb55:52f2472cff2a62100bda7d59b9db736a,7a610c65ec395eb5bd5014e6425575a9:8baa043ee2857121deff3f82874e5209,6823d5fbee1857b9b5dac4e935efb6c3:72e801119a9684d336727fd4d6c1ba22,ea93cd3229e5595e9e115fce0dc576b7:cb7d0cd8b134c1b15ad9eb4a6261d9c0
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1294&m3u=1
+#EXTINF:-1 tvg-name="Eurosport HD [DASH | ClearKey]" tvg-logo="https://img.media.jio.com/tvpimages/16/0/301591_1764577876137_l_medium.jpg" group-title="Sports",Eurosport HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=c6210817c30950769549bdb49bf6cd6e:effc83e62efc81dd4408f4d5f771fd9d,cca1f4e1f2b35baf9c0c4ee0458bd528:de6ca32d38cf5f214c416b7dbb0bdd06,7fb2893008d556e2be9f8895051f426d:9196d9ed0c4b6106407b23ad798cc6f6,546fc0ccb5f55930a4841bc103973655:8e42b4746f4faecad90cb4575d838480,4512a52315f9581990d74250b3c997d9:95bcacafeb40ec0eb5a93097e9052483
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-875&m3u=1
+#EXTINF:-1 tvg-name="ZEE TV [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/yHNSuG1V.png" group-title="Entertainment",ZEE TV [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=ed068cf84f0640ccbc7c0e395c0a272e:bb722190f2bb446391020411a7d0828b
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeetv%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="AND TV [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/T1CCvaAQ.png" group-title="Entertainment",AND TV [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=26df86eeebb04d7fbc45c948f76e81fd:5f3a23f1a73c4c96ababce5fffe7b06b
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FAndtv%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="AND PICTURED HD [Cloudfront | ClearKey]" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5e3IPwc6CuzACqksy-u5T0ITukPQl3_RHQPHaIjuYV00ka2PZ3BrniTng&s=10" group-title="Entertainment",AND PICTURED HD [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=de8045e9f0fb4d03845dcc4a8bd7712a:6807bd09bda34ada83152908192af6d6
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FAndpictureshd%2Fdefault%2Findex.mpd
+#EXTINF:-1 tvg-name="ZEE ANMOL [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/QjKdER9Z.png" group-title="Entertainment",ZEE ANMOL [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=4023613457774cbeb71a62c339970e63:1c3e9fce5f014542be9cd1f749181204
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeeanmol%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="ZEE ANMOL CINEMA [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/diYkUOnX.png" group-title="Movies",ZEE ANMOL CINEMA [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=812411cba8bc42c79eb2b19cd78ad3f3:468a0b8d3d5d42d8a5c41bb875390a74
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeeanmolcinema%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="ZEE CINEMA [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/qss9gFuH.png" group-title="Movies",ZEE CINEMA [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=43513b13f4b542e39c9265921dfc1726:b0b2678bcd274c37b888a6c987d502ed
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeecinema%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="AND PICTURES [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/HivVrdof.png" group-title="Entertainment",AND PICTURES [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=8dea532cabfe4f71ba20f62310e7949f:7a214a974e4f4d1d9bb66364d5f0cb92
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FAndpictures%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="ZEE BOLLYWOOD [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/EqDlflgi.png" group-title="Entertainment",ZEE BOLLYWOOD [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=e61523260c614746b25b9a5523fe9a39:72ddbf37f76f49acbb8e140e7279e7a1
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeebollywood%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="Zee Bangla Cinema [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/gLSSl4nG.png" group-title="Movies",Zee Bangla Cinema [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=fbbfd9ce4bbe4d818b16df7dfe89f05b:1e96d0f88ef740e982d6f6105721c8bc
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeebanglacinema%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="Zee Bangla [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/9XHWylqs.png" group-title="Entertainment",Zee Bangla [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=1df83e058b864da896c9288eef63b113:fc32f26239054b56aab48225305598fe
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeebangla%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="ZOOM [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/jLvKrs62.png" group-title="Entertainment",ZOOM [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=86edec9e3b7d4042a4d4a1ca14f847ee:9def4315f0004019a3705bcb3cf30ca3
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZoom2%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="ZING [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/Nyi83z1G.png" group-title="Entertainment",ZING [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=f0fb14eebe474a6ab74c8301d55a7224:f9f8b2e30704458b8db844a285ce32be
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZing%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="Zee Cinema HD [Cloudfront | ClearKey]" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLCn2KAuMTDKTbK2uQI-jj48q4X9FlRG_OKg&s" group-title="Movies",Zee Cinema HD [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=f56beaac9f124616872c741c9ce4fa4e:5d40a903238f4ad98abbed1877d4e3d1
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeecinemahd%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="DISCOVERY TURBO [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/6eCv1iuk.png" group-title="Entertainment",DISCOVERY TURBO [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=c011525969e44b99a86059dbb3cdf4e8:6700a5d93203417b8585f7de7dd1a09b
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FDiscoveryturbo2%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="DISCOVERY SCIENCE [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/vIA7TExn.png" group-title="Entertainment",DISCOVERY SCIENCE [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=5458f45efedb4d6f8aa6ac76c85b621b:dbf8a0a306a64525ba3012fd225370c0
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FDiscoveryscience2%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="INVESTIGATION DISCOVERY [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/mHhlDCiL.png" group-title="Entertainment",INVESTIGATION DISCOVERY [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=2828ea6f6a984505b0454da0c03f68b9:5d3b7195086544c2807aa8c1544e7379
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FInvestigationdiscovery2%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="TLC [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/FOvFsIgt.png" group-title="Entertainment",TLC [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=e48e7373d6be47ecab83a20849f6823e:513ce07a2ee24ffdbe667eff5a9d46a8
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FTlc2%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="DISCOVERY CHANNEL [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/UyI5ljKM.png" group-title="Entertainment",DISCOVERY CHANNEL [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=b70a8cf9450c4d6484b4ac4d3c6761c0:0908be844260409cbac180bf0181da40
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FDiscoverychannel2%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="DISCOVERY KIDS [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/RzedYhFG.png" group-title="Entertainment",DISCOVERY KIDS [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=601f58d4b7094d2baf78c85d1d9cb6c9:609e0cc03198455fa36fd2cc3e7f940d
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FDiscoverykids2%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="Zee News [Cloudfront | ClearKey]" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuqgsvfVCC5WZxPxIp7vXTQ11WpCqTd8BZeg&s" group-title="News",Zee News [Cloudfront | ClearKey]
+__HOSTURL__/live.php?url=https%3A%2F%2Fdknttpxmr0dwf.cloudfront.net%2Findex_2.m3u8
+#EXTINF:-1 tvg-name="NDTVINDIA [Cloudfront | ClearKey]" tvg-logo="https://d388d59m61mm0v.cloudfront.net/optimized/content/common/logos/channel/logos/iqfloc.png" group-title="Entertainment",NDTVINDIA [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=d78c01625c3f4ed98912609799298544:b91bb882f9624872ada6125006fe5c73
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FNdtvindia2%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="ZEE HINDUSTAN [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/TknReKLD.png" group-title="Entertainment",ZEE HINDUSTAN [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=10616d7c4bee41f1825bd805c6295172:dc85f2112f63477fb39fc149493c49be
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeehindustan%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="ZEE BUSINESS [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/vExrDK9r.png" group-title="Entertainment",ZEE BUSINESS [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=bef87892e58c446d893b16a848703b70:51959fcbc8fe4091b570ba254bf749ae
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeebusiness%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="ZEE BIH/JH [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/5zkMvEbF.png" group-title="Entertainment",ZEE BIH/JH [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=e1ec6098b5014ac7aae0b37f72d5e85e:c04950f25d8e4107a96e828e7911e53b
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeebiharjharkhand%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="Zee Talkies [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/VGfIqjrc.png" group-title="Entertainment",Zee Talkies [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=f081f32756374c3d8265e1a1e029614e:356a3a6d8ce34d49a84ad464b20b1a3e
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeetalkies%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="Zee Sarthak [Cloudfront | ClearKey]" tvg-logo="https://d388d59m61mm0v.cloudfront.net/optimized/content/common/logos/channel/logos/zee-sarthak.png" group-title="Entertainment",Zee Sarthak [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=ecad0b097b574078a4a1bde24bfdb2e5:568bb13d04db4b738864f6c849474cd5
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeesarthak%2Fdefault%2Fdevil.mpd
+#EXTINF:-1 tvg-name="Zee Kannada HD [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/1PrOGXAh.png" group-title="Entertainment",Zee Kannada HD [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=50e714b65ead453cbfab9b20bed5c79d:bc08e108b9ee4f65b99cb9dad9532f3f
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeekannada%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="Zee Telugu HD [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/6vNzRaRK.png" group-title="Entertainment",Zee Telugu HD [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=1ce5cd75a6ad44a38a7d1b8dbaf9c330:657fc8e7d533456cb0644fe03458a4b2
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeetelgu%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="Zee Tamil [Cloudfront | ClearKey]" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Zee_Tamil.png" group-title="Entertainment",Zee Tamil [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=0d4e3e7dac2d58b93bf819a72fe8d510:667a33f4d5bb3587f2d5209886839eac
+__HOSTURL__/live.php?url=https%3A%2F%2Flinearjitp-playback.astro.com.my%2Fdash-wv%2Flinear%2F2311%2Fdefault_ott.mpd
+#EXTINF:-1 tvg-name="Zee Marathi HD [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/4bimlHJj.png" group-title="Entertainment",Zee Marathi HD [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=2a8d6c938ea647248f7a10eedc39f097:7d81feb84ed84bd88fdc5ca9de3c16da
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FZeemarathi%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="SHORTSTV [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/lcMc75Xr.png" group-title="Entertainment",SHORTSTV [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=b994480f788d41ddbc805862ac469416:78a6a0fc1758483595da7113e58e4467
+__HOSTURL__/live.php?url=https%3A%2F%2Fd1g8wgjurz8via.cloudfront.net%2Fbpk-tv%2FShortstv2%2Fdefault%2Fmanifest.mpd
+#EXTINF:-1 tvg-name="KOREAN DRAMAS [Cloudfront | ClearKey]" tvg-logo="https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/BNu8WvFw.png" group-title="Entertainment",KOREAN DRAMAS [Cloudfront | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=1779c27b9d077a3ba0c9cc1bb9a94b9f:cc5cf3b7928fb9e0a1ee6a8b566f0a8e
+__HOSTURL__/live.php?url=https%3A%2F%2Fa201aivottlinear-a.akamaihd.net%2FOTTB%2Flhr-nitro%2Fclients%2Fdash%2Fenc%2Ff60kqesunw%2Fout%2Fv1%2Fa435ed7a00f947deb4369b46d8f2fb70%2Fcenc.mpd
+#EXTINF:-1 tvg-name="Asianet News [Native HLS | Amagi CDN]" tvg-logo="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_ASIANET_NEWS/images/LOGO_HD/image.png" group-title="Malayalam News",Asianet News [Native HLS | Amagi CDN]
+__HOSTURL__/live.php?url=https%3A%2F%2Famg13737-amg13737c1-amgplt0016.playout.now3.amagi.tv%2Fplaylist%2Famg13737-amg13737c1-amgplt0016%2Fplaylist.m3u8
+#EXTINF:-1 tvg-name="Asianet HD [Native HLS | CloudFront]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/7/77/Asianet_logo.png" group-title="Malayalam Entertainment",Asianet HD [Native HLS | CloudFront]
+__HOSTURL__/live.php?url=https%3A%2F%2Fda86m1sqpm3o0.cloudfront.net%2F28072023%2Fsmil%3Astarasianet.smil%2Fchunklist_b1928000.m3u8
+#EXTINF:-1 tvg-name="Asianet Movies HD [Native HLS | CloudFront]" tvg-logo="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_ASIANET_MOVIES/images/LOGO_HD/image.png" group-title="Malayalam Movies",Asianet Movies HD [Native HLS | CloudFront]
+__HOSTURL__/live.php?url=https%3A%2F%2Fda86m1sqpm3o0.cloudfront.net%2F28072023%2Fsmil%3Aasianetmovies1.smil%2Fplaylist.m3u8
+#EXTINF:-1 tvg-name="Asianet Middle East [Direct HTTP MPEG-TS | TangoTV]" tvg-logo="https://i.imgur.com/du9iZ0s.png" group-title="Malayalam Entertainment",Asianet Middle East [Direct HTTP MPEG-TS | TangoTV]
+__HOSTURL__/live.php?url=https%3A%2F%2Fmumt03.tangotv.in%2FDsly5z3HASIANETMIDDLEEAST%2Findex.m3u8
+#EXTINF:-1 tvg-name="24 News [Native HLS | TangoTV]" tvg-logo="https://sund-images.sunnxt.com/202222/300x300_24News_202222_d63feca0-79ae-47ea-b75a-66c17d456f4c.png" group-title="Malayalam News",24 News [Native HLS | TangoTV]
+__HOSTURL__/live.php?url=https%3A%2F%2Fmumt07.tangotv.in%2FzHjX9OFlTWENTYFOURNEWS%2Findex.m3u8
+#EXTINF:-1 tvg-name="Manorama News [Native HLS | Akamai CDN]" tvg-logo="https://i.imgur.com/adjRrVx.png" group-title="Malayalam News",Manorama News [Native HLS | Akamai CDN]
+__HOSTURL__/live.php?url=https%3A%2F%2Fmmtvnews1.akamaized.net%2Fv1%2Fmaster%2F673630b269b766886555eebfddd4f27f3de3ab50%2FmmtvNewsCampaign1%2Findex.m3u8
+#EXTINF:-1 tvg-name="Mathrubhumi News [Native HLS | Akamai / YuppTV]" tvg-logo="https://i.imgur.com/diQftzP.png" group-title="Malayalam News",Mathrubhumi News [Native HLS | Akamai / YuppTV]
+__HOSTURL__/live.php?url=https%3A%2F%2Fyuppmedtaorire.akamaized.net%2Fv1%2Fmaster%2Fa0d007312bfd99c47f76b77ae26b1ccdaae76cb1%2Fmathrubhuminews_nim_https%2F110322%2Fmathrubhuminews%2Fplaylist.m3u8
+#EXTINF:-1 tvg-name="Janam TV [Native HLS | Akamai / YuppTV]" tvg-logo="https://dtil.tmsimg.com/assets/s143221_ld_h15_aa.png?lock=720x540" group-title="Malayalam News",Janam TV [Native HLS | Akamai / YuppTV]
+__HOSTURL__/live.php?url=https%3A%2F%2Fyuppmedtaorire.akamaized.net%2Fv1%2Fmaster%2Fa0d007312bfd99c47f76b77ae26b1ccdaae76cb1%2Fjanamtv_nim_https%2F140622%2Fjanamtv%2Fplaylist.m3u8
+#EXTINF:-1 tvg-name="News18 Kerala [Native HLS | Network18 Akamai]" tvg-logo="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_NEWS18_KERALA/images/LOGO_HD/image.png" group-title="Malayalam News",News18 Kerala [Native HLS | Network18 Akamai]
+__HOSTURL__/live.php?url=https%3A%2F%2Fn18syndication.akamaized.net%2Fbpk-tv%2FNews18_Kerala_NW18_MOB%2Foutput01%2Fmaster.m3u8
+#EXTINF:-1 tvg-name="Reporter TV [Native HLS | YuppCDN]" tvg-logo="https://dtil.tmsimg.com/assets/s85096_ld_h15_aa.png?lock=720x540" group-title="Malayalam News",Reporter TV [Native HLS | YuppCDN]
+__HOSTURL__/live.php?url=https%3A%2F%2Fsegment.yuppcdn.net%2F050522%2Freporter%2Fplaylist.m3u8
+#EXTINF:-1 tvg-name="Real News Kerala [Native HLS | 5centsCDN]" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Real_News_Kerala.png" group-title="Malayalam News",Real News Kerala [Native HLS | 5centsCDN]
+__HOSTURL__/live.php?url=https%3A%2F%2Fbk7l298nyx53-hls-live.5centscdn.com%2Frealnews%2Fe7dee419f91aa9e65939d3677fb9c4f5.sdp%2Fplaylist.m3u8
+#EXTINF:-1 tvg-name="Amrita TV [Native HLS | CloudFront CDN]" tvg-logo="https://i.imgur.com/WdSjlPl.png" group-title="Malayalam Entertainment",Amrita TV [Native HLS | CloudFront CDN]
+__HOSTURL__/live.php?url=https%3A%2F%2Fddash74r36xqp.cloudfront.net%2Fmaster.m3u8
+#EXTINF:-1 tvg-name="DD Malayalam [Native HLS | CloudFront CDN]" tvg-logo="https://i.postimg.cc/BZjmjJJs/DD-Malayalam.png" group-title="Malayalam Entertainment",DD Malayalam [Native HLS | CloudFront CDN]
+__HOSTURL__/live.php?url=https%3A%2F%2Fd2lk5u59tns74c.cloudfront.net%2Fout%2Fv1%2Fc313674ffced4c9a90f1bba436df2b9b%2Findex.m3u8
+#EXTINF:-1 tvg-name="Mazhavil Manorama [Native HLS | Akamai / YuppTV]" tvg-logo="https://i.imgur.com/fjgzW20.png" group-title="Malayalam Entertainment",Mazhavil Manorama [Native HLS | Akamai / YuppTV]
+__HOSTURL__/live.php?url=https%3A%2F%2Fyuppmedtaorire.akamaized.net%2Fv1%2Fmaster%2Fa0d007312bfd99c47f76b77ae26b1ccdaae76cb1%2Fmazhavilmanorama_nim_https%2F050522%2Fmazhavilmanorama%2Fplaylist.m3u8
+#EXTINF:-1 tvg-name="Flowers TV USA [Native HLS | Akamai / YuppTV]" tvg-logo="https://upload.wikimedia.org/wikipedia/ml/1/1c/Flowers-Onam.png" group-title="Malayalam Entertainment",Flowers TV USA [Native HLS | Akamai / YuppTV]
+__HOSTURL__/live.php?url=https%3A%2F%2Fyuppmedtaorire.akamaized.net%2Fv1%2Fmaster%2Fa0d007312bfd99c47f76b77ae26b1ccdaae76cb1%2Fflowers_nim_https%2F050522%2Fflowers%2Fplaylist.m3u8
+#EXTINF:-1 tvg-name="Kairali TV [Native HLS | TangoTV CDN]" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/Kairali_TV.svg/500px-Kairali_TV.svg.png" group-title="Malayalam Entertainment",Kairali TV [Native HLS | TangoTV CDN]
+__HOSTURL__/live.php?url=https%3A%2F%2Fmumt01.tangotv.in%2FO5aw8Zn3KAIRALI%2Findex.m3u8
+#EXTINF:-1 tvg-name="KITE Victers [Native HLS | 5centsCDN]" tvg-logo="https://i.imgur.com/kj4OEsb.png" group-title="Malayalam Education",KITE Victers [Native HLS | 5centsCDN]
+__HOSTURL__/live.php?url=https%3A%2F%2F932y4x26ljv8-hls-live.5centscdn.com%2Fvicters%2Ftv.stream%2Fplaylist.m3u8
+#EXTINF:-1 tvg-name="Zee Keralam HD [DASH | ClearKey]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Zee_Keralam_2018.svg/512px-Zee_Keralam_2018.svg.png" group-title="Malayalam Entertainment",Zee Keralam HD [DASH | ClearKey]
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=843f85752e2954af864cde2858b94b07:5fb0421f5dd5b71a58fc2d98d2d4f8c0,a2c8b5715edd55bc8e36ab716d159140:0ea9f97a39ecdb94d701ddbf56cb6893,3e7dbec6224c5e1fba4ce631a91648c9:8c86df34c90c57c5400dfd161ca02a98,d7ef4c20ac365150b4773544faa07587:f8ff141b8e1cd71159b17f58487cf2e5,4f5964c9c3ce51f0a8571a1eb34a93d2:9a6b33496edfa58e9e27a95ebc0438e8
+__HOSTURL__/live.php?token=STALKER_PRO&id=mdtv-1641&m3u=1
+#EXTINF:-1 tvg-name="⚡ ABC" tvg-logo="https://cdn.abcotvs.com/dip/images/11479454_011822-cc-abc-generic-thumb-img.jpg" group-title="Proxy Streams",⚡ ABC
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_abc&m3u=1
+#EXTINF:-1 tvg-name="⚡ ACC Network" tvg-logo="https://theacc.com/images/2018/11/30/ACCN_Launch.png" group-title="Proxy Streams",⚡ ACC Network
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_acc-network&m3u=1
+#EXTINF:-1 tvg-name="⚡ AE" tvg-logo="https://deadline.com/wp-content/uploads/2016/12/ae-network-logo.jpg?w=630&amp;h=383&amp;crop=1" group-title="Proxy Streams",⚡ AE
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_ae-network&m3u=1
+#EXTINF:-1 tvg-name="⚡ AMC" tvg-logo="https://tvseriesfinale.com/wp-content/uploads/2014/08/amc02.jpg" group-title="Proxy Streams",⚡ AMC
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_amc&m3u=1
+#EXTINF:-1 tvg-name="⚡ American Heroes Channel" tvg-logo="https://payload.cargocollective.com/1/10/342209/9724942/AHC_15a_3_1340_c.jpg" group-title="Proxy Streams",⚡ American Heroes Channel
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_american-heroes-channel&m3u=1
+#EXTINF:-1 tvg-name="⚡ Animal Planet" tvg-logo="https://imagescdn.designweek.co.uk/uploads/2018/10/25115647/AnimalPlanet_Vertical_OneLineLarge_RGB-002.jpg?fit=max&amp;amp;crop=faces&amp;amp;q=50&amp;amp;auto=compress,format&amp;amp;cs=origin&amp;amp;w=2559&amp;amp;h=1.0" group-title="Proxy Streams",⚡ Animal Planet
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_animal-planet&m3u=1
+#EXTINF:-1 tvg-name="⚡ ARENA SPORT 1 BiH" tvg-logo="https://mediadaily.biz/wp-content/uploads/2019/07/ARENA-SPORT.png" group-title="Proxy Streams",⚡ ARENA SPORT 1 BiH
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_arena-sport-1-bih&m3u=1
+#EXTINF:-1 tvg-name="⚡ AXS TV" tvg-logo="https://www.hcc.net/wp-content/uploads/2012/06/AXS_TV_BlueWhite.jpg" group-title="Proxy Streams",⚡ AXS TV
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_axs-tv&m3u=1
+#EXTINF:-1 tvg-name="⚡ BBC America" tvg-logo="https://variety.com/wp-content/uploads/2014/02/bbc-america-logo1.jpg" group-title="Proxy Streams",⚡ BBC America
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bbc-america&m3u=1
+#EXTINF:-1 tvg-name="⚡ BBC News" tvg-logo="https://ichef.bbci.co.uk/images/ic/1200x675/p0g6j1tq.jpg" group-title="Proxy Streams",⚡ BBC News
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bbc-news&m3u=1
+#EXTINF:-1 tvg-name="⚡ BBC One London" tvg-logo="https://ichef.bbci.co.uk/images/ic/1200x675/p0dkt7rv.jpg" group-title="Proxy Streams",⚡ BBC One London
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bbc-one-london&m3u=1
+#EXTINF:-1 tvg-name="⚡ BBC Two" tvg-logo="https://ichef.bbci.co.uk/images/ic/1200x675/p0bvs8dg.jpg" group-title="Proxy Streams",⚡ BBC Two
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bbc-two&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Max 4 Francais" tvg-logo="https://i.postimg.cc/MG3RnXzm/Frame-12-(1).png" group-title="Proxy Streams",⚡ beIN Max 4 Francais
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-max-4-francais&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Max 5 Francais" tvg-logo="https://i.postimg.cc/MG3RnXzm/Frame-12-(1).png" group-title="Proxy Streams",⚡ beIN Max 5 Francais
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-max-5-francais&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Max 6 Francais" tvg-logo="https://i.postimg.cc/MG3RnXzm/Frame-12-(1).png" group-title="Proxy Streams",⚡ beIN Max 6 Francais
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-max-6&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Max 7 Francais" tvg-logo="https://i.postimg.cc/MG3RnXzm/Frame-12-(1).png" group-title="Proxy Streams",⚡ beIN Max 7 Francais
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-max-7-francais&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Sports" tvg-logo="https://assets-us-01.kc-usercontent.com/31dbcbc6-da4c-0033-328a-d7621d0fa726/1318873e-8501-4f79-bb69-182d741cf9ad/beIN%20SPORTS%20Portada.jpg?ver=03-06-2025?w=3840&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;q=75" group-title="Proxy Streams",⚡ beIN Sports
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-sports&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Sports Francais 1" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/beinsports.png" group-title="Proxy Streams",⚡ beIN Sports Francais 1
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-sports-francais-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Sports Francais 2" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/beinsports.png" group-title="Proxy Streams",⚡ beIN Sports Francais 2
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-sports-francais-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Sports Francais 3" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/beinsports.png" group-title="Proxy Streams",⚡ beIN Sports Francais 3
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-sports-francais-3&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Sports MENA 1" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/images/beIN%20SPORTS%20Portada.jpg" group-title="Proxy Streams",⚡ beIN Sports MENA 1
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-sports-mena-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Sports MENA 2" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/images/beIN%20SPORTS%20Portada.jpg" group-title="Proxy Streams",⚡ beIN Sports MENA 2
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-sports-mena-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Sports MENA 3" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/images/beIN%20SPORTS%20Portada.jpg" group-title="Proxy Streams",⚡ beIN Sports MENA 3
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-sports-mena-3&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Sports MENA 4" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/images/beIN%20SPORTS%20Portada.jpg" group-title="Proxy Streams",⚡ beIN Sports MENA 4
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-sports-mena-4&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Sports MENA 5" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/images/beIN%20SPORTS%20Portada.jpg" group-title="Proxy Streams",⚡ beIN Sports MENA 5
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-sports-mena-5&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Sports MENA 6" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/images/beIN%20SPORTS%20Portada.jpg" group-title="Proxy Streams",⚡ beIN Sports MENA 6
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-sports-mena-6&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Sports MENA 7" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/images/beIN%20SPORTS%20Portada.jpg" group-title="Proxy Streams",⚡ beIN Sports MENA 7
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-sports-mena-7&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Sports MENA 8" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/images/beIN%20SPORTS%20Portada.jpg" group-title="Proxy Streams",⚡ beIN Sports MENA 8
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-sports-mena-8&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Sports MENA 9" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/images/beIN%20SPORTS%20Portada.jpg" group-title="Proxy Streams",⚡ beIN Sports MENA 9
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bein-sports-mena-9&m3u=1
+#EXTINF:-1 tvg-name="⚡ Big Ten Network" tvg-logo="https://gopsusports.com/imgproxy/k91lOV2DCMvY-TlDrKf6wFdFPL2C-VUkzBYcnteT1zs/rs:fit:1980:0:0:0/g:ce:0:0/q:90/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2dvcHN1c3BvcnRzLXByb2QvMjAyMy8wNy8xMy9yT004VFFtV0t0Y09WOHlsZ1JsZXJKSGFWN0lxNzVLRmlQY3NPUmo3LndlYnA.webp" group-title="Proxy Streams",⚡ Big Ten Network
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_big-ten-network&m3u=1
+#EXTINF:-1 tvg-name="⚡ Boomerang" tvg-logo="https://cdn.broadbandtvnews.com/wp-content/uploads/2024/08/05120702/Boomerang.jpg" group-title="Proxy Streams",⚡ Boomerang
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_boomerang&m3u=1
+#EXTINF:-1 tvg-name="⚡ Bravo" tvg-logo="https://www.bravotv.com/sites/bravo/files/2024/05/bravo-logo-2jpg.jpg" group-title="Proxy Streams",⚡ Bravo
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_bravo&m3u=1
+#EXTINF:-1 tvg-name="⚡ CANAL+ Extra 1" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/canalextra.png" group-title="Proxy Streams",⚡ CANAL+ Extra 1
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_canal-extra-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ CANAL+ Extra 2" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/canalextra.png" group-title="Proxy Streams",⚡ CANAL+ Extra 2
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_canal-extra-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ CANAL+ Sport 2 PL" tvg-logo="https://i.postimg.cc/ZRtsQkk0/Frame-(3).png" group-title="Proxy Streams",⚡ CANAL+ Sport 2 PL
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_canal-sport-2-pl&m3u=1
+#EXTINF:-1 tvg-name="⚡ CANAL+ Sport 3 PL" tvg-logo="https://i.postimg.cc/ZRtsQkk0/Frame-(3).png" group-title="Proxy Streams",⚡ CANAL+ Sport 3 PL
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_canal-sport-3-pl&m3u=1
+#EXTINF:-1 tvg-name="⚡ CANAL+ Sport 4 PL" tvg-logo="https://i.postimg.cc/ZRtsQkk0/Frame-(3).png" group-title="Proxy Streams",⚡ CANAL+ Sport 4 PL
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_canal-sport-4-pl&m3u=1
+#EXTINF:-1 tvg-name="⚡ CANAL+ Sport 5 PL" tvg-logo="https://i.postimg.cc/ZRtsQkk0/Frame-(3).png" group-title="Proxy Streams",⚡ CANAL+ Sport 5 PL
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_canal-sport-5-pl&m3u=1
+#EXTINF:-1 tvg-name="⚡ CANAL+ Sport 6 PL" tvg-logo="https://i.postimg.cc/ZRtsQkk0/Frame-(3).png" group-title="Proxy Streams",⚡ CANAL+ Sport 6 PL
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_canal-sport-6-pl&m3u=1
+#EXTINF:-1 tvg-name="⚡ CANAL+ Sport PL" tvg-logo="https://i.postimg.cc/ZRtsQkk0/Frame-(3).png" group-title="Proxy Streams",⚡ CANAL+ Sport PL
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_canal-sport-pl&m3u=1
+#EXTINF:-1 tvg-name="⚡ Cartoon Network" tvg-logo="https://1000logos.net/wp-content/uploads/2016/10/Cartoon-Network-logo.jpg" group-title="Proxy Streams",⚡ Cartoon Network
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_cartoon-network&m3u=1
+#EXTINF:-1 tvg-name="⚡ CBeebies" tvg-logo="https://static.files.bbci.co.uk/core/website/assets/static/childrens-web/images/metadata/cbeebies-poster-1024x576.8eb27aa32e.png" group-title="Proxy Streams",⚡ CBeebies
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_cbeebies&m3u=1
+#EXTINF:-1 tvg-name="⚡ CBS" tvg-logo="https://wwwimage-tve.cbsstatic.com/base/files/seo/cbs_seo_1200x627_1.jpg" group-title="Proxy Streams",⚡ CBS
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_cbs&m3u=1
+#EXTINF:-1 tvg-name="⚡ CBS Sports Network" tvg-logo="https://www.paramountshop.com/cdn/shop/files/cbssportsnetwork-mobile-min.png" group-title="Proxy Streams",⚡ CBS Sports Network
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_cbs-sports-network&m3u=1
+#EXTINF:-1 tvg-name="⚡ CNBC" tvg-logo="https://cdn.versantmedia.com/versantmedia/styles/newsroom/s3/2025-11/cnbc%281600x900%29.png" group-title="Proxy Streams",⚡ CNBC
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_cnbc&m3u=1
+#EXTINF:-1 tvg-name="⚡ CNN" tvg-logo="https://media.cnn.com/api/v1/images/cnn/cnn-placeholder-image.jpeg" group-title="Proxy Streams",⚡ CNN
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_cnn&m3u=1
+#EXTINF:-1 tvg-name="⚡ Comedy Central" tvg-logo="https://wwwimage-us.pplusstatic.com/base/files/seo/og-brand-comedy-central.jpg?format=webp" group-title="Proxy Streams",⚡ Comedy Central
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_comedy-central&m3u=1
+#EXTINF:-1 tvg-name="⚡ CW" tvg-logo="https://www.wavy.com/wp-content/uploads/sites/3/2024/08/cw-logo-white-on-blue-wavy-background.jpg?w=1280" group-title="Proxy Streams",⚡ CW
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_cw&m3u=1
+#EXTINF:-1 tvg-name="⚡ DAZN 1 Germany" tvg-logo="https://image.discovery.indazn.com/ca/v2/ca/image?id=12dpnhddhmpm71228raanhyxs2_image-header_pDach_1723627450000&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;quality=70" group-title="Proxy Streams",⚡ DAZN 1 Germany
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_dazn-1-germany&m3u=1
+#EXTINF:-1 tvg-name="⚡ DAZN 1 Italia" tvg-logo="https://image.discovery.indazn.com/ca/v2/ca/image?id=pterrit4f2xu1pa2r6x87y5e9_image-header_pIt_1724315365000&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;quality=70" group-title="Proxy Streams",⚡ DAZN 1 Italia
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_dazn-1-italia&m3u=1
+#EXTINF:-1 tvg-name="⚡ DAZN 1 Portugal" tvg-logo="https://image.discovery.indazn.com/ca/v2/ca/image?id=1o4eamzb4env61ddc8wv4ra06l_image-header_pRow_1720521601000&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;quality=70" group-title="Proxy Streams",⚡ DAZN 1 Portugal
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_dazn-1-portugal&m3u=1
+#EXTINF:-1 tvg-name="⚡ DAZN 1 Spain" tvg-logo="https://image.discovery.indazn.com/ca/v2/ca/image?id=hn9vkic8rbfi1ndrym8sw2qh7_image-header_pEs_1723035920000" group-title="Proxy Streams",⚡ DAZN 1 Spain
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_dazn-1-spain&m3u=1
+#EXTINF:-1 tvg-name="⚡ DAZN 1 USA" tvg-logo="https://image.discovery.indazn.com/ca/v2/ca/image?id=1owzb99m9mnzy15hjxolpukwul_image-header_pUs_1771501796000&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;quality=70" group-title="Proxy Streams",⚡ DAZN 1 USA
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_dazn-1-usa&m3u=1
+#EXTINF:-1 tvg-name="⚡ DAZN 2 Germany" tvg-logo="https://image.discovery.indazn.com/ca/v2/ca/image?id=1ni1lpwjtnxmr1xklfoptrt2mz_image-header_pDach_1723628653000" group-title="Proxy Streams",⚡ DAZN 2 Germany
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_dazn-2-germany&m3u=1
+#EXTINF:-1 tvg-name="⚡ DAZN 2 Spain" tvg-logo="https://image.discovery.indazn.com/ca/v2/ca/image?id=2ouwtae8ad7l1fxviow9bowpk_image-header_pEs_1723118632000&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;quality=70" group-title="Proxy Streams",⚡ DAZN 2 Spain
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_dazn-2-spain&m3u=1
+#EXTINF:-1 tvg-name="⚡ DAZN F1" tvg-logo="https://image.discovery.indazn.com/ca/v2/ca/image?id=14ln25pmjdv031ejxsmg8dczsu_image-header_pEs_1723117975000&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;quality=70" group-title="Proxy Streams",⚡ DAZN F1
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_dazn-f1&m3u=1
+#EXTINF:-1 tvg-name="⚡ DAZN LaLiga" tvg-logo="https://image.discovery.indazn.com/ca/v2/ca/image?id=1weziux6zy5mb16pev002ax1yu_image-header_pEs_1723118324000" group-title="Proxy Streams",⚡ DAZN LaLiga
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_dazn-laliga&m3u=1
+#EXTINF:-1 tvg-name="⚡ Discovery Channel" tvg-logo="https://i.ibb.co/k2rbB1jc/e35d6be84084fed1d756c39242f13163.webp" group-title="Proxy Streams",⚡ Discovery Channel
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_discovery-channel&m3u=1
+#EXTINF:-1 tvg-name="⚡ Discovery Family" tvg-logo="https://i.ibb.co/wFmT9Q5t/Discovery-Family-ID-Let-s-Go-Yellow.webp" group-title="Proxy Streams",⚡ Discovery Family
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_discovery-family&m3u=1
+#EXTINF:-1 tvg-name="⚡ Discovery Turbo" tvg-logo="https://i.ibb.co/20MgSXjy/featured-Image-1767979538707.jpg" group-title="Proxy Streams",⚡ Discovery Turbo
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_discovery-turbo&m3u=1
+#EXTINF:-1 tvg-name="⚡ Disney Channel" tvg-logo="https://vignette4.wikia.nocookie.net/logopedia/images/9/93/Disney_Channel_Original_2014.png/revision/latest?cb=20140705213010" group-title="Proxy Streams",⚡ Disney Channel
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_disney-channel&m3u=1
+#EXTINF:-1 tvg-name="⚡ Disney Junior" tvg-logo="https://thewaltdisneycompany.com/app/uploads/2021/02/021221_Disney-Junior-10th-Anniversary-00.jpg" group-title="Proxy Streams",⚡ Disney Junior
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_disney-junior&m3u=1
+#EXTINF:-1 tvg-name="⚡ Disney XD" tvg-logo="https://www.laughingplace.com/uploads/2015/10/d128457e3b3ab8c050f306aa8e23666b9b05d3cc.jpg" group-title="Proxy Streams",⚡ Disney XD
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_disney-xd&m3u=1
+#EXTINF:-1 tvg-name="⚡ Eleven Sports 1" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/100659.png" group-title="Proxy Streams",⚡ Eleven Sports 1
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_eleven-sports-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ Eleven Sports 2" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/100659.png" group-title="Proxy Streams",⚡ Eleven Sports 2
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_eleven-sports-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ Eleven Sports 3" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/100659.png" group-title="Proxy Streams",⚡ Eleven Sports 3
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_eleven-sports-3&m3u=1
+#EXTINF:-1 tvg-name="⚡ Eleven Sports 4" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/100659.png" group-title="Proxy Streams",⚡ Eleven Sports 4
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_eleven-sports-4&m3u=1
+#EXTINF:-1 tvg-name="⚡ ESPN" tvg-logo="https://a1.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fespn_logos%2Fespn_red.png" group-title="Proxy Streams",⚡ ESPN
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_espn&m3u=1
+#EXTINF:-1 tvg-name="⚡ ESPN Deportes" tvg-logo="https://i.ibb.co/Y7zHmbbz/i.png" group-title="Proxy Streams",⚡ ESPN Deportes
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_espn-deportes&m3u=1
+#EXTINF:-1 tvg-name="⚡ ESPN2" tvg-logo="https://discgolf.ultiworld.com/wp-content/uploads/2020/10/ESPN2.png" group-title="Proxy Streams",⚡ ESPN2
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_espn2&m3u=1
+#EXTINF:-1 tvg-name="⚡ ESPNEWS" tvg-logo="https://i.ibb.co/5h4LGFHq/image.png" group-title="Proxy Streams",⚡ ESPNEWS
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_espnews&m3u=1
+#EXTINF:-1 tvg-name="⚡ ESPNU" tvg-logo="https://i.ibb.co/Lh5jHVDm/ESPNU-logo-1-jpg.webp" group-title="Proxy Streams",⚡ ESPNU
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_espnu&m3u=1
+#EXTINF:-1 tvg-name="⚡ Food Network" tvg-logo="https://i.ibb.co/5WcnZbYf/food-network-jpg.jpg" group-title="Proxy Streams",⚡ Food Network
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_food-network&m3u=1
+#EXTINF:-1 tvg-name="⚡ Fox" tvg-logo="https://i.ibb.co/8JdwqP4/foxusa.png" group-title="Proxy Streams",⚡ Fox
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_fox&m3u=1
+#EXTINF:-1 tvg-name="⚡ Fox Deportes" tvg-logo="https://foxsports-wordpress-www-prsupports-prod.s3.amazonaws.com/uploads/sites/2/2016/12/LOGO-DEPORTES-1040x585.jpg" group-title="Proxy Streams",⚡ Fox Deportes
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_fox-deportes&m3u=1
+#EXTINF:-1 tvg-name="⚡ Fox News" tvg-logo="https://a57.foxnews.com/cf-images.us-east-1.prod.boltdns.net/v1/static/694940094001/15de0523-3be4-4a9a-8159-7020114e7036/b6ff623a-26d6-4fd9-8bb8-0856adbf38ce/1280x720/match/896/500/image.jpg" group-title="Proxy Streams",⚡ Fox News
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_fox-news&m3u=1
+#EXTINF:-1 tvg-name="⚡ Fox Sports 1" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/2015_Fox_Sports_1_logo.svg/1280px-2015_Fox_Sports_1_logo.svg.png" group-title="Proxy Streams",⚡ Fox Sports 1
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_fox-sports-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ Fox Sports 2" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/FS2_logo_2015.svg/1280px-FS2_logo_2015.svg.png" group-title="Proxy Streams",⚡ Fox Sports 2
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_fox-sports-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ Fox Sports 501 (Cricket)" tvg-logo="https://i.ibb.co/Y4bTS1p7/image.webp" group-title="Proxy Streams",⚡ Fox Sports 501 (Cricket)
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_fox-sports-501-cricket&m3u=1
+#EXTINF:-1 tvg-name="⚡ Fox Sports 502 (League)" tvg-logo="https://i.ibb.co/tppZhDrb/image.webp" group-title="Proxy Streams",⚡ Fox Sports 502 (League)
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_fox-sports-502-league&m3u=1
+#EXTINF:-1 tvg-name="⚡ Fox Sports 503" tvg-logo="https://i.ibb.co/xS4MkGSL/image.webp" group-title="Proxy Streams",⚡ Fox Sports 503
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_fox-sports-503&m3u=1
+#EXTINF:-1 tvg-name="⚡ Fox Sports 504 (Footy)" tvg-logo="https://i.ibb.co/SXvQLc0M/image.webp" group-title="Proxy Streams",⚡ Fox Sports 504 (Footy)
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_fox-sports-504-footy&m3u=1
+#EXTINF:-1 tvg-name="⚡ Fox Sports 505" tvg-logo="https://i.ibb.co/prKZGNLt/image.webp" group-title="Proxy Streams",⚡ Fox Sports 505
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_fox-sports-505&m3u=1
+#EXTINF:-1 tvg-name="⚡ Fox Sports 506" tvg-logo="https://i.ibb.co/Swks4Lmj/image.webp" group-title="Proxy Streams",⚡ Fox Sports 506
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_fox-sports-506&m3u=1
+#EXTINF:-1 tvg-name="⚡ Fox Sports 507" tvg-logo="https://i.ibb.co/7d6VgDVL/image.webp" group-title="Proxy Streams",⚡ Fox Sports 507
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_fox-sports-507&m3u=1
+#EXTINF:-1 tvg-name="⚡ Freeform" tvg-logo="https://d2z00kf51ll94q.cloudfront.net//archive/2023/large/ADC102_BCD021B_0.jpg" group-title="Proxy Streams",⚡ Freeform
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_freeform&m3u=1
+#EXTINF:-1 tvg-name="⚡ FX" tvg-logo="https://static0.srcdn.com/wordpress/wp-content/uploads/2026/01/gold-fx-channel-logo-1.jpg" group-title="Proxy Streams",⚡ FX
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_fx&m3u=1
+#EXTINF:-1 tvg-name="⚡ FXM" tvg-logo="https://www.awn.com/sites/default/files/styles/original/public/image/featured/50716-buster-creates-brand-id-new-fxm-programming-block_0.jpg" group-title="Proxy Streams",⚡ FXM
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_fxm&m3u=1
+#EXTINF:-1 tvg-name="⚡ FXX" tvg-logo="https://thestreamable.com/media/pages/channels/fxx/b6fc72ce3d-1756344305/fxx-banner-1536x864-crop.png" group-title="Proxy Streams",⚡ FXX
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_fxx&m3u=1
+#EXTINF:-1 tvg-name="⚡ Go3 Sport 1" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/go3sport.png" group-title="Proxy Streams",⚡ Go3 Sport 1
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_go3-sport-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ Go3 Sport 2" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/go3sport.png" group-title="Proxy Streams",⚡ Go3 Sport 2
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_go3-sport-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ Go3 Sport 3" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/go3sport.png" group-title="Proxy Streams",⚡ Go3 Sport 3
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_go3-sport-3&m3u=1
+#EXTINF:-1 tvg-name="⚡ GOLF Channel" tvg-logo="https://corporate.comcast.com/media/img/1000w/2020/01/corporate_golf-channel-16x9-social.jpg" group-title="Proxy Streams",⚡ GOLF Channel
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_golf-channel&m3u=1
+#EXTINF:-1 tvg-name="⚡ HBO" tvg-logo="https://static.hbo.com/2021-11/hbo-static-1920.jpg" group-title="Proxy Streams",⚡ HBO
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_hbo&m3u=1
+#EXTINF:-1 tvg-name="⚡ HBO Comedy" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLyenDc7wucCDm_3vYBURzz0cfYKw5tVWpm4rtCOfILlOua2dcpiTwG5JZ&amp;amp;s=10" group-title="Proxy Streams",⚡ HBO Comedy
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_hbo-comedy&m3u=1
+#EXTINF:-1 tvg-name="⚡ HBO Drama" tvg-logo="https://i.ibb.co/Qv2Mz3ZB/https-archive-images-prod-global-a201836-reutersmedia-net-2016-10-30-LYNXMPEC9-T08-O.avif" group-title="Proxy Streams",⚡ HBO Drama
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_hbo-drama&m3u=1
+#EXTINF:-1 tvg-name="⚡ HBO Latino" tvg-logo="https://i.ibb.co/TMzmbVYq/maxresdefault.jpg" group-title="Proxy Streams",⚡ HBO Latino
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_hbo-latino&m3u=1
+#EXTINF:-1 tvg-name="⚡ HBO Movies" tvg-logo="https://i.ibb.co/Qv2Mz3ZB/https-archive-images-prod-global-a201836-reutersmedia-net-2016-10-30-LYNXMPEC9-T08-O.avif" group-title="Proxy Streams",⚡ HBO Movies
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_hbo-movies&m3u=1
+#EXTINF:-1 tvg-name="⚡ HGTV" tvg-logo="https://i.ibb.co/gbtDnLhS/hgtv-jpg.jpg" group-title="Proxy Streams",⚡ HGTV
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_hgtv&m3u=1
+#EXTINF:-1 tvg-name="⚡ Hub Sports 1 Singapore" tvg-logo="https://i.vimeocdn.com/video/2065871386-1e9bff68a218b46f95c503bc69cf9d566c5021dae6479880b15ba09efa83da70-d?f=webp" group-title="Proxy Streams",⚡ Hub Sports 1 Singapore
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_hub-sports-1-singapore&m3u=1
+#EXTINF:-1 tvg-name="⚡ Hub Sports 2 Singapore" tvg-logo="https://i.vimeocdn.com/video/2065871386-1e9bff68a218b46f95c503bc69cf9d566c5021dae6479880b15ba09efa83da70-d?f=webp" group-title="Proxy Streams",⚡ Hub Sports 2 Singapore
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_hub-sports-2-singapore&m3u=1
+#EXTINF:-1 tvg-name="⚡ Hub Sports 3 Singapore" tvg-logo="https://i.vimeocdn.com/video/2065871386-1e9bff68a218b46f95c503bc69cf9d566c5021dae6479880b15ba09efa83da70-d?f=webp" group-title="Proxy Streams",⚡ Hub Sports 3 Singapore
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_hub-sports-3-singapore&m3u=1
+#EXTINF:-1 tvg-name="⚡ Hub Sports 4 Singapore" tvg-logo="https://i.vimeocdn.com/video/2065871386-1e9bff68a218b46f95c503bc69cf9d566c5021dae6479880b15ba09efa83da70-d?f=webp" group-title="Proxy Streams",⚡ Hub Sports 4 Singapore
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_hub-sports-4-singapore&m3u=1
+#EXTINF:-1 tvg-name="⚡ Hub Sports 5 Singapore" tvg-logo="https://i.vimeocdn.com/video/2065871386-1e9bff68a218b46f95c503bc69cf9d566c5021dae6479880b15ba09efa83da70-d?f=webp" group-title="Proxy Streams",⚡ Hub Sports 5 Singapore
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_hub-sports-5-singapore&m3u=1
+#EXTINF:-1 tvg-name="⚡ MLB Network" tvg-logo="https://img.mlbstatic.com/mlb-images/image/private/t_16x9/t_w2208/mlb/xtkynqe5wgtzaddnsus2.jpg" group-title="Proxy Streams",⚡ MLB Network
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_mlb-network&m3u=1
+#EXTINF:-1 tvg-name="⚡ MotoGP Channel" tvg-logo="https://sportbikesincmag.com/wp-content/uploads/2024/11/New-MotoGP-Logo-sportbikesincmag.com-4.jpg" group-title="Proxy Streams",⚡ MotoGP Channel
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_motogp-channel&m3u=1
+#EXTINF:-1 tvg-name="⚡ Movistar Deportes" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/movistardeportes.png" group-title="Proxy Streams",⚡ Movistar Deportes
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_movistar-deportes&m3u=1
+#EXTINF:-1 tvg-name="⚡ Movistar Deportes 2" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/movistardeportes.png" group-title="Proxy Streams",⚡ Movistar Deportes 2
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_movistar-deportes-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ Movistar Deportes 3" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/movistardeportes.png" group-title="Proxy Streams",⚡ Movistar Deportes 3
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_movistar-deportes-3&m3u=1
+#EXTINF:-1 tvg-name="⚡ Movistar LaLiga" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/movistarlaliga.png" group-title="Proxy Streams",⚡ Movistar LaLiga
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_movistar-laliga&m3u=1
+#EXTINF:-1 tvg-name="⚡ Movistar Plus" tvg-logo="https://imagenes.hobbyconsolas.com/uploads/imagenes/2026/05/11/6a01f2422d3b19-96205427.jpeg" group-title="Proxy Streams",⚡ Movistar Plus
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_movistar-plus&m3u=1
+#EXTINF:-1 tvg-name="⚡ MTV" tvg-logo="https://static0.colliderimages.com/wordpress/wp-content/uploads/2025/12/mtv-logo-1.jpg" group-title="Proxy Streams",⚡ MTV
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_mtv&m3u=1
+#EXTINF:-1 tvg-name="⚡ NBA TV" tvg-logo="https://static.cdn.turner.com/styles/header_image_1500x500_cropped/s3/nba-tv-16x9-1.jpg?itok=6H8mrlyR" group-title="Proxy Streams",⚡ NBA TV
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_nba-tv&m3u=1
+#EXTINF:-1 tvg-name="⚡ NBC" tvg-logo="https://cdn.mos.cms.futurecdn.net/zP42nmS7MRj2kvBqNEs8CE.jpg" group-title="Proxy Streams",⚡ NBC
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_nbc&m3u=1
+#EXTINF:-1 tvg-name="⚡ NBC Sports Bay Area" tvg-logo="https://cdn.mos.cms.futurecdn.net/d7jWexxhtezRZ6ryLHyKmd.jpeg" group-title="Proxy Streams",⚡ NBC Sports Bay Area
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_nbc-sports-bay-area&m3u=1
+#EXTINF:-1 tvg-name="⚡ NBC Sports Philadelphia" tvg-logo="https://media.nbcsportsphiladelphia.com/2023/04/Philly-Landmark.png?resize=1200%2C675&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;quality=85&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;strip=all" group-title="Proxy Streams",⚡ NBC Sports Philadelphia
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_nbc-sports-philadelphia&m3u=1
+#EXTINF:-1 tvg-name="⚡ NFL Network" tvg-logo="https://i.ibb.co/ZRsTndvV/tfki7njrm3y8jycbtkrx.jpg" group-title="Proxy Streams",⚡ NFL Network
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_nfl-network&m3u=1
+#EXTINF:-1 tvg-name="⚡ NHL Network" tvg-logo="https://media.d3.nhle.com/image/private/t_ratio16_9-size50/prd/lhum6z3hyaga9ahnjow0.png" group-title="Proxy Streams",⚡ NHL Network
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_nhl-network&m3u=1
+#EXTINF:-1 tvg-name="⚡ Nick Jr." tvg-logo="https://i.ibb.co/xS6CMxZD/nick-jr-logo-2023-4.jpg" group-title="Proxy Streams",⚡ Nick Jr.
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_nick-jr&m3u=1
+#EXTINF:-1 tvg-name="⚡ Nickelodeon" tvg-logo="https://i.ibb.co/xSM8bDYh/roger-nickelodeon-graphic-design-format-webp-width-2880-8-Yj-L2u3-KSI20j-HDQ.webp" group-title="Proxy Streams",⚡ Nickelodeon
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_nickelodeon&m3u=1
+#EXTINF:-1 tvg-name="⚡ Nicktoons" tvg-logo="https://i.ibb.co/XfX32tyx/nicktoons-logo-2023-rebrand-2.png" group-title="Proxy Streams",⚡ Nicktoons
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_nicktoons&m3u=1
+#EXTINF:-1 tvg-name="⚡ Polsat Sport 1" tvg-logo="https://staticeu.sweet.tv/images/cache/v2/channel_banner/COEd/3809-polsat-sport-1-hd.png" group-title="Proxy Streams",⚡ Polsat Sport 1
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_polsat-sport-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ Polsat Sport 2" tvg-logo="https://staticeu.sweet.tv/images/cache/v2/channel_banner/COId/3810-polsat-sport-2-hd.png" group-title="Proxy Streams",⚡ Polsat Sport 2
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_polsat-sport-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ Polsat Sport 3" tvg-logo="https://staticeu.sweet.tv/images/cache/v2/channel_banner/COMd/3811-polsat-sport-3-hd.png" group-title="Proxy Streams",⚡ Polsat Sport 3
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_polsat-sport-3&m3u=1
+#EXTINF:-1 tvg-name="⚡ Polsat Sport Fight" tvg-logo="https://staticeu.sweet.tv/images/cache/v2/channel_banner/COUd/3813-polsat-sport-fight-hd.png" group-title="Proxy Streams",⚡ Polsat Sport Fight
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_polsat-sport-fight&m3u=1
+#EXTINF:-1 tvg-name="⚡ Premier Sports 1 IE" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/premiersports.png" group-title="Proxy Streams",⚡ Premier Sports 1 IE
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_premier-sports-1-ie&m3u=1
+#EXTINF:-1 tvg-name="⚡ Premier Sports 2 IE" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/premiersports.png" group-title="Proxy Streams",⚡ Premier Sports 2 IE
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_premier-sports-2-ie&m3u=1
+#EXTINF:-1 tvg-name="⚡ Premiere" tvg-logo="https://s3.glbimg.com/v1/AUTH_36abb2af534644878388f516c38b89ac/prod/home-share-1b75cdaa.png" group-title="Proxy Streams",⚡ Premiere
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_premiere&m3u=1
+#EXTINF:-1 tvg-name="⚡ RACER Network" tvg-logo="https://cdn-cs-images.racer.com/v3/assets/blte77f57883ea46be1/bltb30b537c79808b35/680f2c517c8c98109d720e49/Racer_Network_1920x1080_Presser_V1.jpg" group-title="Proxy Streams",⚡ RACER Network
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_racer-network&m3u=1
+#EXTINF:-1 tvg-name="⚡ SEC Network" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/images/2NRKBDE2CLIGI5XHHHHMY2BCAQ.jpg" group-title="Proxy Streams",⚡ SEC Network
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sec-network&m3u=1
+#EXTINF:-1 tvg-name="⚡ Showtime" tvg-logo="https://i.ibb.co/v7vcNY4/Showtime-Logo.webp" group-title="Proxy Streams",⚡ Showtime
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_showtime&m3u=1
+#EXTINF:-1 tvg-name="⚡ Showtime 2" tvg-logo="https://i.ibb.co/8gCRbv0s/Showtime-2-svg.webp" group-title="Proxy Streams",⚡ Showtime 2
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_showtime-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ Showtime Extreme" tvg-logo="https://i.ibb.co/1t5fNwpQ/Showtime-Closing-2013.webp" group-title="Proxy Streams",⚡ Showtime Extreme
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_showtime-extreme&m3u=1
+#EXTINF:-1 tvg-name="⚡ Showtime Family Zone" tvg-logo="https://i.ibb.co/1t5fNwpQ/Showtime-Closing-2013.webp" group-title="Proxy Streams",⚡ Showtime Family Zone
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_showtime-family-zone&m3u=1
+#EXTINF:-1 tvg-name="⚡ Showtime Next" tvg-logo="https://i.ibb.co/1t5fNwpQ/Showtime-Closing-2013.webp" group-title="Proxy Streams",⚡ Showtime Next
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_showtime-next&m3u=1
+#EXTINF:-1 tvg-name="⚡ Showtime Women" tvg-logo="https://i.ibb.co/1t5fNwpQ/Showtime-Closing-2013.webp" group-title="Proxy Streams",⚡ Showtime Women
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_showtime-women&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Arts" tvg-logo="https://www.advanced-television.com/wp-content/uploads/2020/07/SkyArts-e1596120009794.jpg" group-title="Proxy Streams",⚡ Sky Arts
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-arts&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Atlantic" tvg-logo="https://news.virginmediao2.co.uk/wp-content/uploads/2026/02/Screenshot-2026-02-23-at-08.44.25.png" group-title="Proxy Streams",⚡ Sky Atlantic
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-atlantic&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Comedy" tvg-logo="https://i.imgur.com/wKLxOY3.jpeg" group-title="Proxy Streams",⚡ Sky Comedy
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-comedy&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Crime" tvg-logo="https://i.imgur.com/A6zkJB3.jpeg" group-title="Proxy Streams",⚡ Sky Crime
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-crime&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Documentaries" tvg-logo="https://i.imgur.com/zlR5nbe.jpeg" group-title="Proxy Streams",⚡ Sky Documentaries
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-documentaries&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Kids" tvg-logo="https://i.imgur.com/EPPYzm6.png" group-title="Proxy Streams",⚡ Sky Kids
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-kids&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Nature" tvg-logo="https://static.wikia.nocookie.net/logosfake/images/a/ad/Sky_Nature_Generic_ID_2020.png" group-title="Proxy Streams",⚡ Sky Nature
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-nature&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky News" tvg-logo="https://videos.skynews.com/image/v1/static/6058004172001/8eed3dc3-7e5b-434c-8a86-db429eda4fc5/d8918560-71dd-450b-810c-ae8137f2f6ad/1280x720/match/image.jpg" group-title="Proxy Streams",⚡ Sky News
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-news&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky One" tvg-logo="https://www.newscaststudio.com/wp-content/uploads/2021/07/sky-one-logo.jpg" group-title="Proxy Streams",⚡ Sky One
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-one&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sci-Fi" tvg-logo="https://cdn.broadbandtvnews.com/wp-content/uploads/2022/06/14105945/Sky-SciFi-Main.jpg" group-title="Proxy Streams",⚡ Sky Sci-Fi
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sci-fi&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport 1 NZ" tvg-logo="https://i.ibb.co/v4NvkZst/Untitled-design.png" group-title="Proxy Streams",⚡ Sky Sport 1 NZ
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-1-nz&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport 2 NZ" tvg-logo="https://i.ibb.co/v4NvkZst/Untitled-design.png" group-title="Proxy Streams",⚡ Sky Sport 2 NZ
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-2-nz&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport 3 NZ" tvg-logo="https://i.ibb.co/v4NvkZst/Untitled-design.png" group-title="Proxy Streams",⚡ Sky Sport 3 NZ
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-3-nz&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport 4 NZ" tvg-logo="https://i.ibb.co/v4NvkZst/Untitled-design.png" group-title="Proxy Streams",⚡ Sky Sport 4 NZ
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-4-nz&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport 5 NZ" tvg-logo="https://i.ibb.co/v4NvkZst/Untitled-design.png" group-title="Proxy Streams",⚡ Sky Sport 5 NZ
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-5-nz&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport 6 NZ" tvg-logo="https://i.ibb.co/v4NvkZst/Untitled-design.png" group-title="Proxy Streams",⚡ Sky Sport 6 NZ
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-6-nz&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport 7 NZ" tvg-logo="https://i.ibb.co/v4NvkZst/Untitled-design.png" group-title="Proxy Streams",⚡ Sky Sport 7 NZ
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-7-nz&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport 8 NZ" tvg-logo="https://i.ibb.co/v4NvkZst/Untitled-design.png" group-title="Proxy Streams",⚡ Sky Sport 8 NZ
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-8-nz&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport 9 NZ" tvg-logo="https://i.ibb.co/v4NvkZst/Untitled-design.png" group-title="Proxy Streams",⚡ Sky Sport 9 NZ
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-9-nz&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport 24" tvg-logo="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/dfa89629775883.5602ff6b0aacf.jpg" group-title="Proxy Streams",⚡ Sky Sport 24
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-24&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport Arena IT" tvg-logo="https://api-stg.cloudstreamer.cc/?c=sky-sport-arena" group-title="Proxy Streams",⚡ Sky Sport Arena IT
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-arena-it&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport Bundesliga" tvg-logo="https://www.sportsvideo.org/wp-content/uploads/2024/12/Sky-Sports-Bundesliega-featured.png" group-title="Proxy Streams",⚡ Sky Sport Bundesliga
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-bundesliga&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport Calcio IT" tvg-logo="https://i.postimg.cc/RhnJsRmT/Frame-10.png" group-title="Proxy Streams",⚡ Sky Sport Calcio IT
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-calcio-it&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport F1 Italia" tvg-logo="https://api-stg.cloudstreamer.cc/?c=sky-sport-f1-italia" group-title="Proxy Streams",⚡ Sky Sport F1 Italia
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-f1-italia&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport Max IT" tvg-logo="https://api-stg.cloudstreamer.cc/?c=sky-sport-max" group-title="Proxy Streams",⚡ Sky Sport Max IT
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-max-it&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport MotoGP IT" tvg-logo="https://api-stg.cloudstreamer.cc/?c=sky-sport-motogp" group-title="Proxy Streams",⚡ Sky Sport MotoGP IT
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-motogp-it&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport Select NZ" tvg-logo="https://i.ibb.co/v4NvkZst/Untitled-design.png" group-title="Proxy Streams",⚡ Sky Sport Select NZ
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-select-nz&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport Tennis IT" tvg-logo="https://i.postimg.cc/rw53XXjJ/Frame-10-(1).png" group-title="Proxy Streams",⚡ Sky Sport Tennis IT
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-tennis-it&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sport Uno" tvg-logo="https://i.imgur.com/dnoy7mK.png" group-title="Proxy Streams",⚡ Sky Sport Uno
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sport-uno&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports Action" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/skysportsaction.png" group-title="Proxy Streams",⚡ Sky Sports Action
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sports-action&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports Cricket" tvg-logo="https://e0.365dm.com/17/07/2048x1152/skysports-sky-sports-cricket-podcast-sky-cricket-podcast_4004801.jpg" group-title="Proxy Streams",⚡ Sky Sports Cricket
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sports-cricket&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports F1" tvg-logo="https://e0.365dm.com/21/03/1600x900/skysports-f1-2021-graphic_5299452.png" group-title="Proxy Streams",⚡ Sky Sports F1
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sports-f1&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports Football" tvg-logo="https://images.squarespace-cdn.com/content/v1/6380a5b12f7b6f632e16ce77/46d62da8-e650-4d2b-a5bc-48a5648edb8e/Beth_Mead.jpg" group-title="Proxy Streams",⚡ Sky Sports Football
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sports-football&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports Golf" tvg-logo="https://e0.365dm.com/23/05/1600x900/skysports-golf-sky-sports-golf_6158933.jpg" group-title="Proxy Streams",⚡ Sky Sports Golf
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sports-golf&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports Main Event" tvg-logo="https://e0.365dm.com/17/07/1600x900/skysports-all-new-rebrand-f1-premier-league-golf-cricket_4001810.jpg" group-title="Proxy Streams",⚡ Sky Sports Main Event
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sports-main-event&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports Mix" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/Sky_Sports_Mix_Generic_ID_2017.webp" group-title="Proxy Streams",⚡ Sky Sports Mix
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sports-mix&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports News" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/image.jpg" group-title="Proxy Streams",⚡ Sky Sports News
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sports-news&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports Premier League" tvg-logo="https://e0.365dm.com/25/06/2048x1152/skysports-premier-league-fixtures_6937276.jpg" group-title="Proxy Streams",⚡ Sky Sports Premier League
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sports-premier-league&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports Racing" tvg-logo="https://e0.365dm.com/23/07/2048x1152/skysports-racing-league-sky-sports-racing_6230990.jpg" group-title="Proxy Streams",⚡ Sky Sports Racing
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sports-racing&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports Tennis" tvg-logo="https://e0.365dm.com/24/01/2048x1152/skysports-sky-sports-tennis_6437709.jpg" group-title="Proxy Streams",⚡ Sky Sports Tennis
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sports-tennis&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports+" tvg-logo="https://e0.365dm.com/24/07/2048x1152/skysports-ssplus-sky-sports-plus_6644064.jpg" group-title="Proxy Streams",⚡ Sky Sports+
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-sports-plus&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Witness" tvg-logo="https://i.imgur.com/arXl5qa.jpeg" group-title="Proxy Streams",⚡ Sky Witness
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sky-witness&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sony Sports Network" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/085457534.png" group-title="Proxy Streams",⚡ Sony Sports Network
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sony-sports-network&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sony Sports Network 2" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/085457534.png" group-title="Proxy Streams",⚡ Sony Sports Network 2
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sony-sports-network-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sony Sports Network 3" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/085457534.png" group-title="Proxy Streams",⚡ Sony Sports Network 3
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sony-sports-network-3&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sony Sports Network 4" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/085457534.png" group-title="Proxy Streams",⚡ Sony Sports Network 4
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sony-sports-network-4&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sony Sports Network 5" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/085457534.png" group-title="Proxy Streams",⚡ Sony Sports Network 5
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sony-sports-network-5&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sport TV1" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/sportv-pt.png" group-title="Proxy Streams",⚡ Sport TV1
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sport-tv1&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sport TV2" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/sportv-pt.png" group-title="Proxy Streams",⚡ Sport TV2
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sport-tv2&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sport TV3" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/sportv-pt.png" group-title="Proxy Streams",⚡ Sport TV3
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sport-tv3&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sport TV4" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/sportv-pt.png" group-title="Proxy Streams",⚡ Sport TV4
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sport-tv4&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sport TV5" tvg-logo="https://cdn.jsdelivr.net/gh/willthequeencome/img-cdn/sportv-pt.png" group-title="Proxy Streams",⚡ Sport TV5
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sport-tv5&m3u=1
+#EXTINF:-1 tvg-name="⚡ SPORTDIGITAL FUSSBALL" tvg-logo="https://image.discovery.indazn.com/ca/v2/ca/image?id=712wbfqz8apl1k09rf681eqxd_image-header_pDach_1661948855000&amp;amp;amp;amp;amp;amp;amp;quality=70" group-title="Proxy Streams",⚡ SPORTDIGITAL FUSSBALL
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_sportdigital-fussball&m3u=1
+#EXTINF:-1 tvg-name="⚡ STARZ" tvg-logo="https://careers.starz.com/wp-content/uploads/2025/01/STARZ-LOGO-IMAGE.png" group-title="Proxy Streams",⚡ STARZ
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_starz&m3u=1
+#EXTINF:-1 tvg-name="⚡ STARZ Cinema" tvg-logo="https://careers.starz.com/wp-content/uploads/2025/01/STARZ-LOGO-IMAGE.png" group-title="Proxy Streams",⚡ STARZ Cinema
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_starz-cinema&m3u=1
+#EXTINF:-1 tvg-name="⚡ STARZ Comedy" tvg-logo="https://careers.starz.com/wp-content/uploads/2025/01/STARZ-LOGO-IMAGE.png" group-title="Proxy Streams",⚡ STARZ Comedy
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_starz-comedy&m3u=1
+#EXTINF:-1 tvg-name="⚡ STARZ Kids and Family" tvg-logo="https://careers.starz.com/wp-content/uploads/2025/01/STARZ-LOGO-IMAGE.png" group-title="Proxy Streams",⚡ STARZ Kids and Family
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_starz-kids-and-family&m3u=1
+#EXTINF:-1 tvg-name="⚡ SYFY" tvg-logo="https://assets.goal.com/images/v3/blt1be56273baf0440d/syfy%20logo.jpg?auto=webp&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;format=pjpg&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;width=3840&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;quality=60" group-title="Proxy Streams",⚡ SYFY
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_syfy&m3u=1
+#EXTINF:-1 tvg-name="⚡ TBS" tvg-logo="https://cdn.sanity.io/images/1pn9obcz/production/a6971fbe09c85f2deeb480fc494a39219d039135-1920x1080.jpg" group-title="Proxy Streams",⚡ TBS
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_tbs&m3u=1
+#EXTINF:-1 tvg-name="⚡ TeenNick" tvg-logo="https://i.ibb.co/3yCJDVrW/Teen-Nick-2023.webp" group-title="Proxy Streams",⚡ TeenNick
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_teenick&m3u=1
+#EXTINF:-1 tvg-name="⚡ Telemundo" tvg-logo="https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_20/3352176/telemundo-social-default.png" group-title="Proxy Streams",⚡ Telemundo
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_telemundo&m3u=1
+#EXTINF:-1 tvg-name="⚡ Tennis Channel" tvg-logo="https://s10019.cdn.ncms.io/wp-content/uploads/2026/05/tenn2.jpg.jpeg" group-title="Proxy Streams",⚡ Tennis Channel
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_tennis-channel&m3u=1
+#EXTINF:-1 tvg-name="⚡ The Weather Channel" tvg-logo="https://i.ibb.co/bRJqL6WK/LWRBPBUMCVFA3-G5-Q4-ZH3-XJYDNY.avif" group-title="Proxy Streams",⚡ The Weather Channel
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_the-weather-channel&m3u=1
+#EXTINF:-1 tvg-name="⚡ TNT" tvg-logo="https://i.ytimg.com/vi/F-AHKcxi3pY/maxresdefault.jpg" group-title="Proxy Streams",⚡ TNT
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_tnt&m3u=1
+#EXTINF:-1 tvg-name="⚡ TNT Sports 1" tvg-logo="https://cdn.mos.cms.futurecdn.net/y3oPitXYAwGJnyTHFYo5qB.jpeg" group-title="Proxy Streams",⚡ TNT Sports 1
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_tnt-sports-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ TNT Sports 2" tvg-logo="https://cdn.mos.cms.futurecdn.net/y3oPitXYAwGJnyTHFYo5qB.jpeg" group-title="Proxy Streams",⚡ TNT Sports 2
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_tnt-sports-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ TNT Sports 3" tvg-logo="https://cdn.mos.cms.futurecdn.net/y3oPitXYAwGJnyTHFYo5qB.jpeg" group-title="Proxy Streams",⚡ TNT Sports 3
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_tnt-sports-3&m3u=1
+#EXTINF:-1 tvg-name="⚡ TNT Sports 4" tvg-logo="https://cdn.mos.cms.futurecdn.net/y3oPitXYAwGJnyTHFYo5qB.jpeg" group-title="Proxy Streams",⚡ TNT Sports 4
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_tnt-sports-4&m3u=1
+#EXTINF:-1 tvg-name="⚡ TruTV" tvg-logo="https://i.ibb.co/DfGcnjXY/Header-tru-TV.webp" group-title="Proxy Streams",⚡ TruTV
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_trutv&m3u=1
+#EXTINF:-1 tvg-name="⚡ TSN1" tvg-logo="https://www.bellmedia.ca/lede/wp-content/uploads/2024/09/18581592_10155403529061055_8240563011649656197_n.jpg" group-title="Proxy Streams",⚡ TSN1
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_tsn1&m3u=1
+#EXTINF:-1 tvg-name="⚡ TUDN" tvg-logo="https://cdn.aptoide.com/imgs/e/e/6/ee65573e3ed2c5fcafa0191860afdf51_fgraphic.png" group-title="Proxy Streams",⚡ TUDN
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_tudn&m3u=1
+#EXTINF:-1 tvg-name="⚡ TYC Sports Internacional" tvg-logo="https://assets.goal.com/images/v3/blta396e76391fffdfa/TyC_Sports_logo.jpg" group-title="Proxy Streams",⚡ TYC Sports Internacional
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_tyc-sports-internacional&m3u=1
+#EXTINF:-1 tvg-name="⚡ UFC Fight Pass 24/7" tvg-logo="https://fightrecord.co.uk/wp-content/uploads/2020/12/ufc-fight-pass-lion-fight-muay-thai.jpg" group-title="Proxy Streams",⚡ UFC Fight Pass 24/7
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_ufc-fight-pass-24-7&m3u=1
+#EXTINF:-1 tvg-name="⚡ UniMas" tvg-logo="https://www.cabletv.com/app/uploads/2026/01/UniMas-Channel-Guide.webp" group-title="Proxy Streams",⚡ UniMas
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_unimas&m3u=1
+#EXTINF:-1 tvg-name="⚡ Unite8 Sports 1 / ZEE CAFÉ" tvg-logo="https://exchange4media.gumlet.io/news-photo/155155-Z1.jpg" group-title="Proxy Streams",⚡ Unite8 Sports 1 / ZEE CAFÉ
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_unite8-sports-1-zee-caf&m3u=1
+#EXTINF:-1 tvg-name="⚡ Univision" tvg-logo="https://tvnewscheck.com/wp-content/uploads/2018/08/Univision_logo_hi.jpg" group-title="Proxy Streams",⚡ Univision
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_univision&m3u=1
+#EXTINF:-1 tvg-name="⚡ USA Network" tvg-logo="https://variety.com/wp-content/uploads/2013/10/usa-network-logo1.jpg" group-title="Proxy Streams",⚡ USA Network
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_usa-network&m3u=1
+#EXTINF:-1 tvg-name="⚡ WAPA America" tvg-logo="https://m.media-amazon.com/images/I/81AEkpHaIPL._SL1920_.png" group-title="Proxy Streams",⚡ WAPA America
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_wapa-america&m3u=1
+#EXTINF:-1 tvg-name="⚡ WAPA Deportes" tvg-logo="https://i.ibb.co/pBzhsJ17/WAPA-Deportes.jpg" group-title="Proxy Streams",⚡ WAPA Deportes
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_wapa-deportes&m3u=1
+#EXTINF:-1 tvg-name="⚡ Willow Cricket" tvg-logo="https://mgpindia.com/wp-content/uploads/2021/10/willow-logo.jpg" group-title="Proxy Streams",⚡ Willow Cricket
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_willow-cricket&m3u=1
+#EXTINF:-1 tvg-name="⚡ Willow Cricket 2" tvg-logo="https://d229kpbsb5jevy.cloudfront.net/tv/1920/1080/languages/WILLOW-2.jpg" group-title="Proxy Streams",⚡ Willow Cricket 2
+__HOSTURL__/live.php?token=STALKER_PRO&id=tim_willow-cricket-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports Main Event (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Sky_Sports_Main_Event_logo.svg/512px-Sky_Sports_Main_Event_logo.svg.png" group-title="Proxy Streams",⚡ Sky Sports Main Event (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-sky-sports-main-event&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports Premier League (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/Sky_Sports_Premier_League_logo.svg/512px-Sky_Sports_Premier_League_logo.svg.png" group-title="Proxy Streams",⚡ Sky Sports Premier League (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-sky-sports-premier-league&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports Football (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Sky_Sports_Football_logo.svg/512px-Sky_Sports_Football_logo.svg.png" group-title="Proxy Streams",⚡ Sky Sports Football (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-sky-sports-football&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports F1 (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/0/08/Sky_Sports_F1_logo.svg/512px-Sky_Sports_F1_logo.svg.png" group-title="Proxy Streams",⚡ Sky Sports F1 (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-sky-sports-f1&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sky Sports Cricket (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/Sky_Sports_Cricket_logo.svg/512px-Sky_Sports_Cricket_logo.svg.png" group-title="Proxy Streams",⚡ Sky Sports Cricket (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-sky-sports-cricket&m3u=1
+#EXTINF:-1 tvg-name="⚡ TNT Sports 1 (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/TNT_Sports_1.svg/512px-TNT_Sports_1.svg.png" group-title="Proxy Streams",⚡ TNT Sports 1 (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-tnt-sports-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ TNT Sports 2 (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/8/87/TNT_Sports_2.svg/512px-TNT_Sports_2.svg.png" group-title="Proxy Streams",⚡ TNT Sports 2 (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-tnt-sports-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ TNT Sports 3 (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/TNT_Sports_3.svg/512px-TNT_Sports_3.svg.png" group-title="Proxy Streams",⚡ TNT Sports 3 (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-tnt-sports-3&m3u=1
+#EXTINF:-1 tvg-name="⚡ TNT Sports 4 (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/8/84/TNT_Sports_4.svg/512px-TNT_Sports_4.svg.png" group-title="Proxy Streams",⚡ TNT Sports 4 (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-tnt-sports-4&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Sports 1 HD (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/BeIN_Sports_1_logo.svg/512px-BeIN_Sports_1_logo.svg.png" group-title="Proxy Streams",⚡ beIN Sports 1 HD (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-bein-sports-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ beIN Sports 2 HD (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/BeIN_Sports_2_logo.svg/512px-BeIN_Sports_2_logo.svg.png" group-title="Proxy Streams",⚡ beIN Sports 2 HD (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-bein-sports-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ ESPN USA HD (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/ESPN_logo.svg/512px-ESPN_logo.svg.png" group-title="Proxy Streams",⚡ ESPN USA HD (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-espn&m3u=1
+#EXTINF:-1 tvg-name="⚡ ESPN 2 USA HD (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/ESPN2_logo.svg/512px-ESPN2_logo.svg.png" group-title="Proxy Streams",⚡ ESPN 2 USA HD (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-espn2&m3u=1
+#EXTINF:-1 tvg-name="⚡ Fox Sports 1 (FS1) (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Fox_Sports_1_logo.svg/512px-Fox_Sports_1_logo.svg.png" group-title="Proxy Streams",⚡ Fox Sports 1 (FS1) (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-fox-sports-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ Fox Sports 2 (FS2) (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Fox_Sports_2_logo.svg/512px-Fox_Sports_2_logo.svg.png" group-title="Proxy Streams",⚡ Fox Sports 2 (FS2) (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-fox-sports-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ DAZN 1 HD (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/DAZN_Logo.svg/512px-DAZN_Logo.svg.png" group-title="Proxy Streams",⚡ DAZN 1 HD (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-dazn-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ Willow Cricket HD (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Willow_logo.png/512px-Willow_logo.png" group-title="Proxy Streams",⚡ Willow Cricket HD (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-willow-hd&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sony Ten 1 HD (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Sony_Ten_1.svg/512px-Sony_Ten_1.svg.png" group-title="Proxy Streams",⚡ Sony Ten 1 HD (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-sony-ten-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sony Ten 2 HD (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/2/23/Sony_Ten_2.svg/512px-Sony_Ten_2.svg.png" group-title="Proxy Streams",⚡ Sony Ten 2 HD (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-sony-ten-2&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sony Sports Ten 5 HD (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/Sony_Sports_Ten_5_logo.png/512px-Sony_Sports_Ten_5_logo.png" group-title="Proxy Streams",⚡ Sony Sports Ten 5 HD (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-sony-six&m3u=1
+#EXTINF:-1 tvg-name="⚡ Star Sports 1 HD (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/2/25/Star_Sports_1.svg/512px-Star_Sports_1.svg.png" group-title="Proxy Streams",⚡ Star Sports 1 HD (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-star-sports-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ Star Sports 1 Hindi (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Star_Sports_Hindi_1.svg/512px-Star_Sports_Hindi_1.svg.png" group-title="Proxy Streams",⚡ Star Sports 1 Hindi (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-star-sports-hindi&m3u=1
+#EXTINF:-1 tvg-name="⚡ Star Sports Select 1 HD (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Star_Sports_Select_1.svg/512px-Star_Sports_Select_1.svg.png" group-title="Proxy Streams",⚡ Star Sports Select 1 HD (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-star-sports-select-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ Sports18 1 HD (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Sports18_1_logo.svg/512px-Sports18_1_logo.svg.png" group-title="Proxy Streams",⚡ Sports18 1 HD (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-sports18-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ Eurosport 1 HD (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Eurosport_1_logo.svg/512px-Eurosport_1_logo.svg.png" group-title="Proxy Streams",⚡ Eurosport 1 HD (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-eurosport-1&m3u=1
+#EXTINF:-1 tvg-name="⚡ WWE Network Live 24/7 (DLHD)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/WWE_Network_Logo.svg/512px-WWE_Network_Logo.svg.png" group-title="Proxy Streams",⚡ WWE Network Live 24/7 (DLHD)
+__HOSTURL__/live.php?token=STALKER_PRO&id=dlhd-wwe-network&m3u=1
+#EXTINF:-1 tvg-name="⚡ Willow 2 (Embed)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Willow_logo.png/512px-Willow_logo.png" group-title="Cricket",⚡ Willow 2 (Embed)
+__HOSTURL__/live.php?token=STALKER_PRO&id=embed-247-willow-2&m3u=1
+#EXTINF:-1 tvg-name="🔴 ENG | New South Wales Vs Western Australia" tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/4249667_53087_WAU_NSW_FC-WEB_1791299730396.jpg" group-title="FanCode Live (Cricket)",🔴 ENG | New South Wales Vs Western Australia
+__HOSTURL__/live.php?url=https%3A%2F%2Fproxy-web-sage.vercel.app%2Fapi%2Flive-proxy%3Furl%3Dhttps%253A%252F%252Fdai-fancode.pages.dev%252Fmumbai%252F4249667_english_hls_27a33faf8092749_1ta-di_h264%252Findex.m3u8
+#EXTINF:-1 tvg-name="🔴 ENG | South Africa Vs Australia" tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/AUS-vs-SA-test_Web-match-card.png" group-title="FanCode Live (Cricket)",🔴 ENG | South Africa Vs Australia
+__HOSTURL__/live.php?url=https%3A%2F%2Fproxy-web-sage.vercel.app%2Fapi%2Flive-proxy%3Furl%3Dhttps%253A%252F%252Fdai-fancode.pages.dev%252Fmumbai%252F4249782_english_hls_bf21f9fa2f10890_1ta-di_h264%252Findex.m3u8
+#EXTINF:-1 tvg-name="🔴 ENG | Day 2   World Feed" tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Tennis_FC-Web_1792479545067.png" group-title="FanCode Live (Sports)",🔴 ENG | Day 2   World Feed
+__HOSTURL__/live.php?url=https%3A%2F%2Fproxy-web-sage.vercel.app%2Fapi%2Flive-proxy%3Furl%3Dhttps%253A%252F%252Fdai-fancode.pages.dev%252Fmumbai%252F4249608_english_hls_a2345ca73095655_1ta-di_h264%252Findex.m3u8

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aetheris Cyber | Quantum Matrix Arcade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { -webkit-tap-highlight-color: transparent !important; user-select: none; }
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000208;
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+            overflow: hidden;
+            touch-action: none;
+        }
+        .cyber-font { font-family: 'Syncopate', sans-serif; }
+        #gameCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: block;
+            z-index: 1;
+        }
+        .glass-panel {
+            background: rgba(4, 12, 24, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 240, 255, 0.25);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.15), inset 0 0 15px rgba(0, 240, 255, 0.05);
+        }
+        .glow-cyan { text-shadow: 0 0 15px #00f0ff, 0 0 30px #0284c7; }
+        .glow-neon { box-shadow: 0 0 20px rgba(0, 240, 255, 0.5), inset 0 0 10px rgba(0, 240, 255, 0.3); }
+        .glow-shield { box-shadow: 0 0 25px rgba(168, 85, 247, 0.6); }
+        .glow-overclock { box-shadow: 0 0 35px rgba(250, 204, 21, 0.8), 0 0 60px rgba(249, 115, 22, 0.5); }
+        
+        /* Electronic scanline */
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
+            background-size: 100% 4px;
+            z-index: 4;
+            pointer-events: none;
+            opacity: 0.35;
+        }
+        .grid-vignette {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, transparent 40%, rgba(0,2,8,0.85) 100%);
+            z-index: 3;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-[#000208] text-white">
+    <canvas id="gameCanvas"></canvas>
+    <div class="grid-vignette"></div>
+    <div class="scanlines"></div>
+
+    <!-- HUD Overlay -->
+    <div class="relative z-10 w-full h-full flex flex-col justify-between p-4 sm:p-6 pointer-events-none">
+        <!-- Top Bar -->
+        <header class="flex items-center justify-between w-full">
+            <div class="flex items-center gap-3">
+                <a href="/hero.html" class="pointer-events-auto flex items-center gap-2 px-3.5 py-2 glass-panel rounded-xl text-xs font-bold text-cyan-300 hover:text-white hover:border-cyan-400 transition-all active:scale-95">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">EXIT TO HUB</span>
+                </a>
+                <div class="glass-panel px-4 py-2 rounded-xl flex items-center gap-2.5">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-cyan-400">CIRCUIT RUNNER</span>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="flex items-center gap-2 sm:gap-4">
+                <!-- Multiplier -->
+                <div class="glass-panel px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-center">
+                    <div class="text-[9px] font-black text-zinc-400 uppercase tracking-widest">MULTIPLIER</div>
+                    <div id="hudMultiplier" class="text-sm sm:text-base font-black text-amber-400 cyber-font">1.0x</div>
+                </div>
+                <!-- Energy Voltage Score -->
+                <div class="glass-panel px-4 sm:px-6 py-1.5 sm:py-2 rounded-xl text-center border-cyan-400/40">
+                    <div class="text-[9px] font-black text-cyan-300 uppercase tracking-widest">VOLTAGE SCORE</div>
+                    <div id="hudScore" class="text-lg sm:text-2xl font-black text-cyan-400 cyber-font glow-cyan">0</div>
+                </div>
+                <!-- Sound Toggle -->
+                <button id="soundToggleBtn" onclick="toggleAudio()" class="pointer-events-auto glass-panel p-2.5 rounded-xl text-cyan-300 hover:text-white hover:border-cyan-400 transition-all active:scale-95" title="Toggle Sound">
+                    <i data-lucide="volume-2" id="soundIcon" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dynamic In-Game Powerup Indicator Banner -->
+        <div id="powerupBanner" class="self-center glass-panel px-6 py-2 rounded-full flex items-center gap-3 transition-all duration-300 opacity-0 -translate-y-4">
+            <i data-lucide="zap" id="powerupIcon" class="w-4 h-4 text-amber-400 animate-bounce"></i>
+            <span id="powerupText" class="text-xs font-black uppercase tracking-widest text-amber-300">HYPER-OVERCLOCK ACTIVE</span>
+            <div class="w-20 h-1.5 bg-white/20 rounded-full overflow-hidden">
+                <div id="powerupBar" class="h-full bg-amber-400 transition-all duration-75" style="width: 100%"></div>
+            </div>
+        </div>
+
+        <!-- Bottom Controls & Health Bar -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 w-full">
+            <!-- Health Shield Gauges -->
+            <div class="glass-panel px-4 py-3 rounded-2xl flex items-center gap-3 w-full sm:w-auto">
+                <i data-lucide="shield" class="w-5 h-5 text-cyan-400"></i>
+                <div class="space-y-1 flex-1 sm:w-48">
+                    <div class="flex justify-between text-[10px] font-bold text-zinc-400">
+                        <span>PLASMA CORE INTEGRITY</span>
+                        <span id="shieldPercent">100%</span>
+                    </div>
+                    <div class="w-full h-2 bg-black/60 rounded-full overflow-hidden border border-white/10 p-[1px]">
+                        <div id="shieldBar" class="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 rounded-full transition-all duration-300" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Touch Control Buttons -->
+            <div class="flex sm:hidden items-center justify-center gap-4 w-full pointer-events-auto">
+                <button id="btnLeft" class="flex-1 py-4 glass-panel rounded-2xl text-cyan-400 font-black active:bg-cyan-500/30 flex items-center justify-center">
+                    <i data-lucide="chevron-left" class="w-7 h-7"></i>
+                </button>
+                <button id="btnJump" class="flex-1 py-4 glass-panel rounded-2xl text-amber-400 font-black active:bg-amber-500/30 flex items-center justify-center gap-1">
+                    <i data-lucide="zap" class="w-6 h-6"></i>
+                    <span class="text-xs font-black">PHASE</span>
+                </button>
+                <button id="btnRight" class="flex-1 py-4 glass-panel rounded-2xl text-cyan-400 font-black active:bg-cyan-500/30 flex items-center justify-center">
+                    <i data-lucide="chevron-right" class="w-7 h-7"></i>
+                </button>
+            </div>
+
+            <!-- Desktop Key Hints -->
+            <div class="hidden sm:flex items-center gap-2 text-[10px] font-bold text-zinc-400 glass-panel px-4 py-2 rounded-xl">
+                <span class="px-1.5 py-0.5 rounded bg-white/10 border border-white/20 text-white">A/D</span> or <span class="px-1.5 py-0.5 rounded bg-white/10 border border-white/20 text-white">&larr; &rarr;</span> STEER
+                <span class="ml-2 px-1.5 py-0.5 rounded bg-white/10 border border-white/20 text-white">SPACE</span> or <span class="px-1.5 py-0.5 rounded bg-white/10 border border-white/20 text-white">&uarr;</span> PHASE JUMP
+            </div>
+        </div>
+    </div>
+
+    <!-- Start / Game Over Modal -->
+    <div id="gameModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xl p-4 transition-all duration-300">
+        <div class="glass-panel rounded-3xl p-6 sm:p-10 max-w-lg w-full text-center space-y-6 border border-cyan-400/40 shadow-[0_0_80px_rgba(0,240,255,0.25)] relative overflow-hidden">
+            <!-- Ambient Corner Glows -->
+            <div class="absolute -top-24 -left-24 w-48 h-48 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="space-y-2">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-[10px] font-black uppercase tracking-widest">
+                    <i data-lucide="zap" class="w-3.5 h-3.5"></i> ELECTRIC CIRCUIT ENGINE
+                </div>
+                <h1 id="modalTitle" class="text-3xl sm:text-4xl font-black uppercase tracking-wider text-white cyber-font glow-cyan">CIRCUIT ORB</h1>
+                <p id="modalDesc" class="text-xs sm:text-sm text-zinc-300 leading-relaxed font-medium">Guide the high-voltage Plasma Orb through endless electronic circuit tracks. Collect energy packets, dodge laser gates, and overclock your high score!</p>
+            </div>
+
+            <!-- Stats Display on Game Over -->
+            <div id="gameOverStats" class="hidden grid grid-cols-2 gap-3 py-2">
+                <div class="bg-black/50 border border-white/10 rounded-2xl p-3">
+                    <div class="text-[9px] font-bold text-zinc-400 uppercase">FINAL SCORE</div>
+                    <div id="finalScore" class="text-xl font-black text-cyan-400 cyber-font">0</div>
+                </div>
+                <div class="bg-black/50 border border-white/10 rounded-2xl p-3">
+                    <div class="text-[9px] font-bold text-zinc-400 uppercase">BEST RECORD</div>
+                    <div id="bestScore" class="text-xl font-black text-amber-400 cyber-font">0</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <button onclick="startGame()" id="startBtn" class="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-black text-sm uppercase tracking-widest rounded-2xl shadow-[0_0_30px_rgba(0,240,255,0.4)] transform active:scale-95 transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="play" class="w-5 h-5 fill-black"></i> INITIATE CIRCUIT SURGE
+                </button>
+                <a href="/hero.html" class="w-full py-3.5 bg-white/5 hover:bg-white/10 border border-white/15 text-zinc-300 hover:text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> RETURN TO ENTERTAINMENT HUB
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // SYNTHETIC WEB AUDIO ENGINE (Zero Assets)
+        // ==========================================
+        let audioCtx = null;
+        let soundEnabled = true;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function toggleAudio() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('soundIcon');
+            if (soundEnabled) {
+                icon.setAttribute('data-lucide', 'volume-2');
+                playSound('collect');
+            } else {
+                icon.setAttribute('data-lucide', 'volume-x');
+            }
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                if (!audioCtx) return;
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                const now = audioCtx.currentTime;
+
+                if (type === 'collect') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(587.33, now); // D5
+                    osc.frequency.exponentialRampToValueAtTime(1174.66, now + 0.12); // D6
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
+                    osc.start(now);
+                    osc.stop(now + 0.12);
+                } else if (type === 'jump') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(660, now + 0.18);
+                    gain.gain.setValueAtTime(0.18, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.18);
+                    osc.start(now);
+                    osc.stop(now + 0.18);
+                } else if (type === 'hit') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(150, now);
+                    osc.frequency.exponentialRampToValueAtTime(40, now + 0.25);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else if (type === 'powerup') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.linearRampToValueAtTime(880, now + 0.1);
+                    osc.frequency.linearRampToValueAtTime(1320, now + 0.25);
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                }
+            } catch (e) {}
+        }
+
+        // ==========================================
+        // 3D ELECTRONIC CANVAS GAME ENGINE
+        // ==========================================
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        // Game State
+        let isPlaying = false;
+        let score = 0;
+        let multiplier = 1.0;
+        let comboCount = 0;
+        let speed = 7;
+        let distance = 0;
+        let health = 100;
+
+        // High score
+        let bestScore = parseInt(localStorage.getItem('circuit_orb_high_score') || '0', 10);
+
+        // Track & Lanes (3 main electronic bus lanes: -1, 0, 1)
+        const LANE_WIDTH = 110;
+        let currentLane = 0; // -1: Left, 0: Center, 1: Right
+        let targetLane = 0;
+
+        // Player Orb
+        const player = {
+            x: 0,
+            y: 0,
+            z: 0,
+            radius: 22,
+            isJumping: false,
+            jumpY: 0,
+            jumpVelocity: 0,
+            shieldActive: false,
+            overclockTimer: 0,
+            magnetTimer: 0,
+            trail: []
+        };
+
+        // World Items (Obstacles, Data Packets, Solder Nodes, Gates)
+        let worldItems = [];
+        let sparkParticles = [];
+
+        function resetGame() {
+            score = 0;
+            multiplier = 1.0;
+            comboCount = 0;
+            speed = 7;
+            distance = 0;
+            health = 100;
+            currentLane = 0;
+            targetLane = 0;
+            player.x = 0;
+            player.y = 0;
+            player.z = 0;
+            player.jumpY = 0;
+            player.jumpVelocity = 0;
+            player.isJumping = false;
+            player.shieldActive = false;
+            player.overclockTimer = 0;
+            player.magnetTimer = 0;
+            player.trail = [];
+            worldItems = [];
+            sparkParticles = [];
+            updateHUD();
+
+            // Seed initial track
+            for (let z = 300; z < 2500; z += 180) {
+                spawnItem(z);
+            }
+        }
+
+        function spawnItem(zPos) {
+            const lane = [-1, 0, 1][Math.floor(Math.random() * 3)];
+            const rand = Math.random();
+
+            if (rand < 0.45) {
+                // Glowing Data Packet (+50 Energy)
+                worldItems.push({
+                    type: 'packet',
+                    lane: lane,
+                    z: zPos,
+                    radius: 12,
+                    color: '#00f0ff',
+                    pulse: Math.random() * Math.PI
+                });
+            } else if (rand < 0.70) {
+                // Laser Firewall Barrier (Obstacle)
+                worldItems.push({
+                    type: 'laser',
+                    lane: lane,
+                    z: zPos,
+                    width: 75,
+                    height: 50,
+                    color: '#ef4444'
+                });
+            } else if (rand < 0.85) {
+                // Capacitor Power Node (+100 Energy & Combo Boost)
+                worldItems.push({
+                    type: 'capacitor',
+                    lane: lane,
+                    z: zPos,
+                    radius: 18,
+                    color: '#10b981',
+                    pulse: Math.random() * Math.PI
+                });
+            } else {
+                // Rare Super Powerup (Overclock or Shield)
+                const isOverclock = Math.random() > 0.5;
+                worldItems.push({
+                    type: isOverclock ? 'overclock' : 'shield',
+                    lane: lane,
+                    z: zPos,
+                    radius: 16,
+                    color: isOverclock ? '#facc15' : '#a855f7',
+                    pulse: 0
+                });
+            }
+        }
+
+        function createSparks(x, y, color = '#00f0ff', count = 12) {
+            for (let i = 0; i < count; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 8 + 2;
+                sparkParticles.push({
+                    x,
+                    y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    life: 1.0,
+                    decay: Math.random() * 0.04 + 0.02,
+                    color
+                });
+            }
+        }
+
+        // ==========================================
+        // INPUT CONTROLS
+        // ==========================================
+        function moveLane(dir) {
+            targetLane = Math.max(-1, Math.min(1, targetLane + dir));
+            playSound('jump');
+        }
+
+        function triggerJump() {
+            if (!player.isJumping) {
+                player.isJumping = true;
+                player.jumpVelocity = 14;
+                playSound('jump');
+                createSparks(width / 2 + player.x, height * 0.72 - player.jumpY, '#00f0ff', 8);
+            }
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (!isPlaying) return;
+            if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+                moveLane(-1);
+            } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+                moveLane(1);
+            } else if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W' || e.key === ' ') {
+                triggerJump();
+            }
+        });
+
+        // Touch buttons
+        document.getElementById('btnLeft')?.addEventListener('pointerdown', () => moveLane(-1));
+        document.getElementById('btnRight')?.addEventListener('pointerdown', () => moveLane(1));
+        document.getElementById('btnJump')?.addEventListener('pointerdown', () => triggerJump());
+
+        // Swipe Gestures
+        let touchStartX = 0;
+        let touchStartY = 0;
+        window.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        window.addEventListener('touchend', (e) => {
+            if (!isPlaying) return;
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            const dy = e.changedTouches[0].clientY - touchStartY;
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 30) {
+                moveLane(dx > 0 ? 1 : -1);
+            } else if (dy < -30) {
+                triggerJump();
+            }
+        }, { passive: true });
+
+        // ==========================================
+        // MAIN GAME LOOP
+        // ==========================================
+        let lastTime = performance.now();
+
+        function gameLoop(time) {
+            requestAnimationFrame(gameLoop);
+            const dt = (time - lastTime) / 1000;
+            lastTime = time;
+
+            // Clear Background
+            ctx.fillStyle = '#000208';
+            ctx.fillRect(0, 0, width, height);
+
+            // Draw Perspective Circuit Board Ground
+            drawCircuitGrid(time);
+
+            if (isPlaying) {
+                // Update Player
+                distance += speed;
+                speed = Math.min(18, 7 + Math.floor(score / 500) * 0.8);
+
+                // Lerp lane position
+                const targetX = targetLane * LANE_WIDTH;
+                player.x += (targetX - player.x) * 0.2;
+
+                // Jump physics
+                if (player.isJumping) {
+                    player.jumpY += player.jumpVelocity;
+                    player.jumpVelocity -= 0.8;
+                    if (player.jumpY <= 0) {
+                        player.jumpY = 0;
+                        player.isJumping = false;
+                        createSparks(width / 2 + player.x, height * 0.72, '#00f0ff', 6);
+                    }
+                }
+
+                // Powerup Timers
+                if (player.overclockTimer > 0) {
+                    player.overclockTimer -= dt;
+                    if (player.overclockTimer <= 0) hidePowerupBanner();
+                }
+
+                // Update Items
+                for (let i = worldItems.length - 1; i >= 0; i--) {
+                    const item = worldItems[i];
+                    item.z -= speed;
+
+                    // Magnet pulling packets
+                    if (player.magnetTimer > 0 && (item.type === 'packet' || item.type === 'capacitor')) {
+                        if (item.z < 600 && item.z > 0) {
+                            item.lane += (targetLane - item.lane) * 0.15;
+                        }
+                    }
+
+                    // Collision Check
+                    if (item.z < 70 && item.z > -30) {
+                        const itemX = item.lane * LANE_WIDTH;
+                        const distToPlayer = Math.abs(player.x - itemX);
+
+                        if (distToPlayer < 45) {
+                            if (item.type === 'packet') {
+                                score += Math.floor(50 * multiplier);
+                                comboCount++;
+                                if (comboCount % 5 === 0) multiplier = Math.min(5.0, multiplier + 0.5);
+                                playSound('collect');
+                                createSparks(width / 2 + player.x, height * 0.72 - player.jumpY, '#00f0ff', 10);
+                                worldItems.splice(i, 1);
+                                updateHUD();
+                                continue;
+                            } else if (item.type === 'capacitor') {
+                                score += Math.floor(150 * multiplier);
+                                multiplier = Math.min(5.0, multiplier + 1.0);
+                                playSound('powerup');
+                                createSparks(width / 2 + player.x, height * 0.72 - player.jumpY, '#10b981', 18);
+                                worldItems.splice(i, 1);
+                                updateHUD();
+                                continue;
+                            } else if (item.type === 'overclock') {
+                                player.overclockTimer = 8.0;
+                                score += 300;
+                                playSound('powerup');
+                                showPowerupBanner('HYPER-OVERCLOCK ACTIVE (INVINCIBLE)', 'amber');
+                                createSparks(width / 2 + player.x, height * 0.72 - player.jumpY, '#facc15', 25);
+                                worldItems.splice(i, 1);
+                                continue;
+                            } else if (item.type === 'shield') {
+                                player.shieldActive = true;
+                                health = Math.min(100, health + 30);
+                                playSound('powerup');
+                                showPowerupBanner('SHIELD MATRIX CHARGED', 'purple');
+                                createSparks(width / 2 + player.x, height * 0.72 - player.jumpY, '#a855f7', 20);
+                                worldItems.splice(i, 1);
+                                updateHUD();
+                                continue;
+                            } else if (item.type === 'laser') {
+                                // Can jump over lasers!
+                                if (player.jumpY < 30 && player.overclockTimer <= 0) {
+                                    if (player.shieldActive) {
+                                        player.shieldActive = false;
+                                        playSound('hit');
+                                        createSparks(width / 2 + player.x, height * 0.72, '#a855f7', 25);
+                                        worldItems.splice(i, 1);
+                                    } else {
+                                        health -= 35;
+                                        multiplier = 1.0;
+                                        comboCount = 0;
+                                        playSound('hit');
+                                        createSparks(width / 2 + player.x, height * 0.72, '#ef4444', 30);
+                                        worldItems.splice(i, 1);
+                                        updateHUD();
+
+                                        if (health <= 0) {
+                                            gameOver();
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Recycle off-screen items
+                    if (item.z < -100) {
+                        worldItems.splice(i, 1);
+                    }
+                }
+
+                // Maintain item pipeline
+                const maxZ = worldItems.reduce((max, it) => Math.max(max, it.z), 0);
+                if (maxZ < 2200) {
+                    spawnItem(maxZ + Math.random() * 120 + 140);
+                }
+
+                // Add to trail
+                player.trail.unshift({
+                    x: player.x,
+                    y: player.jumpY,
+                    time: time
+                });
+                if (player.trail.length > 15) player.trail.pop();
+            }
+
+            // Draw World Items with 3D Perspective Projection
+            drawWorldItems(time);
+
+            // Draw Player Plasma Orb & Trail
+            drawPlayer(time);
+
+            // Draw Spark Particles
+            drawSparks();
+        }
+
+        // ==========================================
+        // 3D PERSPECTIVE RENDERING
+        // ==========================================
+        const horizonY = height * 0.38;
+        const groundY = height * 0.72;
+
+        function project(x, y, z) {
+            const fov = 400;
+            const scale = fov / (fov + z);
+            const px = width / 2 + x * scale;
+            const py = horizonY + (groundY - horizonY + y) * scale;
+            return { px, py, scale };
+        }
+
+        function drawCircuitGrid(time) {
+            // Center Electronic Bus Lines
+            ctx.lineWidth = 2;
+            const offset = (distance % 80);
+
+            // 3 Lane Tracks
+            [-1.5, -0.5, 0.5, 1.5].forEach(laneBorder => {
+                const x = laneBorder * LANE_WIDTH;
+                const pNear = project(x, 0, 0);
+                const pFar = project(x, 0, 1800);
+
+                ctx.strokeStyle = 'rgba(0, 240, 255, 0.35)';
+                ctx.beginPath();
+                ctx.moveTo(pNear.px, pNear.py);
+                ctx.lineTo(pFar.px, pFar.py);
+                ctx.stroke();
+            });
+
+            // Orthogonal Cross-Grid Traces
+            for (let z = 0; z < 1800; z += 80) {
+                const adjustedZ = z - offset;
+                if (adjustedZ < 0) continue;
+
+                const pLeft = project(-1.5 * LANE_WIDTH, 0, adjustedZ);
+                const pRight = project(1.5 * LANE_WIDTH, 0, adjustedZ);
+
+                const alpha = Math.max(0, 1 - adjustedZ / 1500) * 0.4;
+                ctx.strokeStyle = `rgba(2, 132, 199, ${alpha})`;
+                ctx.beginPath();
+                ctx.moveTo(pLeft.px, pLeft.py);
+                ctx.lineTo(pRight.px, pRight.py);
+                ctx.stroke();
+
+                // Electronic Solder Intersections
+                [-1, 0, 1].forEach(l => {
+                    const pNode = project(l * LANE_WIDTH, 0, adjustedZ);
+                    ctx.fillStyle = `rgba(0, 240, 255, ${alpha * 0.8})`;
+                    ctx.beginPath();
+                    ctx.arc(pNode.px, pNode.py, 2 * pNode.scale, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            }
+        }
+
+        function drawWorldItems(time) {
+            // Sort items back-to-front
+            worldItems.sort((a, b) => b.z - a.z);
+
+            worldItems.forEach(item => {
+                const itemX = item.lane * LANE_WIDTH;
+                const proj = project(itemX, 0, item.z);
+
+                if (proj.scale <= 0) return;
+
+                if (item.type === 'packet') {
+                    // Floating Cyan Data Diamond / Orb
+                    const pulse = Math.sin(time * 0.005 + item.pulse) * 4;
+                    const py = proj.py - (18 + pulse) * proj.scale;
+                    const r = item.radius * proj.scale;
+
+                    ctx.fillStyle = item.color;
+                    ctx.shadowColor = item.color;
+                    ctx.shadowBlur = 15 * proj.scale;
+
+                    ctx.beginPath();
+                    ctx.arc(proj.px, py, r, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Inner core
+                    ctx.fillStyle = '#ffffff';
+                    ctx.beginPath();
+                    ctx.arc(proj.px, py, r * 0.4, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                } else if (item.type === 'capacitor') {
+                    // Emerald Energy Capacitor
+                    const pulse = Math.sin(time * 0.006 + item.pulse) * 5;
+                    const py = proj.py - (20 + pulse) * proj.scale;
+                    const r = item.radius * proj.scale;
+
+                    ctx.fillStyle = item.color;
+                    ctx.shadowColor = item.color;
+                    ctx.shadowBlur = 20 * proj.scale;
+
+                    ctx.beginPath();
+                    ctx.arc(proj.px, py, r, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = '#ffffff';
+                    ctx.beginPath();
+                    ctx.arc(proj.px, py, r * 0.5, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                } else if (item.type === 'overclock' || item.type === 'shield') {
+                    // Powerup Spheres
+                    const py = proj.py - 24 * proj.scale;
+                    const r = item.radius * proj.scale;
+
+                    ctx.fillStyle = item.color;
+                    ctx.shadowColor = item.color;
+                    ctx.shadowBlur = 25 * proj.scale;
+
+                    ctx.beginPath();
+                    ctx.arc(proj.px, py, r, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                } else if (item.type === 'laser') {
+                    // Pulsing Red Laser Barrier
+                    const w = item.width * proj.scale;
+                    const h = item.height * proj.scale;
+                    const py = proj.py - h;
+
+                    ctx.strokeStyle = '#ef4444';
+                    ctx.shadowColor = '#ef4444';
+                    ctx.shadowBlur = 18 * proj.scale;
+                    ctx.lineWidth = 3 * proj.scale;
+
+                    // Barrier Frame
+                    ctx.strokeRect(proj.px - w / 2, py, w, h);
+
+                    // Dynamic laser beams
+                    const laserAlpha = 0.4 + Math.sin(time * 0.01) * 0.4;
+                    ctx.fillStyle = `rgba(239, 68, 68, ${laserAlpha})`;
+                    ctx.fillRect(proj.px - w / 2, py, w, h);
+                    ctx.shadowBlur = 0;
+                }
+            });
+        }
+
+        function drawPlayer(time) {
+            const proj = project(player.x, -player.jumpY, 0);
+
+            // Draw Electric Trail
+            for (let i = 0; i < player.trail.length; i++) {
+                const tr = player.trail[i];
+                const trProj = project(tr.x, -tr.y, i * 25);
+                const alpha = (1 - i / player.trail.length) * 0.4;
+                const r = player.radius * (1 - i / player.trail.length * 0.5) * trProj.scale;
+
+                ctx.fillStyle = player.overclockTimer > 0 ? `rgba(250, 204, 21, ${alpha})` : `rgba(0, 240, 255, ${alpha})`;
+                ctx.beginPath();
+                ctx.arc(trProj.px, trProj.py, r, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Draw Main Plasma Orb
+            const orbColor = player.overclockTimer > 0 ? '#facc15' : (player.shieldActive ? '#a855f7' : '#00f0ff');
+            ctx.shadowColor = orbColor;
+            ctx.shadowBlur = player.overclockTimer > 0 ? 40 : 25;
+
+            // Outer Aura
+            ctx.fillStyle = orbColor;
+            ctx.beginPath();
+            ctx.arc(proj.px, proj.py, player.radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Inner Electric Core
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(proj.px, proj.py, player.radius * 0.5, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Electric Arcs around orb
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1.5;
+            for (let i = 0; i < 3; i++) {
+                const angle = time * 0.008 + (i * Math.PI * 2) / 3;
+                const ax = proj.px + Math.cos(angle) * (player.radius + 4);
+                const ay = proj.py + Math.sin(angle) * (player.radius + 4);
+                ctx.beginPath();
+                ctx.moveTo(proj.px, proj.py);
+                ctx.lineTo(ax, ay);
+                ctx.stroke();
+            }
+            ctx.shadowBlur = 0;
+        }
+
+        function drawSparks() {
+            for (let i = sparkParticles.length - 1; i >= 0; i--) {
+                const p = sparkParticles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.life -= p.decay;
+
+                if (p.life <= 0) {
+                    sparkParticles.splice(i, 1);
+                    continue;
+                }
+
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.life;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 2.5 * p.life, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.globalAlpha = 1.0;
+        }
+
+        // ==========================================
+        // UI & STATE HELPERS
+        // ==========================================
+        function updateHUD() {
+            document.getElementById('hudScore').textContent = score.toLocaleString();
+            document.getElementById('hudMultiplier').textContent = multiplier.toFixed(1) + 'x';
+            document.getElementById('shieldPercent').textContent = Math.max(0, health) + '%';
+            document.getElementById('shieldBar').style.width = Math.max(0, health) + '%';
+            if (health < 40) {
+                document.getElementById('shieldBar').className = 'h-full bg-gradient-to-r from-red-500 to-amber-500 rounded-full transition-all duration-300';
+            } else {
+                document.getElementById('shieldBar').className = 'h-full bg-gradient-to-r from-cyan-500 to-emerald-400 rounded-full transition-all duration-300';
+            }
+        }
+
+        function showPowerupBanner(text, color) {
+            const banner = document.getElementById('powerupBanner');
+            const pText = document.getElementById('powerupText');
+            pText.textContent = text;
+            banner.classList.remove('opacity-0', '-translate-y-4');
+        }
+
+        function hidePowerupBanner() {
+            const banner = document.getElementById('powerupBanner');
+            banner.classList.add('opacity-0', '-translate-y-4');
+        }
+
+        function startGame() {
+            initAudio();
+            document.getElementById('gameModal').classList.add('hidden');
+            resetGame();
+            isPlaying = true;
+            playSound('powerup');
+        }
+
+        function gameOver() {
+            isPlaying = false;
+            playSound('hit');
+
+            if (score > bestScore) {
+                bestScore = score;
+                localStorage.setItem('circuit_orb_high_score', bestScore.toString());
+            }
+
+            document.getElementById('modalTitle').textContent = 'CORE OVERLOAD';
+            document.getElementById('modalTitle').className = 'text-3xl sm:text-4xl font-black uppercase tracking-wider text-red-500 cyber-font glow-cyan';
+            document.getElementById('modalDesc').textContent = 'Your plasma orb sustained fatal circuit overload! Re-energize and surge again.';
+            document.getElementById('finalScore').textContent = score.toLocaleString();
+            document.getElementById('bestScore').textContent = bestScore.toLocaleString();
+            document.getElementById('gameOverStats').classList.remove('hidden');
+            document.getElementById('startBtn').innerHTML = '<i data-lucide="rotate-ccw" class="w-5 h-5 fill-black"></i> REBOOT CIRCUIT CORE';
+            document.getElementById('gameModal').classList.remove('hidden');
+            if (window.lucide) lucide.createIcons();
+        }
+
+        // Initialize lucide & animation loop
+        if (window.lucide) lucide.createIcons();
+        requestAnimationFrame(gameLoop);
+    </script>
+</body>
+</html>

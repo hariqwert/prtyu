@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 240" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="aethBg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0d111a" />
+      <stop offset="100%" stop-color="#030508" />
+    </radialGradient>
+
+    <!-- Hyper Laser Crimson Gradient -->
+    <linearGradient id="aethCrimson" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff0055" />
+      <stop offset="40%" stop-color="#ff3366" />
+      <stop offset="100%" stop-color="#990022" />
+    </linearGradient>
+
+    <!-- Supercharged Cyan Gradient -->
+    <linearGradient id="aethCyan" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f5d4" />
+      <stop offset="50%" stop-color="#00e5ff" />
+      <stop offset="100%" stop-color="#0077b6" />
+    </linearGradient>
+
+    <!-- Ultraviolet Purple Beam -->
+    <linearGradient id="aethViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c77dff" />
+      <stop offset="50%" stop-color="#9d4edd" />
+      <stop offset="100%" stop-color="#3c096c" />
+    </linearGradient>
+
+    <!-- Metallic Titanium Platinum -->
+    <linearGradient id="aethPlatinum" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="25%" stop-color="#f1f5f9" />
+      <stop offset="50%" stop-color="#94a3b8" />
+      <stop offset="75%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#64748b" />
+    </linearGradient>
+
+    <!-- Singularity Core Glow -->
+    <radialGradient id="aethFlare" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="25%" stop-color="#00f5d4" stop-opacity="0.95" />
+      <stop offset="60%" stop-color="#ff0055" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Multi-stage Bloom Filters -->
+    <filter id="aethBloom" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur1" />
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="aethChroma" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- ICON EMBLEM (Quantum Singularity Stream Vortex) -->
+  <g transform="translate(45, 20)">
+    <!-- Outer Quantum Gyroscope Ring -->
+    <circle cx="100" cy="100" r="92" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
+    <circle cx="100" cy="100" r="92" fill="none" stroke="url(#aethCyan)" stroke-width="2" stroke-dasharray="14 18" opacity="0.8" />
+
+    <!-- Quantum Flux Track Alpha (Rotated -40deg) -->
+    <ellipse cx="100" cy="100" rx="86" ry="32" fill="none" stroke="url(#aethCrimson)" stroke-width="4.5" transform="rotate(-40 100 100)" filter="url(#aethChroma)" stroke-linecap="round" />
+    
+    <!-- Quantum Flux Track Beta (Rotated 40deg) -->
+    <ellipse cx="100" cy="100" rx="86" ry="32" fill="none" stroke="url(#aethCyan)" stroke-width="4.5" transform="rotate(40 100 100)" filter="url(#aethChroma)" stroke-linecap="round" />
+
+    <!-- Quantum Flux Track Gamma (Equatorial Violet Wave) -->
+    <ellipse cx="100" cy="100" rx="86" ry="24" fill="none" stroke="url(#aethViolet)" stroke-width="3" filter="url(#aethChroma)" stroke-dasharray="12 6" opacity="0.85" />
+
+    <!-- Energetic Photon Quarks -->
+    <circle cx="30" cy="55" r="5" fill="#00f5d4" filter="url(#aethBloom)" />
+    <circle cx="170" cy="145" r="5" fill="#00f5d4" filter="url(#aethBloom)" />
+    <circle cx="165" cy="50" r="5.5" fill="#ff0055" filter="url(#aethBloom)" />
+    <circle cx="35" cy="150" r="5.5" fill="#ff0055" filter="url(#aethBloom)" />
+    <circle cx="100" cy="14" r="4" fill="#c77dff" filter="url(#aethBloom)" />
+    <circle cx="100" cy="186" r="4" fill="#c77dff" filter="url(#aethBloom)" />
+
+    <!-- Singularity Shield Core -->
+    <g transform="translate(100, 100)">
+      <!-- Radial energy field -->
+      <circle cx="0" cy="0" r="48" fill="url(#aethFlare)" />
+      
+      <!-- Crystalline Octagon Hull -->
+      <polygon points="0,-38 27,-27 38,0 27,27 0,38 -27,27 -38,0 -27,-27" fill="#06090e" stroke="url(#aethPlatinum)" stroke-width="2.5" />
+      
+      <!-- Internal Quantum Prism Triangles (Streaming Delta) -->
+      <polygon points="-12,-20 20,0 -12,20" fill="url(#aethCrimson)" filter="url(#aethChroma)" />
+      <polygon points="-12,-20 20,0 -2,0" fill="#ffffff" opacity="0.45" />
+
+      <!-- Center Super-Singularity Spark -->
+      <circle cx="2" cy="0" r="4" fill="#ffffff" filter="url(#aethBloom)" />
+    </g>
+  </g>
+
+  <!-- LUXURY LATIN BRAND TYPOGRAPHY: AETHERIS -->
+  <g transform="translate(275, 80)">
+    <!-- Primary Wordmark: AETHERIS -->
+    <text x="0" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', 'Outfit', 'Cinzel', sans-serif" font-size="56" font-weight="900" letter-spacing="6" fill="url(#aethPlatinum)">
+      AETHERIS
+    </text>
+
+    <!-- PRO / NEXUS Quantum Badge -->
+    <g transform="translate(328, 12)">
+      <rect x="0" y="0" width="118" height="44" rx="14" fill="url(#aethCrimson)" filter="url(#aethChroma)" />
+      <rect x="1.5" y="1.5" width="115" height="41" rx="12.5" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.5" />
+      <text x="59" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Outfit', sans-serif" font-size="21" font-weight="900" font-style="italic" fill="#ffffff" text-anchor="middle" letter-spacing="2">
+        NEXUS
+      </text>
+    </g>
+
+    <!-- Micro Line Architecture Subtitle -->
+    <g transform="translate(2, 86)">
+      <line x1="0" y1="0" x2="32" y2="0" stroke="#00f5d4" stroke-width="2" />
+      <text x="44" y="4" font-family="-apple-system, BlinkMacSystemFont, 'JetBrains Mono', 'Segoe UI', monospace" font-size="11" font-weight="700" letter-spacing="6" fill="#94a3b8">
+        QUANTUM MEDIA CONTINUUM • VERITAS ET AETHER
+      </text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,101 @@
+{
+  "animeTitle": "One Piece",
+  "animeSlug": "one-piece",
+  "seasonSlug": "season-21",
+  "seasonTitle": "Season 21",
+  "firstScraped": "2026-09-13T07:54:33.479Z",
+  "lastUpdated": "2026-09-13T08:33:30.659Z",
+  "episodes": {
+    "one-piece-21x1089": {
+      "slug": "one-piece-21x1089",
+      "title": "One Piece - Episode 1089: Entering a New Chapter! Luffy and Sabo's Paths!",
+      "englishTitle": "Entering a New Chapter! Luffy and Sabo's Paths!",
+      "episodeNumber": 1089,
+      "url": "https://animesalt.cx/episode/one-piece-21x1089/",
+      "videoId": "3d43cb0230c4f1ab6b9700689a881ec5",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/bd1b6bf6d6c6f7773968922b3a16e172/master.m3u8?md5=2fuTlnwTyLfOH0xxDn0UWQ&expires=1789294258",
+      "poster": "https://as-cdn27.top/p/CaK9ePgiiI3CXcpcffHcRjjNyk9RrQe5dHg9HhZHV-12pCDSDThejj5rL0fGReHGXoYpLgEBslmT5SD_Ysi6hg.jpg",
+      "subtitles": [
+        {
+          "file": "https://as-cdn29.top/p/CaK9ePgiiI3CXcpcffHcRjjNyk9RrQe5dHg9HhZHV-1Y6wVWRR_W2buy6Mto0n7eQ2_4YFvgYKW89eaDt6T8Ev6RlLA466YG3N4v-9DjuYM.jpg",
+          "label": "English",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn29.top/p/CaK9ePgiiI3CXcpcffHcRjjNyk9RrQe5dHg9HhZHV-1Y6wVWRR_W2buy6Mto0n7eQ2_4YFvgYKW89eaDt6T8EljzaGwlZbDiYckrTyuV6kg.jpg",
+          "label": "English",
+          "language": "eng"
+        }
+      ],
+      "resolvedAt": "2026-09-13T08:09:50.287Z"
+    },
+    "one-piece-21x1090": {
+      "slug": "one-piece-21x1090",
+      "title": "One Piece - Episode 1090",
+      "episodeNumber": 1090,
+      "url": "https://animesalt.cx/episode/one-piece-21x1090/",
+      "videoId": "dfc406a9727d091df0eb6ffbce24345d",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/75196b95d7d5dac1d496783715563612/master.m3u8?md5=hOYyb3WMsph7vp3xkxj0lA&expires=1789293345",
+      "poster": "https://as-cdn30.top/p/hBy_OhNszJPMlUk96xTkkKzqILw7KiSIz85di-rJ6z_l7xyBNwSSqnx4Ks7jFf1qnc_C6xStYzLwT8dlpAY5TA.jpg",
+      "resolvedAt": "2026-09-13T07:54:36.593Z"
+    },
+    "one-piece-21x1155": {
+      "slug": "one-piece-21x1155",
+      "title": "One Piece - Episode 1155: One Piece 21x1155",
+      "englishTitle": "One Piece 21x1155",
+      "episodeNumber": 1155,
+      "url": "https://animesalt.cx/episode/one-piece-21x1155/",
+      "videoId": "38df353da59fb1e8073e120c9c0f9482",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/ec4f276d2f543842497eb7ae5ade3d32/master.m3u8?md5=yFskPhD2UIr6A7rWgT7U-w&expires=1789294210",
+      "poster": "https://as-cdn29.top/p/1JaqDrBy9JECYdsnacl6WV0YwiE9nFxrEiHQ4rZ3bCPXNd1OQi60fOAGboCdV1YtzwpaKaInpMJsPkKi2lxUcQ.jpg",
+      "subtitles": [],
+      "resolvedAt": "2026-09-13T08:09:01.984Z"
+    },
+    "one-piece-21x1091": {
+      "slug": "one-piece-21x1091",
+      "title": "One Piece - Episode 1091: Brimming with the Future! An Adventure on the Island of Science!",
+      "englishTitle": "Brimming with the Future! An Adventure on the Island of Science!",
+      "episodeNumber": 1091,
+      "url": "https://animesalt.cx/episode/one-piece-21x1091/",
+      "videoId": "47d02b9b38d9ac9e7448a0e2dd69a5b0",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/c03a8c1f30dd6763b0d0a583575c9199/master.m3u8?md5=QY8p8vwFk-WT1p2lIiQlNA&expires=1789294798",
+      "poster": "https://as-cdn29.top/p/F3hEVFLJL2DbjKprMa7cyic2m9HpoI7TC_YQNUTydINDWtPbgHN4FHVAOeP04XAAhiHmqgnOlODOAsPQo79MFw.jpg",
+      "subtitles": [
+        {
+          "file": "https://as-cdn29.top/p/F3hEVFLJL2DbjKprMa7cyic2m9HpoI7TC_YQNUTydIOBr5upvZREKOiq4PksglpEJgq2Yax1CeQYykOs8K5ZQEOq4gvxlKFscQMFDLbaDzA.jpg",
+          "label": "English",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn29.top/p/F3hEVFLJL2DbjKprMa7cyic2m9HpoI7TC_YQNUTydIOBr5upvZREKOiq4PksglpEJgq2Yax1CeQYykOs8K5ZQEOvdP9oLYKRbwVrOS2lHaQ.jpg",
+          "label": "English",
+          "language": "eng"
+        }
+      ],
+      "resolvedAt": "2026-09-13T08:18:49.957Z"
+    },
+    "one-piece-21x1110": {
+      "slug": "one-piece-21x1110",
+      "title": "One Piece - Episode 1110: Survive! Deadly Combat with the Strongest Form of Humanity!",
+      "englishTitle": "Survive! Deadly Combat with the Strongest Form of Humanity!",
+      "episodeNumber": 1110,
+      "url": "https://animesalt.cx/episode/one-piece-21x1110/",
+      "videoId": "13f77689aef7e9ff9887121bcec0712a",
+      "streamUrl": "https://as-cdn26.top/cdn/hls/f1db374696e6fe4e1f63a9036c051f2f/master.m3u8?md5=24Hb43WHEQc3P_1irpW6_g&expires=1789295679",
+      "poster": "https://as-cdn28.top/p/PbNCETz0AVYWyWq1qhBzE01m9poCJDRg9vhHRWQ633yu1EISsU3xSxHZWIdARJm0bKX8Pbj8kp4717eZGZu3LA.jpg",
+      "subtitles": [
+        {
+          "file": "https://as-cdn26.top/p/PbNCETz0AVYWyWq1qhBzE01m9poCJDRg9vhHRWQ633xCeh6B9hR-tzAiJ-wLIfP8EOA-gpw98IjSo5o1pPGZbSiDTacYDqpKCCArO7IV1xk.jpg",
+          "label": "English",
+          "language": "eng"
+        },
+        {
+          "file": "https://as-cdn26.top/p/PbNCETz0AVYWyWq1qhBzE01m9poCJDRg9vhHRWQ633xCeh6B9hR-tzAiJ-wLIfP8EOA-gpw98IjSo5o1pPGZbQnU2uVwSYf4o7Sn2anzfVY.jpg",
+          "label": "English",
+          "language": "eng"
+        }
+      ],
+      "resolvedAt": "2026-09-13T08:33:30.657Z"
+    }
+  }
+}

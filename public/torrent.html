@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Aetheris Swarm | Quantum Torrent Accelerator</title>
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="torrent.css">
+  <!-- Plyr Libraries -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+  <style>
+    .plyr { width: 100%; height: 100%; border-radius: 12px; overflow: hidden; --plyr-color-main: #10b981; }
+    .plyr__video-wrapper { height: 100%; }
+    .video-iframe { width: 100%; height: 100%; border: none; border-radius: 12px; overflow: hidden; background: #000; }
+    /* Desktop & Mobile Responsive Plyr Controls */
+    .plyr__controls {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      align-items: center !important;
+      padding: 8px 12px !important;
+      background: linear-gradient(0deg, rgba(4, 9, 6, 0.96) 0%, rgba(4, 9, 6, 0.6) 70%, transparent 100%) !important;
+      gap: 6px !important;
+    }
+    /* Full-width timeline seek row */
+    .plyr__progress {
+      order: 1 !important;
+      flex: 1 0 100% !important;
+      width: 100% !important;
+      min-width: 100% !important;
+      padding: 4px 0 6px 0 !important;
+      touch-action: manipulation;
+    }
+    .plyr__progress input[type="range"] {
+      height: 6px !important;
+      cursor: pointer;
+    }
+    .plyr__progress input[type="range"]::-webkit-slider-thumb {
+      width: 16px !important;
+      height: 16px !important;
+      border-radius: 50% !important;
+      background: #10b981 !important;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.8) !important;
+      border: 2px solid #ffffff !important;
+      transition: transform 0.15s ease;
+    }
+    .plyr__progress input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+    /* Bottom Controls Row */
+    .plyr__controls__item--play {
+      order: 2 !important;
+    }
+    .plyr__time {
+      order: 3 !important;
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      font-variant-numeric: tabular-nums !important;
+      white-space: nowrap !important;
+      color: #e4e4e7 !important;
+      padding: 0 4px !important;
+      margin: 0 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+    }
+    .plyr__time + .plyr__time::before {
+      content: "/";
+      margin: 0 4px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .plyr__volume {
+      order: 4 !important;
+      max-width: 90px !important;
+      min-width: 32px !important;
+    }
+    .plyr__controls__item {
+      order: 5 !important;
+      min-width: 32px;
+      min-height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Mobile-specific fix for volume and time collision */
+    @media (max-width: 640px) {
+      .plyr__volume {
+        display: none !important;
+      }
+      .plyr__time {
+        font-size: 11px !important;
+      }
+      .plyr__controls {
+        padding: 4px 8px !important;
+        gap: 4px !important;
+      }
+      .plyr__controls .plyr__controls__item {
+        min-width: 28px;
+        min-height: 28px;
+        padding: 4px !important;
+      }
+    }
+  </style>
+    <link rel="icon" type="image/png" href="stalker_pro_infinity.svg">
+
+    <style id="tv-mobile-base">
+    /* TV/Remote D-pad focus ring */
+    .tv-focusable:focus, button:focus, a:focus { outline: 2px solid rgba(255,255,255,0.7) !important; outline-offset: 2px !important; }
+    /* Mobile touch improvements */
+    @media (max-width:768px) { button, a, [role=button] { min-height: 44px; touch-action: manipulation; } }
+    </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header Bar -->
+    <header class="header">
+      <div class="brand">
+        <a href="/hero.html" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none; color:inherit;">
+          <div style="width:38px; height:38px; border-radius:12px; background:rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; padding:3px; box-shadow:0 0 20px rgba(16,185,129,0.25);">
+            <img src="/stalker_pro_infinity.svg" alt="Aetheris" style="width:100%; height:100%; object-fit:contain;">
+          </div>
+          <div style="display:flex; flex-direction:column;">
+            <span style="font-family:'Outfit', sans-serif; font-size:1.1rem; font-weight:800; letter-spacing:2px; color:#ffffff; line-height:1;">AETHERIS <span style="color:#10b981;">SWARM</span></span>
+            <span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:#71717a; letter-spacing:2px; text-transform:uppercase; margin-top:2px;">TORRENT ACCELERATOR</span>
+          </div>
+        </a>
+      </div>
+      <div class="server-status-container">
+        <div class="buffer-preset-badge">
+          <i data-lucide="cpu" style="width:13px; height:13px;"></i>
+          <span id="activePresetBadge">200MB Instant</span>
+        </div>
+        <div class="status-pill online" id="serverStatusPill">
+          <span class="status-dot"></span>
+          <span id="serverStatusText">TorrServer Ready</span>
+        </div>
+        <button class="btn btn-icon btn-glass" id="refreshServerBtn" title="Check server health">
+          <i data-lucide="refresh-cw" style="width:14px; height:14px;"></i>
+        </button>
+      </div>
+    </header>
+    <!-- Magnet & Torrent Stream Input Hero (Collapsed by default for clean video view) -->
+    <section class="magnet-hero-card panel-collapsed" id="magnetHeroCard">
+      <div class="card-glow"></div>
+      <h1 class="hero-title">High-Speed Torrent Player</h1>
+      <p class="hero-subtitle">Paste magnet link or torrent hash to stream directly with zero wait.</p>
+      <form id="magnetForm" class="magnet-input-group">
+        <div class="input-wrapper">
+          <i data-lucide="magnet" class="input-icon"></i>
+          <input type="text" id="magnetInput" placeholder="magnet:?xt=urn:btih:... or 40-character info hash" autocomplete="off" spellcheck="false">
+          <button type="button" class="btn-clear" id="clearInputBtn" title="Clear input">
+            <i data-lucide="x" style="width:14px; height:14px;"></i>
+          </button>
+        </div>
+        <div class="action-buttons">
+          <button type="button" class="btn btn-secondary" id="pasteBtn" title="Paste from clipboard">
+            <i data-lucide="clipboard"></i>
+            <span>Paste</span>
+          </button>
+          <button type="submit" class="btn btn-primary" id="startStreamBtn">
+            <i data-lucide="play-circle"></i>
+            <span>Play</span>
+          </button>
+        </div>
+      </form>
+      <!-- Quick Samples -->
+      <div class="quick-samples">
+        <span class="samples-label">
+          <i data-lucide="flame" style="width:12px; height:12px;"></i>
+          Quick Demos:
+        </span>
+        <div class="samples-chips">
+          <button class="sample-chip" data-hash="magnet:?xt=urn:btih:08a8022b2586da7bd3fb7da561ff96e579bf2b33&dn=Sintel">
+            🎬 Sintel (1080p)
+          </button>
+          <button class="sample-chip" data-hash="magnet:?xt=urn:btih:dd8255ecdc7ca55fb0bbf81323d87062db1f6d1c&dn=Big+Buck+Bunny">
+            🐰 Big Buck Bunny (4K)
+          </button>
+          <button class="sample-chip" data-hash="magnet:?xt=urn:btih:c9e15763f722f23e98a29decdfae341b98d53056&dn=Cosmos+Laundromat">
+            🐑 Cosmos Laundromat (4K)
+          </button>
+          <button class="sample-chip" data-hash="magnet:?xt=urn:btih:6a9759bffd5c0af65319979fb7832189f4f3c35d&dn=Tears+of+Steel">
+            🤖 Tears of Steel (Sci-Fi)
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Main Content Area (Single column by default on load) -->
+    <main class="main-content">
+      <div class="content-grid single-column" id="mainContentGrid">
+        <!-- Video Player Section -->
+        <section class="player-card">
+          <div class="player-wrapper">
+            <!-- Native Plyr Video Element -->
+            <video id="videoPlayer" class="video-iframe" controls playsinline preload="auto" crossorigin="anonymous">
+              <p>Your browser does not support HTML5 video.</p>
+            </video>
+            <!-- Torrent Live Download / Peer Stats Overlay -->
+            <div class="stream-stats-overlay" id="streamStatsOverlay" style="display: none;">
+              <div class="stat-badge" id="statSpeedBadge">
+                <i data-lucide="zap" style="width:11px; height:11px;"></i>
+                <span id="statSpeed">0 KB/s</span>
+              </div>
+              <div class="stat-badge" id="statPeersBadge">
+                <i data-lucide="users" style="width:11px; height:11px;"></i>
+                <span id="statPeers">0 peers</span>
+              </div>
+              <div class="stat-badge" id="statBufferBadge">
+                <i data-lucide="hard-drive" style="width:11px; height:11px;"></i>
+                <span id="statBuffer">0 MB</span>
+              </div>
+            </div>
+            <!-- Player Placeholder Screen -->
+            <div class="player-placeholder" id="playerPlaceholder">
+              <div class="placeholder-icon">
+                <i data-lucide="film" style="width:26px; height:26px;"></i>
+              </div>
+              <h3>Ready to Stream</h3>
+              <p>Search a movie or click Play to start streaming instantly.</p>
+            </div>
+            <!-- Torrent Buffering & Loading Overlay -->
+            <div class="loading-overlay hidden" id="loadingOverlay">
+              <div class="spinner"></div>
+              <div class="loading-text">
+                <h4 id="loadingTitle">Buffering Torrent...</h4>
+                <p id="loadingSubtitle">Connecting to BitTorrent peers via TorrServer...</p>
+                <p id="loadingStats" style="font-size: 0.8rem; color: #a1a1aa; margin-top: 6px; font-weight: 600;"></p>
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill" id="bufferProgressFill" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Video Details & Actions Toolbar -->
+          <div class="player-meta-bar" id="playerMetaBar">
+            <div class="video-info">
+              <h3 id="currentTitle" class="video-title">Ready for Stream</h3>
+              <div class="meta-tags">
+                <span class="meta-tag" id="currentHash">Hash: -</span>
+                <span class="meta-tag" id="currentSize">Size: -</span>
+                <span class="meta-tag" id="ffmpegStatusTag">
+                  <i data-lucide="cpu" style="width:12px; height:12px; display:inline-block; vertical-align:middle; margin-right:2px;"></i> Engine: <strong id="currentEngineLabel">FFmpeg (Live Remux)</strong>
+                </span>
+              </div>
+            </div>
+            <div class="player-actions">
+              <a href="javascript:history.back()" class="btn btn-secondary btn-sm" title="Go Back">
+                <i data-lucide="arrow-left"></i> <span>Back</span>
+              </a>
+              <button class="btn btn-black-theme btn-sm" id="openSearchBtnToolbar" title="Search Movies & Series">
+                <i data-lucide="search"></i> <span>Search</span>
+              </button>
+              <button class="btn btn-secondary btn-sm" id="subtitlesBtn" title="Fetch & Manage Additional Subtitles">
+                <i data-lucide="subtitles"></i> <span>Subtitles</span>
+              </button>
+              <button class="btn btn-secondary btn-sm" id="audioTracksBtn" title="Select Audio Stream / Language">
+                <i data-lucide="volume-2"></i> <span>Audio Tracks</span>
+              </button>
+              <button class="btn btn-secondary btn-sm" id="downloadVideoBtn" title="Download Video File">
+                <i data-lucide="download"></i> <span>Download</span>
+              </button>
+              <button class="btn btn-outline btn-sm" id="ffmpegEngineBtn" title="Toggle Stream Engine">
+                <i data-lucide="film"></i> <span>Engine</span>
+              </button>
+              <button class="btn btn-outline btn-sm" id="copyStreamUrlBtn" title="Copy Stream URL">
+                <i data-lucide="copy"></i> <span>Copy Link</span>
+              </button>
+              <button class="btn btn-outline btn-sm" id="togglePanelsBtn" title="Toggle Magnet Input & Torrent Side Panels (Press Q)">
+                <i data-lucide="layout-grid"></i> <span>Panels (Q)</span>
+              </button>
+            </div>
+          </div>
+        </section>
+        <!-- Torrent File Tree & Active Torrents Panel (Collapsed by default) -->
+        <aside class="side-panel panel-collapsed" id="sidePanel">
+          <!-- Buffer Optimizer Card -->
+          <div class="panel-card buffer-config-card">
+            <div class="panel-header">
+              <h3><i data-lucide="sliders"></i> Buffer & Speed Optimizer</h3>
+              <span class="preset-status-tag" id="presetTag">Instant Stream</span>
+            </div>
+            <p class="panel-desc">Fix heavy buffering by increasing RAM cache & max peer connections.</p>
+            <div class="buffer-mode-selector">
+              <button class="buffer-mode-btn" data-cache="16777216" data-peers="30" data-label="16MB">
+                <span class="mode-name">Standard</span>
+                <span class="mode-desc">64MB RAM</span>
+              </button>
+              <button class="buffer-mode-btn active" data-cache="33554432" data-peers="60" data-label="32MB">
+                <span class="mode-name">⚡ 200MB Instant (Default)</span>
+                <span class="mode-desc">Zero-Wait Stream</span>
+              </button>
+              <button class="buffer-mode-btn" data-cache="67108864" data-peers="100" data-label="64MB">
+                <span class="mode-name">🚀 500MB Ultra</span>
+                <span class="mode-desc">Heavy 4K Stream</span>
+              </button>
+            </div>
+          </div>
+          <!-- Files List Card -->
+          <div class="panel-card files-card">
+            <div class="panel-header">
+              <h3><i data-lucide="folder-tree"></i> Torrent Files</h3>
+              <span class="files-count" id="filesCountBadge">0 files</span>
+            </div>
+            <p class="panel-desc">Click any video file below to start immediate playback.</p>
+            <div class="files-list-container" id="filesListContainer">
+              <div class="panel-empty-state">
+                <p>No torrent loaded yet</p>
+              </div>
+            </div>
+          </div>
+          <!-- Active TorrServer Session Panel -->
+          <div class="panel-card">
+            <div class="panel-header">
+              <h3><i data-lucide="activity"></i> Active TorrServer Tasks</h3>
+              <button class="btn btn-text btn-sm" id="refreshTorrentsBtn">
+                <i data-lucide="rotate-cw"></i>
+              </button>
+            </div>
+            <div class="active-torrents-list" id="activeTorrentsList">
+              <div class="panel-empty-state">
+                <p>No active torrents in TorrServer memory</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <!-- Movie & TV Series Search Modal Overlay -->
+    <div class="search-modal-backdrop hidden" id="searchModal">
+      <div class="search-modal-container" style="background:#08090a; border:1px solid #27272a;">
+        <div class="modal-header" style="background:#0d0e11; border-bottom:1px solid #27272a; padding:14px 18px;">
+          <div class="modal-title">
+            <i data-lucide="tv" style="color:#ffffff;"></i>
+            <h2 style="color:#ffffff; font-size:1.05rem;">Search Movies & TV Series</h2>
+          </div>
+          <button class="btn-close-modal" id="closeSearchBtn">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="modal-body" style="padding:16px 18px;">
+          <form id="modalSearchForm" class="modal-search-form">
+            <!-- Media Type Selector -->
+            <div class="search-type-toggle">
+              <label class="type-radio">
+                <input type="radio" name="mediaType" value="movie" checked>
+                <span>🎬 Movies</span>
+              </label>
+              <label class="type-radio">
+                <input type="radio" name="mediaType" value="series">
+                <span>📺 TV Series / Anime</span>
+              </label>
+            </div>
+            <!-- Series Season / Episode Selector -->
+            <div class="episode-select-row hidden" id="episodeSelectRow">
+              <div class="ep-field">
+                <label>Season</label>
+                <input type="number" id="seasonInput" min="1" max="99" value="1">
+              </div>
+              <div class="ep-field">
+                <label>Episode</label>
+                <input type="number" id="episodeInput" min="1" max="999" value="1">
+              </div>
+            </div>
+            <!-- Search Input Box & Search Button with Black Theme & White Letters -->
+            <div class="modal-input-wrapper">
+              <i data-lucide="search" class="search-icon" style="color:#71717a;"></i>
+              <input type="text" id="modalSearchInput" placeholder="Search by movie/series title..." autocomplete="off">
+              <button type="submit" class="btn btn-black-theme" id="modalSearchBtn">
+                <span>Search</span>
+              </button>
+            </div>
+          </form>
+          <!-- Search Results Area -->
+          <div class="search-results-area" id="searchResultsArea"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Additional Subtitles Fetcher & Manager Modal -->
+    <div class="search-modal-backdrop hidden" id="subtitleModal">
+      <div class="search-modal-container" style="max-width: 680px; width: 95%; background: #08090a; border: 1px solid #27272a;">
+        <div class="modal-header" style="background: #0d0e11; border-bottom: 1px solid #27272a; padding: 14px 18px;">
+          <div class="modal-title" style="gap: 12px;">
+            <div style="width: 36px; height: 36px; border-radius: 8px; background: #18191c; border: 1px solid #27272a; display: flex; align-items: center; justify-content: center; color: #ffffff;">
+              <i data-lucide="subtitles" style="width: 20px; height: 20px; stroke: #ffffff;"></i>
+            </div>
+            <div>
+              <h2 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0;">Additional Subtitles Engine</h2>
+              <p style="font-size: 0.75rem; color: #a1a1aa; margin: 0;">OpenSubtitles &bull; SubDL &bull; Kitsunekko &bull; Anime Tosho &bull; Torrent Package</p>
+            </div>
+          </div>
+          <button class="btn-close-modal" id="closeSubtitleBtn" style="background: #18191c; border: 1px solid #27272a; color: #a1a1aa;">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="modal-body space-y-4" style="padding: 18px 20px;">
+          <!-- Provider Tabs -->
+          <div class="sub-provider-tabs">
+            <button type="button" class="sub-tab active" data-provider="all">All Sources</button>
+            <button type="button" class="sub-tab" data-provider="opensubtitles">OpenSubtitles</button>
+            <button type="button" class="sub-tab" data-provider="subdl">SubDL</button>
+            <button type="button" class="sub-tab" data-provider="kitsunekko">Kitsunekko (Anime)</button>
+            <button type="button" class="sub-tab" data-provider="animetosho">Anime Tosho</button>
+            <button type="button" class="sub-tab" data-provider="msone">MSone (Malayalam)</button>
+            <button type="button" class="sub-tab" data-provider="torrent">Torrent Package</button>
+          </div>
+          <!-- Search & Filter Controls -->
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px;">
+            <div style="flex: 1; min-width: 200px; position: relative;">
+              <input type="text" id="subSearchQuery" placeholder="Search movie/anime title or IMDb (e.g. tt0903747)..." style="width: 100%; padding: 9px 14px; border-radius: 8px; background: #121316; color: #ffffff; border: 1px solid #27272a; font-size: 13px;">
+            </div>
+            <select id="subLangSelect" style="padding: 9px 12px; border-radius: 8px; background: #121316; color: #ffffff; border: 1px solid #27272a; font-size: 13px; font-weight: 500;">
+              <option value="all">All Languages</option>
+              <option value="English" selected>English</option>
+              <option value="Japanese">Japanese (日本語)</option>
+              <option value="Malayalam">Malayalam (മലയാളം)</option>
+              <option value="Tamil">Tamil (தமிழ்)</option>
+              <option value="Hindi">Hindi (हिन्दी)</option>
+              <option value="Spanish">Spanish (Español)</option>
+              <option value="French">French (Français)</option>
+              <option value="German">German (Deutsch)</option>
+              <option value="Arabic">Arabic (العربية)</option>
+              <option value="Korean">Korean (한국어)</option>
+              <option value="Chinese">Chinese (中文)</option>
+              <option value="Portuguese">Portuguese</option>
+              <option value="Italian">Italian</option>
+              <option value="Russian">Russian</option>
+            </select>
+            <!-- BLACK THEME SEARCH BUTTON WITH WHITE LETTERS -->
+            <button class="btn btn-black-theme" id="btnFetchSubs" style="padding: 9px 18px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer;">
+              <i data-lucide="search" style="width: 15px; height: 15px; stroke: #ffffff;"></i> Search
+            </button>
+          </div>
+          <!-- Active Subtitle Status Banner -->
+          <div id="activeSubStatusBanner" style="display: none; padding: 10px 14px; background: #121316; border: 1px solid #27272a; border-radius: 8px; font-size: 12px; color: #e4e4e7; align-items: center; justify-content: space-between; margin-top: 10px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i data-lucide="check-circle-2" style="width: 16px; height: 16px; color: #10b981;"></i>
+              <span>Active Subtitle: <strong id="activeSubLabel" style="color: #ffffff;">None</strong></span>
+            </div>
+            <button type="button" id="btnRemoveSubtitle" style="background: #271416; color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer;">Remove Track</button>
+          </div>
+          <!-- Subtitles Results List -->
+          <div id="subResultsList" style="max-height: 280px; min-height: 120px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin-top: 10px; padding-right: 4px;">
+            <div style="text-align: center; padding: 30px 10px; color: #a1a1aa; font-size: 13px;">
+              <i data-lucide="sparkles" style="width: 26px; height: 26px; color: #a1a1aa; margin: 0 auto 8px auto;"></i>
+              <p>Type title or click <strong style="color: #ffffff;">Search</strong> to load multi-source subtitles from OpenSubtitles, SubDL, Kitsunekko, Anime Tosho & Torrent files.</p>
+            </div>
+          </div>
+          <div style="border-top: 1px solid #27272a; padding-top: 14px; margin-top: 10px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+              <label style="font-size: 12px; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px;">Upload Custom Subtitle File (.SRT / .VTT / .ASS)</label>
+              <span style="font-size: 11px; color: #a1a1aa;">Local File</span>
+            </div>
+            <input type="file" id="subFileInput" accept=".srt,.vtt,.ass" style="width: 100%; padding: 8px 12px; background: #121316; border: 1px dashed #27272a; border-radius: 8px; color: #d4d4d8; font-size: 12px;">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Audio Track Selector Modal -->
+    <div class="search-modal-backdrop hidden" id="audioTrackModal">
+      <div class="search-modal-container" style="max-width: 500px; background:#08090a; border:1px solid #27272a;">
+        <div class="modal-header" style="background:#0d0e11; border-bottom:1px solid #27272a; padding:14px 18px;">
+          <div class="modal-title">
+            <i data-lucide="volume-2" style="color:#ffffff;"></i>
+            <h2 style="color:#ffffff; font-size:1.05rem;">Audio Track Switcher</h2>
+          </div>
+          <button class="btn-close-modal" id="closeAudioBtn">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 20px;">
+          <p style="color: #a1a1aa; font-size: 13px; margin-bottom: 15px;">Select an audio stream from the multi-audio / dual-audio video torrent:</p>
+          <div id="audioTracksList" style="display: flex; flex-direction: column; gap: 10px;">
+            <p style="color: #71717a; font-size: 12px;">Loading available audio streams...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="torrent.js?v=1788460544"></script>
+  <script src="/skip_intro.js"></script>
+  <script src="/watchdog.js" id="maintenance-watchdog"></script>
+
+    <!-- Aetheris AI Widget -->
+    <link rel="stylesheet" href="/local-ai.css">
+    <script src="/local-ai.js"></script>
+</body>
+</html>

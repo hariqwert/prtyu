@@ -1,0 +1,29 @@
+name: Sync JioTV Feeds
+
+on:
+  schedule:
+    - cron: '0 */4 * * *' # Every 4 hours
+  workflow_dispatch:
+
+jobs:
+  sync-jio:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sync JioTV Streams (Primary + Backups)
+        run: node scripts/sync-sources.js jio
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/jio/
+          git diff-index --quiet HEAD || git commit -m "chore(sync): auto-update JioTV live sources"
+          git push
