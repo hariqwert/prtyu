@@ -3,116 +3,92 @@
     "category": "Events",
     "events": [
       {
-        "url": "anaheim-ducks-v-new-york-rangers-401892535",
-        "name": "Anaheim Ducks @ New York Rangers",
-        "logo": "https://f9f10c57.imgggre.pages.dev/nhl-401892535.png",
+        "url": "minnesota-wild-v-edmonton-oilers-401892546",
+        "name": "Minnesota Wild @ Edmonton Oilers",
+        "logo": "https://abcf7bb1.imgggre.pages.dev/nhl-401892546.png",
         "genre": 11,
         "sub_genre": 1,
-        "time": "2026-10-19T19:00",
+        "time": "2026-10-20T21:00",
         "isevent": true,
         "vip": false,
         "viewers": 0,
         "streams": [
           {
-            "name": "ESPN+",
-            "url": "https://ehgembxe.cfd/6czexn7o-7620",
+            "name": "Sportsnet+",
+            "url": "https://ehgembxe.cfd/phkxmihf-8634",
             "vip": false
           }
         ]
       },
       {
-        "url": "colorado-avalanche-v-philadelphia-flyers-401892536",
-        "name": "Colorado Avalanche @ Philadelphia Flyers",
-        "logo": "https://f9f10c57.imgggre.pages.dev/nhl-401892536.png",
-        "genre": 11,
+        "url": "oklahoma-city-thunder-v-san-antonio-spurs-401909090",
+        "name": "Oklahoma City Thunder @ San Antonio Spurs",
+        "logo": "https://abcf7bb1.imgggre.pages.dev/nba-401909090.png",
+        "genre": 7,
         "sub_genre": 1,
-        "time": "2026-10-19T19:00",
-        "isevent": true,
-        "vip": false,
-        "viewers": 0,
-        "streams": [
-          {
-            "name": "ESPN+",
-            "url": "https://ehgembxe.cfd/5f6os6ej-8120",
-            "vip": false
-          }
-        ]
-      },
-      {
-        "url": "san-jose-sharks-v-toronto-maple-leafs-401892537",
-        "name": "San Jose Sharks @ Toronto Maple Leafs",
-        "logo": "https://f9f10c57.imgggre.pages.dev/nhl-401892537.png",
-        "genre": 11,
-        "sub_genre": 1,
-        "time": "2026-10-19T19:30",
-        "isevent": true,
-        "vip": false,
-        "viewers": 0,
-        "streams": [
-          {
-            "name": "ESPN+",
-            "url": "https://ehgembxe.cfd/cltp10g8-2526",
-            "vip": false
-          }
-        ]
-      },
-      {
-        "url": "commanders-v-49ers-401873008",
-        "name": "Commanders @ 49ers",
-        "logo": "https://f9f10c57.imgggre.pages.dev/nfl-401873008.png",
-        "genre": 8,
-        "sub_genre": 1,
-        "time": "2026-10-19T20:15",
+        "time": "2026-10-20T21:30",
         "isevent": true,
         "vip": false,
         "featured": true,
+        "viewers": 0,
+        "streams": [
+          {
+            "name": "NBC",
+            "url": "https://ehgembxe.cfd/bdl7my34-2787",
+            "vip": false
+          }
+        ]
+      },
+      {
+        "url": "detroit-red-wings-v-seattle-kraken-401892547",
+        "name": "Detroit Red Wings @ Seattle Kraken",
+        "logo": "https://abcf7bb1.imgggre.pages.dev/nhl-401892547.png",
+        "genre": 11,
+        "sub_genre": 1,
+        "time": "2026-10-20T21:40",
+        "isevent": true,
+        "vip": false,
+        "viewers": 0,
+        "streams": [
+          {
+            "name": "Sportsnet+",
+            "url": "https://ehgembxe.cfd/oid13mqr-7713",
+            "vip": false
+          }
+        ]
+      },
+      {
+        "url": "carolina-hurricanes-v-vancouver-canucks-401892548",
+        "name": "Carolina Hurricanes @ Vancouver Canucks",
+        "logo": "https://abcf7bb1.imgggre.pages.dev/nhl-401892548.png",
+        "genre": 11,
+        "sub_genre": 1,
+        "time": "2026-10-20T22:00",
+        "isevent": true,
+        "vip": false,
+        "viewers": 0,
+        "streams": [
+          {
+            "name": "Sportsnet+",
+            "url": "https://ehgembxe.cfd/h0lu88xm-1738",
+            "vip": false
+          }
+        ]
+      },
+      {
+        "url": "tampa-bay-lightning-v-vegas-golden-knights-401892549",
+        "name": "Tampa Bay Lightning @ Vegas Golden Knights",
+        "logo": "https://abcf7bb1.imgggre.pages.dev/nhl-401892549.png",
+        "genre": 11,
+        "sub_genre": 1,
+        "time": "2026-10-20T22:30",
+        "isevent": true,
+        "vip": false,
         "viewers": 0,
         "streams": [
           {
             "name": "ESPN",
-            "url": "https://ehgembxe.cfd/o9bl8cai-7967",
-            "vip": false
-          },
-          {
-            "name": "Sky Sports 4K HEVC",
-            "url": "https://ehgembxe.cfd/iy500hzq-9081",
-            "vip": false
-          }
-        ]
-      },
-      {
-        "url": "guardians-v-rays-401908028",
-        "name": "Guardians @ Rays",
-        "logo": "https://f9f10c57.imgggre.pages.dev/mlb-401908028.png",
-        "genre": 9,
-        "sub_genre": 1,
-        "time": "2026-10-19T20:00",
-        "isevent": true,
-        "vip": false,
-        "featured": true,
-        "viewers": 0,
-        "streams": [
-          {
-            "name": "TBS",
-            "url": "https://ehgembxe.cfd/2rqv6c3g-5149",
-            "vip": false
-          }
-        ]
-      },
-      {
-        "url": "pittsburgh-penguins-v-utah-mammoth-401892538",
-        "name": "Pittsburgh Penguins @ Utah Mammoth",
-        "logo": "https://f9f10c57.imgggre.pages.dev/nhl-401892538.png",
-        "genre": 11,
-        "sub_genre": 1,
-        "time": "2026-10-19T21:00",
-        "isevent": true,
-        "vip": false,
-        "viewers": 0,
-        "streams": [
-          {
-            "name": "ESPN+",
-            "url": "https://ehgembxe.cfd/8ndywqlu-5480",
+            "url": "https://ehgembxe.cfd/o9bl8cai-7716",
             "vip": false
           }
         ]

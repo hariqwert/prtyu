@@ -1,3 +1,4 @@
+import nacl from 'tweetnacl';
 import https from 'https';
 import http from 'http';
 import fs from 'fs';
@@ -234,7 +235,87 @@ export function normalizeServerId(rawSrv?: string): string | undefined {
     return map[lower] || lower;
 }
 
+
+// ==========================================
+// 🚀 VIDLINK PRO NATIVE DECRYPTOR
+// ==========================================
+const VIDLINK_KEY_HEX = 'c75136c5668bbfe65a7ecad431a745db68b5f381555b38d8f6c699449cf11fcd';
+const VIDLINK_KEY = Buffer.from(VIDLINK_KEY_HEX, 'hex');
+const VIDLINK_NONCE = Buffer.alloc(24, 0);
+
+export function encryptVidlinkToken(mediaId: string | number): string {
+    const timestamp = Math.floor(Date.now() / 1000) + 480;
+    const mediaIdBuf = Buffer.from(String(mediaId), 'utf-8');
+    const tsBuf = Buffer.alloc(8);
+    tsBuf.writeBigInt64BE(BigInt(timestamp));
+    const message = Buffer.concat([mediaIdBuf, tsBuf]);
+    const encrypted = nacl.secretbox(message, VIDLINK_NONCE, VIDLINK_KEY);
+    const fullPayload = Buffer.concat([VIDLINK_NONCE, Buffer.from(encrypted)]);
+    return fullPayload.toString('base64url').replace(/=/g, '');
+}
+
+export async function scrapeVidlinkStream(params: {
+    tmdbId: string | number;
+    type: 'movie' | 'tv';
+    season?: number;
+    episode?: number;
+}): Promise<any> {
+    try {
+        const token = encryptVidlinkToken(params.tmdbId);
+        const url = params.type === 'tv'
+            ? `https://vidlink.pro/api/b/tv/${token}/${params.season || 1}/${params.episode || 1}?multiLang=1`
+            : `https://vidlink.pro/api/b/movie/${token}?multiLang=1`;
+
+        const res = await axios.get(url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+                'Origin': 'https://vidlink.pro',
+                'Referer': 'https://vidlink.pro/'
+            },
+            timeout: 8000
+        });
+
+        if (res.data && res.data.stream) {
+            const st = res.data.stream;
+            const sources: any[] = [];
+            if (st.playlist) {
+                sources.push({
+                    url: st.playlist,
+                    quality: 'auto',
+                    type: 'application/x-mpegurl',
+                    label: 'VidLink HLS (Adaptive)',
+                    skipProxy: true
+                });
+            }
+            if (st.qualities) {
+                for (const q of Object.keys(st.qualities)) {
+                    const item = st.qualities[q];
+                    if (item && item.url) {
+                        sources.push({
+                            url: item.url,
+                            quality: q + 'p',
+                            type: item.type === 'mp4' || item.url.includes('.mp4') ? 'video/mp4' : 'application/x-mpegurl',
+                            label: `VidLink ${q}p (Direct CDN)`,
+                            skipProxy: true
+                        });
+                    }
+                }
+            }
+            const subtitles = (st.captions || []).map((c: any) => ({
+                lang: c.language || c.label || 'en',
+                url: c.url,
+                label: c.label || c.language || 'English'
+            }));
+            return { success: sources.length > 0, sources, subtitles };
+        }
+    } catch (e: any) {
+        console.warn('[VidLink Scraper Error]:', e?.message || e);
+    }
+    return { success: false, sources: [], subtitles: [] };
+}
+
 export const BINGR_SERVERS: BingrServerCluster[] = [
+    { id: 'vidlink', name: 'VidLink Pro (Decrypted 1080p / Direct CDN)', cc: 'US', priority: 1 },
     { id: 'm4u', name: 'Movie 4U (Movies4u / Acek CDN)', cc: 'IN', priority: 1 },
     { id: 's62', name: 'Bastion (Multi-Audio HLS / Fast Direct)', cc: 'IN', priority: 2 },
     { id: 's70', name: 'Polaris (Multi-Language Dubs / HLS)', cc: 'US', priority: 3 },
@@ -1565,6 +1646,23 @@ export async function scrapeBingrStream(params: {
                         });
                     }
                     subtitles = primaryRes.subtitles || [];
+                }
+            
+            } else if (serverId === 'vidlink' || serverId === 'vidlinkpro') {
+                try {
+                    const vlRes = await scrapeVidlinkStream({
+                        tmdbId: tmdbId || effectiveId,
+                        type: type as any,
+                        season: s,
+                        episode: e
+                    });
+                    if (vlRes.success && vlRes.sources.length > 0) {
+                        scraperName = 'VidLink Pro (Direct CDN)';
+                        sources = vlRes.sources;
+                        subtitles = vlRes.subtitles;
+                    }
+                } catch (err: any) {
+                    console.warn('[BingrScraper] VidLink error:', err?.message || err);
                 }
             } else if (serverId === 'framex' || serverId === 'framextv') {
                 try {

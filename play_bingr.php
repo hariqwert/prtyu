@@ -1933,18 +1933,19 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
         const DEFAULT_SERVERS = isAnimeContent ? ANIME_SPECIAL_SERVERS : [
             { id: 'm4u', name: 'Movie 4U (Movies4u / Acek CDN)', cc: 'IN' },
             { id: 's62', name: 'Bastion (Multi-Audio HLS / Fast Direct)', cc: 'IN' },
-            { id: 'framex', name: 'FrameX TV (Multi-Source 4K/1080p Movies, TV & Anime)', cc: 'US' },
+            { id: 's30', name: 'Nova (Direct Fast HLS)', cc: 'US' },
             { id: 's80', name: 'Moscow (Fast Direct HLS / StreamRip)', cc: 'US' },
             { id: 's31', name: 'Orion (Worker CDN Direct)', cc: 'US' },
             { id: 'sm_hub', name: 'SM Movie Hub Pro (Direct VOD/MKV/Dual Audio)', cc: 'BD' },
-            { id: 's81', name: 'Novo (Direct StreamRip / High-Speed HLS)', cc: 'US' },
-            { id: 's3', name: 'Edmunds (High Reliability Proxy / 1080p)', cc: 'US' },
-            { id: 's40', name: 'Aphelion (DarkMatter / 1080p Direct HLS)', cc: 'GL' },
-            { id: 's30', name: 'Nova (Direct Fast HLS)', cc: 'US' },
             { id: 's70', name: 'Polaris (Multi-Language Dubs / HLS)', cc: 'US' },
+            { id: 'framex', name: 'FrameX TV (Multi-Source 4K/1080p Movies, TV & Anime)', cc: 'US' },
+            { id: 's81', name: 'Novo (Direct StreamRip / High-Speed HLS)', cc: 'US' },
+            { id: 's40', name: 'Aphelion (DarkMatter / 1080p Direct HLS)', cc: 'GL' },
+            { id: 's3', name: 'Edmunds (High Reliability Proxy / 1080p)', cc: 'US' },
             { id: 's60', name: 'Vertex (Direct CDN)', cc: 'US' },
             { id: 's63', name: 'Hallyu (Asian & International HLS)', cc: 'KR' },
             { id: 's61', name: 'Corvus (Multi-Source Hub / 1080p)', cc: 'US' },
+            { id: 'vidlink', name: 'VidLink Pro (Decrypted 1080p / Direct CDN)', cc: 'US' },
             { id: 'cinepro', name: 'CinePro Core (OMSS Multi-Provider 4K/1080p)', cc: 'US' },
             { id: 'bing_anime', name: 'Bing Anime (Multi-Audio HLS / Nexa & Ravok Direct)', cc: 'JP' }
         ];
@@ -2208,8 +2209,8 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
                     const fallbackOrder = isAnimeMode
                         ? ['bing_anime', 'hianime', 'animesalt', 'kisskh', 'asiaflix', 's40', 'framex']
                         : (MEDIA_TYPE === 'tv'
-                            ? ['m4u', 's62', 'framex', 's80', 's31', 'sm_hub', 's81', 's3', 's40', 's30', 's70', 's60', 's63', 's61', 'cinepro']
-                            : ['m4u', 's62', 'framex', 's80', 's31', 'sm_hub', 's81', 's3', 's40', 's30', 's70', 's60', 's63', 's61', 'cinepro']);
+                            ? ['m4u', 's62', 's30', 's80', 's31', 'framex', 's81', 's70', 's40', 'sm_hub', 's3', 'vidlink']
+                            : ['m4u', 's62', 's30', 's80', 's31', 'framex', 's81', 'sm_hub', 's70', 's40', 's3', 'vidlink']);
                     failedServers.add(serverId);
                     const unattemptedDirect = fallbackOrder.find(srv => !failedServers.has(srv));
                     // If this was an auto-cascade and another direct server is available, search remaining direct servers first!
@@ -2288,8 +2289,8 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
             const fallbackOrder = isAnimeMode
                 ? ['bing_anime', 'hianime', 'animesalt', 'kisskh', 'asiaflix', 's40', 'framex']
                 : (MEDIA_TYPE === 'tv'
-                    ? ['m4u', 's62', 'framex', 's80', 's31', 'sm_hub', 's81', 's3', 's40', 's30', 's70', 's60', 's63', 's61', 'cinepro']
-                    : ['m4u', 's62', 'framex', 's80', 's31', 'sm_hub', 's81', 's3', 's40', 's30', 's70', 's60', 's63', 's61', 'cinepro']);
+                    ? ['m4u', 's62', 's30', 's80', 's31', 'framex', 's81', 's70', 's40', 'sm_hub', 's3', 'vidlink']
+                    : ['m4u', 's62', 's30', 's80', 's31', 'framex', 's81', 'sm_hub', 's70', 's40', 's3', 'vidlink']);
             // Find next unattempted direct server in priority sequence
             const nextServer = failedServers.size <= 10 ? fallbackOrder.find(srv => !failedServers.has(srv)) : null;
             if (nextServer) {
@@ -2343,7 +2344,9 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
             if (effectiveUrl.startsWith('/live.php?url=')) {
                 effectiveUrl = effectiveUrl.replace('/live.php?url=', '/stream_proxy.php?url=');
             }
-            const isCorsReady = effectiveUrl.includes('dash-hls-bridge') ||
+            const isCorsReady = effectiveUrl.includes('hakunaymatata.com') ||
+                                effectiveUrl.includes('hakunamatata.com') ||
+                                effectiveUrl.includes('dash-hls-bridge') ||
                                 effectiveUrl.includes('workers.dev') ||
                                 effectiveUrl.includes('proxy-web-sage.vercel.app');
             if (!isCorsReady && (effectiveUrl.startsWith('http://') || effectiveUrl.startsWith('https://')) && !effectiveUrl.startsWith(window.location.origin)) {
@@ -2397,6 +2400,10 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
                 mainVideo.onerror = () => {
                     console.warn('[Video Player] Direct video stream load error. Triggering fallback cascade...');
                     mainVideo.onerror = null;
+                    if (CURRENT_SERVER === 'vidlink') {
+                        switchPlayerMode('embed', 'vidlink_pro', true);
+                        return;
+                    }
                     cascadeFallback(CURRENT_SERVER);
                 };
                 if (targetSeekTime > 0 && !effectiveUrl.includes('/api/transcode/mkv') && !effectiveUrl.includes('transcode_mkv.php')) {

@@ -8078,10 +8078,14 @@ function getUpstreamProxyHeaders(targetUrlStr: string, clientIp?: string, reqHea
         headers['Origin'] = headers['Origin'] || 'https://vidrock.ru';
     }
 
-    if (u.hostname.includes('bxcnm.com') || u.hostname.includes('knocw') || u.hostname.includes('nxocw') || u.hostname.includes('flocw') || u.hostname.includes('mwocx') || u.hostname.includes('kxonn.com') || u.hostname.includes('flnmb.com') || u.hostname.includes('hmocx.com') || u.hostname.includes('hcozn.com') || u.hostname.includes('hcnmd.com') || u.hostname.includes('fxoxn.com') || u.hostname.includes('streamrip') || u.hostname.includes('hakunamatata') || u.hostname.includes('hakunaymatata') || u.hostname.includes('bingr.one') || u.hostname.includes('animecurx') || u.hostname.includes('rousav')) {
+    if (u.hostname.includes('bxcnm.com') || u.hostname.includes('knocw') || u.hostname.includes('nxocw') || u.hostname.includes('flocw') || u.hostname.includes('mwocx') || u.hostname.includes('kxonn.com') || u.hostname.includes('flnmb.com') || u.hostname.includes('hmocx.com') || u.hostname.includes('hcozn.com') || u.hostname.includes('hcnmd.com') || u.hostname.includes('fxoxn.com') || u.hostname.includes('streamrip') || u.hostname.includes('bingr.one') || u.hostname.includes('animecurx') || u.hostname.includes('rousav')) {
         headers['User-Agent'] = headers['User-Agent'] || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36';
         headers['Referer'] = 'https://bingr.one/';
         headers['Origin'] = 'https://bingr.one';
+    } else if (u.hostname.includes('hakunamatata') || u.hostname.includes('hakunaymatata')) {
+        headers['User-Agent'] = headers['User-Agent'] || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36';
+        headers['Referer'] = 'https://vidlink.pro/';
+        headers['Origin'] = 'https://vidlink.pro';
     }
 
     if (u.hostname.includes('m4uplay') || u.hostname.includes('acek-cdn') || u.hostname.includes('cloudxalviro') || u.hostname.includes('agilebusiness')) {
