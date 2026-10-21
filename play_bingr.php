@@ -2343,10 +2343,11 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
             if (effectiveUrl.startsWith('/live.php?url=')) {
                 effectiveUrl = effectiveUrl.replace('/live.php?url=', '/stream_proxy.php?url=');
             }
-            const isDirectMp4 = effectiveUrl.includes('.mp4') || effectiveUrl.includes('.webm') || (window.bingrSources && window.bingrSources[0] && window.bingrSources[0].type === 'video/mp4');
-            const isCorsReady = isDirectMp4 ||
-                                effectiveUrl.includes('hakunaymatata.com') ||
-                                effectiveUrl.includes('hakunamatata.com') ||
+            // VidLink (hakunaymatata / hakunamatata) MUST be proxied so server sends VLC User-Agent to bypass Alibaba 428 block
+            if ((effectiveUrl.includes('hakunaymatata.com') || effectiveUrl.includes('hakunamatata.com')) && !effectiveUrl.startsWith('/stream_proxy.php')) {
+                effectiveUrl = '/stream_proxy.php?url=' + encodeURIComponent(effectiveUrl);
+            }
+            const isCorsReady = effectiveUrl.startsWith('/stream_proxy.php') ||
                                 effectiveUrl.includes('dash-hls-bridge') ||
                                 effectiveUrl.includes('workers.dev') ||
                                 effectiveUrl.includes('proxy-web-sage.vercel.app');

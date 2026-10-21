@@ -6878,7 +6878,7 @@ async function openBingrPlayer(item = null, epNum = null, triggerBtn = null) {
     }
 
     // Direct Instant Launch to play_bingr.php (0ms latency, handles live resolution with full UI & controls)
-    const targetUrl = `/play_bingr.php?type=${type}&media_type=${type}&id=${mediaId}&tmdbId=${mediaId}${imdbParam}${malParam}${anilistParam}&srv=${defaultSrv}&title=${encodeURIComponent(rawTitle)}&name=${encodeURIComponent(queryTitle)}&season=${s}&episode=${e}&s=${s}&e=${e}&source=consumet.html&_v=2.5`;
+    const targetUrl = `/play_bingr.php?type=${type}&media_type=${type}&id=${mediaId}&tmdbId=${mediaId}${imdbParam}${malParam}${anilistParam}&srv=${defaultSrv}&title=${encodeURIComponent(rawTitle)}&name=${encodeURIComponent(queryTitle)}&season=${s}&episode=${e}&s=${s}&e=${e}&source=consumet.html&_v=2.6`;
     window.location.href = targetUrl;
     return;
 }

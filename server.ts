@@ -8083,9 +8083,9 @@ function getUpstreamProxyHeaders(targetUrlStr: string, clientIp?: string, reqHea
         headers['Referer'] = 'https://bingr.one/';
         headers['Origin'] = 'https://bingr.one';
     } else if (u.hostname.includes('hakunamatata') || u.hostname.includes('hakunaymatata')) {
-        headers['User-Agent'] = headers['User-Agent'] || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36';
-        headers['Referer'] = 'https://vidlink.pro/';
-        headers['Origin'] = 'https://vidlink.pro';
+        headers['User-Agent'] = 'VLC/3.0.20 LibVLC/3.0.20';
+        delete headers['Referer'];
+        delete headers['Origin'];
     }
 
     if (u.hostname.includes('m4uplay') || u.hostname.includes('acek-cdn') || u.hostname.includes('cloudxalviro') || u.hostname.includes('agilebusiness')) {
