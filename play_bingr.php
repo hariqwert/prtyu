@@ -2299,9 +2299,8 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
             } else {
                 showLoading(false);
                 failedServers.clear();
-                console.warn("[Fallback] Direct streams unavailable across primary clusters. Switching to embed mode...");
-                showToast("Direct stream unavailable. Switching to High-Definition Embed...", 'info');
-                switchPlayerMode('embed', 'vidlink_pro', true);
+                console.warn("[Fallback] Direct streams unavailable across primary clusters.");
+                showToast("Direct stream unavailable across clusters. Please select another server.", 'error');
             }
         }
 
@@ -2404,10 +2403,6 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
                 mainVideo.onerror = () => {
                     console.warn('[Video Player] Direct video stream load error. Triggering fallback cascade...');
                     mainVideo.onerror = null;
-                    if (CURRENT_SERVER === 'vidlink') {
-                        switchPlayerMode('embed', 'vidlink_pro', true);
-                        return;
-                    }
                     cascadeFallback(CURRENT_SERVER);
                 };
                 if (targetSeekTime > 0 && !effectiveUrl.includes('/api/transcode/mkv') && !effectiveUrl.includes('transcode_mkv.php')) {
