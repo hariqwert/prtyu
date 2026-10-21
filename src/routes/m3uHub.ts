@@ -115,6 +115,76 @@ m3uHubRouter.get('/movies4u', async (req: Request, res: Response) => {
 });
 
 /**
+ * VidLink Pro Direct M3U Scraper Endpoint
+ * GET /api/m3u/vidlink?id=533535&type=movie
+ * GET /api/m3u/vidlink?id=213375&type=tv&s=1&e=1
+ */
+m3uHubRouter.get('/vidlink', async (req: Request, res: Response) => {
+    let idRaw = (req.query.id || req.query.tmdbId || '').toString().trim();
+    let title = (req.query.title || req.query.q || '').toString().trim();
+    let type = (req.query.type || 'movie') as 'movie' | 'tv';
+    let season = req.query.season ? Number(req.query.season) : (req.query.s ? Number(req.query.s) : 1);
+    let episode = req.query.episode ? Number(req.query.episode) : (req.query.e ? Number(req.query.e) : 1);
+
+    try {
+        if (!idRaw && title) {
+            const match = await findTmdbMatch(title, type);
+            if (match) {
+                idRaw = String(match.id);
+                title = match.title;
+            }
+        }
+
+        if (!idRaw && !title) {
+            return res.status(400).send('#EXTM3U\n#ERROR: Missing ?id= or ?title= parameter');
+        }
+
+        const scrapeRes: any = type === 'tv'
+            ? await scrapeTvEpisode(idRaw, season, episode, { title, srv: 'vidlink' })
+            : await scrapeMovie(idRaw, { title, srv: 'vidlink' });
+
+        const items: any[] = [];
+        if (scrapeRes?.sources && scrapeRes.sources.length > 0) {
+            scrapeRes.sources.forEach((s: any) => {
+                if (s.url) {
+                    items.push({
+                        name: `${title || scrapeRes.title || 'Media'} [VidLink ${s.quality || '1080p'}]`,
+                        url: s.url,
+                        quality: s.quality || '1080p'
+                    });
+                }
+            });
+        }
+
+        if (items.length === 0 && scrapeRes?.primaryM3u8) {
+            items.push({
+                name: `${title || scrapeRes.title || 'Media'} [VidLink 1080p]`,
+                url: scrapeRes.primaryM3u8,
+                quality: '1080p'
+            });
+        }
+
+        if (items.length === 0) {
+            return res.status(404).send(`#EXTM3U\n#ERROR: No stream resolved for ${idRaw}`);
+        }
+
+        let m3u = `#EXTM3U\n#PLAYLIST: VidLink Pro — ${title || scrapeRes.title || idRaw}\n\n`;
+        items.forEach((item) => {
+            const group = type === 'tv' ? `VidLink TV S${season}` : 'VidLink Movies';
+            m3u += `#EXTINF:-1 tvg-id="${idRaw}" tvg-name="${item.name}" group-title="${group}",${item.name}\n`;
+            m3u += `${item.url}\n\n`;
+        });
+
+        res.setHeader('Content-Type', 'application/vnd.apple.mpegurl; charset=utf-8');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Content-Disposition', `inline; filename="vidlink_${type}_${idRaw}.m3u"`);
+        return res.send(m3u);
+    } catch (e: any) {
+        return res.status(500).send(`#EXTM3U\n#ERROR: VidLink scraper error: ${e.message}`);
+    }
+});
+
+/**
  * Universal Bingr / CinePro Direct M3U Scraper Endpoint
  * GET /api/m3u/movie?id=27205 OR GET /api/m3u/bingr?id=27205&type=movie
  */
@@ -151,9 +221,9 @@ m3uHubRouter.get(['/movie', '/bingr'], async (req: Request, res: Response) => {
         const items: any[] = [];
         if (scrapeRes?.sources && scrapeRes.sources.length > 0) {
             scrapeRes.sources.forEach((s: any) => {
-                if (s.url && (s.url.includes('.m3u8') || s.type === 'application/x-mpegurl')) {
+                if (s.url && (s.url.includes('.m3u8') || s.type === 'application/x-mpegurl' || s.url.includes('.mp4') || s.type === 'video/mp4' || s.url.includes('hakunaymatata') || s.url.includes('hakunamatata'))) {
                     items.push({
-                        name: `${title || scrapeRes.title || 'Media'} [${s.label || s.name || s.quality || 'Direct HLS'}]`,
+                        name: `${title || scrapeRes.title || 'Media'} [${s.label || s.name || s.quality || 'Direct Stream'}]`,
                         url: formatRawDirectStreamUrl(s.url, baseUrl),
                         quality: s.quality || '1080p',
                         season: type === 'tv' ? season : undefined,
@@ -166,9 +236,9 @@ m3uHubRouter.get(['/movie', '/bingr'], async (req: Request, res: Response) => {
 
         if (items.length === 0 && scrapeRes?.primaryM3u8) {
             items.push({
-                name: `${title || scrapeRes.title || 'Media'} [CinePro Direct HLS]`,
+                name: `${title || scrapeRes.title || 'Media'} [${scrapeRes.serverName || 'Direct Stream'}]`,
                 url: formatRawDirectStreamUrl(scrapeRes.primaryM3u8, baseUrl),
-                quality: '1080p',
+                quality: scrapeRes.quality || '1080p',
                 season: type === 'tv' ? season : undefined,
                 episode: type === 'tv' ? episode : undefined,
                 tmdbId: scrapeRes.tmdbId || idRaw
