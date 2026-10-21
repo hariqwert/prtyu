@@ -2344,7 +2344,9 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
             if (effectiveUrl.startsWith('/live.php?url=')) {
                 effectiveUrl = effectiveUrl.replace('/live.php?url=', '/stream_proxy.php?url=');
             }
-            const isCorsReady = effectiveUrl.includes('hakunaymatata.com') ||
+            const isDirectMp4 = effectiveUrl.includes('.mp4') || effectiveUrl.includes('.webm') || (window.bingrSources && window.bingrSources[0] && window.bingrSources[0].type === 'video/mp4');
+            const isCorsReady = isDirectMp4 ||
+                                effectiveUrl.includes('hakunaymatata.com') ||
                                 effectiveUrl.includes('hakunamatata.com') ||
                                 effectiveUrl.includes('dash-hls-bridge') ||
                                 effectiveUrl.includes('workers.dev') ||
@@ -2394,6 +2396,8 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
 
             if (isDirectVideo) {
                 showLoading(true, 'Direct Stream Ready — Playing in a Moment!', 'Buffering initial high-bitrate video frames...', 'almost_playing');
+                // Remove crossorigin attribute so browser loads CDN video directly without CORS preflight blocks (same as VLC)
+                mainVideo.removeAttribute('crossorigin');
                 mainVideo.src = effectiveUrl;
                 probeSmMovieStream(effectiveUrl);
                 if (typeof syncDurationDisplay === 'function') syncDurationDisplay();
