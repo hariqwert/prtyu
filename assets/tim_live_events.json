@@ -43,15 +43,20 @@
         "name": "MSC Cruises United States Grand Prix - Free Practice 1",
         "logo": "https://1fbbeebb.imgggre.pages.dev/f1-401839118.png",
         "genre": 2,
-        "sub_genre": 3,
         "time": "2026-10-23T13:30",
         "isevent": true,
         "vip": false,
+        "featured": true,
         "viewers": 0,
         "streams": [
           {
-            "name": "Apple TV",
-            "url": "https://ehgembxe.cfd/bq8abpfu-8933",
+            "name": "Sky Sports F1",
+            "url": "https://ehgembxe.cfd/f596f98r-9993",
+            "vip": false
+          },
+          {
+            "name": "Sky Sports F1 UHD",
+            "url": "https://ehgembxe.cfd/c89vxrvc-1839",
             "vip": false
           }
         ]
@@ -70,6 +75,24 @@
           {
             "name": "DAZN Canada",
             "url": "https://ehgembxe.cfd/4e4eual6-506",
+            "vip": false
+          }
+        ]
+      },
+      {
+        "url": "monza-v-torino-401874957",
+        "name": "Monza @ Torino",
+        "logo": "https://1fbbeebb.imgggre.pages.dev/seriea-401874957.png",
+        "genre": 1,
+        "sub_genre": 5,
+        "time": "2026-10-23T14:45",
+        "isevent": true,
+        "vip": false,
+        "viewers": 0,
+        "streams": [
+          {
+            "name": "Paramount+",
+            "url": "https://ehgembxe.cfd/v7mqqmdy-4521",
             "vip": false
           }
         ]
@@ -103,42 +126,6 @@
         ]
       },
       {
-        "url": "monza-v-torino-401874957",
-        "name": "Monza @ Torino",
-        "logo": "https://1fbbeebb.imgggre.pages.dev/seriea-401874957.png",
-        "genre": 1,
-        "sub_genre": 5,
-        "time": "2026-10-23T14:45",
-        "isevent": true,
-        "vip": false,
-        "viewers": 0,
-        "streams": [
-          {
-            "name": "Paramount+",
-            "url": "https://ehgembxe.cfd/v7mqqmdy-4521",
-            "vip": false
-          }
-        ]
-      },
-      {
-        "url": "nottingham-forest-v-ipswich-town-401879253",
-        "name": "Nottingham Forest @ Ipswich Town",
-        "logo": "https://1fbbeebb.imgggre.pages.dev/premierleague-401879253.png",
-        "genre": 1,
-        "sub_genre": 1,
-        "time": "2026-10-23T15:00",
-        "isevent": true,
-        "vip": false,
-        "viewers": 0,
-        "streams": [
-          {
-            "name": "Stan Sport",
-            "url": "https://ehgembxe.cfd/3yadgis8-2469",
-            "vip": false
-          }
-        ]
-      },
-      {
         "url": "malaga-v-alaves-401882836",
         "name": "Málaga @ Alavés",
         "logo": "https://1fbbeebb.imgggre.pages.dev/laliga-401882836.png",
@@ -157,6 +144,30 @@
         ]
       },
       {
+        "url": "nottingham-forest-v-ipswich-town-401879253",
+        "name": "Nottingham Forest @ Ipswich Town",
+        "logo": "https://1fbbeebb.imgggre.pages.dev/premierleague-401879253.png",
+        "genre": 1,
+        "sub_genre": 1,
+        "time": "2026-10-23T15:00",
+        "isevent": true,
+        "vip": false,
+        "featured": true,
+        "viewers": 0,
+        "streams": [
+          {
+            "name": "Sky Sports Premier League",
+            "url": "https://ehgembxe.cfd/kzd3hrqz-850",
+            "vip": false
+          },
+          {
+            "name": "Sky Sports UHD 1",
+            "url": "https://ehgembxe.cfd/t7qnwt79-5984",
+            "vip": false
+          }
+        ]
+      },
+      {
         "url": "chicago-bulls-v-milwaukee-bucks-401909848",
         "name": "Chicago Bulls @ Milwaukee Bucks",
         "logo": "https://1fbbeebb.imgggre.pages.dev/nba-401909848.png",
@@ -170,24 +181,6 @@
           {
             "name": "NBA League Pass",
             "url": "https://ehgembxe.cfd/p130g3ir-698",
-            "vip": false
-          }
-        ]
-      },
-      {
-        "url": "pbr-ridepass",
-        "name": "PBR RidePass",
-        "logo": "https://d2779tscntxxsw.cloudfront.net/68150c778dbc1.png",
-        "genre": 2,
-        "sub_genre": 2,
-        "time": "2026-10-23T17:00",
-        "isevent": true,
-        "vip": false,
-        "viewers": 0,
-        "streams": [
-          {
-            "name": "Floracing",
-            "url": "https://ehgembxe.cfd/ph13v1ca-4259",
             "vip": false
           }
         ]
@@ -229,24 +222,6 @@
         ]
       },
       {
-        "url": "new-york-knicks-v-boston-celtics-401909095",
-        "name": "New York Knicks @ Boston Celtics",
-        "logo": "https://1fbbeebb.imgggre.pages.dev/nba-401909095.png",
-        "genre": 7,
-        "sub_genre": 1,
-        "time": "2026-10-23T19:00",
-        "isevent": true,
-        "vip": false,
-        "viewers": 0,
-        "streams": [
-          {
-            "name": "NBA League Pass",
-            "url": "https://ehgembxe.cfd/bswrtw3m-4396",
-            "vip": false
-          }
-        ]
-      },
-      {
         "url": "atlanta-hawks-v-charlotte-hornets-401909843",
         "name": "Atlanta Hawks @ Charlotte Hornets",
         "logo": "https://1fbbeebb.imgggre.pages.dev/nba-401909843.png",
@@ -283,42 +258,6 @@
         ]
       },
       {
-        "url": "minnesota-timberwolves-v-orlando-magic-401909845",
-        "name": "Minnesota Timberwolves @ Orlando Magic",
-        "logo": "https://1fbbeebb.imgggre.pages.dev/nba-401909845.png",
-        "genre": 7,
-        "sub_genre": 1,
-        "time": "2026-10-23T19:00",
-        "isevent": true,
-        "vip": false,
-        "viewers": 0,
-        "streams": [
-          {
-            "name": "NBA League Pass",
-            "url": "https://ehgembxe.cfd/widm2mn1-8793",
-            "vip": false
-          }
-        ]
-      },
-      {
-        "url": "toronto-raptors-v-washington-wizards-401909846",
-        "name": "Toronto Raptors @ Washington Wizards",
-        "logo": "https://1fbbeebb.imgggre.pages.dev/nba-401909846.png",
-        "genre": 7,
-        "sub_genre": 1,
-        "time": "2026-10-23T19:00",
-        "isevent": true,
-        "vip": false,
-        "viewers": 0,
-        "streams": [
-          {
-            "name": "NBA League Pass",
-            "url": "https://ehgembxe.cfd/w1824rz4-1781",
-            "vip": false
-          }
-        ]
-      },
-      {
         "url": "duke-blue-devils-v-virginia-cavaliers-401858271",
         "name": "Duke Blue Devils @ Virginia Cavaliers",
         "logo": "https://1fbbeebb.imgggre.pages.dev/cfb-401858271.png",
@@ -332,6 +271,24 @@
           {
             "name": "ESPN",
             "url": "https://ehgembxe.cfd/o9bl8cai-4513",
+            "vip": false
+          }
+        ]
+      },
+      {
+        "url": "harvest-hustle-at-marshalltown-speedway",
+        "name": "Harvest Hustle at Marshalltown Speedway",
+        "logo": "https://d2779tscntxxsw.cloudfront.net/6998bea206416.png",
+        "genre": 2,
+        "sub_genre": 2,
+        "time": "2026-10-23T19:00",
+        "isevent": true,
+        "vip": false,
+        "viewers": 0,
+        "streams": [
+          {
+            "name": "Floracing",
+            "url": "https://ehgembxe.cfd/kau47l7f-6700",
             "vip": false
           }
         ]
@@ -355,19 +312,55 @@
         ]
       },
       {
-        "url": "harvest-hustle-at-marshalltown-speedway",
-        "name": "Harvest Hustle at Marshalltown Speedway",
-        "logo": "https://d2779tscntxxsw.cloudfront.net/6998bea206416.png",
-        "genre": 2,
-        "sub_genre": 2,
+        "url": "minnesota-timberwolves-v-orlando-magic-401909845",
+        "name": "Minnesota Timberwolves @ Orlando Magic",
+        "logo": "https://1fbbeebb.imgggre.pages.dev/nba-401909845.png",
+        "genre": 7,
+        "sub_genre": 1,
         "time": "2026-10-23T19:00",
         "isevent": true,
         "vip": false,
         "viewers": 0,
         "streams": [
           {
-            "name": "Floracing",
-            "url": "https://ehgembxe.cfd/kau47l7f-6700",
+            "name": "NBA League Pass",
+            "url": "https://ehgembxe.cfd/widm2mn1-8793",
+            "vip": false
+          }
+        ]
+      },
+      {
+        "url": "new-york-knicks-v-boston-celtics-401909095",
+        "name": "New York Knicks @ Boston Celtics",
+        "logo": "https://1fbbeebb.imgggre.pages.dev/nba-401909095.png",
+        "genre": 7,
+        "sub_genre": 1,
+        "time": "2026-10-23T19:00",
+        "isevent": true,
+        "vip": false,
+        "viewers": 0,
+        "streams": [
+          {
+            "name": "NBA League Pass",
+            "url": "https://ehgembxe.cfd/bswrtw3m-4396",
+            "vip": false
+          }
+        ]
+      },
+      {
+        "url": "toronto-raptors-v-washington-wizards-401909846",
+        "name": "Toronto Raptors @ Washington Wizards",
+        "logo": "https://1fbbeebb.imgggre.pages.dev/nba-401909846.png",
+        "genre": 7,
+        "sub_genre": 1,
+        "time": "2026-10-23T19:00",
+        "isevent": true,
+        "vip": false,
+        "viewers": 0,
+        "streams": [
+          {
+            "name": "NBA League Pass",
+            "url": "https://ehgembxe.cfd/w1824rz4-1781",
             "vip": false
           }
         ]
@@ -409,24 +402,6 @@
         ]
       },
       {
-        "url": "rays-v-brewers-401908042",
-        "name": "Rays @ Brewers",
-        "logo": "https://1fbbeebb.imgggre.pages.dev/mlb-401908042.png",
-        "genre": 9,
-        "sub_genre": 1,
-        "time": "2026-10-23T20:00",
-        "isevent": true,
-        "vip": false,
-        "viewers": 0,
-        "streams": [
-          {
-            "name": "MLB.TV (Brewers Feed)",
-            "url": "https://ehgembxe.cfd/tnwlfyem-852",
-            "vip": false
-          }
-        ]
-      },
-      {
         "url": "detroit-pistons-v-miami-heat-401909847",
         "name": "Detroit Pistons @ Miami Heat",
         "logo": "https://1fbbeebb.imgggre.pages.dev/nba-401909847.png",
@@ -458,6 +433,24 @@
           {
             "name": "NHL Net",
             "url": "https://ehgembxe.cfd/kelcwql2-7673",
+            "vip": false
+          }
+        ]
+      },
+      {
+        "url": "rays-v-brewers-401908042",
+        "name": "Rays @ Brewers",
+        "logo": "https://1fbbeebb.imgggre.pages.dev/mlb-401908042.png",
+        "genre": 9,
+        "sub_genre": 1,
+        "time": "2026-10-23T20:00",
+        "isevent": true,
+        "vip": false,
+        "viewers": 0,
+        "streams": [
+          {
+            "name": "MLB.TV (Brewers Feed)",
+            "url": "https://ehgembxe.cfd/tnwlfyem-852",
             "vip": false
           }
         ]
@@ -553,24 +546,6 @@
         ]
       },
       {
-        "url": "memphis-grizzlies-v-golden-state-warriors-401909850",
-        "name": "Memphis Grizzlies @ Golden State Warriors",
-        "logo": "https://1fbbeebb.imgggre.pages.dev/nba-401909850.png",
-        "genre": 7,
-        "sub_genre": 1,
-        "time": "2026-10-23T22:00",
-        "isevent": true,
-        "vip": false,
-        "viewers": 0,
-        "streams": [
-          {
-            "name": "NBA League Pass",
-            "url": "https://ehgembxe.cfd/ca3cbgye-6127",
-            "vip": false
-          }
-        ]
-      },
-      {
         "url": "la-clippers-v-los-angeles-lakers-401909851",
         "name": "LA Clippers @ Los Angeles Lakers",
         "logo": "https://1fbbeebb.imgggre.pages.dev/nba-401909851.png",
@@ -584,6 +559,24 @@
           {
             "name": "NBA League Pass",
             "url": "https://ehgembxe.cfd/orgs0dzg-8300",
+            "vip": false
+          }
+        ]
+      },
+      {
+        "url": "memphis-grizzlies-v-golden-state-warriors-401909850",
+        "name": "Memphis Grizzlies @ Golden State Warriors",
+        "logo": "https://1fbbeebb.imgggre.pages.dev/nba-401909850.png",
+        "genre": 7,
+        "sub_genre": 1,
+        "time": "2026-10-23T22:00",
+        "isevent": true,
+        "vip": false,
+        "viewers": 0,
+        "streams": [
+          {
+            "name": "NBA League Pass",
+            "url": "https://ehgembxe.cfd/ca3cbgye-6127",
             "vip": false
           }
         ]

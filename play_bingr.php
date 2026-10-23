@@ -2156,20 +2156,23 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
                     ? firstSource.url
                     : (data.primaryM3u8 || (firstSource ? firstSource.url : null));
 
-                const isEmbedSource = isExplicitEmbed || (streamCandidate && (
-                    streamCandidate.includes('vidlink') || 
-                    streamCandidate.includes('/embed') || 
-                    streamCandidate.includes('embed.php') ||
-                    streamCandidate.endsWith('.html')
-                ));
+                const isCoreDirect = serverId === 'vidrift' || serverId === 'vidlink' || serverId === 'filmu' || serverId === 'm4u' || serverId === 's62' || serverId === 's30' || serverId === 's80' || serverId === 's31' || serverId === 's70' || serverId === 'framex' || serverId === 'sm_hub';
 
-                const isDirectStream = !isEmbedSource && streamCandidate && (
+                const isEmbedSource = !isCoreDirect && (isExplicitEmbed || (streamCandidate && (
+                    streamCandidate.includes('embed.php') || 
+                    (streamCandidate.includes('/embed/') && !streamCandidate.includes('stream_proxy.php')) ||
+                    streamCandidate.endsWith('.html')
+                )));
+
+                const isDirectStream = isCoreDirect || (!isEmbedSource && streamCandidate && (
                     streamCandidate.includes('.m3u8') || 
+                    streamCandidate.includes('/stream_proxy.php') || 
                     streamCandidate.includes('/api/proxy/hls') || 
                     streamCandidate.includes('/stream') || 
                     streamCandidate.includes('.mpd') ||
-                    (firstSource && (firstSource.type === 'application/x-mpegurl' || firstSource.type === 'hls' || firstSource.type === 'application/dash+xml'))
-                );
+                    streamCandidate.includes('.mp4') ||
+                    (firstSource && (firstSource.type === 'application/x-mpegurl' || firstSource.type === 'hls' || firstSource.type === 'application/dash+xml' || firstSource.type === 'video/mp4'))
+                ));
 
                 const streamUrl = streamCandidate;
 
@@ -3771,11 +3774,14 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
         }
 
         function switchServer(serverId) {
-            if (serverId === CURRENT_SERVER) return;
+            if (serverId === CURRENT_SERVER && playerMode === 'direct') return;
             const curTime = (mainVideo && !isNaN(mainVideo.currentTime)) ? mainVideo.currentTime : 0;
             if (curTime > 0) previousVideoTime = curTime;
             toggleQualityServerModal(false);
             failedServers.clear();
+            if (playerMode === 'embed') {
+                switchPlayerMode('direct', '', false);
+            }
             showToast(`Switching server to ${getServerName(serverId)}...`);
             fetchAndPlayStream(serverId, true);
         }
@@ -5545,7 +5551,7 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
 
             // 6. Play new episode stream
             if (playerMode === 'embed') {
-                const provId = (embedFrame && embedFrame.dataset.provider) ? embedFrame.dataset.provider : 'vidrift';
+                const provId = (embedFrame && embedFrame.dataset.provider) ? embedFrame.dataset.provider : 'vidbolt';
                 const prov = EMBED_PROVIDERS.find(p => p.id === provId) || EMBED_PROVIDERS[0];
                 if (embedFrame && prov) {
                     embedFrame.src = prov.url(MEDIA_TYPE, MEDIA_ID, MEDIA_SEASON, MEDIA_EPISODE);
@@ -5570,12 +5576,9 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
         }
 
         const EMBED_PROVIDERS = [
-            { id: 'filmu', name: 'Filmu Stream (Bingr Official)', url: (t, id, s, e) => (t === 'tv' || t === 'series') ? `https://embed.filmu.in/tv/${id}/${s}/${e}` : `https://embed.filmu.in/movie/${id}` },
             { id: 'vidy', name: 'Vidy (Bingr Official)', url: (t, id, s, e) => (t === 'tv' || t === 'series') ? `https://www.vidy.st/tv/${id}/${s}/${e}` : `https://www.vidy.st/movie/${id}` },
             { id: 'cinezo', name: 'Cinezo (Bingr Official)', url: (t, id, s, e) => (t === 'tv' || t === 'series') ? `https://player.cinezo.live/embed/tv/${id}/${s}/${e}` : `https://player.cinezo.live/embed/movie/${id}` },
             { id: 'vidbolt', name: 'Vidbolt (Bingr Official)', url: (t, id, s, e) => (t === 'tv' || t === 'series') ? `https://vidbolt.xyz/tv/${id}/${s}/${e}` : `https://vidbolt.xyz/movie/${id}` },
-            { id: 'vidrift', name: 'Vidrift (Bingr Official)', url: (t, id, s, e) => (t === 'tv' || t === 'series') ? `https://embed.vidrift.in/embed/tv/${id}/${s}/${e}` : `https://embed.vidrift.in/embed/movie/${id}` },
-            { id: 'vidlink_pro', name: 'VidLink Pro', url: (t, id, s, e) => (t === 'tv' || t === 'series') ? `https://vidlink.pro/tv/${id}/${s}/${e}?autoplay=true` : `https://vidlink.pro/movie/${id}?autoplay=true` },
             { id: 'm4u_custom', name: 'Movie 4U (Direct Embed)', url: () => customEmbedUrl || 'https://new1.movies4u.garden' }
         ];
 
@@ -5594,7 +5597,10 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
             }).join('');
         }
 
-        function switchPlayerMode(mode, providerId = 'vidlink_pro', isManualTrigger = true, customEmbedUrl = null) {
+        function switchPlayerMode(mode, providerId = 'vidbolt', isManualTrigger = true, customEmbedUrl = null) {
+            if (mode === 'embed' && (providerId === 'vidrift' || providerId === 'filmu' || providerId === 'vidlink' || providerId === 'vidlink_pro')) {
+                return switchServer(providerId === 'vidlink_pro' ? 'vidlink' : providerId);
+            }
             playerMode = mode;
             const btnDirect = document.getElementById('btnModeDirect');
             const btnEmbed = document.getElementById('btnModeEmbed');

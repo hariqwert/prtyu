@@ -2075,11 +2075,6 @@ export async function scrapeBingrStream(params: {
                             subtitles = flRes.subtitles || [];
                         }
                     } catch (_) {}
-                    if (sources.length === 0) {
-                        embedUrl = type === 'tv'
-                            ? `https://vidly.pro/tv/${targetId}/${sNum}/${epNum}`
-                            : ((type as string) === 'anime' ? `https://vidly.pro/anime/${malId || targetId}/${epNum}` : `https://vidly.pro/movie/${targetId}`);
-                    }
                 } else if (serverId === 'vidbolt') {
                     scraperName = 'Vidbolt (Vidbolt Embed Streamer)';
                     embedUrl = type === 'tv'
@@ -2109,11 +2104,6 @@ export async function scrapeBingrStream(params: {
                             subtitles = vdRes.subtitles || [];
                         }
                     } catch (_) {}
-                    if (sources.length === 0) {
-                        embedUrl = type === 'tv'
-                            ? `https://embed.vidrift.in/embed/tv/${targetId}/${sNum}/${epNum}`
-                            : ((type as string) === 'anime' ? `https://embed.vidrift.in/embed/anime/${malId || targetId}/${epNum}` : `https://embed.vidrift.in/embed/movie/${targetId}`);
-                    }
                 }
 
                 if (embedUrl) {
