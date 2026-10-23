@@ -2419,13 +2419,14 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
             }
 
             if (Hls.isSupported()) {
+                window._autoDubChecked = false;
                 hlsInstance = new Hls({
                     enableWorker: true,
                     startFragPrefetch: true,
-                    maxBufferLength: 30,
-                    maxMaxBufferLength: 60,
-                    maxBufferSize: 64 * 1024 * 1024,
-                    backBufferLength: 30,
+                    maxBufferLength: 60,
+                    maxMaxBufferLength: 120,
+                    maxBufferSize: 128 * 1024 * 1024,
+                    backBufferLength: 60,
                     maxBufferHole: 0.5,
                     highBufferWatchdogPeriod: 2,
                     nudgeOffset: 0.1,
@@ -2436,9 +2437,10 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
                     levelLoadingTimeOut: 15000,
                     levelLoadingMaxRetry: 3,
                     levelLoadingRetryDelay: 500,
-                    fragLoadingTimeOut: 15000,
-                    fragLoadingMaxRetry: 3,
+                    fragLoadingTimeOut: 20000,
+                    fragLoadingMaxRetry: 4,
                     fragLoadingRetryDelay: 500,
+                    lowLatencyMode: false,
                     xhrSetup: (xhr, url) => {
                         xhr.withCredentials = false;
                     }
@@ -2907,6 +2909,23 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
                     };
                 });
             } else if (hlsAudioTracks.length > 0) {
+                // Auto-switch to Hindi / Dub audio if present and user has not manually set preference
+                if (!window._userSelectedAudio && hlsInstance && !window._autoDubChecked) {
+                    window._autoDubChecked = true;
+                    const hinIdx = hlsAudioTracks.findIndex(t => {
+                        const l = (t.lang || t.language || '').toLowerCase();
+                        const n = (t.name || '').toLowerCase();
+                        return l === 'hin' || l.includes('hindi') || n.includes('hindi');
+                    });
+                    if (hinIdx >= 0 && hlsInstance.audioTrack !== hinIdx) {
+                        try {
+                            hlsInstance.audioTrack = hinIdx;
+                            currentActiveAudioTrack = hinIdx;
+                            showToast(`Multi-Audio: Auto-selected ${hlsAudioTracks[hinIdx].name || 'Hindi Dub'}`);
+                        } catch (_) {}
+                    }
+                }
+
                 hlsAudioTracks.forEach((t, idx) => {
                     const langCode = t.lang || t.language || '';
                     const friendlyLang = getLanguageDisplayName(langCode) || t.name || `Audio Track ${idx + 1}`;
@@ -2983,6 +3002,21 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
             });
 
             html += `</div>`;
+
+            // Dub available notice for single-track streams (e.g. Vidrift)
+            if (tracks.length <= 1 && (!window.bingrAudioTracks || window.bingrAudioTracks.length <= 1)) {
+                html += `
+                    <div class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-200 mt-2 mb-2 flex items-center justify-between">
+                        <div class="truncate pr-2">
+                            <div class="font-bold text-amber-300 flex items-center gap-1 truncate">
+                                <span>Multi-Audio Dub Available</span>
+                            </div>
+                            <div class="text-[10px] text-amber-200/70 truncate">Switch to Filmu or Bastion (s62) for Hindi & Regional Dubs</div>
+                        </div>
+                        <button type="button" onclick="switchServer('filmu')" class="px-2.5 py-1.5 bg-amber-400 text-black font-extrabold rounded-lg text-[10px] hover:bg-amber-300 shrink-0 cursor-pointer shadow">Switch to Filmu</button>
+                    </div>
+                `;
+            }
 
             // Dubbed Regional Feeds (Multi-Source Parsing)
             const languageSources = (window.bingrSources || []).filter(s => s.language || (s.label && s.label.includes('—')));
@@ -3212,6 +3246,7 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
         };
 
         function setAudioTrack(trackIdx) {
+            window._userSelectedAudio = true;
             currentActiveAudioTrack = trackIdx;
 
             if (window.bingrAudioTracks && window.bingrAudioTracks.length > 0) {

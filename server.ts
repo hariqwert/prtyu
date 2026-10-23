@@ -8078,7 +8078,7 @@ function getUpstreamProxyHeaders(targetUrlStr: string, clientIp?: string, reqHea
         headers['Origin'] = headers['Origin'] || 'https://vidrock.ru';
     }
 
-    if (u.hostname.includes('bxcnm.com') || u.hostname.includes('knocw') || u.hostname.includes('nxocw') || u.hostname.includes('flocw') || u.hostname.includes('mwocx') || u.hostname.includes('kxonn.com') || u.hostname.includes('flnmb.com') || u.hostname.includes('hmocx.com') || u.hostname.includes('hcozn.com') || u.hostname.includes('hcnmd.com') || u.hostname.includes('fxoxn.com') || u.hostname.includes('streamrip') || u.hostname.includes('bingr.one') || u.hostname.includes('animecurx') || u.hostname.includes('rousav')) {
+    if (u.hostname.includes('bxcnm.com') || u.hostname.includes('knocw') || u.hostname.includes('nxocw') || u.hostname.includes('flocw') || u.hostname.includes('mwocx') || u.hostname.includes('kxonn.com') || u.hostname.includes('flnmb.com') || u.hostname.includes('hmocx.com') || u.hostname.includes('hcozn.com') || u.hostname.includes('hcnmd.com') || u.hostname.includes('fxoxn.com') || u.hostname.includes('streamrip') || u.hostname.includes('bingr.one')) {
         headers['User-Agent'] = headers['User-Agent'] || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36';
         headers['Referer'] = 'https://bingr.one/';
         headers['Origin'] = 'https://bingr.one';
@@ -8594,9 +8594,18 @@ app.all(['/stream_proxy.php', '/api/proxy/fancode', '/api/proxy/sonyliv', '/api/
         // Check instant RAM cache for previously prefetched / loaded HLS video segments and encryption keys
         const isSonyKey = isSonyLivStream && (targetUrl.pathname.includes('key') || targetUrl.search.includes('key') || targetUrl.pathname.includes('license'));
         const isKeyReq = targetUrl.pathname.endsWith('.key') || targetUrl.pathname.endsWith('.bin') || targetUrl.search.includes('.key') || targetUrl.pathname.includes('/key') || targetUrl.search.includes('key=') || isSonyKey;
-        const isSegmentReq = isKeyReq ||
-                             targetUrl.pathname.endsWith('.ts') || 
+        const isHlsSegment = targetUrl.pathname.endsWith('.ts') || 
                              targetUrl.pathname.endsWith('.m4s') || 
+                             targetUrl.pathname.endsWith('.png') ||
+                             targetUrl.pathname.includes('/5-') ||
+                             targetUrl.pathname.includes('segment') ||
+                             targetUrl.pathname.includes('chunk') ||
+                             targetUrl.pathname.includes('fragment') ||
+                             targetUrl.hostname.includes('reelvault.click') ||
+                             (targetUrl.hostname.includes('rousav.tech') && !targetUrl.pathname.endsWith('.m3u8')) ||
+                             (targetUrl.hostname.includes('animecurx.tech') && !targetUrl.pathname.endsWith('.m3u8'));
+        const isSegmentReq = isKeyReq ||
+                             isHlsSegment ||
                              targetUrl.pathname.endsWith('.mp4') || 
                              targetUrl.pathname.endsWith('.aac') ||
                              targetUrl.pathname.endsWith('.m4a') ||
@@ -8605,11 +8614,7 @@ app.all(['/stream_proxy.php', '/api/proxy/fancode', '/api/proxy/sonyliv', '/api/
                              targetUrl.pathname.includes('tos-') ||
                              targetUrl.pathname.includes('tplv-') ||
                              targetUrl.search.includes('aka_msn=') ||
-                             targetUrl.search.includes('.ts') ||
-                             targetUrl.pathname.includes('/5-') ||
-                             targetUrl.pathname.includes('segment') ||
-                             targetUrl.pathname.includes('chunk') ||
-                             targetUrl.pathname.includes('fragment');
+                             targetUrl.search.includes('.ts');
         const reqKey = targetUrl.toString();
         const pathKey = targetUrl.origin + targetUrl.pathname;
         if (isSegmentReq && !clientRange && (hlsSegmentCache.has(reqKey) || hlsSegmentCache.has(pathKey))) {
@@ -8624,6 +8629,45 @@ app.all(['/stream_proxy.php', '/api/proxy/fancode', '/api/proxy/sonyliv', '/api/
         }
 
         const outboundAgent = getOutboundProxyAgent();
+
+        // High-Speed Progressive Video Stream Piper (Pipes VidLink / Hakunamatata MP4 Range requests directly to HTML5 video)
+        const isByteStream = (Boolean(clientRange) && !isHlsSegment) || 
+                             targetUrl.pathname.endsWith('.mkv') || 
+                             targetUrl.pathname.endsWith('.webm') ||
+                             targetUrl.hostname.includes('hakunamatata') || 
+                             targetUrl.hostname.includes('hakunaymatata');
+
+        if (isByteStream && !targetUrl.pathname.endsWith('.m3u8')) {
+            try {
+                const streamRes = await axios.get(targetUrl.toString(), {
+                    headers: upstreamHeaders,
+                    responseType: 'stream',
+                    validateStatus: () => true,
+                    timeout: 30000,
+                    httpsAgent: outboundAgent,
+                    httpAgent: persistentHttpAgent
+                });
+
+                res.status(streamRes.status);
+                const forwardHeaders = ['content-type', 'content-length', 'content-range', 'accept-ranges', 'cache-control'];
+                for (const h of forwardHeaders) {
+                    if (streamRes.headers[h]) {
+                        res.setHeader(h, streamRes.headers[h]);
+                    }
+                }
+                if (!streamRes.headers['content-type']) {
+                    res.setHeader('Content-Type', 'video/mp4');
+                }
+                if (!streamRes.headers['accept-ranges']) {
+                    res.setHeader('Accept-Ranges', 'bytes');
+                }
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                return streamRes.data.pipe(res);
+            } catch (err: any) {
+                console.warn(`[Stream Proxy] Byte stream pipe error for ${targetUrl.toString()}: ${err.message}`);
+                return res.status(502).send(`Upstream stream pipe failed: ${err.message}`);
+            }
+        }
         let upstreamRes: any;
         try {
             upstreamRes = await axios.get(targetUrl.toString(), {

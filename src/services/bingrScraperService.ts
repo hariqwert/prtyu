@@ -2179,16 +2179,30 @@ export async function scrapeBingrStream(params: {
                             (s as any).referrer = unwrapped.referer;
                         }
                     }
-                    const isFrameX = serverId === 'framex' || s.url.includes('framextv.tech') || (s as any).skipProxy;
-                    if (serverId !== 'bing_anime' && serverId !== 'animesalt' && !isFrameX) {
-                        if (unwrapped.streamUrl && unwrapped.streamUrl.startsWith('http') && s.url !== unwrapped.streamUrl) {
+                    const isMandatoryProxy = s.url.includes('hakunamatata.com') || 
+                                             s.url.includes('hakunaymatata.com') || 
+                                             s.url.includes('reelvault.click') || 
+                                             s.url.includes('streamrip.fun/f/') ||
+                                             s.url.includes('rousav.tech') ||
+                                             serverId === 'vidlink' ||
+                                             serverId === 'vidrift' ||
+                                             serverId === 'filmu';
+                    if (isMandatoryProxy) {
+                        const targetRaw = unwrapped.streamUrl || (s as any).rawUrl || s.url;
+                        (s as any).rawUrl = targetRaw;
+                        (s as any).directUrl = targetRaw;
+                        if (!s.url.startsWith('/stream_proxy.php')) {
                             (s as any).proxyUrl = s.url;
-                            s.url = unwrapped.streamUrl;
+                            s.url = `/stream_proxy.php?url=${encodeURIComponent(targetRaw)}`;
                         }
-                    }
-                    if (s.url && s.url.includes('streamrip.fun/f/') && !s.url.startsWith('/stream_proxy.php')) {
-                        (s as any).proxyUrl = s.url;
-                        s.url = `/stream_proxy.php?url=${encodeURIComponent(s.url)}`;
+                    } else {
+                        const isFrameX = serverId === 'framex' || s.url.includes('framextv.tech') || (s as any).skipProxy;
+                        if (serverId !== 'bing_anime' && serverId !== 'animesalt' && !isFrameX) {
+                            if (unwrapped.streamUrl && unwrapped.streamUrl.startsWith('http') && s.url !== unwrapped.streamUrl) {
+                                (s as any).proxyUrl = s.url;
+                                s.url = unwrapped.streamUrl;
+                            }
+                        }
                     }
                 }
 
