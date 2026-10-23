@@ -280,11 +280,12 @@ export async function scrapeVidlinkStream(params: {
             const sources: any[] = [];
             if (st.playlist) {
                 sources.push({
-                    url: st.playlist,
+                    url: `/stream_proxy.php?url=${encodeURIComponent(st.playlist)}`,
+                    rawUrl: st.playlist,
                     quality: 'auto',
                     type: 'application/x-mpegurl',
                     label: 'VidLink HLS (Adaptive)',
-                    skipProxy: true
+                    skipProxy: false
                 });
             }
             if (st.qualities) {
@@ -292,11 +293,12 @@ export async function scrapeVidlinkStream(params: {
                     const item = st.qualities[q];
                     if (item && item.url) {
                         sources.push({
-                            url: item.url,
+                            url: `/stream_proxy.php?url=${encodeURIComponent(item.url)}`,
+                            rawUrl: item.url,
                             quality: q + 'p',
                             type: item.type === 'mp4' || item.url.includes('.mp4') ? 'video/mp4' : 'application/x-mpegurl',
                             label: `VidLink ${q}p (Direct CDN)`,
-                            skipProxy: true
+                            skipProxy: false
                         });
                     }
                 }
@@ -314,33 +316,214 @@ export async function scrapeVidlinkStream(params: {
     return { success: false, sources: [], subtitles: [] };
 }
 
+/**
+ * 🚀 VIDRIFT NATIVE SCRAPER
+ * Resolves direct HLS manifests from embed.vidrift.in
+ */
+export async function scrapeVidriftStream(params: {
+    tmdbId: string | number;
+    type: 'movie' | 'tv';
+    season?: number;
+    episode?: number;
+}): Promise<any> {
+    try {
+        const s = params.season || 1;
+        const e = params.episode || 1;
+        const embedUrl = params.type === 'tv'
+            ? `https://embed.vidrift.in/embed/tv/${params.tmdbId}/${s}/${e}`
+            : `https://embed.vidrift.in/embed/movie/${params.tmdbId}`;
+
+        const htmlRes = await axios.get(embedUrl, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36'
+            },
+            timeout: 7000
+        });
+
+        const match = htmlRes.data.match(/embedMeta\s*=\s*({[\s\S]*?});/);
+        if (!match) return { success: false, sources: [], subtitles: [] };
+
+        const meta = JSON.parse(match[1]);
+        const token = meta.playbackToken;
+        if (!token) return { success: false, sources: [], subtitles: [] };
+
+        const path = params.type === 'tv'
+            ? `tv/${params.tmdbId}/${s}/${e}`
+            : `movie/${params.tmdbId}`;
+
+        const apiUrl = `https://embed.vidrift.in/api/source/${path}?token=${encodeURIComponent(token)}`;
+        const apiRes = await axios.get(apiUrl, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                'Referer': embedUrl
+            },
+            timeout: 7000
+        });
+
+        if (apiRes.data && apiRes.data.success && Array.isArray(apiRes.data.streams)) {
+            const sources: any[] = [];
+            for (const st of apiRes.data.streams) {
+                const streamUrl = st.proxyUrl || st.url;
+                if (streamUrl) {
+                    sources.push({
+                        url: `/stream_proxy.php?url=${encodeURIComponent(streamUrl)}`,
+                        rawUrl: streamUrl,
+                        quality: st.maxRes ? `${st.maxRes}p` : '1080p',
+                        type: 'application/x-mpegurl',
+                        label: `Vidrift ${st.provider || 'HLS'} (${st.quality || 'HD'})`,
+                        provider: st.provider,
+                        skipProxy: false
+                    });
+                }
+            }
+            const subtitles = (apiRes.data.subtitles || []).map((c: any) => ({
+                lang: c.lang || c.label || 'en',
+                url: c.url?.startsWith('http') ? c.url : `https://embed.vidrift.in${c.url}`,
+                label: c.label || 'English'
+            }));
+            return {
+                success: sources.length > 0,
+                sources,
+                subtitles,
+                primaryM3u8: sources[0]?.url
+            };
+        }
+    } catch (e: any) {
+        console.warn('[Vidrift Scraper Error]:', e?.message || e);
+    }
+    return { success: false, sources: [], subtitles: [] };
+}
+
+/**
+ * 🚀 FILMU / VIDLY NATIVE CIPHER SCRAPER
+ * Decrypts Next.js sealed streams from embed.filmu.in / vidly.pro
+ */
+const FILMU_KEY = "vY7#qL2!mZ9@wK4$";
+
+export function decryptFilmuPayload(payload: string): any {
+    if (!payload || !payload.startsWith("v1.")) throw new Error("bad payload");
+    const base64 = payload.slice(3).replace(/-/g, "+").replace(/_/g, "/");
+    const raw = Buffer.from(base64, 'base64');
+    const s = raw.subarray(0, 12);
+    const n = Buffer.from(raw.subarray(12));
+
+    const keys = (function(nonce: Buffer) {
+        const t: number[] = [];
+        for (let sIdx = 0; sIdx < 4; sIdx++) {
+            let num = (0x811c9dc5 ^ 0x9e3779b9 * sIdx) >>> 0;
+            for (let i = 0; i < FILMU_KEY.length; i++) num = Math.imul(num ^ FILMU_KEY.charCodeAt(i), 0x1000193) >>> 0;
+            for (let i = 0; i < nonce.length; i++) num = Math.imul(num ^ nonce[i], 0x1000193) >>> 0;
+            t.push(num);
+        }
+        return t;
+    })(s);
+
+    let [k0, k1, k2, k3] = keys;
+    let r = 0;
+    for (let t = 0; t < n.length; t++) {
+        if ((3 & t) === 0) {
+            k2 >>>= 0; k3 >>>= 0;
+            let sum = ((k0 >>>= 0) + (k1 >>>= 0)) | 0;
+            k0 = k1 ^ (k1 >>> 9);
+            k1 = (k2 + (k2 << 3)) | 0;
+            k2 = ((k2 << 21 | k2 >>> 11) + (sum = (sum + (k3 = (k3 + 1) | 0)) | 0)) | 0;
+            r = sum >>> 0;
+        }
+        n[t] ^= (r >>> ((3 & t) * 8)) & 255;
+    }
+
+    return JSON.parse(n.toString('utf-8'));
+}
+
+export async function scrapeFilmuStream(params: {
+    tmdbId: string | number;
+    type: 'movie' | 'tv';
+    season?: number;
+    episode?: number;
+}): Promise<any> {
+    try {
+        const s = params.season || 1;
+        const e = params.episode || 1;
+        const targetUrl = params.type === 'tv'
+            ? `https://vidly.pro/tv/${params.tmdbId}/${s}/${e}`
+            : `https://vidly.pro/movie/${params.tmdbId}`;
+
+        const res = await axios.get(targetUrl, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+                'Referer': 'https://embed.filmu.in/'
+            },
+            timeout: 8000
+        });
+
+        const match = res.data.match(/sealed\\?":\\?"(v1\.[^\\"]+)/);
+        if (!match) return { success: false, sources: [], subtitles: [] };
+
+        const decrypted = decryptFilmuPayload(match[1]);
+        if (!decrypted || !Array.isArray(decrypted.streams)) {
+            return { success: false, sources: [], subtitles: [] };
+        }
+
+        const sources: any[] = [];
+        for (const st of decrypted.streams) {
+            if (st.url && !st.url.includes('tiles')) {
+                sources.push({
+                    url: `/stream_proxy.php?url=${encodeURIComponent(st.url)}`,
+                    rawUrl: st.url,
+                    quality: st.quality || '1080p',
+                    type: 'application/x-mpegurl',
+                    label: `Filmu ${decrypted.provider?.label || st.label || 'Direct HLS'}`,
+                    provider: decrypted.provider?.id || 'filmu',
+                    skipProxy: false
+                });
+            }
+        }
+
+        const subtitles = (decrypted.subtitles || []).map((c: any) => ({
+            lang: c.lang || c.label || 'en',
+            url: c.url,
+            label: c.label || 'English'
+        }));
+
+        return {
+            success: sources.length > 0,
+            sources,
+            subtitles,
+            primaryM3u8: sources[0]?.url
+        };
+    } catch (e: any) {
+        console.warn('[Filmu Scraper Error]:', e?.message || e);
+    }
+    return { success: false, sources: [], subtitles: [] };
+}
+
 export const BINGR_SERVERS: BingrServerCluster[] = [
     { id: 'vidlink', name: 'VidLink Pro (Decrypted 1080p / Direct CDN)', cc: 'US', priority: 1 },
     { id: 'm4u', name: 'Movie 4U (Movies4u / Acek CDN)', cc: 'IN', priority: 1 },
-    { id: 's62', name: 'Bastion (Multi-Audio HLS / Fast Direct)', cc: 'IN', priority: 2 },
-    { id: 's70', name: 'Polaris (Multi-Language Dubs / HLS)', cc: 'US', priority: 3 },
-    { id: 's30', name: 'Nova (Direct Fast HLS)', cc: 'US', priority: 4 },
-    { id: 's80', name: 'Moscow (Fast Direct HLS / StreamRip)', cc: 'US', priority: 5 },
-    { id: 's31', name: 'Orion (Worker CDN Direct)', cc: 'US', priority: 6 },
-    { id: 'sm_hub', name: 'SM Movie Hub Pro (Direct VOD/MKV/Dual Audio)', cc: 'BD', priority: 7 },
-    { id: 'framex', name: 'FrameX TV (Multi-Source 4K/1080p Movies, TV & Anime)', cc: 'US', priority: 8 },
-    { id: 's81', name: 'Novo (Direct StreamRip / High-Speed HLS)', cc: 'US', priority: 9 },
-    { id: 's40', name: 'Aphelion (DarkMatter / Dedicated TV Series HLS)', cc: 'GL', priority: 10 },
-    { id: 's3', name: 'Edmunds (High Reliability Proxy / 1080p)', cc: 'US', priority: 11 },
-    { id: 's60', name: 'Vertex (Direct CDN)', cc: 'US', priority: 12 },
-    { id: 's63', name: 'Hallyu (Asian & International HLS)', cc: 'KR', priority: 13 },
-    { id: 's61', name: 'Corvus (Multi-Source Hub / 1080p)', cc: 'US', priority: 14 },
-    { id: 'cinepro', name: 'CinePro Core (OMSS Multi-Provider 4K/1080p)', cc: 'US', priority: 15 },
+    { id: 'vidrift', name: 'Vidrift (Decrypted Multi-Provider HLS)', cc: 'IN', priority: 2 },
+    { id: 'filmu', name: 'Filmu / Vidly (Native HLS / Decrypted Stream)', cc: 'IN', priority: 2 },
+    { id: 's62', name: 'Bastion (Multi-Audio HLS / Fast Direct)', cc: 'IN', priority: 3 },
+    { id: 's70', name: 'Polaris (Multi-Language Dubs / HLS)', cc: 'US', priority: 4 },
+    { id: 's30', name: 'Nova (Direct Fast HLS)', cc: 'US', priority: 5 },
+    { id: 's80', name: 'Moscow (Fast Direct HLS / StreamRip)', cc: 'US', priority: 6 },
+    { id: 's31', name: 'Orion (Worker CDN Direct)', cc: 'US', priority: 7 },
+    { id: 'sm_hub', name: 'SM Movie Hub Pro (Direct VOD/MKV/Dual Audio)', cc: 'BD', priority: 8 },
+    { id: 'framex', name: 'FrameX TV (Multi-Source 4K/1080p Movies, TV & Anime)', cc: 'US', priority: 9 },
+    { id: 's81', name: 'Novo (Direct StreamRip / High-Speed HLS)', cc: 'US', priority: 10 },
+    { id: 's40', name: 'Aphelion (DarkMatter / Dedicated TV Series HLS)', cc: 'GL', priority: 11 },
+    { id: 's3', name: 'Edmunds (High Reliability Proxy / 1080p)', cc: 'US', priority: 12 },
+    { id: 's60', name: 'Vertex (Direct CDN)', cc: 'US', priority: 13 },
+    { id: 's63', name: 'Hallyu (Asian & International HLS)', cc: 'KR', priority: 14 },
+    { id: 's61', name: 'Corvus (Multi-Source Hub / 1080p)', cc: 'US', priority: 15 },
+    { id: 'cinepro', name: 'CinePro Core (OMSS Multi-Provider 4K/1080p)', cc: 'US', priority: 16 },
     { id: 'bing_anime', name: 'Bing Anime (Multi-Audio HLS / Nexa & Ravok Direct)', cc: 'JP', priority: 16 },
     { id: 'hianime', name: 'HiAnime (MegaPlay Anime Scraper)', cc: 'JP', priority: 17 },
     { id: 'animesalt', name: 'AnimeSalt (Special Anime Scraper)', cc: 'JP', priority: 18 },
     { id: 'asiaflix', name: 'Asiaflix (Vidmoly Multi-Bitrate HLS)', cc: 'KR', priority: 19 },
     { id: 'kisskh', name: 'KissKH (Asian Drama & Anime)', cc: 'JP', priority: 20 },
-    { id: 'filmu', name: 'Filmu (Bingr Primary Web Embed)', cc: 'IN', priority: 21 },
     { id: 'cinezo', name: 'Cinezo (Player Cinezo Multi-Audio)', cc: 'FR', priority: 22 },
     { id: 'vidbolt', name: 'Vidbolt (Vidbolt Embed Streamer)', cc: 'US', priority: 23 },
     { id: 'vidy', name: 'Vidy (Vidy.st Direct Embed)', cc: 'US', priority: 24 },
-    { id: 'vidrift', name: 'Vidrift (Embed Vidrift HLS)', cc: 'IN', priority: 25 },
     { id: 's71', name: 'Phoenix (US Cluster)', cc: 'US', priority: 26 },
     { id: 's72', name: 'Paris (IT Cluster)', cc: 'IT', priority: 27 },
     { id: 's50', name: 'Delta (US Cluster)', cc: 'US', priority: 28 },
@@ -394,6 +577,17 @@ export async function verifyStreamReachable(url: string, timeoutMs: number = 250
         }
     }
     if (!target.startsWith('http')) return false;
+
+    if (
+        target.includes('reelvault') || 
+        target.includes('vidrift') || 
+        target.includes('hakunaymatata') || 
+        target.includes('hakunamatata') || 
+        target.includes('rousav') || 
+        target.includes('animecurx')
+    ) {
+        return true;
+    }
 
     const headers = getCdnHeaders(target);
     let extraApiKey: string | undefined;
@@ -1315,6 +1509,8 @@ export async function scrapeBingrStream(params: {
     strictSrv?: boolean;
     anilistId?: number | string;
     malId?: number | string;
+    nocache?: boolean;
+    force?: boolean;
 }): Promise<BingrScrapeResult> {
     const isTv = params.type === 'tv' || params.type === 'anime' || (params.type !== 'movie' && (params.season !== undefined || params.episode !== undefined));
     const type: 'movie' | 'tv' | 'anime' = params.type ? params.type : (isTv ? 'tv' : 'movie');
@@ -1379,7 +1575,7 @@ export async function scrapeBingrStream(params: {
     const e = isTv ? (params.episode !== undefined ? Number(params.episode) : 1) : 1;
     const cacheKey = `${type}:${tmdbId}:${s}:${e}:${params.srv || 'default'}`;
     const cachedStream = STREAM_CACHE.get(cacheKey);
-    if (cachedStream && cachedStream.result && cachedStream.result.success && (Date.now() - cachedStream.timestamp < CACHE_TTL_STREAM)) {
+    if (!params.nocache && !params.force && cachedStream && cachedStream.result && cachedStream.result.success && (Date.now() - cachedStream.timestamp < CACHE_TTL_STREAM)) {
         return { ...cachedStream.result };
     }
 
@@ -1651,7 +1847,7 @@ export async function scrapeBingrStream(params: {
             } else if (serverId === 'vidlink' || serverId === 'vidlinkpro') {
                 try {
                     const vlRes = await scrapeVidlinkStream({
-                        tmdbId: tmdbId || effectiveId,
+                        tmdbId: tmdbId!,
                         type: type as any,
                         season: s,
                         episode: e
@@ -1865,11 +2061,25 @@ export async function scrapeBingrStream(params: {
                 const epNum = e || 1;
                 const sNum = s || 1;
                 let embedUrl = '';
-                if (serverId === 'filmu') {
-                    scraperName = 'Filmu (Bingr Primary Web Embed)';
-                    embedUrl = type === 'tv'
-                        ? `https://embed.filmu.in/tv/${targetId}/${sNum}/${epNum}`
-                        : ((type as string) === 'anime' ? `https://embed.filmu.in/anime/${malId || targetId}/${epNum}` : `https://embed.filmu.in/movie/${targetId}`);
+                if (serverId === 'filmu' || (serverId as string) === 'vidly') {
+                    scraperName = 'Filmu / Vidly (Decrypted HLS / Multi-Provider)';
+                    try {
+                        const flRes = await scrapeFilmuStream({
+                            tmdbId: targetId,
+                            type: type as any,
+                            season: sNum,
+                            episode: epNum
+                        });
+                        if (flRes && flRes.success && flRes.sources && flRes.sources.length > 0) {
+                            sources = flRes.sources;
+                            subtitles = flRes.subtitles || [];
+                        }
+                    } catch (_) {}
+                    if (sources.length === 0) {
+                        embedUrl = type === 'tv'
+                            ? `https://vidly.pro/tv/${targetId}/${sNum}/${epNum}`
+                            : ((type as string) === 'anime' ? `https://vidly.pro/anime/${malId || targetId}/${epNum}` : `https://vidly.pro/movie/${targetId}`);
+                    }
                 } else if (serverId === 'vidbolt') {
                     scraperName = 'Vidbolt (Vidbolt Embed Streamer)';
                     embedUrl = type === 'tv'
@@ -1886,10 +2096,24 @@ export async function scrapeBingrStream(params: {
                         ? `https://player.cinezo.live/embed/tv/${targetId}/${sNum}/${epNum}`
                         : ((type as string) === 'anime' ? `https://player.cinezo.live/embed/anime/${malId || targetId}/${epNum}?dub=true` : `https://player.cinezo.live/embed/movie/${targetId}`);
                 } else if (serverId === 'vidrift') {
-                    scraperName = 'Vidrift (Embed Vidrift HLS)';
-                    embedUrl = type === 'tv'
-                        ? `https://embed.vidrift.in/embed/tv/${targetId}/${sNum}/${epNum}`
-                        : ((type as string) === 'anime' ? `https://embed.vidrift.in/embed/anime/${malId || targetId}/${epNum}` : `https://embed.vidrift.in/embed/movie/${targetId}`);
+                    scraperName = 'Vidrift (Direct HLS / Multi-Provider)';
+                    try {
+                        const vdRes = await scrapeVidriftStream({
+                            tmdbId: targetId,
+                            type: type as any,
+                            season: sNum,
+                            episode: epNum
+                        });
+                        if (vdRes && vdRes.success && vdRes.sources && vdRes.sources.length > 0) {
+                            sources = vdRes.sources;
+                            subtitles = vdRes.subtitles || [];
+                        }
+                    } catch (_) {}
+                    if (sources.length === 0) {
+                        embedUrl = type === 'tv'
+                            ? `https://embed.vidrift.in/embed/tv/${targetId}/${sNum}/${epNum}`
+                            : ((type as string) === 'anime' ? `https://embed.vidrift.in/embed/anime/${malId || targetId}/${epNum}` : `https://embed.vidrift.in/embed/movie/${targetId}`);
+                    }
                 }
 
                 if (embedUrl) {
@@ -2032,7 +2256,9 @@ export async function scrapeBingrStream(params: {
                     }
                     
                     // Fast Duration Verification (use upstream duration if available or race with 1s timeout)
-                    if (upstreamDurationSec && upstreamDurationSec > 600) {
+                    if (serverId === 'vidlink' || serverId === 'vidrift' || serverId === 'filmu') {
+                        durCheck = { isValid: true };
+                    } else if (upstreamDurationSec && upstreamDurationSec > 600) {
                         durCheck = { isValid: true, actual: upstreamDurationSec / 60 };
                     } else {
                         durCheck = await Promise.race([

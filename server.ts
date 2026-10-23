@@ -8086,6 +8086,14 @@ function getUpstreamProxyHeaders(targetUrlStr: string, clientIp?: string, reqHea
         headers['User-Agent'] = 'VLC/3.0.20 LibVLC/3.0.20';
         delete headers['Referer'];
         delete headers['Origin'];
+    } else if (u.hostname.includes('reelvault') || u.hostname.includes('vidrift')) {
+        headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36';
+        headers['Referer'] = 'https://embed.vidrift.in/';
+        headers['Origin'] = 'https://embed.vidrift.in';
+    } else if (u.hostname.includes('rousav') || u.hostname.includes('animecurx') || u.hostname.includes('filmu') || u.hostname.includes('vidly')) {
+        headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36';
+        headers['Referer'] = 'https://vidly.pro/';
+        headers['Origin'] = 'https://vidly.pro';
     }
 
     if (u.hostname.includes('m4uplay') || u.hostname.includes('acek-cdn') || u.hostname.includes('cloudxalviro') || u.hostname.includes('agilebusiness')) {
@@ -8258,7 +8266,26 @@ function getUpstreamProxyHeaders(targetUrlStr: string, clientIp?: string, reqHea
 }
 
 const persistentHttpAgent = new http.Agent({ keepAlive: true, maxSockets: 250, maxFreeSockets: 50, timeout: 30000 });
-const persistentHttpsAgent = new https.Agent({ rejectUnauthorized: false, keepAlive: true, maxSockets: 250, maxFreeSockets: 50, timeout: 30000 });
+const persistentHttpsAgent = new https.Agent({
+    rejectUnauthorized: false,
+    keepAlive: true,
+    maxSockets: 250,
+    maxFreeSockets: 50,
+    timeout: 30000,
+    lookup: (hostname: string, options: any, callback: any) => {
+        if (typeof options === 'function') {
+            callback = options;
+            options = {};
+        }
+        if (hostname === 'edge.reelvault.click') {
+            if (options && options.all) {
+                return callback(null, [{ address: '104.21.87.127', family: 4 }]);
+            }
+            return callback(null, '104.21.87.127', 4);
+        }
+        return require('dns').lookup(hostname, options, callback);
+    }
+});
 let cachedOutboundAgent: any = null;
 
 export function getOutboundProxyAgent(): https.Agent | any {
@@ -8283,6 +8310,13 @@ export function getOutboundProxyAgent(): https.Agent | any {
 
 function rewriteProxyPlaylist(text: string, baseUrl: URL, proxyBase: string, directSegments = false): string {
     const isMaster = text.includes('#EXT-X-STREAM-INF') || text.includes('#EXT-X-MEDIA');
+    
+    // In master playlists, strip storyboard thumbnail tracks (e.g. tiles.m3u8) that break video playback
+    if (isMaster) {
+        text = text.replace(/#EXT-X-STREAM-INF:[^\n]*\n[^\n]*tiles[^\n]*\n?/gi, '');
+        text = text.replace(/#EXT-X-STREAM-INF:[^\n]*tiles[^\n]*\n[^\n]*\n?/gi, '');
+    }
+
     const wrap = (abs: string) => {
         if (abs.includes('stream_proxy.php?url=') || abs.includes('/api/proxy/hls?url=')) return abs;
         return `${proxyBase}?url=${encodeURIComponent(abs)}`;

@@ -456,6 +456,7 @@ router.all(['/stream', '/scrape'], async (req: Request, res: Response) => {
         const episode = body.episode ? Number(body.episode) : (body.query?.episode ? Number(body.query.episode) : undefined);
         const srv = body.srv || body.server;
         const strictSrv = body.strictSrv === true || body.strict === true || body.strictSrv === 'true' || body.strict === 'true';
+        const nocache = body.nocache === '1' || body.nocache === true || body.force === '1' || body.force === true;
 
         const result = await scrapeBingrStream({
             type,
@@ -467,7 +468,8 @@ router.all(['/stream', '/scrape'], async (req: Request, res: Response) => {
             srv,
             strictSrv,
             anilistId,
-            malId
+            malId,
+            nocache
         });
 
         if (result.success) {

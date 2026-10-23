@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { searchKissKh, generateKissKhM3uPlaylist } from '../services/kisskhService';
 import { searchAsiaflix, generateAsiaflixM3u } from '../services/asiaflixService';
-import { findTmdbMatch, getMovieDetails, getTvDetails, getTvEpisodes, scrapeMovie, scrapeTvEpisode, buildBingrM3u } from '../services/bingrScraperService';
+import { findTmdbMatch, getMovieDetails, getTvDetails, getTvEpisodes, scrapeMovie, scrapeTvEpisode, buildBingrM3u, scrapeVidriftStream, scrapeFilmuStream } from '../services/bingrScraperService';
 import { matchAnimeSeries, discoverAnimeEpisodes, buildAnimeM3u } from '../services/animeScraperService';
 import { formatRawDirectStreamUrl } from './cineproM3u';
 
@@ -181,6 +181,146 @@ m3uHubRouter.get('/vidlink', async (req: Request, res: Response) => {
         return res.send(m3u);
     } catch (e: any) {
         return res.status(500).send(`#EXTM3U\n#ERROR: VidLink scraper error: ${e.message}`);
+    }
+});
+
+/**
+ * Vidrift Direct M3U Scraper Endpoint
+ * GET /api/m3u/vidrift?id=533535&type=movie
+ * GET /api/m3u/vidrift?id=213375&type=tv&s=1&e=1
+ */
+m3uHubRouter.get('/vidrift', async (req: Request, res: Response) => {
+    let idRaw = (req.query.id || req.query.tmdbId || '').toString().trim();
+    let title = (req.query.title || req.query.q || '').toString().trim();
+    let type = (req.query.type || 'movie') as 'movie' | 'tv';
+    let season = req.query.season ? Number(req.query.season) : (req.query.s ? Number(req.query.s) : 1);
+    let episode = req.query.episode ? Number(req.query.episode) : (req.query.e ? Number(req.query.e) : 1);
+
+    try {
+        if (!idRaw && title) {
+            const match = await findTmdbMatch(title, type);
+            if (match) {
+                idRaw = String(match.id);
+                title = match.title;
+            }
+        }
+
+        if (!idRaw && !title) {
+            return res.status(400).send('#EXTM3U\n#ERROR: Missing ?id= or ?title= parameter');
+        }
+
+        const proto = (req.headers['x-forwarded-proto'] as string) || req.protocol || 'http';
+        const host = req.get('host') || 'localhost:3000';
+        const baseUrl = `${proto}://${host}`;
+
+        const scrapeRes = await scrapeVidriftStream({
+            tmdbId: idRaw,
+            type,
+            season,
+            episode
+        });
+
+        const items: any[] = [];
+        if (scrapeRes?.sources && scrapeRes.sources.length > 0) {
+            scrapeRes.sources.forEach((s: any) => {
+                if (s.url) {
+                    const finalUrl = req.query.proxy === '1' ? formatRawDirectStreamUrl(s.url, baseUrl) : s.url;
+                    items.push({
+                        name: `${title || 'Media'} [${s.label || 'Vidrift HLS'}]`,
+                        url: finalUrl,
+                        quality: s.quality || '1080p'
+                    });
+                }
+            });
+        }
+
+        if (items.length === 0) {
+            return res.status(404).send(`#EXTM3U\n#ERROR: No Vidrift stream resolved for ${idRaw}`);
+        }
+
+        let m3u = `#EXTM3U\n#PLAYLIST: Vidrift HLS — ${title || idRaw}\n\n`;
+        items.forEach((item) => {
+            const group = type === 'tv' ? `Vidrift TV S${season}` : 'Vidrift Movies';
+            m3u += `#EXTINF:-1 tvg-id="${idRaw}" tvg-name="${item.name}" group-title="${group}",${item.name}\n`;
+            m3u += `${item.url}\n\n`;
+        });
+
+        res.setHeader('Content-Type', 'application/vnd.apple.mpegurl; charset=utf-8');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Content-Disposition', `inline; filename="vidrift_${type}_${idRaw}.m3u"`);
+        return res.send(m3u);
+    } catch (e: any) {
+        return res.status(500).send(`#EXTM3U\n#ERROR: Vidrift scraper error: ${e.message}`);
+    }
+});
+
+/**
+ * Filmu / Vidly Direct M3U Scraper Endpoint
+ * GET /api/m3u/filmu?id=533535&type=movie
+ * GET /api/m3u/filmu?id=1396&type=tv&s=1&e=1
+ */
+m3uHubRouter.get(['/filmu', '/vidly'], async (req: Request, res: Response) => {
+    let idRaw = (req.query.id || req.query.tmdbId || '').toString().trim();
+    let title = (req.query.title || req.query.q || '').toString().trim();
+    let type = (req.query.type || 'movie') as 'movie' | 'tv';
+    let season = req.query.season ? Number(req.query.season) : (req.query.s ? Number(req.query.s) : 1);
+    let episode = req.query.episode ? Number(req.query.episode) : (req.query.e ? Number(req.query.e) : 1);
+
+    try {
+        if (!idRaw && title) {
+            const match = await findTmdbMatch(title, type);
+            if (match) {
+                idRaw = String(match.id);
+                title = match.title;
+            }
+        }
+
+        if (!idRaw && !title) {
+            return res.status(400).send('#EXTM3U\n#ERROR: Missing ?id= or ?title= parameter');
+        }
+
+        const proto = (req.headers['x-forwarded-proto'] as string) || req.protocol || 'http';
+        const host = req.get('host') || 'localhost:3000';
+        const baseUrl = `${proto}://${host}`;
+
+        const scrapeRes = await scrapeFilmuStream({
+            tmdbId: idRaw,
+            type,
+            season,
+            episode
+        });
+
+        const items: any[] = [];
+        if (scrapeRes?.sources && scrapeRes.sources.length > 0) {
+            scrapeRes.sources.forEach((s: any) => {
+                if (s.url) {
+                    const finalUrl = req.query.proxy === '1' ? formatRawDirectStreamUrl(s.url, baseUrl) : s.url;
+                    items.push({
+                        name: `${title || 'Media'} [${s.label || 'Filmu HLS'}]`,
+                        url: finalUrl,
+                        quality: s.quality || '1080p'
+                    });
+                }
+            });
+        }
+
+        if (items.length === 0) {
+            return res.status(404).send(`#EXTM3U\n#ERROR: No Filmu stream resolved for ${idRaw}`);
+        }
+
+        let m3u = `#EXTM3U\n#PLAYLIST: Filmu / Vidly HLS — ${title || idRaw}\n\n`;
+        items.forEach((item) => {
+            const group = type === 'tv' ? `Filmu TV S${season}` : 'Filmu Movies';
+            m3u += `#EXTINF:-1 tvg-id="${idRaw}" tvg-name="${item.name}" group-title="${group}",${item.name}\n`;
+            m3u += `${item.url}\n\n`;
+        });
+
+        res.setHeader('Content-Type', 'application/vnd.apple.mpegurl; charset=utf-8');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Content-Disposition', `inline; filename="filmu_${type}_${idRaw}.m3u"`);
+        return res.send(m3u);
+    } catch (e: any) {
+        return res.status(500).send(`#EXTM3U\n#ERROR: Filmu scraper error: ${e.message}`);
     }
 });
 

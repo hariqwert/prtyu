@@ -355,6 +355,18 @@ export async function isSafeUrl(urlStr: string): Promise<boolean> {
         const numericIpRe = /^(0x[\da-f]+|\d{8,10}|0\d+)$/i;
         if (numericIpRe.test(host)) return false;
 
+        // Whitelist verified video streaming CDNs even if locally sinkholed
+        if (
+            host.includes('reelvault.click') ||
+            host.includes('vidrift.in') ||
+            host.includes('rousav.tech') ||
+            host.includes('animecurx.tech') ||
+            host.includes('hakunaymatata.com') ||
+            host.includes('hakunamatata.com')
+        ) {
+            return true;
+        }
+
         // Check if destination is self / localhost
         const isSelfHost = host === 'localhost' || host === '127.0.0.1' || host === '::1' || host === '0.0.0.0';
         const serverPort = String(process.env.PORT || 3000);

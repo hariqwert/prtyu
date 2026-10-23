@@ -397,14 +397,14 @@ export class ConsumetSearchService {
                 const name = ch.name || ch.title || 'Channel';
                 const chId = String(ch.channel_id || (ch as any).id || '');
                 const cleanId = chId.replace(/^(?:mdtv|jtv)[-_]/i, '');
-                const isMdtv = ch.source === 'mdtv' || chId.startsWith('mdtv') || chId.startsWith('jtv') || !!(ch as any).drm || !!(ch.key_id && ch.key);
+                const isMdtv = ch.source === 'mdtv' || chId.startsWith('mdtv') || chId.startsWith('jtv') || !!(ch as any).drm || !!((ch as any).key_id && (ch as any).key);
                 const streamUrl = ch.stream_url || ch.streamUrl || ch.url || chId;
 
                 let playUrl = ch.playUrl || '';
                 if (!playUrl) {
                     if (isMdtv && cleanId) {
-                        const keyId = ch.key_id || (ch as any).drm?.key_id || '';
-                        const key = ch.key || (ch as any).drm?.key || '';
+                        const keyId = (ch as any).key_id || (ch as any).drm?.key_id || '';
+                        const key = (ch as any).key || (ch as any).drm?.key || '';
                         const drmParams = (keyId && key) ? `&key_id=${encodeURIComponent(keyId)}&key=${encodeURIComponent(key)}` : '';
                         playUrl = `/play_consumet.php?channel_id=mdtv-${encodeURIComponent(cleanId)}&url=%2Fapi%2Fmdtv%2Fmanifest%2F${encodeURIComponent(cleanId)}.mpd${drmParams}&name=${encodeURIComponent(name)}&source=consumet.html&type=dash&from_tab=livetv`;
                     } else if (streamUrl) {

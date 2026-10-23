@@ -1933,6 +1933,8 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
         const DEFAULT_SERVERS = isAnimeContent ? ANIME_SPECIAL_SERVERS : [
             { id: 'vidlink', name: 'VidLink Pro (Decrypted 1080p / Direct CDN)', cc: 'US' },
             { id: 'm4u', name: 'Movie 4U (Movies4u / Acek CDN)', cc: 'IN' },
+            { id: 'vidrift', name: 'Vidrift (Decrypted Multi-Provider HLS)', cc: 'IN' },
+            { id: 'filmu', name: 'Filmu / Vidly (Native HLS / Decrypted Stream)', cc: 'IN' },
             { id: 's62', name: 'Bastion (Multi-Audio HLS / Fast Direct)', cc: 'IN' },
             { id: 's30', name: 'Nova (Direct Fast HLS)', cc: 'US' },
             { id: 's80', name: 'Moscow (Fast Direct HLS / StreamRip)', cc: 'US' },
@@ -2209,8 +2211,8 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
                     const fallbackOrder = isAnimeMode
                         ? ['bing_anime', 'hianime', 'animesalt', 'kisskh', 'asiaflix', 's40', 'framex']
                         : (MEDIA_TYPE === 'tv'
-                            ? ['vidlink', 'm4u', 's62', 's30', 's80', 's31', 'framex', 's81', 's70', 's40', 'sm_hub', 's3']
-                            : ['vidlink', 'm4u', 's62', 's30', 's80', 's31', 'framex', 's81', 'sm_hub', 's70', 's40', 's3']);
+                            ? ['vidlink', 'm4u', 'vidrift', 'filmu', 's62', 's30', 's80', 's31', 'framex', 's81', 's70', 's40', 'sm_hub', 's3']
+                            : ['vidlink', 'm4u', 'vidrift', 'filmu', 's62', 's30', 's80', 's31', 'framex', 's81', 'sm_hub', 's70', 's40', 's3']);
                     failedServers.add(serverId);
                     const unattemptedDirect = fallbackOrder.find(srv => !failedServers.has(srv));
                     // If this was an auto-cascade and another direct server is available, search remaining direct servers first!
@@ -2289,8 +2291,8 @@ $imdbId = isset($_GET['imdbId']) ? $_GET['imdbId'] : (isset($_GET['imdb_id']) ? 
             const fallbackOrder = isAnimeMode
                 ? ['bing_anime', 'hianime', 'animesalt', 'kisskh', 'asiaflix', 's40', 'framex']
                 : (MEDIA_TYPE === 'tv'
-                    ? ['vidlink', 'm4u', 's62', 's30', 's80', 's31', 'framex', 's81', 's70', 's40', 'sm_hub', 's3']
-                    : ['vidlink', 'm4u', 's62', 's30', 's80', 's31', 'framex', 's81', 'sm_hub', 's70', 's40', 's3']);
+                    ? ['vidlink', 'm4u', 'vidrift', 'filmu', 's62', 's30', 's80', 's31', 'framex', 's81', 's70', 's40', 'sm_hub', 's3']
+                    : ['vidlink', 'm4u', 'vidrift', 'filmu', 's62', 's30', 's80', 's31', 'framex', 's81', 'sm_hub', 's70', 's40', 's3']);
             // Find next unattempted direct server in priority sequence
             const nextServer = failedServers.size <= 10 ? fallbackOrder.find(srv => !failedServers.has(srv)) : null;
             if (nextServer) {
